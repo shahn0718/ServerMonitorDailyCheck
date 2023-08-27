@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.damg.upit.monitor.dailyCheck.domain.gwDaily.mapper.gwMapper">
+    <insert id="insertGwDailyServiceMain" parameterType="com.damg.upit.monitor.dailyCheck.domain.gwDaily.model.MInsertGwDailyServiceMain"
+            useGeneratedKeys="true">
+
+        /* insertGwDailyServiceMain */
+
+        INSERT INTO GW_DAILY_SERVICE (
+
+             GW_SERVICE_ID
+            ,GW_MAIN_ID
+            ,GW_MAIL_CHK
+            ,GW_MAIL_BIGO
+            ,GW_APPROVE_CHK
+            ,GW_APPROVE_BIGO
+            ,GW_BACKUP_CHK
+            ,GW_BACKUP_BIGO
+
+        ) VALUES (
+
+             1
+            ,2
+            ,#{gwMailServiceChk}
+            ,#{gwMailServiceBigo}
+            ,#{gwApproveServiceChk}
+            ,#{gwApproveServiceBigo}
+            ,#{gwBackupServiceChk}
+            ,#{gwBackupServiceBigo}
+
+        )
+    </insert>
+
+    <insert id="insertGwDailyServerMain" parameterType="com.damg.upit.monitor.dailyCheck.domain.gwDaily.model.MInsertGwDailyServerMain"
+            useGeneratedKeys="true">
+
+        /* insertGwDailyServerMain */
+
+        INSERT INTO GW_DAILY_SERVER (
+                                      GW_SERVER_ID
+                                    , GW_MAIN_ID
+                                    , NODE1_CPUUSAGE_CHK
+                                    , NODE1_CPUUSAGE_BIGO
+                                    , NODE1_MEMUSAGE_CHK
+                                    , NODE1_MEMUSAGE_BIGO
+                                    , NODE1_OVERLOAD_CHK
+                                    , NODE1_OVERLOAD_BIGO
+                                    , NODE1_DISKUSAGE_CHK
+                                    , NODE1_DISKUSAGE_BIGO
+                                    , NODE1_PROCESS_CHK
+                                    , NODE1_PROCESS_BIGO
+                                    , NODE1_KUB_CHK
+                                    , NODE1_KUB_BIGO
+                                    , NODE2_CPUUSAGE_CHK
+                                    , NODE2_CPUUSAGE_BIGO
+                                    , NODE2_MEMUSAGE_CHK
+                                    , NODE2_MEMUSAGE_BIGO
+                                    , NODE2_OVERLOAD_CHK
+                                    , NODE2_OVERLOAD_BIGO
+                                    , NODE2_DISKUSAGE_CHK
+                                    , NODE2_DISKUSAGE_BIGO
+                                    , NODE2_PROCESS_CHK
+                                    , NODE2_PROCESS_BIGO
+                                    , NODE2_KUB_CHK
+                                    , NODE2_KUB_BIGO
+                                    , NODE3_CPUUSAGE_CHK
+                                    , NODE3_CPUUSAGE_BIGO
+                                    , NODE3_MEMUSAGE_CHK
+                                    , NODE3_MEMUSAGE_BIGO
+                                    , NODE3_OVERLOAD_CHK
+                                    , NODE3_OVERLOAD_BIGO
+                                    , NODE3_DISKUSAGE_CHK
+                                    , NODE3_DISKUSAGE_BIGO
+                                    , NODE3_PROCESS_CHK
+                                    , NODE3_PROCESS_BIGO
+                                    , NODE3_KUB_CHK
+                                    , NODE3_KUB_BIGO
+                                    , NODE4_CPUUSAGE_CHK
+                                    , NODE4_CPUUSAGE_BIGO
+                                    , NODE4_MEMUSAGE_CHK
+                                    , NODE4_MEMUSAGE_BIGO
+                                    , NODE4_OVERLOAD_CHK
+                                    , NODE4_OVERLOAD_BIGO
+                                    , NODE4_DISKUSAGE_CHK
+                                    , NODE4_DISKUSAGE_BIGO
+                                    , NODE4_PROCESS_CHK
+                                    , NODE4_PROCESS_BIGO
+                                    , NODE4_KUB_CHK
+                                    , NODE4_KUB_BIGO
+                                    , DEVNODE_CPUUSAGE_CHK
+                                    , DEVNODE_CPUUSAGE_BIGO
+                                    , DEVNODE_MEMUSAGE_CHK
+                                    , DEVNODE_MEMUSAGE_BIGO
+                                    , DEVNODE_OVERLOAD_CHK
+                                    , DEVNODE_OVERLOAD_BIGO
+                                    , DEVNODE_DISKUSAGE_CHK
+                                    , DEVNODE_DISKUSAGE_BIGO
+                                    , DEVNODE_PROCESS_CHK
+                                    , DEVNODE_PROCESS_BIGO
+                                    , DEVNODE_KUB_CHK
+                                    , DEVNODE_KUB_BIGO
+                                    , ARCH_CPUUSAGE_CHK
+                                    , ARCH_CPUUSAGE_BIGO
+                                    , ARCH_MEMUSAGE_CHK
+                                    , ARCH_MEMUSAGE_BIGO
+                                    , ARCH_SWAPUSAGE_CHK
+                                    , ARCH_SWAPUSAGE_BIGO
+                                    , ARCH_OVERLOAD_CHK
+                                    , ARCH_OVERLOAD_BIGO
+                                    , ARCH_PROCESS_CHK
+                                    , ARCH_PROCESS_BIGO
+                                    , BACK_CPUUSAGE_CHK
+                                    , BACK_CPUUSAGE_BIGO
+                                    , BACK_MEMUSAGE_CHK
+                                    , BACK_MEMUSAGE_BIGO
+                                    , BACK_SWAPUSAGE_CHK
+                                    , BACK_SWAPUSAGE_BIGO
+                                    , BACK_OVERLOAD_CHK
+                                    , BACK_OVERLOAD_BIGO
+                                    , BACK_DISKUSAGE_CHK
+                                    , BACK_DISKUSAGE_BIGO
+                                    , BACK_PROCESS_CHK
+                                    , BACK_PROCESS_BIGO)
+        VALUES (
+                 1
+               , 2
+               , #{node1CpuUsageChk}
+               , #{node1CpuUsageBigo}
+               , #{node1MemUsageChk}
+               , #{node1MemUsageBigo}
+               , #{node1OverLoadChk}
+               , #{node1OverLoadBigo}
+               , #{node1DiskUsageChk}
+               , #{node1DiskUsageBigo}
+               , #{node1ProcessChk}
+               , #{node1ProcessBigo}
+               , #{node1KubChk}
+               , #{node1KubBigo}
+               , #{node2CpuUsageChk}
+               , #{node2CpuUsageBigo}
+               , #{node2MemUsageChk}
+               , #{node2MemUsageBigo}
+               , #{node2OverLoadChk}
+               , #{node2OverLoadBigo}
+               , #{node2DiskUsageChk}
+               , #{node2DiskUsageBigo}
+               , #{node2ProcessChk}
+               , #{node2ProcessBigo}
+               , #{node2KubChk}
+               , #{node2KubBigo}
+               , #{node3CpuUsageChk}
+               , #{node3CpuUsageBigo}
+               , #{node3MemUsageChk}
+               , #{node3MemUsageBigo}
+               , #{node3OverLoadChk}
+               , #{node3OverLoadBigo}
+               , #{node3DiskUsageChk}
+               , #{node3DiskUsageBigo}
+               , #{node3ProcessChk}
+               , #{node3ProcessBigo}
+               , #{node3KubChk}
+               , #{node3KubBigo}
+               , #{node4CpuUsageChk}
+               , #{node4CpuUsageBigo}
+               , #{node4MemUsageChk}
+               , #{node4MemUsageBigo}
+               , #{node4OverLoadChk}
+               , #{node4OverLoadBigo}
+               , #{node4DiskUsageChk}
+               , #{node4DiskUsageBigo}
+               , #{node4ProcessChk}
+               , #{node4ProcessBigo}
+               , #{node4KubChk}
+               , #{node4KubBigo}
+               , #{devNodeCpuUsageChk}
+               , #{devNodeCpuUsageBigo}
+               , #{devNodeMemUsageChk}
+               , #{devNodeMemUsageBigo}
+               , #{devNodeOverLoadChk}
+               , #{devNodeOverLoadBigo}
+               , #{devNodeDiskUsageChk}
+               , #{devNodeDiskUsageBigo}
+               , #{devNodeProcessChk}
+               , #{devNodeProcessBigo}
+               , #{devNodeKubChk}
+               , #{devNodeKubBigo}
+               , #{archCpuUsageChk}
+               , #{archCpuUsageBigo}
+               , #{archMemUsageChk}
+               , #{archMemUsageBigo}
+               , #{archSwapUsageChk}
+               , #{archSwapUsageBigo}
+               , #{archOverLoadChk}
+               , #{archOverLoadBigo}
+               , #{archProcessChk}
+               , #{archProcessBigo}
+               , #{backCpuUsageChk}
+               , #{backCpuUsageBigo}
+               , #{backMemUsageChk}
+               , #{backMemUsageBigo}
+               , #{backSwapUsageChk}
+               , #{backSwapUsageBigo}
+               , #{backOverLoadChk}
+               , #{backOverLoadBigo}
+               , #{backDiskUsageChk}
+               , #{backDiskUsageBigo}
+               , #{backProcessChk}
+               , #{backProcessBigo}
+        )
+    </insert>
+
+
+
+    <insert id="insertGwDailyStorageMain" parameterType="com.damg.upit.monitor.dailyCheck.domain.gwDaily.model.MInsertGwDailyStorageMain"
+            useGeneratedKeys="true">
+
+        /* insertGwDailyStorageMain */
+
+        INSERT INTO GW_DAILY_STORAGE (
+
+             GW_STORAGE_ID
+            ,GW_MAIN_ID
+            ,GW_NASMAIN_CHK
+            ,GW_NASMAIN_BIGO
+            ,GW_NASBACKUP_CHK
+            ,GW_NASBACKUP_BIGO
+            ,ARCH_NASMAIN_CHK
+            ,ARCH_NASMAIN_BIGO
+            ,ARCH_NASBACKUP_CHK
+            ,ARCH_NASBACKUP_BIGO
+
+        ) VALUES (
+
+             1
+            ,2
+            ,#{gwNasMainClustChk}
+            ,#{gwNasMainClustBigo}
+            ,#{gwNasBackClustChk}
+            ,#{gwNasBackClustBigo}
+            ,#{archNasMainClustChk}
+            ,#{archNasMainClustBigo}
+            ,#{archNasBackClustChk}
+            ,#{archNasBackClustBigo}
+        )
+
+    </insert>
+</mapper>
