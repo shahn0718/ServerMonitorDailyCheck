@@ -94,6 +94,8 @@ public class MInsertGwDailyServerMain {
     private String archSwapUsageBigo;
     private String archOverLoadChk;
     private String archOverLoadBigo;
+    private String archDiskUsageChk;
+    private String archDiskUsageBigo;
     private String archProcessChk;
     private String archProcessBigo;
 
