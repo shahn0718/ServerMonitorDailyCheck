@@ -12,17 +12,20 @@ public class MInsertGwDailyServiceMain {
      * GW 서비스 메일, 전자결재, 백업 (이상유무, 비고)
      */
 
+    private long gwServiceId;
+    private long gwMainId;
+
     //MailService
-    public String gwMailServiceChk;
-    public String gwMailServiceBigo;
+    private String gwMailServiceChk;
+    private String gwMailServiceBigo;
 
     //ApprovService
-    public String gwApproveServiceChk;
-    public String gwApproveServiceBigo;
+    private String gwApproveServiceChk;
+    private String gwApproveServiceBigo;
 
     //BackupService
-    public String gwBackupServiceChk;
-    public String gwBackupServiceBigo;
+    private String gwBackupServiceChk;
+    private String gwBackupServiceBigo;
 
 
 

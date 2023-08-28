@@ -75,6 +75,21 @@
 <form class="row g-3" method="post">
 <div class="container-fluid container-lg mt-lg-5">
 
+  <div class="row text-center text-dark mb-5">
+    <div class="col border">
+      작성자:&nbsp;
+      <select  class="form-select-s" th:field="*{adminUser}">
+        <option value="">선택</option>
+              <option th:each="adminUser : ${adminUser}" th:value="${adminUser.admin_nm}"
+                      th:text="${adminUser.admin_nm}"></option>
+      </select>
+    </div>
+    <div class="col border">
+      작성시간:&nbsp;
+      <span th:text="${#temporals.format(createdTime,'yyyy-MM-dd HH:mm:ss')}"></span>
+    </div>
+  </div>
+
   <div class="form-row float-end">
     <button type="submit" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" >수정</button>
     <button type="submit" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" >저장</button>
@@ -82,7 +97,7 @@
 
   <table class="table table-bordered align-middle table-hover mt-5">
     <thead>
-      <tr align="center">
+      <tr align="center" style="background-color: #81BEF7;">
         <th scope="col">구분</th>
         <th scope="col">항목명</th>
         <th scope="col">운영체제</th>
@@ -93,8 +108,8 @@
     </thead>
     <tbody>
     <form name="gwService" th:action method="post">
-      <tr align="center">
-        <td>서비스</td>
+      <tr align="center" >
+        <td style="background-color: #81BEF7;">서비스</td>
         <td>
           <p>메일</p>
           <p>전자결재</p>
@@ -147,7 +162,7 @@
       </tr>
     <form name="gwServer" th:action="post">
       <tr align="center">
-        <td rowspan="7">서버</td>
+        <td rowspan="7" style="background-color: #81BEF7;">서버</td>
         <td>node1(운영1)</td>
         <td>리눅스</td>
         <td>  
@@ -567,7 +582,7 @@
       </tr>
     <form name="gwStorage" th:action="post">
       <tr align="center">
-        <td rowspan="4">스토리지</td>
+        <td rowspan="4" style="background-color: #81BEF7;">스토리지</td>
         <td>GW-NAS-Main</td>
         <td>-</td>
         <td>  
@@ -639,6 +654,7 @@
           <input type="text" class="form-control" name="archNasBackupBigo" id="archNasBackupBigoInput" placeholder="이상유무 유 체크시 내역기재">
         </td>
       </tr>
+    </form>
     </form>
     </form>
     </tbody>

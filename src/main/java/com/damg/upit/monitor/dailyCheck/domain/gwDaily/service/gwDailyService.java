@@ -9,13 +9,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Slf4j
 @Service
 public class gwDailyService {
 
     private final gwDailyRepository gwRepository;
 
-    @Autowired
     public gwDailyService(gwDailyRepository gwRepository){
         this.gwRepository = gwRepository;
     }
@@ -28,6 +29,15 @@ public class gwDailyService {
     }
     public void insertGwDailyStorageMain(MInsertGwDailyStorageMain mInsertGwDailyStorageMain){
         gwRepository.insertGwDailyStorageMain(mInsertGwDailyStorageMain);
+    }
+    public List<MInsertGwDailyServiceMain> selectGwDailyServiceMain(Long gwMainId){
+        return gwRepository.selectGwDailyServiceMain(gwMainId);
+    }
+    public List<MInsertGwDailyServerMain> selectGwDailyServerMain(Long gwMainId){
+        return gwRepository.selectGwDailyServerMain(gwMainId);
+    }
+    public List<MInsertGwDailyStorageMain> selectGwDailyStorageMain(Long gwMainId){
+        return gwRepository.selectGwDailyStroageMain(gwMainId);
     }
 
 }
