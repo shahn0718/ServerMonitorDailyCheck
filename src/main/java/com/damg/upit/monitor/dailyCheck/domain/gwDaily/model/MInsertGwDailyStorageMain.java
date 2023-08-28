@@ -4,11 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
+@Getter @Setter
 @ToString
 public class MInsertGwDailyStorageMain {
 
+
+    private long gwStorageId;
+    private long gwMainId;
     //GW-NAS-MAIN
     private String gwNasMainClustChk;
     private String gwNasMainClustBigo;

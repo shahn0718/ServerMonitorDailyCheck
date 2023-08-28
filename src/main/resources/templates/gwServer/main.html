@@ -5,11 +5,12 @@
     <title>Title</title>
 </head>
 <body>
+    <tr th:each="gwService : ${gwService}">
   <h1>확인</h1>
   <input type="text" id="gwMailServiceChk" name="gwMailServiceChk" class="form-control"
-         th:value="${gwDailyServiceMain.gwMailServiceChk}">
+         th:value="${gwService.gwMailServiceChk}">
   <input type="text" id="gwMailServicChk" name="gwMailServicChk" class="form-control"
-         th:value="${gwDailyServiceMain.gwMailServiceBigo}">
-
+         th:value="${gwService.gwMailServiceBigo}">
+    </tr>
 </body>
 </html>

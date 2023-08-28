@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+          crossorigin="anonymous">
+    <title>일일점검일지(지니어스)</title>
+</head>
+<script>
+</script>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+ 
+
+<form class="row g-3">
+<div class="container-fluid container-lg mt-lg-5">
+
+  <div class="form-row float-end">
+    <button type="submit" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" >수정</button>
+    <button type="submit" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" >저장</button>
+  </div>
+
+  <table class="table table-bordered align-middle table-hover mt-5">
+    <thead>
+      <tr align="center" style="background-color: #81BEF7;">
+        <th scope="col">구분</th>
+        <th scope="col">항목명</th>
+        <th scope="col">운영체제</th>
+        <th scope="col">체크항목</th>
+        <th scope="col">이상유무</th>
+        <th scope="col">비고</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="gwService : ${gwService}" align="center">
+        <td style="background-color: #81BEF7;">서비스</td>
+        <td>  
+          <p>메일</p>
+          <p>전자결재</p>
+          <p>백업</p>
+        </td>
+        <td> 
+          <p>-</p> 
+          <p>-</p>
+          <p> </p>
+        </td>
+        <td> 
+          <p>송수신</p> 
+          <p>?</p>
+          <p>백업스케쥴</p>
+        </td>
+        <td> 
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="gwMailServiceChk" id="gwMailServiceMailChkY"
+                   th:checked="${gwService.gwMailServiceChk eq 'Y'}">
+            유
+            <input class="form-check-input" type="radio" value="N" name="gwMailServiceChk" id="gwMailServiceMailChkN"
+                   th:checked="${gwService.gwMailServiceChk eq 'N'}">
+            무
+          </p>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="gwApproveServiceChk" id="gwServiceApproveChkY"
+                   th:checked="${gwService.gwApproveServiceChk eq 'Y'}" >
+            유
+            <input class="form-check-input" type="radio" value="N" name="gwApproveServiceChk" id="gwServiceApproveChkN"
+                   th:checked="${gwService.gwApproveServiceChk eq 'N'}" >
+            무  
+          </p>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="gwBackUpServiceChk" id="gwBackUpServiceChkY"
+                   th:checked="${gwService.gwBackupServiceChk eq 'Y'}" >
+            유
+            <input class="form-check-input" type="radio" value="N" name="gwBackUpServiceChk" id="gwSBackUpServiceChkN"
+                   th:checked="${gwService.gwBackupServiceChk eq 'N'}"  >
+            무  
+          </p>
+        </td>
+        <td>
+          <input class="form-control" id="gwMailServiceBigoInput" name="gwMailServiceBigo" placeholder="이상유무 유 체크시 내역기재"
+                 th:value="${gwService.gwMailServiceBigo}" type="text">
+          <input type="text" class="form-control" name="gwApproveServiceBigo" id="gwApproveServiceBigoInput"
+                 th:value="${gwService.gwApproveServiceBigo}">
+          <input type="text" class="form-control" name="gwBackupServiceBigo" id="backupServiceBigoInput"
+                 th:value="${gwService.gwBackupServiceBigo}">
+
+
+        </td>
+      </tr>
+      <tr align="center">
+        <td rowspan="7" style="background-color: #81BEF7;">서버</td>
+        <td>node1(운영1)</td>
+        <td>리눅스</td>
+        <td>  
+          <p>CPU 사용량</p>
+          <p>메모리 사용량</p>
+          <p>부하수치</p>
+          <p>디스크 사용량</p>
+          <p>프로세스</p>
+          <p>쿠버네티스</p>
+        </td>
+        <td> 
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="node1CpuUsageChk" id="node1CpuUsageChkY"
+                   >
+            유
+            <input class="form-check-input" type="radio" value="N" name="node1CpuUsageChk" id="node1CpuUsageChkN"
+                   checked>
+            무
+          </p> 
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="node1MemUsageChk" id="node1MemUsageChkY"
+                  >
+            유
+            <input class="form-check-input" type="radio" value="N" name="node1MemUsageChk" id="node1MemUsageChkN"
+                  checked>
+            무  
+          </p>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="node1OverLoadChk" id="node1OverLoadChkY"
+                  >
+            유
+            <input class="form-check-input" type="radio" value="N" name="node1OverLoadChk" id="node1OverLoadChkN"
+                 checked>
+            무  
+          </p>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="node1DiskUsageChk" id="node1DiskUsageChkY"
+                  >
+            유
+            <input class="form-check-input" type="radio" value="N" name="node1DiskUsageChk" id="node1DiskUsageChkN"
+              checked>
+            무
+          </p> 
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="node1ProcessChk" id="node1ProcessChkY"
+            >
+            유
+            <input class="form-check-input" type="radio" value="N" name="node1ProcessChk" id="node1ProcessChkN"
+            checked>
+            무  
+          </p>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="node1KubChk" id="node1KubChkY"
+            >
+            유
+            <input class="form-check-input" type="radio" value="N" name="node1KubChk" id="node1KubChkN"
+      checked>
+            무  
+          </p>
+        </td>
+        <td>
+          <input type="text" class="form-control" name="node1CpuUsageBigo" id="node1CpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
+          <input type="text" class="form-control" name="node1MemUsageBigo" id="node1MemUsageBigoInput">
+          <input type="text" class="form-control" name="node1OverLoadBigo" id="node1OverLoadBigoInput">
+          <input type="text" class="form-control" name="node1DiskUsageBigo" id="node1DiskUsageBigoInput">
+          <input type="text" class="form-control" name="node1ProcessBigo" id="node1ProcessBigoInput">
+          <input type="text" class="form-control" name="node1KubBigo" id="node1KubBigoInput" placeholder="cluster_chk 항목 보이면 유 체크 후 항목명 기재">
+        </td>
+      </tr>
+      <tr align="center">
+        <td>node2(운영2)</td>
+        <td>리눅스</td>
+        <td>  
+          <p>CPU 사용량</p>
+          <p>메모리 사용량</p>
+          <p>부하수치</p>
+          <p>디스크 사용량</p>
+          <p>프로세스</p>
+          <p>쿠버네티스</p>
+        </td>
+        <td> 
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="node2CpuUsageChk" id="node2CpuUsageChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="node2CpuUsageChk" id="node2CpuUsageChkN" checked>
+            무
+          </p> 
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="node2MemUsageChk" id="node2MemUsageChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="node2MemUsageChk" id="node2MemUsageChkN" checked>
+            무  
+          </p>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="node2OverLoadChk" id="node2OverLoadChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="node2OverLoadChk" id="node2OverLoadChkN" checked>
+            무  
+          </p>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="node2DiskUsageChk" id="node2DiskUsageChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="node2DiskUsageChk" id="node2DiskUsageChkN" checked>
+            무
+          </p> 
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="node2ProcessChk" id="node2ProcessChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="node2ProcessChk" id="node2ProcessChkN" checked>
+            무  
+          </p>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="node2KubChk" id="node2KubChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="node2KubChk" id="node2KubChkN" checked>
+            무  
+          </p>
+        </td>
+        <td>
+          <input type="text" class="form-control" name="node2CpuUsageBigo" id="node2CpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
+          <input type="text" class="form-control" name="node2MemUsageBigo" id="node2MemUsageBigoInput">
+          <input type="text" class="form-control" name="node2OverLoadBigo" id="node2OverLoadBigoInput">
+          <input type="text" class="form-control" name="node2DiskUsageBigo" id="node2DiskUsageBigoInput">
+          <input type="text" class="form-control" name="node2ProcessBigo" id="node2ProcessBigoInput">
+          <input type="text" class="form-control" name="node2KubBigo" id="node2KubBigoInput">
+        </td>
+      </tr>
+      <tr align="center">
+        <td>node3(운영3)</td>
+        <td>리눅스</td>
+        <td>  
+          <p>CPU 사용량</p>
+          <p>메모리 사용량</p>
+          <p>부하수치</p>
+          <p>디스크 사용량</p>
+          <p>프로세스</p>
+          <p>쿠버네티스</p>
+        </td>
+        <td> 
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="node3CpuUsageChk" id="node3CpuUsageChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="node3CpuUsageChk" id="node3CpuUsageChkN" checked>
+            무
+          </p> 
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="node3MemUsageChk" id="node3MemUsageChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="node3MemUsageChk" id="node3MemUsageChkN" checked>
+            무  
+          </p>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="node3OverLoadChk" id="node3OverLoadChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="node3OverLoadChk" id="node3OverLoadChkN" checked>
+            무  
+          </p>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="node3DiskUsageChk" id="node3DiskUsageChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="node3DiskUsageChk" id="node3DiskUsageChkN" checked>
+            무
+          </p> 
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="node3ProcessChk" id="node3ProcessChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="node3ProcessChk" id="node3ProcessChkN" checked>
+            무  
+          </p>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="node3KubChk" id="node3KubChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="node3KubChk" id="node3KubChkN" checked>
+            무  
+          </p>
+        </td>
+        <td>
+          <input type="text" class="form-control" name="node3CpuUsageBigo" id="node3CpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
+          <input type="text" class="form-control" name="node3MemUsageBigo" id="node3MemUsageBigoInput">
+          <input type="text" class="form-control" name="node3OverLoadBigo" id="node3OverLoadBigoInput">
+          <input type="text" class="form-control" name="node3DiskUsageBigo" id="node3DiskUsageBigoInput">
+          <input type="text" class="form-control" name="node3ProcessBigo" id="node3ProcessBigoInput">
+          <input type="text" class="form-control" name="node3KubBigo" id="node3KubBigoInput">
+        </td>
+      </tr>
+      <tr align="center">
+        <td>node4(운영4)</td>
+        <td>리눅스</td>
+        <td>  
+          <p>CPU 사용량</p>
+          <p>메모리 사용량</p>
+          <p>부하수치</p>
+          <p>디스크 사용량</p>
+          <p>프로세스</p>
+          <p>쿠버네티스</p>
+        </td>
+        <td> 
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="node4CpuUsageChk" id="node4CpuUsageChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="node4CpuUsageChk" id="node4CpuUsageChkN" checked>
+            무
+          </p> 
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="node4MemUsageChk" id="node4MemUsageChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="node4MemUsageChk" id="node4MemUsageChkN" checked>
+            무  
+          </p>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="node4OverLoadChk" id="node4OverLoadChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="node4OverLoadChk" id="node4OverLoadChkN" checked>
+            무  
+          </p>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="node4DiskUsageChk" id="node4DiskUsageChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="node4DiskUsageChk" id="node4DiskUsageChkN" checked>
+            무
+          </p> 
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="node4ProcessChk" id="node4ProcessChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="node4ProcessChk" id="node4ProcessChkN" checked>
+            무  
+          </p>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="node4KubChk" id="node4KubChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="node4KubChk" id="node4KubChkN" checked>
+            무  
+          </p>
+        </td>
+        <td>
+          <input type="text" class="form-control" name="node4CpuUsageBigo" id="node4CpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
+          <input type="text" class="form-control" name="node4MemUsageBigo" id="node4MemUsageBigoInput">
+          <input type="text" class="form-control" name="node4OverLoadBigo" id="node4OverLoadBigoInput">
+          <input type="text" class="form-control" name="node4DiskUsageBigo" id="node4DiskUsageBigoInput">
+          <input type="text" class="form-control" name="node4ProcessBigo" id="node4ProcessBigoInput">
+          <input type="text" class="form-control" name="node4KubBigo" id="node4KubBigoInput">
+        </td>
+      </tr>
+      <tr align="center">
+        <td>dev-node1(개발)</td>
+        <td>리눅스</td>
+        <td>  
+          <p>CPU 사용량</p>
+          <p>메모리 사용량</p>
+          <p>부하수치</p>
+          <p>디스크 사용량</p>
+          <p>프로세스</p>
+          <p>쿠버네티스</p>
+        </td>
+        <td> 
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="devNodeCpuUsageChk" id="devNodeCpuUsageChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="devNodeCpuUsageChk" id="devNodeCpuUsageChkN" checked>
+            무
+          </p> 
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="devNodeMemUsageChk" id="devNodeMemUsageChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="devNodeMemUsageChk" id="devNodeMemUsageChkN" checked>
+            무  
+          </p>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="devNodeOverLoadChk" id="devNodeOverLoadChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="devNodeOverLoadChk" id="devNodeOverLoadChkN" checked>
+            무  
+          </p>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="devNodeDiskUsageChk" id="devNodeDiskUsageChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="devNodeDiskUsageChk" id="devNodeDiskUsageChkN" checked>
+            무
+          </p> 
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="devNodeProcessChk" id="devNodeProcessChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="devNodeProcessChk" id="devNodeProcessChkN" checked>
+            무  
+          </p>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="devNodeKubChk" id="devNodeKubChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="devNodeKubChk" id="devNodeKubChkN" checked>
+            무  
+          </p>
+        </td>
+        <td>
+          <input type="text" class="form-control" name="devNodeCpuUsageBigo" id="devNodeCpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
+          <input type="text" class="form-control" name="devNodeMemUsageBigo" id="devNodeMemUsageBigoInput">
+          <input type="text" class="form-control" name="devNodeOverLoadBigo" id="devNodeOverLoadBigoInput">
+          <input type="text" class="form-control" name="devNodeDiskUsageBigo" id="devNodeDiskUsageBigoInput">
+          <input type="text" class="form-control" name="devNodeProcessBigo" id="devNodeProcessBigoInput">
+          <input type="text" class="form-control" name="devNodeKubBigo" id="devNodeKubBigoInput">
+        </td>
+      </tr>
+      <tr align="center">
+        <td>Arch5</td>
+        <td>리눅스</td>
+        <td>  
+          <p>CPU 사용량</p>
+          <p>메모리 사용량</p>
+          <p>SWAP 사용량</p>
+          <p>부하수치</p>
+          <p>디스크 사용량</p>
+          <p>프로세스</p>
+        </td>
+        <td> 
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="archCpuUsageChk" id="archCpuUsageChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="archCpuUsageChk" id="archCpuUsageChkN" checked>
+            무
+          </p> 
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="archMemUsageChk" id="archMemUsageChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="archMemUsageChk" id="archMemUsageChkN" checked>
+            무  
+          </p>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="archSwapUsageChk" id="archSwapUsageChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="archSwapUsageChk" id="archSwapUsageChkN" checked>
+            무
+          </p> 
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="archOverLoadChk" id="archOverLoadChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="archOverLoadChk" id="archOverLoadChkN" checked>
+            무  
+          </p>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="archDiskUsageChk" id="archDiskUsageChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="archDiskUsageChk" id="archDiskUsageChkN" checked>
+            무
+          </p> 
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="archProcessChk" id="archProcessChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="archProcessChk" id="archProcessChkN" checked>
+            무  
+          </p>
+        </td>
+        <td>
+          <input type="text" class="form-control" name="archCpuUsageBigo" id="archCpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
+          <input type="text" class="form-control" name="archMemUsageBigo" id="archMemUsageBigoInput">
+          <input type="text" class="form-control" name="archSwapUsageBigo" id="archSwapUsageBigoInput">
+          <input type="text" class="form-control" name="archOverLoadBigo" id="archOverLoadBigoInput">
+          <input type="text" class="form-control" name="archDiskUsageBigo" id="archDiskUsageBigoInput">
+          <input type="text" class="form-control" name="archProcessBigo" id="archProcessBigoInput">
+        </td>
+      </tr>
+      <tr align="center">
+        <td>Backup</td>
+        <td>리눅스</td>
+        <td>  
+          <p>CPU 사용량</p>
+          <p>메모리 사용량</p>
+          <p>SWAP 사용량</p>
+          <p>부하수치</p>
+          <p>디스크 사용량</p>
+          <p>프로세스</p>
+        </td>
+        <td> 
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="backCpuUsageChk" id="backCpuUsageChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="backCpuUsageChk" id="backCpuUsageChkN" checked>
+            무
+          </p> 
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="backMemUsageChk" id="backMemUsageChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="backMemUsageChk" id="backMemUsageChkN" checked>
+            무  
+          </p>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="backSwapUsageChk" id="backSwapUsageChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="backSwapUsageChk" id="backSwapUsageChkN" checked>
+            무
+          </p> 
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="backOverLoadChk" id="backOverLoadChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="backOverLoadChk" id="backOverLoadChkN" checked>
+            무  
+          </p>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="backDiskUsageChk" id="backDiskUsageChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="backDiskUsageChk" id="backDiskUsageChkN" checked>
+            무
+          </p> 
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="backProcessChk" id="backProcessChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="backProcessChk" id="backProcessChkN" checked>
+            무  
+          </p>
+        </td>
+        <td>
+          <input type="text" class="form-control" name="backCpuUsageBigo" id="backCpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
+          <input type="text" class="form-control" name="backMemUsageBigo" id="backMemUsageBigoInput">
+          <input type="text" class="form-control" name="backSwapUsageBigo" id="backSwapUsageBigoInput">
+          <input type="text" class="form-control" name="backOverLoadBigo" id="backOverLoadBigoInput">
+          <input type="text" class="form-control" name="backDiskUsageBigo" id="backDiskUsageBigoInput">
+          <input type="text" class="form-control" name="backProcessBigo" id="backProcessBigoInput">
+        </td>
+      </tr>
+      <tr align="center">
+        <td rowspan="4" style="background-color: #81BEF7;">스토리지</td>
+        <td>GW-NAS-Main</td>
+        <td>-</td>
+        <td>  
+          <p>클러스터</p>
+        </td>
+        <td>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="gwNasMainChk" id="gwNasMainChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="gwNasMainChk" id="gwNasMainChkN" checked>
+            무
+          </p> 
+        </td>
+        <td>
+          <input type="text" class="form-control" name="gwNasMainBigo" id="gwNasMainBigoInput" placeholder="이상유무 유 체크시 내역기재">
+        </td>
+      </tr>
+      <tr align="center">
+        <td>GW-NAS-Backup</td>
+        <td>-</td>
+        <td>  
+          <p>클러스터</p>
+        </td>
+        <td>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="gwNasBackupChk" id="gwNasBackupChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="gwNasBackupChk" id="gwNasBackupChkN" checked>
+            무
+          </p> 
+        </td>
+        <td>
+          <input type="text" class="form-control" name="gwNasBackupBigo" id="gwNasBackupBigoInput" placeholder="이상유무 유 체크시 내역기재">
+        </td>
+      </tr>
+      <tr align="center">
+        <td>Arch-NAS-Main</td>
+        <td>-</td>
+        <td>  
+          <p>클러스터</p>
+        </td>
+        <td>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="archNasMainChk" id="archNasMainChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="archNasMainChk" id="archNasMainChkN" checked>
+            무
+          </p> 
+        </td>
+        <td>
+          <input type="text" class="form-control" name="archNasMainBigo" id="archNasMainBigoInput" placeholder="이상유무 유 체크시 내역기재">
+        </td>
+      </tr>
+      <tr align="center">
+        <td>Arch-NAS-Backup</td>
+        <td>-</td>
+        <td>  
+          <p>클러스터</p>
+        </td>
+        <td>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="archNasBackupChk" id="archNasBackupChkY">
+            유
+            <input class="form-check-input" type="radio" value="N" name="archNasBackupChk" id="archNasBackupChkN" checked>
+            무
+          </p> 
+        </td>
+        <td>
+          <input type="text" class="form-control" name="archNasBackupBigo" id="archNasBackupBigoInput" placeholder="이상유무 유 체크시 내역기재">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</form>
+</body>
+</html>
