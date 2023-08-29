@@ -26,5 +26,14 @@ public class mainDailyRepositoryImpl implements mainDailyRepository {
         return dailyMapper.getDailyCheckAdminList();
     }
 
+    @Override
+    public MSVDailyCheckAdminMain getDailyCheckAdmin(String admin_nm) {
+        return dailyMapper.getDailyCheckAdmin(admin_nm);
+    }
+    @Override
+    public void insertDailyCheckBoardList(MSVDailyCheckBoardMain msvDailyCheckBoardMain) {
+        dailyMapper.insertDailyCheckBoardList(msvDailyCheckBoardMain);
+    }
+
 
 }

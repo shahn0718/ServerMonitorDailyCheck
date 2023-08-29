@@ -17,7 +17,7 @@ public class mainDailyController {
         this.mainService = mainService;
     }
 
-    @GetMapping("/mainDailyCheck")
+    @GetMapping("/")
     public String mainHome(Model model){
 
         Model mainDailyBoardList = model.addAttribute("mainDailyBoardList", mainService.getDailyCheckBoardList());

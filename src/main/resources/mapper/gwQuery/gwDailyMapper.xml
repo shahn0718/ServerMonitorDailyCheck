@@ -3,7 +3,7 @@
 
 <mapper namespace="com.damg.upit.monitor.dailyCheck.domain.gwDaily.mapper.gwDailyMapper">
     <insert id="insertGwDailyServiceMain" parameterType="com.damg.upit.monitor.dailyCheck.domain.gwDaily.model.MInsertGwDailyServiceMain"
-            useGeneratedKeys="true">
+            useGeneratedKeys="true" keyProperty="gwMainId">
 
         /* insertGwDailyServiceMain */
 
@@ -20,8 +20,8 @@
 
         ) VALUES (
 
-             1
-            ,2
+             #{gwServiceId}
+            ,#{gwMainId}
             ,#{gwMailServiceChk}
             ,#{gwMailServiceBigo}
             ,#{gwApproveServiceChk}
@@ -33,7 +33,7 @@
     </insert>
 
     <insert id="insertGwDailyServerMain" parameterType="com.damg.upit.monitor.dailyCheck.domain.gwDaily.model.MInsertGwDailyServerMain"
-            useGeneratedKeys="true">
+            useGeneratedKeys="true"  keyProperty="gwMainId">
 
         /* insertGwDailyServerMain */
 
@@ -124,8 +124,8 @@
                                     , BACK_PROCESS_BIGO
         )
         VALUES (
-                 1
-               , 2
+                 #{gwServerId}
+               , #{gwMainId}
                , #{node1CpuUsageChk}
                , #{node1CpuUsageBigo}
                , #{node1MemUsageChk}
@@ -214,7 +214,7 @@
 
 
     <insert id="insertGwDailyStorageMain" parameterType="com.damg.upit.monitor.dailyCheck.domain.gwDaily.model.MInsertGwDailyStorageMain"
-            useGeneratedKeys="true">
+            useGeneratedKeys="true" keyProperty="gwMainId">
 
         /* insertGwDailyStorageMain */
 
@@ -233,8 +233,8 @@
 
         ) VALUES (
 
-             1
-            ,2
+             #{gwStorageId}
+            ,#{gwMainId}
             ,#{gwNasMainClustChk}
             ,#{gwNasMainClustBigo}
             ,#{gwNasBackClustChk}
@@ -374,16 +374,14 @@
             ,GW_NASMAIN_BIGO        AS gwNasMainClustBigo
             ,GW_NASBACKUP_CHK       AS gwNasBackClustChk
             ,GW_NASBACKUP_BIGO      AS gwNasBackClustBigo
-            ,ARCH_NASMAIN_CHK       AS gwNasMainClustChk
-            ,ARCH_NASMAIN_BIGO      AS gwNasMainCLustBigo
-            ,ARCH_NASBACKUP_CHK     AS gwNasBackClustChk
-            ,ARCH_NASBACKUP_BIGO    AS gwNasBackClustBigo
+            ,ARCH_NASMAIN_CHK       AS archNasMainClustChk
+            ,ARCH_NASMAIN_BIGO      AS archNasMainCLustBigo
+            ,ARCH_NASBACKUP_CHK     AS archNasBackClustChk
+            ,ARCH_NASBACKUP_BIGO    AS archNasBackClustBigo
 
         FROM
             GW_DAILY_STORAGE
         WHERE
             GW_MAIN_ID= #{gwMainId}
     </select>
-
-
 </mapper>
