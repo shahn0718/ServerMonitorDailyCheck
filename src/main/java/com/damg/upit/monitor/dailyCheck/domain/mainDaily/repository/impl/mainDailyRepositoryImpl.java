@@ -18,17 +18,17 @@ public class mainDailyRepositoryImpl implements mainDailyRepository {
         this.dailyMapper = dailyMapper;
     }
     @Override
-    public List<MSVDailyCheckBoardMain> getDailyCheckBoardList() {
-        return dailyMapper.getDailyCheckBoardList();
+    public List<MSVDailyCheckBoardMain> selectDailyCheckBoardList() {
+        return dailyMapper.selectDailyCheckBoardList();
     }
     @Override
-    public List<MSVDailyCheckAdminMain> getDailyCheckAdminList() {
-        return dailyMapper.getDailyCheckAdminList();
+    public List<MSVDailyCheckAdminMain> selectDailyCheckAdminList() {
+        return dailyMapper.selectDailyCheckAdminList();
     }
 
     @Override
-    public MSVDailyCheckAdminMain getDailyCheckAdmin(String admin_nm) {
-        return dailyMapper.getDailyCheckAdmin(admin_nm);
+    public MSVDailyCheckAdminMain selectDailyCheckAdmin(String admin_nm) {
+        return dailyMapper.selectDailyCheckAdmin(admin_nm);
     }
     @Override
     public void insertDailyCheckBoardList(MSVDailyCheckBoardMain msvDailyCheckBoardMain) {
