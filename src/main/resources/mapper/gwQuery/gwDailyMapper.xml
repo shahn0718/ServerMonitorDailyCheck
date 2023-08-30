@@ -26,8 +26,8 @@
             ,#{gwMailServiceBigo}
             ,#{gwApproveServiceChk}
             ,#{gwApproveServiceBigo}
-            ,#{gwBackupServiceChk}
-            ,#{gwBackupServiceBigo}
+            ,#{gwBackUpServiceChk}
+            ,#{gwBackUpServiceBigo}
 
         )
     </insert>
@@ -108,6 +108,8 @@
                                     , ARCH_SWAPUSAGE_BIGO
                                     , ARCH_OVERLOAD_CHK
                                     , ARCH_OVERLOAD_BIGO
+                                    , ARCH_DISKUSAGE_CHK
+                                    , ARCH_DISKUSAGE_BIGO
                                     , ARCH_PROCESS_CHK
                                     , ARCH_PROCESS_BIGO
                                     , BACK_CPUUSAGE_CHK
@@ -194,6 +196,8 @@
                , #{archSwapUsageBigo}
                , #{archOverLoadChk}
                , #{archOverLoadBigo}
+               , #{archDiskUsageChk}
+               , #{archDiskUsageBigo}
                , #{archProcessChk}
                , #{archProcessBigo}
                , #{backCpuUsageChk}
@@ -257,8 +261,8 @@
             ,GW_MAIL_BIGO       AS gwMailServiceBigo
             ,GW_APPROVE_CHK     AS gwApproveServiceChk
             ,GW_APPROVE_BIGO    AS gwApproveServiceBigo
-            ,GW_BACKUP_CHK      AS gwBackupServiceChk
-            ,GW_BACKUP_BIGO     AS gwBackupServiceBigo
+            ,GW_BACKUP_CHK      AS gwBackUpServiceChk
+            ,GW_BACKUP_BIGO     AS gwBackUpServiceBigo
 
         FROM
             GW_DAILY_SERVICE
@@ -343,6 +347,8 @@
                 , ARCH_SWAPUSAGE_BIGO       AS  archSwapUsageBigo
                 , ARCH_OVERLOAD_CHK         AS  archOverLoadChk
                 , ARCH_OVERLOAD_BIGO        AS  archOverLoadBigo
+                , ARCH_DISKUSAGE_CHK        AS  archDiskUsageChk
+                , ARCH_DISKUSAGE_BIGO       AS  archDiskUsageBigo
                 , ARCH_PROCESS_CHK          AS  archProcessChk
                 , ARCH_PROCESS_BIGO         AS  archProcessBigo
                 , BACK_CPUUSAGE_CHK         AS  backCpuUsageChk
@@ -384,4 +390,136 @@
         WHERE
             GW_MAIN_ID= #{gwMainId}
     </select>
+
+    <update id="updateGwDailyServiceMain"
+            parameterType="com.damg.upit.monitor.dailyCheck.domain.gwDaily.model.MInsertGwDailyServiceMain">
+
+        /* updateGwDailyServiceMain */
+
+        UPDATE GW_DAILY_SERVICE
+        SET
+             GW_MAIL_CHK        = #{gwMailServiceChk}
+            ,GW_MAIL_BIGO       = #{gwMailServiceBigo}
+            ,GW_APPROVE_CHK     = #{gwApproveServiceChk}
+            ,GW_APPROVE_BIGO    = #{gwApproveServiceBigo}
+            ,GW_BACKUP_CHK      = #{gwBackUpServiceChk}
+            ,GW_BACKUP_BIGO     = #{gwBackUpServiceBigo}
+        WHERE
+            GW_MAIN_ID = #{gwMainId}
+    </update>
+
+    <update id="updateGwDailyServerMain"
+            parameterType="com.damg.upit.monitor.dailyCheck.domain.gwDaily.model.MInsertGwDailyServerMain">
+
+        /* updateGwDailyServerMain */
+
+        UPDATE GW_DAILY_SERVER
+        SET
+              NODE1_CPUUSAGE_CHK    = #{node1CpuUsageChk}
+            , NODE1_CPUUSAGE_BIGO   = #{node1CpuUsageBigo}
+            , NODE1_MEMUSAGE_CHK    = #{node1MemUsageChk}
+            , NODE1_MEMUSAGE_BIGO   = #{node1MemUsageBigo}
+            , NODE1_OVERLOAD_CHK    = #{node1OverLoadChk}
+            , NODE1_OVERLOAD_BIGO   = #{node1OverLoadBigo}
+            , NODE1_DISKUSAGE_CHK   = #{node1DiskUsageChk}
+            , NODE1_DISKUSAGE_BIGO  = #{node1DiskUsageBigo}
+            , NODE1_PROCESS_CHK     = #{node1ProcessChk}
+            , NODE1_PROCESS_BIGO    = #{node1ProcessBigo}
+            , NODE1_KUB_CHK         = #{node1KubChk}
+            , NODE1_KUB_BIGO        = #{node1KubBigo}
+            , NODE2_CPUUSAGE_CHK    = #{node2CpuUsageChk}
+            , NODE2_CPUUSAGE_BIGO   = #{node2CpuUsageBigo}
+            , NODE2_MEMUSAGE_CHK    = #{node2MemUsageChk}
+            , NODE2_MEMUSAGE_BIGO   = #{node2MemUsageBigo}
+            , NODE2_OVERLOAD_CHK    = #{node2OverLoadChk}
+            , NODE2_OVERLOAD_BIGO   = #{node2OverLoadBigo}
+            , NODE2_DISKUSAGE_CHK   = #{node2DiskUsageChk}
+            , NODE2_DISKUSAGE_BIGO  = #{node2DiskUsageBigo}
+            , NODE2_PROCESS_CHK     = #{node2ProcessChk}
+            , NODE2_PROCESS_BIGO    = #{node2ProcessBigo}
+            , NODE2_KUB_CHK         = #{node2KubChk}
+            , NODE2_KUB_BIGO        = #{node2KubBigo}
+            , NODE3_CPUUSAGE_CHK    = #{node3CpuUsageChk}
+            , NODE3_CPUUSAGE_BIGO   = #{node3CpuUsageBigo}
+            , NODE3_MEMUSAGE_CHK    = #{node3MemUsageChk}
+            , NODE3_MEMUSAGE_BIGO   = #{node3MemUsageBigo}
+            , NODE3_OVERLOAD_CHK    = #{node3OverLoadChk}
+            , NODE3_OVERLOAD_BIGO   = #{node3OverLoadBigo}
+            , NODE3_DISKUSAGE_CHK   = #{node3DiskUsageChk}
+            , NODE3_DISKUSAGE_BIGO  = #{node3DiskUsageBigo}
+            , NODE3_PROCESS_CHK     = #{node3ProcessChk}
+            , NODE3_PROCESS_BIGO    = #{node3ProcessBigo}
+            , NODE3_KUB_CHK         = #{node3KubChk}
+            , NODE3_KUB_BIGO        = #{node3KubBigo}
+            , NODE4_CPUUSAGE_CHK    = #{node4CpuUsageChk}
+            , NODE4_CPUUSAGE_BIGO   = #{node4CpuUsageBigo}
+            , NODE4_MEMUSAGE_CHK    = #{node4MemUsageChk}
+            , NODE4_MEMUSAGE_BIGO   = #{node4MemUsageBigo}
+            , NODE4_OVERLOAD_CHK    = #{node4OverLoadChk}
+            , NODE4_OVERLOAD_BIGO   = #{node4OverLoadBigo}
+            , NODE4_DISKUSAGE_CHK   = #{node4DiskUsageChk}
+            , NODE4_DISKUSAGE_BIGO  = #{node4DiskUsageBigo}
+            , NODE4_PROCESS_CHK     = #{node4ProcessChk}
+            , NODE4_PROCESS_BIGO    = #{node4ProcessBigo}
+            , NODE4_KUB_CHK         = #{node4KubChk}
+            , NODE4_KUB_BIGO        = #{node4KubBigo}
+            , DEVNODE_CPUUSAGE_CHK  = #{devNodeCpuUsageChk}
+            , DEVNODE_CPUUSAGE_BIGO = #{devNodeCpuUsageBigo}
+            , DEVNODE_MEMUSAGE_CHK  = #{devNodeMemUsageChk}
+            , DEVNODE_MEMUSAGE_BIGO = #{devNodeMemUsageBigo}
+            , DEVNODE_OVERLOAD_CHK  = #{devNodeOverLoadChk}
+            , DEVNODE_OVERLOAD_BIGO = #{devNodeOverLoadBigo}
+            , DEVNODE_DISKUSAGE_CHK = #{devNodeDiskUsageChk}
+            , DEVNODE_DISKUSAGE_BIGO = #{devNodeDiskUsageBigo}
+            , DEVNODE_PROCESS_CHK   = #{devNodeProcessChk}
+            , DEVNODE_PROCESS_BIGO  = #{devNodeProcessBigo}
+            , DEVNODE_KUB_CHK       = #{devNodeKubChk}
+            , DEVNODE_KUB_BIGO      = #{devNodeKubBigo}
+            , ARCH_CPUUSAGE_CHK     = #{archCpuUsageChk}
+            , ARCH_CPUUSAGE_BIGO    = #{archCpuUsageBigo}
+            , ARCH_MEMUSAGE_CHK     = #{archMemUsageChk}
+            , ARCH_MEMUSAGE_BIGO    = #{archMemUsageBigo}
+            , ARCH_SWAPUSAGE_CHK    = #{archSwapUsageChk}
+            , ARCH_SWAPUSAGE_BIGO   = #{archSwapUsageBigo}
+            , ARCH_OVERLOAD_CHK     = #{archOverLoadChk}
+            , ARCH_OVERLOAD_BIGO    = #{archOverLoadBigo}
+            , ARCH_DISKUSAGE_CHK    = #{archDiskUsageChk}
+            , ARCH_DISKUSAGE_BIGO   = #{archDiskUsageBigo}
+            , ARCH_PROCESS_CHK      = #{archProcessChk}
+            , ARCH_PROCESS_BIGO     = #{archProcessBigo}
+            , BACK_CPUUSAGE_CHK     = #{backCpuUsageChk}
+            , BACK_CPUUSAGE_BIGO    = #{backCpuUsageBigo}
+            , BACK_MEMUSAGE_CHK     = #{backMemUsageChk}
+            , BACK_MEMUSAGE_BIGO    = #{backMemUsageBigo}
+            , BACK_SWAPUSAGE_CHK    = #{backSwapUsageChk}
+            , BACK_SWAPUSAGE_BIGO   = #{backSwapUsageBigo}
+            , BACK_OVERLOAD_CHK     = #{backOverLoadChk}
+            , BACK_OVERLOAD_BIGO    = #{backOverLoadBigo}
+            , BACK_DISKUSAGE_CHK    = #{backDiskUsageChk}
+            , BACK_DISKUSAGE_BIGO   = #{backDiskUsageBigo}
+            , BACK_PROCESS_CHK      = #{backProcessChk}
+            , BACK_PROCESS_BIGO     = #{backProcessBigo}
+
+        WHERE
+            GW_MAIN_ID = #{gwMainId}
+    </update>
+
+    <update id="updateGwDailyStorageMain"
+            parameterType="com.damg.upit.monitor.dailyCheck.domain.gwDaily.model.MInsertGwDailyStorageMain">
+
+        /* updateGwDailyStorageMain */
+        UPDATE GW_DAILY_STORAGE
+        SET
+             GW_NASMAIN_CHK         = #{gwNasMainClustChk}
+            ,GW_NASMAIN_BIGO        = #{gwNasMainClustBigo}
+            ,GW_NASBACKUP_CHK       = #{gwNasBackClustChk}
+            ,GW_NASBACKUP_BIGO      = #{gwNasBackClustBigo}
+            ,ARCH_NASMAIN_CHK       = #{archNasMainClustChk}
+            ,ARCH_NASMAIN_BIGO      = #{archNasMainClustBigo}
+            ,ARCH_NASBACKUP_CHK     = #{archNasBackClustChk}
+            ,ARCH_NASBACKUP_BIGO    = #{archNasBackClustBigo}
+
+        WHERE
+            GW_MAIN_ID = #{gwMainId}
+    </update>
 </mapper>

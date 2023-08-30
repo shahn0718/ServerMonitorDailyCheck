@@ -20,7 +20,7 @@ public class mainDailyController {
     @GetMapping("/")
     public String mainHome(Model model){
 
-        Model mainDailyBoardList = model.addAttribute("mainDailyBoardList", mainService.getDailyCheckBoardList());
+        Model mainDailyBoardList = model.addAttribute("mainDailyBoardList", mainService.selectDailyCheckBoardList());
         log.info("mainDailyBoardList= {}", mainDailyBoardList);
 
         return "mainBoard";

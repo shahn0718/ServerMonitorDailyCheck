@@ -39,5 +39,14 @@ public class gwDailyService {
     public List<MInsertGwDailyStorageMain> selectGwDailyStorageMain(Long gwMainId){
         return gwRepository.selectGwDailyStroageMain(gwMainId);
     }
+    public void updateGwDailyServerMain(MInsertGwDailyServerMain mInsertGwDailyServerMain){
+        gwRepository.updateGwDailyServerMain(mInsertGwDailyServerMain);
+    }
+    public void updateGwDailyServiceMain(MInsertGwDailyServiceMain mInsertGwDailyServiceMain){
+        gwRepository.updateGwDailyServiceMain(mInsertGwDailyServiceMain);
+    }
+    public void updateGwDailyStorageMain(MInsertGwDailyStorageMain mInsertGwDailyStorageMain){
+        gwRepository.updateGwDailyStorageMain(mInsertGwDailyStorageMain);
+    }
 
 }

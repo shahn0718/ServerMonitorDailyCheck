@@ -24,8 +24,8 @@ public class MInsertGwDailyServiceMain {
     private String gwApproveServiceBigo;
 
     //BackupService
-    private String gwBackupServiceChk;
-    private String gwBackupServiceBigo;
+    private String gwBackUpServiceChk;
+    private String gwBackUpServiceBigo;
 
 
 

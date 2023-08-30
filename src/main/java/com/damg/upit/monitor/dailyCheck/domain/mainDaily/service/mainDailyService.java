@@ -6,6 +6,7 @@ import com.damg.upit.monitor.dailyCheck.domain.mainDaily.repository.mainDailyRep
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j
@@ -24,6 +25,11 @@ public class mainDailyService {
     public List<MSVDailyCheckBoardMain> selectDailyCheckBoardList(){
         return dailyRepository.selectDailyCheckBoardList();
     }
+
+    public MSVDailyCheckBoardMain selectDailyCheckBoard(Long mainBoardId){
+        return dailyRepository.selectDailyCheckBoard(mainBoardId);
+    }
+
     /**
      * 담당자 전체조회 (작성자 콤보박스 노출 부분)
      * @return
@@ -41,6 +47,8 @@ public class mainDailyService {
     public void insertDailyCheckBoardList(MSVDailyCheckBoardMain msvDailyCheckBoardMain){
         dailyRepository.insertDailyCheckBoardList(msvDailyCheckBoardMain);
     }
-
+    public void updateDailyCheckBoard(LocalDateTime mainBoardModDate, Long mainBoardId){
+        dailyRepository.updateDailyCheckBoard(mainBoardModDate,mainBoardId);
+    }
 
 }

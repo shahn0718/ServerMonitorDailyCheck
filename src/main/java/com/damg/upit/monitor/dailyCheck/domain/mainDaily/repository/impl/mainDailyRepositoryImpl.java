@@ -7,12 +7,14 @@ import com.damg.upit.monitor.dailyCheck.domain.mainDaily.repository.mainDailyRep
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
 @Slf4j
 @Repository
 public class mainDailyRepositoryImpl implements mainDailyRepository {
+
     private final mainDailyMapper dailyMapper;
     public mainDailyRepositoryImpl(mainDailyMapper dailyMapper){
         this.dailyMapper = dailyMapper;
@@ -20,6 +22,11 @@ public class mainDailyRepositoryImpl implements mainDailyRepository {
     @Override
     public List<MSVDailyCheckBoardMain> selectDailyCheckBoardList() {
         return dailyMapper.selectDailyCheckBoardList();
+    }
+
+    @Override
+    public MSVDailyCheckBoardMain selectDailyCheckBoard(Long mainBoardId) {
+        return dailyMapper.selectDailyCheckBoard(mainBoardId);
     }
     @Override
     public List<MSVDailyCheckAdminMain> selectDailyCheckAdminList() {
@@ -34,6 +41,8 @@ public class mainDailyRepositoryImpl implements mainDailyRepository {
     public void insertDailyCheckBoardList(MSVDailyCheckBoardMain msvDailyCheckBoardMain) {
         dailyMapper.insertDailyCheckBoardList(msvDailyCheckBoardMain);
     }
-
-
+    @Override
+    public void updateDailyCheckBoard(LocalDateTime mainBoardModDate, Long mainBoardId) {
+        dailyMapper.updateDailyCheckBoard(mainBoardModDate,mainBoardId);
+    }
 }

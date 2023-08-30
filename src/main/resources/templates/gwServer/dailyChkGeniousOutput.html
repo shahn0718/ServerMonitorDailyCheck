@@ -16,9 +16,24 @@
 <form class="row g-3">
 <div class="container-fluid container-lg mt-lg-5">
 
+  <div class="row text-center text-dark mb-5 mt-10">
+    <div class="col border mt-3">
+      작성자:&nbsp;
+      <span  th:each="mainBoardInfo: ${mainBoardInfo}" th:text="${mainBoardInfo.dailyMainWriter}"></span>
+    </div>
+
+    <div class="col border mt-3">
+      작성/수정 시간:&nbsp;
+      <span>
+        <th:block th:if="${#strings.isEmpty(mainBoardInfo.dailyMainModDate)}" th:text="${#temporals.format(mainBoardInfo.dailyMainCreateDate,'yyyy-MM-dd HH:mm:ss')}"></th:block>
+        <th:block th:unless="${#strings.isEmpty(mainBoardInfo.dailyMainModDate)}" th:text="${#temporals.format(mainBoardInfo.dailyMainModDate,'yyyy-MM-dd HH:mm:ss')}"></th:block>
+      </span>
+    </div>
+  </div>
+
   <div class="form-row float-end">
-    <button type="button" class="btn mb-3" style="background-color:#81BEF7; color: #fff;"
-            th:onclick="@{/{category}/{boardId/update (category=${list.dailyMainCd}, boardId=${list.dailyMainBoardId})}">수정</button>
+    <button type="button" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" th:each="mainBoard : ${mainBoardInfo}"
+            th:onclick="|location.href='@{/{category}/{boardId}/Update (category=${mainBoard.dailyMainCd}, boardId=${mainBoard.dailyMainBoardId})}'|">수정</button>
     <button type="button" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" th:onclick="|location.href='@{/}'|">뒤로가기</button>
   </div>
 
@@ -70,10 +85,10 @@
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="gwBackUpServiceChk" id="gwBackUpServiceChkY"
-                   th:checked="${gwService.gwBackupServiceChk eq 'Y'}" disabled>
+                   th:checked="${gwService.gwBackUpServiceChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="gwBackUpServiceChk" id="gwSBackUpServiceChkN"
-                   th:checked="${gwService.gwBackupServiceChk eq 'N'}"  disabled>
+            <input class="form-check-input" type="radio" value="N" name="gwBackUpServiceChk" id="gwBackUpServiceChkN"
+                   th:checked="${gwService.gwBackUpServiceChk eq 'N'}"  disabled>
             무  
           </p>
         </td>
@@ -82,8 +97,8 @@
                  th:value="${gwService.gwMailServiceBigo}" type="text" readonly>
           <input type="text" class="form-control" name="gwApproveServiceBigo" id="gwApproveServiceBigoInput"
                  th:value="${gwService.gwApproveServiceBigo}" readonly>
-          <input type="text" class="form-control" name="gwBackupServiceBigo" id="backupServiceBigoInput"
-                 th:value="${gwService.gwBackupServiceBigo}" readonly>
+          <input type="text" class="form-control" name="gwBackUpServiceBigo" id="backupServiceBigoInput"
+                 th:value="${gwService.gwBackUpServiceBigo}" readonly>
 
 
         </td>
