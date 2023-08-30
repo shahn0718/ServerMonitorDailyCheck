@@ -38,9 +38,57 @@
             ADMIN_USER
     </select>
 
+    <select id="getDailyCheckAdmin" parameterType="list"
+            resultType="com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckAdminMain">
 
+        /*getDailyCheckAdminList*/
 
+        SELECT
+              ADMIN_NM
+             ,ADMIN_NO
+             ,ADMIN_CELLNO
+             ,ADMIN_MAIL
+        FROM
+             ADMIN_USER
+        WHERE
+             ADMIN_NM = #{admin_nm}
+    </select>
 
+    <insert id="insertDailyCheckBoardList" parameterType="com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain"
+            keyProperty="dailyMainBoardId">
+
+        <selectKey keyProperty="dailyMainBoardId" resultType="long" order="BEFORE">
+            SELECT IFNULL(MAX(DAILY_MAIN_BOARDID)+1,1000002) FROM MAIN_DAILY_BOARD AS DAILY_MAIN_BOARDID
+        </selectKey>
+
+        /* insertDailyCheckBoardList */
+        INSERT INTO MAIN_DAILY_BOARD (
+
+             DAILY_MAIN_ID
+            ,DAILY_MAIN_BOARDID
+            ,DAILY_MAIN_CD
+            ,DAILY_MAIN_CDNM
+            ,DAILY_MAIN_CONTENT
+            ,DAILY_MAIN_WRITER
+            ,DAILY_MAIN_WRITERNO
+            ,DAILY_MAIN_VIEWCNT
+            ,DAILY_MAIN_CREATEDATE
+            ,DAILY_MAIN_MODDATE
+
+        ) VALUES (
+
+             #{dailyMainId}
+            ,#{dailyMainBoardId}
+            ,#{dailyMainCd}
+            ,#{dailyMainCdNm}
+            ,#{dailyMainContent}
+            ,#{dailyMainWriter}
+            ,#{dailyMainWriterNo}
+            ,0
+            ,#{dailyMainCreateDate}
+            ,NULL
+        )
+    </insert>
 
 
 

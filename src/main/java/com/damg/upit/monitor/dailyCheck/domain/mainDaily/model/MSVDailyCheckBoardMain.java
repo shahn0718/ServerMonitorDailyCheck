@@ -11,8 +11,11 @@ import java.time.LocalDateTime;
 @ToString
 public class MSVDailyCheckBoardMain {
 
+    private int count;
+
     private Long dailyMainId;
     private Long dailyMainBoardId;
+
     private String dailyMainCd;
     private String dailyMainCdNm;
     private String dailyMainContent;
