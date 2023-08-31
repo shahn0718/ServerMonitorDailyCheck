@@ -1,4 +1,4 @@
-package com.damg.upit.monitor.dailyCheck.domain.etcDaily.model;
+package com.damg.upit.monitor.dailyCheck.domain.erpDaily.model;
 
 import lombok.Getter;
 import lombok.Setter;
