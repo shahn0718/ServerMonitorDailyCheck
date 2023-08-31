@@ -75,7 +75,7 @@
 <div class="container-fluid container-lg mt-lg-5">
 
   <div class="row text-center text-dark mb-5">
-    <div class="col border">
+    <div class="col border mt-3">
       작성자:&nbsp;
       <select class="form-select-s" th:name="admin_nm">
         <option value="선택">선택</option>
@@ -85,7 +85,7 @@
         </option>
       </select>
     </div>
-    <div class="col border" >
+    <div class="col border mt-3" >
       작성시간:&nbsp;
       <span th:text="${#temporals.format(createdTime,'yyyy-MM-dd HH:mm:ss')}"></span>
     </div>
@@ -157,7 +157,7 @@
                  placeholder="이상유무 유 체크시 내역기재" >
           <input type="text" class="form-control" name="gwApproveServiceBigo" id="gwApproveServiceBigoInput"
                  >
-          <input type="text" class="form-control" name="gwBackupServiceBigo" id="backupServiceBigoInput"
+          <input type="text" class="form-control" name="gwBackUpServiceBigo" id="backupServiceBigoInput"
                 >
         </td>
       </tr>
@@ -598,7 +598,7 @@
           </p> 
         </td>
         <td>
-          <input type="text" class="form-control" name="gwNasMainBigo" id="gwNasMainBigoInput" placeholder="이상유무 유 체크시 내역기재">
+          <input type="text" class="form-control" name="gwNasMainClustBigo" id="gwNasMainBigoInput" placeholder="이상유무 유 체크시 내역기재">
         </td>
       </tr>
       <tr align="center">

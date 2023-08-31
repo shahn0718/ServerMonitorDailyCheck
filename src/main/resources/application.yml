@@ -5,5 +5,12 @@ spring:
     username: root
     password: admin
 #    password: 1346520ASd!
+  devtools:
+    livereload:
+      enabled: true
+    thymeleaf:
+      cache: false
+    restart:
+      enabled: true
 mybatis:
   mapper-locations: classpath:mapper/**/*.xml

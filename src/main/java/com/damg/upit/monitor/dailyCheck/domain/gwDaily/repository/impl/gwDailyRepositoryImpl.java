@@ -46,8 +46,15 @@ public class gwDailyRepositoryImpl implements gwDailyRepository {
         return gwDailyMapper.selectGwDailyStorageMain(gwMainId);
     }
     @Override
-    public void insertGwBoardMain(MSVDailyCheckBoardMain msvDailyCheckBoardMain) {
-        gwDailyMapper.insertGwBoardMain(msvDailyCheckBoardMain);
+    public void updateGwDailyServerMain(MInsertGwDailyServerMain mInsertGwDailyServerMain) {
+        gwDailyMapper.updateGwDailyServerMain(mInsertGwDailyServerMain);
     }
-
+    @Override
+    public void updateGwDailyServiceMain(MInsertGwDailyServiceMain mInsertGwDailyServiceMain) {
+        gwDailyMapper.updateGwDailyServiceMain(mInsertGwDailyServiceMain);
+    }
+    @Override
+    public void updateGwDailyStorageMain(MInsertGwDailyStorageMain mInsertGwDailyStorageMain) {
+        gwDailyMapper.updateGwDailyStorageMain(mInsertGwDailyStorageMain);
+    }
 }

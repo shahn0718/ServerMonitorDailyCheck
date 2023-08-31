@@ -9,28 +9,24 @@ import java.util.List;
 
 public interface gwDailyRepository {
     /**
-     * 지니어스 일일점검(서버))
+     * 지니어스 일일점검(서버)
      * @param mInsertGwDailyServerMain
      */
     void insertGwDailyServerMain(MInsertGwDailyServerMain mInsertGwDailyServerMain);
-    List<MInsertGwDailyServerMain> selectGwDailyServerMain(Long gwMainId);
     /**
      * 지니어스 일일점검(서비스)
      * @param mInsertGwDailyServiceMain
      */
     void insertGwDailyServiceMain(MInsertGwDailyServiceMain mInsertGwDailyServiceMain);
-    List<MInsertGwDailyServiceMain> selectGwDailyServiceMain(Long gwMainId);
     /**
      * 지니어스 일일점검(스토리지)
      * @param mInsertGwDailyStorageMain
      */
     void insertGwDailyStorageMain(MInsertGwDailyStorageMain mInsertGwDailyStorageMain);
+    List<MInsertGwDailyServerMain> selectGwDailyServerMain(Long gwMainId);
+    List<MInsertGwDailyServiceMain> selectGwDailyServiceMain(Long gwMainId);
     List<MInsertGwDailyStorageMain> selectGwDailyStroageMain(Long gwMainId);
-    /**
-     * 지니어스 일일점검 등록시, 메인 게시판 등록
-     * @param msvDailyCheckBoardMain
-     */
-    void insertGwBoardMain(MSVDailyCheckBoardMain msvDailyCheckBoardMain);
-
-
+    void updateGwDailyServerMain(MInsertGwDailyServerMain mInsertGwDailyServerMain);
+    void updateGwDailyServiceMain(MInsertGwDailyServiceMain mInsertGwDailyServiceMain);
+    void updateGwDailyStorageMain(MInsertGwDailyStorageMain mInsertGwDailyStorageMain);
 }

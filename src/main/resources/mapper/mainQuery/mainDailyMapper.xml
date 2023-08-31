@@ -3,10 +3,10 @@
 
 <mapper namespace="com.damg.upit.monitor.dailyCheck.domain.mainDaily.mapper.mainDailyMapper">
 
-    <select id="getDailyCheckBoardList" parameterType="list"
+    <select id="selectDailyCheckBoardList" parameterType="list"
             resultType="com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain">
 
-        /*getDailyCheckBoardList*/
+        /*selectDailyCheckBoardList*/
 
         SELECT
              DAILY_MAIN_ID      AS dailyMainId
@@ -24,10 +24,33 @@
 
     </select>
 
-    <select id="getDailyCheckAdminList" parameterType="list"
+    <select id="selectDailyCheckBoard" parameterType="long"
+            resultType="com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain">
+
+        /*selectDailyCheckBoardList*/
+
+        SELECT
+         DAILY_MAIN_ID      AS dailyMainId
+        ,DAILY_MAIN_BOARDID AS dailyMainBoardId
+        ,DAILY_MAIN_CD      AS dailyMainCd
+        ,DAILY_MAIN_CDNM    AS dailyMainCdNm
+        ,DAILY_MAIN_CONTENT AS dailyMainContent
+        ,DAILY_MAIN_WRITER  AS dailyMainWriter
+        ,DAILY_MAIN_WRITERNO AS dailyMainWriterNo
+        ,DAILY_MAIN_VIEWCNT AS dailyMainViewCnt
+        ,DAILY_MAIN_CREATEDATE AS dailyMainCreateDate
+        ,DAILY_MAIN_MODDATE AS dailyMainModDate
+        FROM
+        MAIN_DAILY_BOARD
+        WHERE
+        DAILY_MAIN_BOARDID = #{mainBoardId}
+
+    </select>
+
+    <select id="selectDailyCheckAdminList" parameterType="list"
             resultType="com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckAdminMain">
 
-        /*getDailyCheckAdminList*/
+        /*selectDailyCheckAdminList*/
 
         SELECT
             ADMIN_NM
@@ -38,10 +61,10 @@
             ADMIN_USER
     </select>
 
-    <select id="getDailyCheckAdmin" parameterType="list"
+    <select id="selectDailyCheckAdmin" parameterType="list"
             resultType="com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckAdminMain">
 
-        /*getDailyCheckAdminList*/
+        /*selectDailyCheckAdmin*/
 
         SELECT
               ADMIN_NM
@@ -90,9 +113,20 @@
         )
     </insert>
 
+    <update id="updateDailyCheckBoard" parameterType="com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain">
 
+        /* updateDailyCheckBoard */
 
+        UPDATE
+        MAIN_DAILY_BOARD
 
+        SET
+        DAILY_MAIN_MODDATE =   #{dailyMainModDate}
+
+        WHERE
+        DAILY_MAIN_BOARDID = #{mainBoardId}
+
+    </update>
 
 
 </mapper>

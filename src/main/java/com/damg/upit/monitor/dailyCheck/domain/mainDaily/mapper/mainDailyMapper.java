@@ -6,6 +6,7 @@ import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoar
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Mapper
@@ -15,6 +16,7 @@ public interface mainDailyMapper {
      * @return
      */
     List<MSVDailyCheckBoardMain> selectDailyCheckBoardList();
+    MSVDailyCheckBoardMain selectDailyCheckBoard(@Param("mainBoardId")Long mainBoardId);
 
     /**
      * 담당자 전체조회 (작성자 콤보박스 노출 부분)
@@ -29,5 +31,8 @@ public interface mainDailyMapper {
      MSVDailyCheckAdminMain selectDailyCheckAdmin(@Param("admin_nm")String admin_nm);
 
      void insertDailyCheckBoardList(MSVDailyCheckBoardMain msvDailyCheckBoardMain);
+
+     void updateDailyCheckBoard(@Param("dailyMainModDate")LocalDateTime mainBoardModDate,
+                                @Param("mainBoardId")Long dailyBoardId);
 
 }
