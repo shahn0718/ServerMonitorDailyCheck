@@ -14,8 +14,9 @@ public class MInsertGwDailyServerMain {
      * 각 노드별 CPU사용량 메모리사용량, 부하수치, 디스크사용량, 프로세스, 쿠버네티스
      *
      */
-    private long gwServerId;
-    private long gwMainId;
+    private Long gwServerId;
+    private Long gwMainId;
+
     private String node1CpuUsageChk;
     private String node1CpuUsageBigo;
     private String node1MemUsageChk;

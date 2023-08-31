@@ -8,22 +8,18 @@ import lombok.ToString;
 @ToString
 public class MInsertGwDailyServiceMain {
 
-    /**
-     * GW 서비스 메일, 전자결재, 백업 (이상유무, 비고)
-     */
+    private Long gwServiceId;
+    private Long gwMainId;
 
-    private long gwServiceId;
-    private long gwMainId;
-
-    //MailService
+    //MailService 메일서비스
     private String gwMailServiceChk;
     private String gwMailServiceBigo;
 
-    //ApprovService
+    //ApproveService 결재서비스
     private String gwApproveServiceChk;
     private String gwApproveServiceBigo;
 
-    //BackupService
+    //BackupService 백업서비스
     private String gwBackUpServiceChk;
     private String gwBackUpServiceBigo;
 

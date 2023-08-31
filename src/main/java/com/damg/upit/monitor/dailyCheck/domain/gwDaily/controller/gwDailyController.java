@@ -8,6 +8,7 @@ import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MDailyCheckElemen
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckAdminMain;
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain;
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.service.mainDailyService;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,8 +19,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-@Controller
 @Slf4j
+@Controller
 public class gwDailyController {
 
     private final gwDailyService gwService;
@@ -142,7 +143,6 @@ public class gwDailyController {
         mInsertGwDailyServiceMain.setGwMainId(mainBoardId);
         mInsertGwDailyStorageMain.setGwMainId(mainBoardId);
 
-        model.addAttribute("gwDailyCheck");
         log.info("gwDailyUpdateCheck={}", mInsertGwDailyServerMain);
         log.info("gwDailyUpdateCheck={}", mInsertGwDailyServiceMain);
         log.info("gwDailyUpdateCheck={}", mInsertGwDailyStorageMain);
@@ -151,8 +151,7 @@ public class gwDailyController {
         gwService.updateGwDailyServerMain(mInsertGwDailyServerMain);
         gwService.updateGwDailyStorageMain(mInsertGwDailyStorageMain);
 
-
-        return "gwServer/main";
+        return "redirect:/";
     }
 
 }

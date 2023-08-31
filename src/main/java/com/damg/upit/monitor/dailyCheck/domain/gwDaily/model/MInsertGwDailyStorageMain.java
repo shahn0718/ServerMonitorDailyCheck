@@ -9,8 +9,9 @@ import lombok.ToString;
 public class MInsertGwDailyStorageMain {
 
 
-    private long gwStorageId;
-    private long gwMainId;
+    private Long gwStorageId;
+    private Long gwMainId;
+
     //GW-NAS-MAIN
     private String gwNasMainClustChk;
     private String gwNasMainClustBigo;

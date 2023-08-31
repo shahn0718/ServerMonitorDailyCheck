@@ -8,7 +8,6 @@
         /* insertGwDailyServiceMain */
 
         INSERT INTO GW_DAILY_SERVICE (
-
              GW_SERVICE_ID
             ,GW_MAIN_ID
             ,GW_MAIL_CHK
@@ -17,9 +16,7 @@
             ,GW_APPROVE_BIGO
             ,GW_BACKUP_CHK
             ,GW_BACKUP_BIGO
-
         ) VALUES (
-
              #{gwServiceId}
             ,#{gwMainId}
             ,#{gwMailServiceChk}
@@ -28,7 +25,6 @@
             ,#{gwApproveServiceBigo}
             ,#{gwBackUpServiceChk}
             ,#{gwBackUpServiceBigo}
-
         )
     </insert>
 
@@ -263,7 +259,6 @@
             ,GW_APPROVE_BIGO    AS gwApproveServiceBigo
             ,GW_BACKUP_CHK      AS gwBackUpServiceChk
             ,GW_BACKUP_BIGO     AS gwBackUpServiceBigo
-
         FROM
             GW_DAILY_SERVICE
         WHERE
@@ -373,7 +368,6 @@
             resultType="com.damg.upit.monitor.dailyCheck.domain.gwDaily.model.MInsertGwDailyStorageMain">
 
         SELECT
-
              GW_STORAGE_ID          AS gwStorageId
             ,GW_MAIN_ID             AS gwMainId
             ,GW_NASMAIN_CHK         AS gwNasMainClustChk
@@ -499,7 +493,6 @@
             , BACK_DISKUSAGE_BIGO   = #{backDiskUsageBigo}
             , BACK_PROCESS_CHK      = #{backProcessChk}
             , BACK_PROCESS_BIGO     = #{backProcessBigo}
-
         WHERE
             GW_MAIN_ID = #{gwMainId}
     </update>
@@ -518,7 +511,6 @@
             ,ARCH_NASMAIN_BIGO      = #{archNasMainClustBigo}
             ,ARCH_NASBACKUP_CHK     = #{archNasBackClustChk}
             ,ARCH_NASBACKUP_BIGO    = #{archNasBackClustBigo}
-
         WHERE
             GW_MAIN_ID = #{gwMainId}
     </update>
