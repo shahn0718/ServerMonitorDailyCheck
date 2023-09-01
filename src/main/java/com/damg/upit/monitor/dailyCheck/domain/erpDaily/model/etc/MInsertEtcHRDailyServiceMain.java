@@ -7,12 +7,9 @@ import lombok.ToString;
 
 @Getter @Setter
 @ToString
-public class MInsertEtcErpDailyServiceMain {
-
-    private long etcErpServiceId;
-    private long etcMainId;
+public class MInsertEtcHRDailyServiceMain {
     /**
-     *     <td>서비스</td>
+     *           <td>서비스</td>
      *           <td>
      *             <p></p>
      *             <p></p>
@@ -27,18 +24,21 @@ public class MInsertEtcErpDailyServiceMain {
      *             <p></p>
      *             <p></p>
      *             <p>백업스케쥴</p>
-     *          2023.9월 기준 백업 관련 서비스만 등록
+     *            2023.9월 기준 백업스케쥴 사용
      */
 
+    private long etcHrServiceId;
+    private long etcMainId;
+
     //MailService 메일서비스
-    private String etcErpMailServiceChk;
-    private String etcErpMailServiceBigo;
+    private String etcHrMailServiceChk;
+    private String etcHrMailServiceBigo;
 
     //ApproveService 결재서비스
-    private String etcErpApproveServiceChk;
-    private String etcErpApproveServiceBigo;
+    private String etcHrApproveServiceChk;
+    private String etcHrApproveServiceBigo;
 
     //BackupService 백업서비스
-    private String etcErpBackUpServiceChk;
-    private String etcErpBackUpServiceBigo;
+    private String etcHrBackUpServiceChk;
+    private String etcHrBackUpServiceBigo;
 }
