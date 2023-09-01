@@ -12,19 +12,39 @@ public class MInsertGwDailyStorageMain {
     private Long gwStorageId;
     private Long gwMainId;
 
-    //GW-NAS-MAIN
+    /**
+     *         <td>GW-NAS-Main</td>
+     *         <td>-</td>
+     *         <td>
+     *           <p>클러스터</p>
+     */
     private String gwNasMainClustChk;
     private String gwNasMainClustBigo;
 
-    //GW-NAS-Backup
+    /**
+     *         <td>GW-NAS-Backup</td>
+     *         <td>-</td>
+     *         <td>
+     *           <p>클러스터</p>
+     */
     private String gwNasBackClustChk;
     private String gwNasBackClustBigo;
 
-    //Arch-NAS-Main
+    /**
+     *         <td>Arch-NAS-Main</td>
+     *         <td>-</td>
+     *         <td>
+     *           <p>클러스터</p>
+     */
     private String archNasMainClustChk;
     private String archNasMainClustBigo;
 
-    //Arch-NAS-Backup
+    /**
+     *         <td>Arch-NAS-Backup</td>
+     *         <td>-</td>
+     *         <td>
+     *           <p>클러스터</p>
+     */
     private String archNasBackClustChk;
     private String archNasBackClustBigo;
 

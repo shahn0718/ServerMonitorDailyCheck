@@ -17,6 +17,17 @@ public class MInsertGwDailyServerMain {
     private Long gwServerId;
     private Long gwMainId;
 
+    /**
+     *         <td>node1(운영1)</td>
+     *         <td>리눅스</td>
+     *         <td>
+     *           <p>CPU 사용량</p>
+     *           <p>메모리 사용량</p>
+     *           <p>부하수치</p>
+     *           <p>디스크 사용량</p>
+     *           <p>프로세스</p>
+     *           <p>쿠버네티스</p>
+     */
     private String node1CpuUsageChk;
     private String node1CpuUsageBigo;
     private String node1MemUsageChk;
@@ -30,7 +41,17 @@ public class MInsertGwDailyServerMain {
     private String node1KubChk;
     private String node1KubBigo;
 
-    //node2
+    /**
+     *         <td>node2(운영2)</td>
+     *         <td>리눅스</td>
+     *         <td>
+     *           <p>CPU 사용량</p>
+     *           <p>메모리 사용량</p>
+     *           <p>부하수치</p>
+     *           <p>디스크 사용량</p>
+     *           <p>프로세스</p>
+     *           <p>쿠버네티스</p>
+     */
     private String node2CpuUsageChk;
     private String node2CpuUsageBigo;
     private String node2MemUsageChk;
@@ -44,7 +65,17 @@ public class MInsertGwDailyServerMain {
     private String node2KubChk;
     private String node2KubBigo;
 
-    //node3
+    /**
+     *         <td>node3(운영3)</td>
+     *         <td>리눅스</td>
+     *         <td>
+     *           <p>CPU 사용량</p>
+     *           <p>메모리 사용량</p>
+     *           <p>부하수치</p>
+     *           <p>디스크 사용량</p>
+     *           <p>프로세스</p>
+     *           <p>쿠버네티스</p>
+     */
     private String node3CpuUsageChk;
     private String node3CpuUsageBigo;
     private String node3MemUsageChk;
@@ -58,7 +89,17 @@ public class MInsertGwDailyServerMain {
     private String node3KubChk;
     private String node3KubBigo;
 
-    //node4
+    /**
+     *    <td>node4(운영4)</td>
+     *         <td>리눅스</td>
+     *         <td>
+     *           <p>CPU 사용량</p>
+     *           <p>메모리 사용량</p>
+     *           <p>부하수치</p>
+     *           <p>디스크 사용량</p>
+     *           <p>프로세스</p>
+     *           <p>쿠버네티스</p>
+     */
     private String node4CpuUsageChk;
     private String node4CpuUsageBigo;
     private String node4MemUsageChk;
@@ -72,7 +113,17 @@ public class MInsertGwDailyServerMain {
     private String node4KubChk;
     private String node4KubBigo;
 
-    //dev-node
+    /**
+     *         <td>dev-node1(개발)</td>
+     *         <td>리눅스</td>
+     *         <td>
+     *           <p>CPU 사용량</p>
+     *           <p>메모리 사용량</p>
+     *           <p>부하수치</p>
+     *           <p>디스크 사용량</p>
+     *           <p>프로세스</p>
+     *           <p>쿠버네티스</p>
+     */
     private String devNodeCpuUsageChk;
     private String devNodeCpuUsageBigo;
     private String devNodeMemUsageChk;
@@ -86,7 +137,17 @@ public class MInsertGwDailyServerMain {
     private String devNodeKubChk;
     private String devNodeKubBigo;
 
-    // arch5
+    /**
+     *         <td>Arch5</td>
+     *         <td>리눅스</td>
+     *         <td>
+     *           <p>CPU 사용량</p>
+     *           <p>메모리 사용량</p>
+     *           <p>SWAP 사용량</p>
+     *           <p>부하수치</p>
+     *           <p>디스크 사용량</p>
+     *           <p>프로세스</p>
+     */
     private String archCpuUsageChk;
     private String archCpuUsageBigo;
     private String archMemUsageChk;
@@ -100,7 +161,17 @@ public class MInsertGwDailyServerMain {
     private String archProcessChk;
     private String archProcessBigo;
 
-    //backup
+    /**
+     *         <td>Backup</td>
+     *         <td>리눅스</td>
+     *         <td>
+     *           <p>CPU 사용량</p>
+     *           <p>메모리 사용량</p>
+     *           <p>SWAP 사용량</p>
+     *           <p>부하수치</p>
+     *           <p>디스크 사용량</p>
+     *           <p>프로세스</p>
+     */
     private String backCpuUsageChk;
     private String backCpuUsageBigo;
     private String backMemUsageChk;

@@ -9,6 +9,25 @@ import lombok.ToString;
 @ToString
 public class MInsertErpDailyServiceMain {
 
+    /**
+     *         <td>서비스</td>
+     *         <td>
+     *           <p></p>
+     *           <p></p>
+     *           <p>백업</p>
+     *         </td>
+     *         <td>
+     *           <p>-</p>
+     *           <p>-</p>
+     *           <p> </p>
+     *         </td>
+     *         <td>
+     *           <p></p>
+     *           <p></p>
+     *           <p>백업스케쥴</p>
+     *          2023.9 월 기준 현재 백업관련 스케쥴만 존재.
+     */
+
     private long erpServiceId;
     private long erpMainId;
 
