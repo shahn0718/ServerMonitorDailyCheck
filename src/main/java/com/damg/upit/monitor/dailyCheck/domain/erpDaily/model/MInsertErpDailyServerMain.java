@@ -13,6 +13,16 @@ public class MInsertErpDailyServerMain {
     private Long erpServerId;
     private Long erpMainId;
 
+    /**
+     *         <td>Main-1</td>
+     *         <td>윈도우</td>
+     *         <td>
+     *           <p>CPU 사용량</p>
+     *           <p>메모리 사용량</p>
+     *           <p>디스크 사용량</p>
+     *           <p>클러스터</p>
+     *           <p>이벤트 로그</p>
+     */
     private String main1CpuUsageChk;
     private String main1CpuUsageBigo;
     private String main1MemUsageChk;
@@ -24,6 +34,17 @@ public class MInsertErpDailyServerMain {
     private String main1EventChk;
     private String main1EventBigo;
 
+    /**
+     *         <td>Main-2</td>
+     *         <td>윈도우</td>
+     *         <td>
+     *           <p>CPU 사용량</p>
+     *           <p>메모리 사용량</p>
+     *           <p>디스크 사용량</p>
+     *           <p>클러스터</p>
+     *           <p>이벤트 로그</p>
+     */
+
     private String main2CpuUsageChk;
     private String main2CpuUsageBigo;
     private String main2MemUsageChk;
@@ -34,6 +55,18 @@ public class MInsertErpDailyServerMain {
     private String main2ClustBigo;
     private String main2EventChk;
     private String main2EventBigo;
+
+    /**
+     *         <td>Main-3</td>
+     *         <td>윈도우</td>
+     *         <td>
+     *           <p>CPU 사용량</p>
+     *           <p>메모리 사용량</p>
+     *           <p>디스크 사용량</p>
+     *           <p>클러스터</p>
+     *           <p>이벤트 로그</p>
+     */
+
 
     private String main3CpuUsageChk;
     private String main3CpuUsageBigo;
@@ -71,6 +104,18 @@ public class MInsertErpDailyServerMain {
     private String db1ProcessChk;
     private String db1ProcessBigo;
 
+    /**
+     *         <td>DB-2</td>
+     *         <td>리눅스</td>
+     *         <td>
+     *           <p>CPU 사용량</p>
+     *           <p>메모리 사용량</p>
+     *           <p>SWAP 사용량</p>
+     *           <p>부하수치</p>
+     *           <p>디스크 사용량</p>
+     *           <p>프로세스</p>
+     */
+
     private String db2CpuUsageChk;
     private String db2CpuUsageBigo;
     private String db2MemUsageChk;
@@ -84,6 +129,18 @@ public class MInsertErpDailyServerMain {
     private String db2ProcessChk;
     private String db2ProcessBigo;
 
+    /**
+     *         <td>DEV-DB</td>
+     *         <td>리눅스</td>
+     *         <td>
+     *           <p>CPU 사용량</p>
+     *           <p>메모리 사용량</p>
+     *           <p>SWAP 사용량</p>
+     *           <p>부하수치</p>
+     *           <p>디스크 사용량</p>
+     *           <p>프로세스</p>
+     */
+
     private String devDbCpuUsageChk;
     private String devDbCpuUsageBigo;
     private String devDbMemUsageChk;
@@ -96,6 +153,18 @@ public class MInsertErpDailyServerMain {
     private String devDbDiskUsageBigo;
     private String devDbProcessChk;
     private String devDbProcessBigo;
+
+    /**
+     *         <td>Backup</td>
+     *         <td>리눅스</td>
+     *         <td>
+     *           <p>CPU 사용량</p>
+     *           <p>메모리 사용량</p>
+     *           <p>SWAP 사용량</p>
+     *           <p>부하수치</p>
+     *           <p>디스크 사용량</p>
+     *           <p>프로세스</p>
+     */
 
     private String backUpCpuUsageChk;
     private String backUpCpuUsageBigo;

@@ -1,4 +1,4 @@
-package com.damg.upit.monitor.dailyCheck.domain.erpDaily.model.etc;
+package com.damg.upit.monitor.dailyCheck.domain.etcDaily.model.erp;
 
 
 import lombok.Getter;
@@ -7,9 +7,12 @@ import lombok.ToString;
 
 @Getter @Setter
 @ToString
-public class MInsertEtcHRDailyServiceMain {
+public class MInsertEtcErpDailyServiceMain {
+
+    private long etcErpServiceId;
+    private long etcMainId;
     /**
-     *           <td>서비스</td>
+     *     <td>서비스</td>
      *           <td>
      *             <p></p>
      *             <p></p>
@@ -24,21 +27,18 @@ public class MInsertEtcHRDailyServiceMain {
      *             <p></p>
      *             <p></p>
      *             <p>백업스케쥴</p>
-     *            2023.9월 기준 백업스케쥴 사용
+     *          2023.9월 기준 백업 관련 서비스만 등록
      */
 
-    private long etcHrServiceId;
-    private long etcMainId;
-
     //MailService 메일서비스
-    private String etcHrMailServiceChk;
-    private String etcHrMailServiceBigo;
+    private String etcErpMailServiceChk;
+    private String etcErpMailServiceBigo;
 
     //ApproveService 결재서비스
-    private String etcHrApproveServiceChk;
-    private String etcHrApproveServiceBigo;
+    private String etcErpApproveServiceChk;
+    private String etcErpApproveServiceBigo;
 
     //BackupService 백업서비스
-    private String etcHrBackUpServiceChk;
-    private String etcHrBackUpServiceBigo;
+    private String etcErpBackUpServiceChk;
+    private String etcErpBackUpServiceBigo;
 }
