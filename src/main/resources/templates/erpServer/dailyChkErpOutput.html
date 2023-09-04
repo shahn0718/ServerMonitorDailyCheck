@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -70,7 +70,31 @@
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
+
+<form class="row g-3">
 <div class="container-fluid container-lg mt-lg-5">
+
+  <div class="row text-center text-dark mb-5 mt-10">
+    <div class="col border mt-3">
+      작성자:&nbsp;
+      <span  th:each="mainBoardInfo: ${mainBoardInfo}" th:text="${mainBoardInfo.dailyMainWriter}"></span>
+    </div>
+
+    <div class="col border mt-3">
+      작성/수정 시간:&nbsp;
+      <span>
+        <th:block th:if="${#strings.isEmpty(mainBoardInfo.dailyMainModDate)}" th:text="${#temporals.format(mainBoardInfo.dailyMainCreateDate,'yyyy-MM-dd HH:mm:ss')}"></th:block>
+        <th:block th:unless="${#strings.isEmpty(mainBoardInfo.dailyMainModDate)}" th:text="${#temporals.format(mainBoardInfo.dailyMainModDate,'yyyy-MM-dd HH:mm:ss')}"></th:block>
+      </span>
+    </div>
+  </div>
+
+  <div class="form-row float-end">
+    <button type="button" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" th:each="mainBoard : ${mainBoardInfo}"
+            th:onclick="|location.href='@{/{category}/{boardId}/Update (category=${mainBoard.dailyMainCd}, boardId=${mainBoard.dailyMainBoardId})}'|">수정</button>
+    <button type="button" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" th:onclick="|location.href='@{/}'|">뒤로가기</button>
+  </div>
+
   <table class="table table-bordered align-middle table-hover mt-5">
     <thead>
       <tr align="center">
@@ -83,7 +107,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr align="center">
+      <tr th:each="erpService:${erpService}" align="center">
         <td>서비스</td>
         <td>  
           <p></p>
@@ -101,32 +125,41 @@
           <p>백업스케쥴</p>
         </td>
         <td> 
-          <p><!--추후 수정 필요-->
-            <input class="form-check-input" type="radio" value="Y" name="erpMailServiceChk" id="erpMailServiceChkY">
+          <p><!--추후 수정 필요 현재는 백업 서비스만 체크 진행-->
+            <input class="form-check-input" type="radio" value="Y" name="erpMailServiceChk" id="erpMailServiceChkY"
+                    th:checked="${erpService.erpMailServiceChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="erpMailServiceChk" id="erpMailServiceChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="erpMailServiceChk" id="erpMailServiceChkN"
+                   th:checked="${erpService.erpMailServiceChk eq 'N'}" disabled>
             무
           </p> 
-          <p><!--추후 수정 필요-->
-            <input class="form-check-input" type="radio" value="Y" name="erpApproveServiceChk" id="erpApproveServiceChkY">
+          <p><!--추후 수정 필요 현재는 백업 서비스만 체크 진행-->
+            <input class="form-check-input" type="radio" value="Y" name="erpApproveServiceChk" id="erpApproveServiceChkY"
+                    th:checked="${erpService.erpApproveServiceChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="erpApproveServiceChk" id="erpApproveServiceChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="erpApproveServiceChk" id="erpApproveServiceChkN"
+                    th:checked="${erpService.erpApproveServiceChk eq 'N'}" disabled>
             무  
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="erpBackUpServiceChk" id="erpBackUpServiceChkY">
+            <input class="form-check-input" type="radio" value="Y" name="erpBackUpServiceChk" id="erpBackUpServiceChkY"
+                    th:checked="${erpService.erpBackUpServiceChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="erpBackUpServiceChk" id="erpBackUpServiceChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="erpBackUpServiceChk" id="erpBackUpServiceChkN"
+                    th:checked="${erpService.erpBackUpServiceChk eq 'N'}" disabled>
             무  
           </p>
         </td>
         <td>
-          <input type="text" class="form-control" id="mailServiceBigoInput" placeholder="이상유무 유 체크시 내역기재">
-          <input type="text" class="form-control" id="approveServiceBigoInput">
-          <input type="text" class="form-control" id="backupServiceBigoInput">
+          <input type="text" class="form-control" name="erpMailServiceBigo" id="erpMailServiceBigoInput" placeholder="이상유무 유 체크시 내역기재"
+                  th:value="${erpService.erpMailServiceBigo}" type="text" readonly>
+          <input type="text" class="form-control" name="erpApproveServiceBigo" id="erpApproveServiceBigoInput"
+                  th:value="${erpService.erpApproveServiceBigo}" readonly>
+          <input type="text" class="form-control" name="erpBackUpServiceBigo" id="erpBackUpServiceBigoInput"
+                  th:value="${erpService.erpBackUpServiceBigo}" readonly>
         </td>
       </tr>
-      <tr align="center">
+      <tr align="center" th:each="erpServer:${erpServer}">
         <td rowspan="7">서버</td>
         <td>Main-1</td>
         <td>윈도우</td>
@@ -139,45 +172,60 @@
         </td>
         <td> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="main1CpuUsageChk" id="main1CpuUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="main1CpuUsageChk" id="main1CpuUsageChkY"
+                    th:checked="${erpServer.main1CpuUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="main1CpuUsageChk" id="main1CpuUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="main1CpuUsageChk" id="main1CpuUsageChkN"
+                    th:checked="${erpServer.main1CpuUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="main1MemUsageChk" id="main1MemUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="main1MemUsageChk" id="main1MemUsageChkY"
+                    th:checked="${erpServer.main1MemUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="main1MemUsageChk" id="main1MemUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="main1MemUsageChk" id="main1MemUsageChkN"
+                    th:checked="${erpServer.main1MemUsageChk eq 'N'}" disabled>
             무  
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="main1DiskUsageChk" id="main1DiskUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="main1DiskUsageChk" id="main1DiskUsageChkY"
+                    th:checked="${erpServer.main1DiskUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="main1DiskUsageChk" id="main1DiskUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="main1DiskUsageChk" id="main1DiskUsageChkN"
+                    th:checked="${erpServer.main1DiskUsageChk eq 'N'}" disabled>
             무  
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="main1ClustChk" id="main1ClustChkY">
+            <input class="form-check-input" type="radio" value="Y" name="main1ClustChk" id="main1ClustChkY"
+                    th:checked="${erpServer.main1ClustChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="main1ClustChk" id="main1ClustChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="main1ClustChk" id="main1ClustChkN"
+                    th:checked="${erpServer.main1ClustChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="main1EventChk" id="main1EventChkY">
+            <input class="form-check-input" type="radio" value="Y" name="main1EventChk" id="main1EventChkY"
+                    th:checked="${erpServer.main1EventChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="main1EventChk" id="main1EventChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="main1EventChk" id="main1EventChkN"
+                    th:checked="${erpServer.main1EventChk eq 'N'}" disabled>
             무  
           </p>
         </td>
         <td>
-          <input type="text" class="form-control" name="main1CpuUsageBigo" id="main1CpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
-          <input type="text" class="form-control" name="main1MemUsageBigo" id="main1MemUsageBigoInput">
-          <input type="text" class="form-control" name="main1DiskUsageBigo" id="main1DiskUsageBigoInput">
-          <input type="text" class="form-control" name="main1ClustBigo" id="main1ClustBigoInput">
-          <input type="text" class="form-control" name="main1EventBigo" id="main1EventBigoInput">
+          <input type="text" class="form-control" name="main1CpuUsageBigo" id="main1CpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재"
+                 th:value="${erpServer.main1CpuUsageBigo" readonly>
+          <input type="text" class="form-control" name="main1MemUsageBigo" id="main1MemUsageBigoInput"
+                 th:value="${erpServer.main1MemUsageBigo" readonly>
+          <input type="text" class="form-control" name="main1DiskUsageBigo" id="main1DiskUsageBigoInput"
+                 th:value="${erpServer.main1DiskUsageBigo}" readonly>
+          <input type="text" class="form-control" name="main1ClustBigo" id="main1ClustBigoInput"
+                 th:value="${erpServer.main1ClustBigo}" readonly>
+          <input type="text" class="form-control" name="main1EventBigo" id="main1EventBigoInput"
+                 th:value="${erpServer.main1EventBigo}">
         </td>
       </tr>
-      <tr align="center">
+      <tr align="center" th:each="erpServer:${erpServer}">
         <td>Main-2</td>
         <td>윈도우</td>
         <td>  
@@ -189,45 +237,60 @@
         </td>
         <td> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="main2CpuUsageChk" id="main2CpuUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="main2CpuUsageChk" id="main2CpuUsageChkY"
+                   th:checked="${erpServer.main2CpuUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="main2CpuUsageChk" id="main2CpuUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="main2CpuUsageChk" id="main2CpuUsageChkN"
+                   th:checked="${erpServer.main2CpuUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="main2MemUsageChk" id="main2MemUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="main2MemUsageChk" id="main2MemUsageChkY"
+                   th:checked="${erpServer.main2MemUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="main2MemUsageChk" id="main2MemUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="main2MemUsageChk" id="main2MemUsageChkN"
+                   th:checked="${erpServer.main2MemUsageChk eq 'N'}" disabled>
             무  
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="main2DiskUsageChk" id="main2DiskUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="main2DiskUsageChk" id="main2DiskUsageChkY"
+                   th:checked="${erpServer.main2DiskUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="main2DiskUsageChk" id="main2DiskUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="main2DiskUsageChk" id="main2DiskUsageChkN"
+                   th:checked="${erpServer.main2DiskUsageChk eq 'N'}" disabled>
             무  
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="main2ClustChk" id="main2ClustChkY">
+            <input class="form-check-input" type="radio" value="Y" name="main2ClustChk" id="main2ClustChkY"
+                   th:checekd="${erpServer.main2ClustChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="main2ClustChk" id="main2ClustChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="main2ClustChk" id="main2ClustChkN"
+                   th:checked="${erpServer.main2ClustChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="main2EventChk" id="main2EventChkY">
+            <input class="form-check-input" type="radio" value="Y" name="main2EventChk" id="main2EventChkY"
+                   th:checked="${erpServer.main2EventChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="main2EventChk" id="main2EventChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="main2EventChk" id="main2EventChkN"
+                   th:checked="${erpServer.main2EventChk eq 'N'}" disabled>
             무  
           </p>
         </td>
         <td>
-          <input type="text" class="form-control" name="main2CpuUsageBigo" id="main2CpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
-          <input type="text" class="form-control" name="main2MemUsageBigo" id="main2MemUsageBigoInput">
-          <input type="text" class="form-control" name="main2DiskUsageBigo" id="main2DiskUsageBigoInput">
-          <input type="text" class="form-control" name="main2ClustBigo" id="main2ClustBigoInput">
-          <input type="text" class="form-control" name="main2EventBigo" id="nmain2EventBigoInput">
+          <input type="text" class="form-control" name="main2CpuUsageBigo" id="main2CpuUsageBigoInput"
+                 th:value=${erpServer.main2CpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+          <input type="text" class="form-control" name="main2MemUsageBigo" id="main2MemUsageBigoInput"
+                 th:value="${erpServer.main2MemUsageBigo}" readonly>
+          <input type="text" class="form-control" name="main2DiskUsageBigo" id="main2DiskUsageBigoInput"
+                 th:value="${erpServer.main2DiskUsageBigo}" readonly>
+          <input type="text" class="form-control" name="main2ClustBigo" id="main2ClustBigoInput"
+                 th:value="${erpServer.main2ClustBigo}" readonly>
+          <input type="text" class="form-control" name="main2EventBigo" id="main2EventBigoInput"
+                 th:value="${erpServer.main2EventBigo}" readonly>
         </td>
       </tr>
-      <tr align="center">
+      <tr align="center" th:each="erpServer:${erpServer}">
         <td>Main-3</td>
         <td>윈도우</td>
         <td>  
@@ -239,45 +302,60 @@
         </td>
         <td> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="main3CpuUsageChk" id="main3CpuUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="main3CpuUsageChk" id="main3CpuUsageChkY"
+                   th:checked="${erpServer.main3CpuUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="main3CpuUsageChk" id="main3CpuUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="main3CpuUsageChk" id="main3CpuUsageChkN"
+                   th:checked="${erpServer.main3CpuUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="main3MemUsageChk" id="main3MemUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="main3MemUsageChk" id="main3MemUsageChkY"
+                   th:checked="${erpServer.main3MemUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="main3MemUsageChk" id="main3MemUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="main3MemUsageChk" id="main3MemUsageChkN"
+                   th:checked="${erpServer.main3MemUsageChk eq 'N'}" disabled>
             무  
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="main3DiskUsageChk" id="main3DiskUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="main3DiskUsageChk" id="main3DiskUsageChkY"
+                   th:checked="${erpServer.main3DiskUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="main3DiskUsageChk" id="main3DiskUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="main3DiskUsageChk" id="main3DiskUsageChkN"
+                   th:checked="${erpServer.main3DiskUsageChk eq 'N'}" disabled>
             무  
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="main3ClustChk" id="main3ClustChkY">
+            <input class="form-check-input" type="radio" value="Y" name="main3ClustChk" id="main3ClustChkY"
+                   th:checked="${erpServer.main3ClustChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="main3ClustChk" id="main3ClustChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="main3ClustChk" id="main3ClustChkN"
+                   th:checked="${erpServer.main3ClustChk eq 'N'}" disabled>
             무  
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="main3EventChk" id="main3EventChkY">
+            <input class="form-check-input" type="radio" value="Y" name="main3EventChk" id="main3EventChkY"
+                   th:checked="${erpServer.main3EventChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="main3EventChk" id="main3EventChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="main3EventChk" id="main3EventChkN"
+                   th:checked="${erpServer.main3EventChk eq 'N'}" disabled>
             무  
           </p>
         </td>
         <td>
-          <input type="text" class="form-control" name="main3CpuUsageBigo" id="main3CpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
-          <input type="text" class="form-control" name="main3MemUsageBigo" id="main3MemUsageBigoInput">
-          <input type="text" class="form-control" name="main3DiskUsageBigo" id="main3DiskUsageBigoInput">
-          <input type="text" class="form-control" name="main3ClustBigo" id="main3ClustBigoInput">
-          <input type="text" class="form-control" name="main3EventBigo" id="main3EventBigoInput">
+          <input type="text" class="form-control" name="main3CpuUsageBigo" id="main3CpuUsageBigoInput"
+                 th:value="${erpServer.main3CpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+          <input type="text" class="form-control" name="main3MemUsageBigo" id="main3MemUsageBigoInput"
+                 th:value="${erpServer.main3MemUsageBigo}" readonly>
+          <input type="text" class="form-control" name="main3DiskUsageBigo" id="main3DiskUsageBigoInput"
+                 th:value="${erpServer.main3DiskUsageBigo}" readonly>
+          <input type="text" class="form-control" name="main3ClustBigo" id="main3ClustBigoInput"
+                 th:value="${erpServer.main3ClustBigo}" readonly>
+          <input type="text" class="form-control" name="main3EventBigo" id="main3EventBigoInput"
+                 th:value="${erpServer.main3EventBigo}" readonly>
         </td>
       </tr>
-      <tr align="center">
+      <tr align="center" th:each="erpServer: ${erpServer}">
         <td>DB-1</td>
         <td>리눅스</td>
         <td>  
@@ -290,52 +368,71 @@
         </td>
         <td> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="db1CpuUsageChk" id="db1CpuUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="db1CpuUsageChk" id="db1CpuUsageChkY"
+                   th:checked="${erpServer.db1CpuUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="db1CpuUsageChk" id="db1CpuUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="db1CpuUsageChk" id="db1CpuUsageChkN" \
+                   th:checked="${erpServer.db1CpuUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="db1MemUsageChk" id="db1MemUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="db1MemUsageChk" id="db1MemUsageChkY"
+                   th:checked="${erpServer.db1MemUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="db1MemUsageChk" id="db1MemUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="db1MemUsageChk" id="db1MemUsageChkN"
+                   th:checked="${erpServer.db1MemUsageChk eq 'N'}" disabled>
             무  
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="db1SwapUsageChk" id="db1SwapUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="db1SwapUsageChk" id="db1SwapUsageChkY"
+                   th:checked="${erpServer.db1SwapUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="db1SwapUsageChk" id="db1SwapUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="db1SwapUsageChk" id="db1SwapUsageChkN"
+                   th:checked="${erpServer.db1SwapUsageChk eq 'N'}" disabled>
             무  
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="db1OverloadChk" id="db1OverloadChkY">
+            <input class="form-check-input" type="radio" value="Y" name="db1OverloadChk" id="db1OverloadChkY"
+                   th:checked="${erpServer.db1OverLoadChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="db1OverloadChk" id="db1OverloadChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="db1OverloadChk" id="db1OverloadChkN"
+                   th:checked="${erpServer.db1OverLoadChk eq 'N'}" disabled>
             무  
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="db1DiskUsageChk" id="db1DiskUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="db1DiskUsageChk" id="db1DiskUsageChkY"
+                   th:checked="${erpServer.db1DiskUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="db1DiskUsageChk" id="db1DiskUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="db1DiskUsageChk" id="db1DiskUsageChkN"
+                   th:checked="${erpServer.db1DiskUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="db1ProcessChk" id="db1ProcessChkY">
+            <input class="form-check-input" type="radio" value="Y" name="db1ProcessChk" id="db1ProcessChkY"
+                   th:checked="${erpServer.db1ProcessChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="db1ProcessChk" id="db1ProcessChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="db1ProcessChk" id="db1ProcessChkN"
+                   th:checked="${erpServer.db1ProcessChk eq 'N'}" disabled>
+
             무  
           </p>
         </td>
         <td>
-          <input type="text" class="form-control" name="db1CpuUsageBigo" id="db1CpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
-          <input type="text" class="form-control" name="db1MemUsageBigo" id="db1MemUsageBigoInput">
-          <input type="text" class="form-control" name="db1SwapUsageBigo" id="db1SwapUsageBigoInput">
-          <input type="text" class="form-control" name="db1OverLoadBigo" id="db1OverLoadBigoInput">
-          <input type="text" class="form-control" name="db1DiskUsageBigo" id="db1DiskUsageBigoInput">
-          <input type="text" class="form-control" name="db1ProcessBigo" id="db1ProcessBigoInput">
+          <input type="text" class="form-control" name="db1CpuUsageBigo" id="db1CpuUsageBigoInput"
+                 th:value=${erpServer.db1CpuUsageBigo} placeholder="이상유무 유 체크시 내역기재" readonly>
+          <input type="text" class="form-control" name="db1MemUsageBigo" id="db1MemUsageBigoInput"
+                 th:value="${erpServer.db1MemUsageBigo}" readonly>
+          <input type="text" class="form-control" name="db1SwapUsageBigo" id="db1SwapUsageBigoInput"
+                 th:value="${erpServer.db1SwapUsageBigo}" readonly>
+          <input type="text" class="form-control" name="db1OverLoadBigo" id="db1OverLoadBigoInput"
+                 th:value="${erpServer.db1OverLoadBigo}" readonly>
+          <input type="text" class="form-control" name="db1DiskUsageBigo" id="db1DiskUsageBigoInput"
+                 th:value="${erpServer.db1DiskUsageBigo}" readonly>
+          <input type="text" class="form-control" name="db1ProcessBigo" id="db1ProcessBigoInput"
+                 th:value="${erpServer.db1ProcessChk}" readonly>
         </td>
       </tr>
-      <tr align="center">
+      <tr align="center" th:each="erpServer: ${erpServer}">
         <td>DB-2</td>
         <td>리눅스</td>
         <td>  
@@ -348,52 +445,70 @@
         </td>
         <td> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="db2CpuUsageChk" id="db2CpuUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="db2CpuUsageChk" id="db2CpuUsageChkY"
+                   th:checked="${erpServer.db2CpuUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="db2CpuUsageChk" id="db2CpuUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="db2CpuUsageChk" id="db2CpuUsageChkN"
+                   th:checked="${erpServer.db2CpuUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="db2MemUsageChk" id="db2MemUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="db2MemUsageChk" id="db2MemUsageChkY"
+                   th:checked="${erpServer.db2MemUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="db2MemUsageChk" id="db2MemUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="db2MemUsageChk" id="db2MemUsageChkN"
+                   th:checked="${erpServer.db2MemUsageChk eq 'N'}" disabled>
             무  
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="db2SwapUsageChk" id="db2SwapUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="db2SwapUsageChk" id="db2SwapUsageChkY"
+                   th:checked="${erpServer.db2SwapUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="db2SwapUsageChk" id="db2SwapUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="db2SwapUsageChk" id="db2SwapUsageChkN"
+                   th:checked="${erpServer.db2SwapUsageChk eq 'N'}" disabled>
             무  
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="db2OverLoadChk" id="db2OverLoadChkY">
+            <input class="form-check-input" type="radio" value="Y" name="db2OverLoadChk" id="db2OverLoadChkY"
+                   th:checked="${erpServer.db2OverLoadChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="db2OverLoadChk" id="db2OverLoadChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="db2OverLoadChk" id="db2OverLoadChkN"
+                   th:checked="${erpServer.db2OverLoadChk eq 'N'}" disabled>
             무  
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="db2DiskUsageChk" id="db2DiskUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="db2DiskUsageChk" id="db2DiskUsageChkY"
+                   th:checked="${erpServer.db2DiskUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="db2DiskUsageChk" id="db2DiskUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="db2DiskUsageChk" id="db2DiskUsageChkN"
+                   th:checked="${erpServer.db2DiskUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="db2ProcessChk" id="db2ProcessChkY">
+            <input class="form-check-input" type="radio" value="Y" name="db2ProcessChk" id="db2ProcessChkY"
+                   th:checked="${erpServer.db2ProcessChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="db2ProcessChk" id="db2ProcessChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="db2ProcessChk" id="db2ProcessChkN"
+                   th:checked="${erpServer.db2ProcessChk eq 'Y'}" disabled>
             무  
           </p>
         </td>
         <td>
-          <input type="text" class="form-control" name="db2CpuUsageBigo" id="db2CpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
-          <input type="text" class="form-control" name="db2MemUsageBigo" id="db2MemUsageBigoInput">
-          <input type="text" class="form-control" name="db2SwapUsageBigo" id="db2SwapUsageBigoInput">
-          <input type="text" class="form-control" name="db2OverLoadBigo" id="db2OverLoadBigoInput">
-          <input type="text" class="form-control" name="db2DiskUsageBigo" id="db2DiskUsageBigoInput">
-          <input type="text" class="form-control" name="db2ProcessBigo" id="db2ProcessBigoInput">
+          <input type="text" class="form-control" name="db2CpuUsageBigo" id="db2CpuUsageBigoInput"
+                 th:value="${erpServer.db2CpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+          <input type="text" class="form-control" name="db2MemUsageBigo" id="db2MemUsageBigoInput"
+                 th:value="${erpServer.db2MemUsageBigo}" readonly>
+          <input type="text" class="form-control" name="db2SwapUsageBigo" id="db2SwapUsageBigoInput"
+                 th:value="${erpServer.db2SwapUsageBigo}" readonly>
+          <input type="text" class="form-control" name="db2OverLoadBigo" id="db2OverLoadBigoInput"
+                 th:value="${erpServer.db2OverLoadBigo}" readonly>
+          <input type="text" class="form-control" name="db2DiskUsageBigo" id="db2DiskUsageBigoInput"
+                 th:value="${erpServer.db2DiskUsageBigo" readonly>
+          <input type="text" class="form-control" name="db2ProcessBigo" id="db2ProcessBigoInput"
+                 th:value="${erpServer.db2ProcessBigo}" readonly>
         </td>
       </tr>
-      <tr align="center">
+      <tr align="center" th:each="erpServer: ${erpServer}">
         <td>DEV-DB</td>
         <td>리눅스</td>
         <td>  
@@ -406,52 +521,70 @@
         </td>
         <td> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="devDbCpuUsageChk" id="devDbCpuUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="devDbCpuUsageChk" id="devDbCpuUsageChkY"
+                   th:checked="${erpServer.devDbCpuUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="devDbCpuUsageChk" id="devDbCpuUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="devDbCpuUsageChk" id="devDbCpuUsageChkN"
+                   th:checked="${erpServer.devDbCpuUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="devDbMemUsageChk" id="devDbMemUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="devDbMemUsageChk" id="devDbMemUsageChkY"
+                   th:checked="${erpServer.devDbMemUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="devDbMemUsageChk" id="devDbMemUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="devDbMemUsageChk" id="devDbMemUsageChkN"
+                   th:checked="${erpServer.devDbMemUsageChk eq 'N'}" disabled>
             무  
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="devDbSwapUsageChk" id="devDbSwapUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="devDbSwapUsageChk" id="devDbSwapUsageChkY"
+                   th:checked="${erpServer.devDbSwapUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="devDbSwapUsageChk" id="devDbSwapUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="devDbSwapUsageChk" id="devDbSwapUsageChkN"
+                   th:checked="${erpServer.devDbSwapUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="devDbOverLoadChk" id="devDbOverLoadChkY">
+            <input class="form-check-input" type="radio" value="Y" name="devDbOverLoadChk" id="devDbOverLoadChkY"
+                   th:checked="${erpServer.devDbOverLoadChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="devDbOverLoadChk" id="devDbOverLoadChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="devDbOverLoadChk" id="devDbOverLoadChkN"
+                   th:checked="${erpServer.devDbOverLoadChk eq 'N'}" disabled>
             무  
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="devDbDiskUsageChk" id="devDbDiskUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="devDbDiskUsageChk" id="devDbDiskUsageChkY"
+                   th:checked="${erpServer.devDbDiskUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="devDbDiskUsageChk" id="devDbDiskUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="devDbDiskUsageChk" id="devDbDiskUsageChkN"
+                   th:checked="${erpServer.devDbDiskUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="devDbProcessChk" id="devDbProcessChkY">
+            <input class="form-check-input" type="radio" value="Y" name="devDbProcessChk" id="devDbProcessChkY"
+                   th:checked="${erpServer.devDbProcessChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="devDbProcessChk" id="devDbProcessChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="devDbProcessChk" id="devDbProcessChkN"
+                   th:checked="${erpServer.devDbProcessChk eq 'N'}" disabled>
             무  
           </p>
         </td>
         <td>
-          <input type="text" class="form-control" name="devDbCpuUsageBigo" id="devDbCpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
-          <input type="text" class="form-control" name="devDbMemUsageBigo" id="devDbMemUsageBigoInput">
-          <input type="text" class="form-control" name="devDbSwapUsageBigo" id="devDbSwapUsageBigoInput">
-          <input type="text" class="form-control" name="devDbOverLoadBigo" id="devDbOverLoadBigoInput">
-          <input type="text" class="form-control" name="devDbDiskUsageBigo" id="devDbDiskUsageBigoInput">
-          <input type="text" class="form-control" name="devDbProcessBigo" id="devDbProcessBigoInput">
+          <input type="text" class="form-control" name="devDbCpuUsageBigo" id="devDbCpuUsageBigoInput"
+                 th:value="${erpServer.devDbCpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+          <input type="text" class="form-control" name="devDbMemUsageBigo" id="devDbMemUsageBigoInput"
+                 th:value="${erpServer.devDbMemUsageBigo}" readonly>
+          <input type="text" class="form-control" name="devDbSwapUsageBigo" id="devDbSwapUsageBigoInput"
+                 th:value="${erpServer.devDbSwapUsageBigo}" readonly>
+          <input type="text" class="form-control" name="devDbOverLoadBigo" id="devDbOverLoadBigoInput"
+                 th:value="${erpServer.devDbOverLoadBigo}" readonly>
+          <input type="text" class="form-control" name="devDbDiskUsageBigo" id="devDbDiskUsageBigoInput"
+                 th:value="${erpServer.devDbDiskUsageBigo}" readonly>
+          <input type="text" class="form-control" name="devDbProcessBigo" id="devDbProcessBigoInput"
+                 th:value="${erpServer.devDbProcessBigo}" readonly>
         </td>
       </tr>
-      <tr align="center">
+      <tr align="center" th:each="erpServer: ${erpServer}">
         <td>Backup</td>
         <td>리눅스</td>
         <td>  
@@ -464,52 +597,70 @@
         </td>
         <td> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="backUpCpuUsageChk" id="backUpCpuUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="backUpCpuUsageChk" id="backUpCpuUsageChkY"
+                   th:checked="erpServer.backUpCpuUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="backUpCpuUsageChk" id="backUpCpuUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="backUpCpuUsageChk" id="backUpCpuUsageChkN"
+                   th:checked="erpServer.backUpCpuUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="backUpMemUsageChk" id="backUpMemUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="backUpMemUsageChk" id="backUpMemUsageChkY"
+                   th:checked="erpServer.backUpMemUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="backUpMemUsageChk" id="backUpMemUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="backUpMemUsageChk" id="backUpMemUsageChkN"
+                   th:checked="erpServer.backUpMemUsageChk eq 'N'}" disabled>
             무  
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="backUpSwapUsageChk" id="backUpSwapUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="backUpSwapUsageChk" id="backUpSwapUsageChkY"
+                   th:checked="erpServer.backUpSwapUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="backUpSwapUsageChk" id="backUpSwapUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="backUpSwapUsageChk" id="backUpSwapUsageChkN"
+                   th:checked="erpServer.backUpSwapUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="backUpOverLoadChk" id="backUpOverLoadChkY">
+            <input class="form-check-input" type="radio" value="Y" name="backUpOverLoadChk" id="backUpOverLoadChkY"
+                   th:checked="erpServer.backUpOverLoadChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="backUpOverLoadChk" id="backUpOverLoadChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="backUpOverLoadChk" id="backUpOverLoadChkN"
+                   th:checked="erpServer.backUpOverLoadChk eq 'Y'}" disabled>
             무  
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="backUpDiskUsageChk" id="backUpDiskUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="backUpDiskUsageChk" id="backUpDiskUsageChkY"
+                   th:checked="${erpServer.backUpDiskUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="backUpDiskUsageChk" id="backUpDiskUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="backUpDiskUsageChk" id="backUpDiskUsageChkN"
+                   th:checked="${erpServer.backUpDiskUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="backUpProcessChk" id="backUpProcessChkY">
+            <input class="form-check-input" type="radio" value="Y" name="backUpProcessChk" id="backUpProcessChkY"
+                   th:checked="${erpServer.backUpProcessChk eq 'Y}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="backUpProcessChk" id="backUpProcessChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="backUpProcessChk" id="backUpProcessChkN"
+                   th:checked="${erpServer.backUpProcessChk eq 'Y}" disabled>
             무  
           </p>
         </td>
         <td>
-          <input type="text" class="form-control" name="backUpCpuUsageBigo" id="backUpCpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
-          <input type="text" class="form-control" name="backUpMemUsageBigo" id="backUpMemUsageBigoInput">
-          <input type="text" class="form-control" name="backUpSwapusageBigo" id="backUpSwapUsageBigoInput">
-          <input type="text" class="form-control" name="backUpOverLoadBigo" id="backUpOverLoadBigoInput">
-          <input type="text" class="form-control" name="backUpDiskUsageBigo" id="backUpDiskUsageBigoInput">
-          <input type="text" class="form-control" name="backUpProcessBigo" id="backUpProcessBigoInput">
+          <input type="text" class="form-control" name="backUpCpuUsageBigo" id="backUpCpuUsageBigoInput"
+                 th:value="${erpServer.backUpCpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+          <input type="text" class="form-control" name="backUpMemUsageBigo" id="backUpMemUsageBigoInput"
+                 th:value="${erpServer.backUpMemUsageBigo}" readonly>
+          <input type="text" class="form-control" name="backUpSwapUsageBigo" id="backUpSwapUsageBigoInput"
+                 th:value="${erpServer.backUpSwapUsageBigo}" readonly>
+          <input type="text" class="form-control" name="backUpOverLoadBigo" id="backUpOverLoadBigoInput"
+                 th:value="${erpServer.backUpOverLoadBigo}" readonly>
+          <input type="text" class="form-control" name="backUpDiskUsageBigo" id="backUpDiskUsageBigoInput"
+                 th:value="${erpServer.backUpDiskUsageBigo}" readonly>
+          <input type="text" class="form-control" name="backUpProcessBigo" id="backUpProcessBigoInput"
+                 th:value="${erpServer.backUpProcessBigo}" readonly>
         </td>
       </tr>
-      <tr align="center">
+      <tr align="center" th:each="erpServer: ${erpServer}">
         <td rowspan="14">VM</td>
         <td>BNK-1</td>
         <td>윈도우</td>
@@ -521,38 +672,50 @@
         </td>
         <td>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="bnk1CpuUsageChk" id="bnk1CpuUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="bnk1CpuUsageChk" id="bnk1CpuUsageChkY"
+                   th:checked="${erpServer.bnk1CpuUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="bnk1CpuUsageChk" id="bnk1CpuUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="bnk1CpuUsageChk" id="bnk1CpuUsageChkN"
+                   th:checked="${erpServer.bnk1CpuUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="bnk1MemUsageChk" id="bnk1MemUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="bnk1MemUsageChk" id="bnk1MemUsageChkY"
+                   th:checked="${erpServer.bnk1MemUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="bnk1MemUsageChk" id="bnk1MemUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="bnk1MemUsageChk" id="bnk1MemUsageChkN"
+                   th:checked="${erpServer.bnk1MemUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="bnk1DiskUsageChk" id="bnk1DiskUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="bnk1DiskUsageChk" id="bnk1DiskUsageChkY"
+                   th:checked="${erpServer.bnk1DiskUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="bnk1DiskUsageChk" id="bnk1DiskUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="bnk1DiskUsageChk" id="bnk1DiskUsageChkN"
+                   th:checked="${erpServer.bnk1DiskUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="bnk1EventChk" id="bnk1EventChkY">
+            <input class="form-check-input" type="radio" value="Y" name="bnk1EventChk" id="bnk1EventChkY"
+                   th:checked="${erpServer.bnk1EventChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="bnk1EventChk" id="bnk1EventChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="bnk1EventChk" id="bnk1EventChkN"
+                   th:checked="${erpServer.bnk1EventChk eq 'N'}" disabled>
             무
           </p>  
         </td>
         <td>
-          <input type="text" class="form-control" name="bnk1CpuUsageBigo" id="bnk1CpuUsageBigInput" placeholder="이상유무 유 체크시 내역기재">
-          <input type="text" class="form-control" name="bnk1MemUsageBigo" id="bnk1MemUsageBigoInput">
-          <input type="text" class="form-control" name="bnk1DiskUsageBigo" id="bnk1DiskUsageBigoInput">
-          <input type="text" class="form-control" name="bnk1EventBigo" id="bnk1EventBigoInput">
+          <input type="text" class="form-control" name="bnk1CpuUsageBigo" id="bnk1CpuUsageBigInput"
+                 th:value="${erpServer.bnk1CpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+          <input type="text" class="form-control" name="bnk1MemUsageBigo" id="bnk1MemUsageBigoInput"
+                 th:value="${erpServer.bnk1MemUsageBigo}" readonly>
+          <input type="text" class="form-control" name="bnk1DiskUsageBigo" id="bnk1DiskUsageBigoInput"
+                 th:value="${erpServer.bnk1DiskUsageBigo}" readonly>
+          <input type="text" class="form-control" name="bnk1EventBigo" id="bnk1EventBigoInput"
+                 th:value="${erpServer.bnk1EventBigo}" readonly>
         </td>
       </tr>
-      <tr align="center">
+      <tr align="center" th:each="erpServer: ${erpServer}">
         <td>BNK-2</td>
         <td>윈도우</td>
         <td>  
@@ -563,38 +726,50 @@
         </td>
         <td>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="bnk2CpuUsageChk" id="bnk2CpuUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="bnk2CpuUsageChk" id="bnk2CpuUsageChkY"
+                   th:checked="${erpServer.bnk2CpuUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="bnk2CpuUsageChk" id="bnk2CpuUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="bnk2CpuUsageChk" id="bnk2CpuUsageChkN"
+                   th:checked="${erpServer.bnk2CpuUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="bnk2MemUsageChk" id="bnk2MemUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="bnk2MemUsageChk" id="bnk2MemUsageChkY"
+                   th:checked="${erpServer.bnk2MemUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="bnk2MemUsageChk" id="bnk2MemUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="bnk2MemUsageChk" id="bnk2MemUsageChkN"
+                   th:checked="${erpServer.bnk2MemUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="bnk2DiskUsageChk" id="bnk2DiskUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="bnk2DiskUsageChk" id="bnk2DiskUsageChkY"
+                   th:checked="${erpServer.bnk2DiskUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="bnk2DiskUsageChk" id="bnk2DiskUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="bnk2DiskUsageChk" id="bnk2DiskUsageChkN"
+                   th:checked="${erpServer.bnk2DiskUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="bnk2EventChk" id="bnk2EventChkY">
+            <input class="form-check-input" type="radio" value="Y" name="bnk2EventChk" id="bnk2EventChkY"
+                   th:checked="erpServer.bnk2EventChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="bnk2EventChk" id="bnk2EventChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="bnk2EventChk" id="bnk2EventChkN"
+                   th:checked="erpServer.bnk2EventChk eq 'N'}" disabled>
             무
           </p>  
         </td>
         <td>
-          <input type="text" class="form-control" name="bnk2CpuUsageBigo" id="bnk2CpuUsageBigInput" placeholder="이상유무 유 체크시 내역기재">
-          <input type="text" class="form-control" name="bnk2MemUsageBigo" id="bnk2MemUsageBigoInput">
-          <input type="text" class="form-control" name="bnk2DiskUsageBigo" id="bnk2DiskUsageBigoInput">
-          <input type="text" class="form-control" name="bnk2EventBigo" id="bnk2EventBigoInput">
+          <input type="text" class="form-control" name="bnk2CpuUsageBigo" id="bnk2CpuUsageBigInput"
+                 th:value="${erpServer.bnk2CpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+          <input type="text" class="form-control" name="bnk2MemUsageBigo" id="bnk2MemUsageBigoInput"
+                 th:value="${erpServer.bnk2MemUsageBigo}" readonly>
+          <input type="text" class="form-control" name="bnk2DiskUsageBigo" id="bnk2DiskUsageBigoInput"
+                 th:value="${erpServer.bnk2DiskUsageBigo}" readonly>
+          <input type="text" class="form-control" name="bnk2EventBigo" id="bnk2EventBigoInput"
+                 th:value="${erpServer.bnk2EventBigo}" readonly>>
         </td>
       </tr>
-      <tr align="center">
+      <tr align="center" th:each="erpServer: ${erpServer}">
         <td>TAX-1</td>
         <td>윈도우</td>
         <td>  
@@ -605,38 +780,50 @@
         </td>
         <td>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="tax1CpuUsageChk" id="tax1CpuUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="tax1CpuUsageChk" id="tax1CpuUsageChkY"
+                   th:checked="${erpServer.tax1CpuUsageChk eq'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="tax1CpuUsageChk" id="tax1CpuUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="tax1CpuUsageChk" id="tax1CpuUsageChkN"
+                   th:checked="${erpServer.tax1CpuUsageChk eq'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="tax1MemUsageChk" id="tax1MemUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="tax1MemUsageChk" id="tax1MemUsageChkY"
+                   th:checked="${erpServer.tax1MemUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="tax1MemUsageChk" id="tax1MemUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="tax1MemUsageChk" id="tax1MemUsageChkN"
+                   th:checked="${erpServer.tax1MemUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="tax1DiskUsageChk" id="tax1DiskUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="tax1DiskUsageChk" id="tax1DiskUsageChkY"
+                   th:checked="${erpServer.tax1DiskUsageChk} eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="tax1DiskUsageChk" id="tax1DiskUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="tax1DiskUsageChk" id="tax1DiskUsageChkN"
+                   th:checked="${erpServer.tax1DiskUsageChk} eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="tax1EventChk" id="tax1EventChkY">
+            <input class="form-check-input" type="radio" value="Y" name="tax1EventChk" id="tax1EventChkY"
+                  th:checked="${erpServer.tax1EventChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="tax1EventChk" id="tax1EventChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="tax1EventChk" id="tax1EventChkN"
+                   th:checked="${erpServer.tax1EventChk eq 'N'}" disabled>
             무
           </p>  
         </td>
         <td>
-          <input type="text" class="form-control" name="tax1CpuUsageBigo" id="tax1CpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
-          <input type="text" class="form-control" name="tax1MemUsageBigo" id="tax1MemUsageBigoInput">
-          <input type="text" class="form-control" name="tax1DiskUsageBigo" id="tax1DiskUsageBigoInput">
-          <input type="text" class="form-control" name="tax1EventBigo" id="tax1EventBigoInput">
+          <input type="text" class="form-control" name="tax1CpuUsageBigo" id="tax1CpuUsageBigoInput"
+                 th:value="${erpServer.tax1CpuUsageBigo" placeholder="이상유무 유 체크시 내역기재" readonly>
+          <input type="text" class="form-control" name="tax1MemUsageBigo" id="tax1MemUsageBigoInput"
+                 th:value="${erpServer.tax1MemUsageBigo" readonly>
+          <input type="text" class="form-control" name="tax1DiskUsageBigo" id="tax1DiskUsageBigoInput"
+                 th:value="${erpServer.tax1DiskUsageBigo" readonly>
+          <input type="text" class="form-control" name="tax1EventBigo" id="tax1EventBigoInput"
+                 th:value="${erpServer.tax1EventBigo" readonly>
         </td>
       </tr>
-      <tr align="center">
+      <tr align="center" th:each="erpServer: ${erpServer}">
         <td>TAX-2</td>
         <td>윈도우</td>
         <td>  
@@ -647,38 +834,51 @@
         </td>
         <td>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="tax2CpuUsageChk" id="tax2CpuUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="tax2CpuUsageChk" id="tax2CpuUsageChkY"
+                   th:checked="${erpServer.tax2CpuUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="tax2CpuUsageChk" id="tax2CpuUsageChk" checked>
+            <input class="form-check-input" type="radio" value="N" name="tax2CpuUsageChk" id="tax2CpuUsageChk"
+                   th:checked="${erpServer.tax2CpuUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="tax2MemUsageChk" id="tax2MemUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="tax2MemUsageChk" id="tax2MemUsageChkY"
+                   th:checked="erpServer.tax2MemUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="tax2MemUsageChk" id="tax2MemUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="tax2MemUsageChk" id="tax2MemUsageChkN"
+                   th:checked="erpServer.tax2MemUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="tax2DiskUsageChk" id="tax2DiskUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="tax2DiskUsageChk" id="tax2DiskUsageChkY"
+                   th:checked="${erpServer.tax2DiskUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="tax2DiskUsageChk" id="tax2DiskUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="tax2DiskUsageChk" id="tax2DiskUsageChkN"
+                   th:checked="${erpServer.tax2DiskUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="tax2EventChk" id="tax2EventChkY">
+            <input class="form-check-input" type="radio" value="Y" name="tax2EventChk" id="tax2EventChkY"
+                   th:checked="${erpServer.tax2EventChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="tax2EventBigo" id="tax2EventChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="tax2EventBigo" id="tax2EventChkN"
+                   th:checked="${erpServer.tax2EventChk eq 'N'}" disabled>
+            유>
             무
           </p>  
         </td>
         <td>
-          <input type="text" class="form-control" name="tax2CpuUsageBigo" id="tax2CpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
-          <input type="text" class="form-control" name="tax2MemUsageBigo" id="tax2MemUsageBigoInput">
-          <input type="text" class="form-control" name="tax2DiskUsageBigo" id="tax2DiskUsageBigoInput">
-          <input type="text" class="form-control" name="tax2EventBigo" id="tax2EventBigoInput">
+          <input type="text" class="form-control" name="tax2CpuUsageBigo" id="tax2CpuUsageBigoInput"
+                 th:value="${erpServer.tax2CpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+          <input type="text" class="form-control" name="tax2MemUsageBigo" id="tax2MemUsageBigoInput"
+                 th:value="${erpServer.tax2MemUsageBigo}" readonly>
+          <input type="text" class="form-control" name="tax2DiskUsageBigo" id="tax2DiskUsageBigoInput"
+                 th:value="${erpServer.tax2DiskUsageBigo}" readonly>
+          <input type="text" class="form-control" name="tax2EventBigo" id="tax2EventBigoInput"
+                 th:value="${erpServer.tax2EventBigo}" readonly>
         </td>
       </tr>
-      <tr align="center">
+      <tr align="center" th:each="erpServer : ${erpServer}">
         <td>EXWEB-1</td>
         <td>리눅스</td>
         <td>  
@@ -691,52 +891,70 @@
         </td>
         <td>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="exWeb1CpuUsageChk" id="exWeb1CpuUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="exWeb1CpuUsageChk" id="exWeb1CpuUsageChkY"
+                    th:checked="${erpServer.exWeb1CpuUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="exWeb1CpuUsageChk" id="exWeb1CpuUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="exWeb1CpuUsageChk" id="exWeb1CpuUsageChkN"
+                   th:checked="${erpServer.exWeb1CpuUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="exWeb1MemUsageChk" id="exWeb1MemUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="exWeb1MemUsageChk" id="exWeb1MemUsageChkY"
+                   th:checked="${erpServer.exWeb1MemUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="exWeb1MemUsageChk" id="exWeb1MemUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="exWeb1MemUsageChk" id="exWeb1MemUsageChkN"
+                   th:checked="${erpServer.exWeb1MemUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="exWeb1SwapUsageChk" id="exWeb1SwapUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="exWeb1SwapUsageChk" id="exWeb1SwapUsageChkY"
+                   th:checked="${erpServer.exWeb1SwapUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="exWeb1SwapUsageChk" id="exWeb1SwapUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="exWeb1SwapUsageChk" id="exWeb1SwapUsageChkN"
+                   th:checked="${erpServer.exWeb1SwapUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="exWeb1OverLoadChk" id="exWeb1OverLoadChkY">
+            <input class="form-check-input" type="radio" value="Y" name="exWeb1OverLoadChk" id="exWeb1OverLoadChkY"
+                   th:checked="${erpServer.exWeb1OverLoadChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="exWeb1OverLoadChk" id="exWeb1OverLoadChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="exWeb1OverLoadChk" id="exWeb1OverLoadChkN"
+                   th:checked="${erpServer.exWeb1OverLoadChk eq 'N'}" disabled>
             무
           </p>  
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="exWeb1DiskUsageChk" id="exWeb1DiskUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="exWeb1DiskUsageChk" id="exWeb1DiskUsageChkY"
+                   th:checked="${erpServer.exWeb1DiskUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="exWeb1DiskUsageChk" id="exWeb1DiskUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="exWeb1DiskUsageChk" id="exWeb1DiskUsageChkN"
+                   th:checked="${erpServer.exWeb1DiskUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="exWeb1ProcessChk" id="exWeb1ProcessChkY">
+            <input class="form-check-input" type="radio" value="Y" name="exWeb1ProcessChk" id="exWeb1ProcessChkY"
+                   th:checked="${erpServer.exWeb1ProcessChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="exWeb1ProcessChk" id="exWeb1ProcessChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="exWeb1ProcessChk" id="exWeb1ProcessChkN"
+                   th:checked="${erpServer.exWeb1ProcessChk eq 'N'}" disabled>
             무
           </p>  
         </td>
         <td>
-          <input type="text" class="form-control" name="exWeb1CpuUsageBigo" id="exWeb1CpuUsageBigInput" placeholder="이상유무 유 체크시 내역기재">
-          <input type="text" class="form-control" name="exWeb1MemUsageBigo" id="exWeb1MemUsageBigoInput">
-          <input type="text" class="form-control" name="exWeb1SwapUsageBigo" id="exWeb1SwapUsageBigoInput">
-          <input type="text" class="form-control" name="exWeb1OverLoadBigo" id="exWeb1OverLoadBigoInput">
-          <input type="text" class="form-control" name="exWeb1DiskUsageBigo" id="exWeb1DiskUsageBigoInput">
-          <input type="text" class="form-control" name="exWeb1ProcessBigo" id="exWeb1ProcessBigoInput">
+          <input type="text" class="form-control" name="exWeb1CpuUsageBigo" id="exWeb1CpuUsageBigInput"
+                 th:value="${erpServer.exWeb1CpuUsageBigo" placeholder="이상유무 유 체크시 내역기재" readonly>
+          <input type="text" class="form-control" name="exWeb1MemUsageBigo" id="exWeb1MemUsageBigoInput"
+                 th:value="${erpServer.exWeb1MemUsageBigo" readonly>
+          <input type="text" class="form-control" name="exWeb1SwapUsageBigo" id="exWeb1SwapUsageBigoInput"
+                 th:value="${erpServer.exWeb1SwapUsageBigo" readonly>
+          <input type="text" class="form-control" name="exWeb1OverLoadBigo" id="exWeb1OverLoadBigoInput"
+                 th:value="${erpServer.exWeb1OverLoadBigo" readonly>
+          <input type="text" class="form-control" name="exWeb1DiskUsageBigo" id="exWeb1DiskUsageBigoInput"
+                 th:value="${erpServer.exWeb1DiskUsageBigo" readonly>
+          <input type="text" class="form-control" name="exWeb1ProcessBigo" id="exWeb1ProcessBigoInput"
+                 th:value="${erpServer.exWeb1ProcessBigo" readonly>
         </td>
       </tr>
-      <tr align="center">
+      <tr align="center" th:each="erpServer: ${erpServer}">
         <td>EXWEB-2</td>
         <td>리눅스</td>
         <td>  
@@ -749,52 +967,70 @@
         </td>
         <td>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="exWeb2CpuUsageChk" id="exWeb2CpuUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="exWeb2CpuUsageChk" id="exWeb2CpuUsageChkY"
+                   th:checked="${erpServer.exWeb2CpuUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="exWeb2CpuUsageChk" id="exWeb2CpuUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="exWeb2CpuUsageChk" id="exWeb2CpuUsageChkN"
+                   th:checked="${erpServer.exWeb2CpuUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="exWeb2MemUsageChk" id="exWeb2MemUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="exWeb2MemUsageChk" id="exWeb2MemUsageChkY"
+                   th:checked="${erpServer.exWeb2MemUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="exWeb2MemUsageChk" id="exWeb2MemUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="exWeb2MemUsageChk" id="exWeb2MemUsageChkN"
+                   th:checked="${erpServer.exWeb2MemUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="exWeb2SwapUsageChk" id="exWeb2SwapUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="exWeb2SwapUsageChk" id="exWeb2SwapUsageChkY"
+                   th:checked="${erpServer.exWeb2SwapUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="exWeb2SwapUsageChk" id="exWeb2SwapUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="exWeb2SwapUsageChk" id="exWeb2SwapUsageChkN"
+                   th:checked="${erpServer.exWeb2SwapUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="exWeb2OverLoadChk" id="exWeb2OverLoadChkY">
+            <input class="form-check-input" type="radio" value="Y" name="exWeb2OverLoadChk" id="exWeb2OverLoadChkY"
+                   th:checked="${erpServer.exWeb2OverLoad eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="exWeb2OverLoadChk" id="exWeb2OverLoadChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="exWeb2OverLoadChk" id="exWeb2OverLoadChkN"
+                   th:checked="${erpServer.exWeb2OverLoad eq 'N'} " disabled>
             무
           </p>  
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="exWeb2DiskUsageChk" id="exWeb2DiskUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="exWeb2DiskUsageChk" id="exWeb2DiskUsageChkY"
+                   th:checked="${erpServer.exWeb2DiskUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="exWeb2DiskUsageChk" id="exWeb2DiskUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="exWeb2DiskUsageChk" id="exWeb2DiskUsageChkN"
+                   th:checked="${erpServer.exWeb2DiskUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="exWeb2ProcessChk" id="exWeb2ProcessChkY">
+            <input class="form-check-input" type="radio" value="Y" name="exWeb2ProcessChk" id="exWeb2ProcessChkY"
+                   th:checked="${erpServer.exWeb2ProcessChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="exWeb2ProcessChk" id="exWeb2ProcessChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="exWeb2ProcessChk" id="exWeb2ProcessChkN"
+                   th:checked="${erpServer.exWeb2ProcessChk eq 'N'}" disabled>
             무
           </p>  
         </td>
         <td>
-          <input type="text" class="form-control" name="exWeb2CpuUsageBigo" id="exWeb2CpuUsageBigInput" placeholder="이상유무 유 체크시 내역기재">
-          <input type="text" class="form-control" name="exWeb2MemUsageBigo" id="exWeb2MemUsageBigoInput">
-          <input type="text" class="form-control" name="exWeb2SwapUsageBigo" id="exWeb2SwapUsageBigoInput">
-          <input type="text" class="form-control" name="exWeb2OverLoadBigo" id="exWeb2OverLoadBigoInput">
-          <input type="text" class="form-control" name="exWeb2DiskUsageBigo" id="exWeb2DiskUsageBigoInput">
-          <input type="text" class="form-control" name="exWeb2ProcessBigo" id="exWeb2ProcessBigoInput">
+          <input type="text" class="form-control" name="exWeb2CpuUsageBigo" id="exWeb2CpuUsageBigInput"
+                 th:value="${erpServer.exWeb2CpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+          <input type="text" class="form-control" name="exWeb2MemUsageBigo" id="exWeb2MemUsageBigoInput"
+                 th:value="${erpServer.exWeb2MemUsageBigo}" readonly>
+          <input type="text" class="form-control" name="exWeb2SwapUsageBigo" id="exWeb2SwapUsageBigoInput"
+                 th:value="${erpServer.exWeb2SwapUsageBigo}" readonly>
+          <input type="text" class="form-control" name="exWeb2OverLoadBigo" id="exWeb2OverLoadBigoInput"
+                 th:value="${erpServer.exWeb2OverLoadBigo}" readonly>
+          <input type="text" class="form-control" name="exWeb2DiskUsageBigo" id="exWeb2DiskUsageBigoInput"
+                 th:value="${erpServer.exWeb2DiskUsageBigo}" readonly>
+          <input type="text" class="form-control" name="exWeb2ProcessBigo" id="exWeb2ProcessBigoInput"
+                 th:value="${erpServer.exWeb2ProcessBigo}" readonly>>
         </td>
       </tr>
-      <tr align="center">
+      <tr align="center" th:each="erpServer : ${erpServer}">
         <td>INWEB-1</td>
         <td>리눅스</td>
         <td>  
@@ -807,52 +1043,70 @@
         </td>
         <td>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="inWeb1CpuUsageChk" id="inWeb1CpuUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="inWeb1CpuUsageChk" id="inWeb1CpuUsageChkY"
+                   th:checked="${erpServer.inWeb1CpuUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="inWeb1CpuUsageChk" id="inWeb1CpuUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="inWeb1CpuUsageChk" id="inWeb1CpuUsageChkN"
+                   th:checked="${erpServer.inWeb1CpuUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="inWeb1MemUsageChk" id="inWeb1MemUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="inWeb1MemUsageChk" id="inWeb1MemUsageChkY"
+                   th:checked="${erpServer.inWeb1MemUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="inWeb1MemUsageChk" id="inWeb1MemUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="inWeb1MemUsageChk" id="inWeb1MemUsageChkN"
+                   th:checked="${erpServer.inWeb1MemUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="inWeb1SwapUsageChk" id="inWeb1SwapUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="inWeb1SwapUsageChk" id="inWeb1SwapUsageChkY"
+                   th:checked="${erpServer.inWeb1SwapUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="inWeb1SwapUsageChk" id="inWeb1SwapUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="inWeb1SwapUsageChk" id="inWeb1SwapUsageChkN"
+                   th:checked="${erpServer.inWeb1SwapUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="inWeb1OverLoadChk" id="inWeb1OverLoadChkY">
+            <input class="form-check-input" type="radio" value="Y" name="inWeb1OverLoadChk" id="inWeb1OverLoadChkY"
+                   th:checked="${erpServer.inWeb1OverLoadChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="inWeb1OverLoadChk" id="inWeb1OverLoadChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="inWeb1OverLoadChk" id="inWeb1OverLoadChkN"
+                   th:checked="${erpServer.inWeb1OverLoadChk eq 'N'}" disabled>
             무
           </p>  
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="inWeb1DiskUsageChk" id="inWeb1DiskUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="inWeb1DiskUsageChk" id="inWeb1DiskUsageChkY"
+                   th:checked="${erpServer.inWeb1DiskUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="inWeb1DiskUsageChk" id="inWeb1DiskUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="inWeb1DiskUsageChk" id="inWeb1DiskUsageChkN"
+                   th:checked="${erpServer.inWeb1DiskUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="inWeb1ProcessChk" id="inWeb1ProcessChkY">
+            <input class="form-check-input" type="radio" value="Y" name="inWeb1ProcessChk" id="inWeb1ProcessChkY"
+                   th:checked="${erpServer.inWeb1ProcessChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="inWeb1ProcessChk" id="inWeb1ProcessChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="inWeb1ProcessChk" id="inWeb1ProcessChkN"
+                   th:checked="${erpServer.inWeb1ProcessChk eq 'N'}" disabled>
             무
           </p>  
         </td>
         <td>
-          <input type="text" class="form-control" name="inWeb1CpuUsageBigo" id="inWeb1CpuUsageBigInput" placeholder="이상유무 유 체크시 내역기재">
-          <input type="text" class="form-control" name="inWeb1MemUsageBigo" id="inWeb1MemUsageBigoInput">
-          <input type="text" class="form-control" name="inWeb1SwapUsageBigo" id="inWeb1SwapUsageBigoInput">
-          <input type="text" class="form-control" name="inWeb1OverLoadBigo" id="inWeb1OverLoadBigoInput">
-          <input type="text" class="form-control" name="inWeb1DiskUsageBigo" id="inWeb1DiskUsageBigoInput">
-          <input type="text" class="form-control" name="inWeb1ProcessBigo" id="inWeb1ProcessBigoInput">
+          <input type="text" class="form-control" name="inWeb1CpuUsageBigo" id="inWeb1CpuUsageBigInput"
+                 th:value="${erpServer.inWeb1CpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+          <input type="text" class="form-control" name="inWeb1MemUsageBigo" id="inWeb1MemUsageBigoInput"
+                 th:value="${erpServer.inWeb1MemUsageBigo}" readonly>
+          <input type="text" class="form-control" name="inWeb1SwapUsageBigo" id="inWeb1SwapUsageBigoInput"
+                 th:value="${erpServer.inWeb1SwapUsageBigo}" readonly>
+          <input type="text" class="form-control" name="inWeb1OverLoadBigo" id="inWeb1OverLoadBigoInput"
+                 th:value="${erpServer.inWeb1OverLoadBigo}" readonly>
+          <input type="text" class="form-control" name="inWeb1DiskUsageBigo" id="inWeb1DiskUsageBigoInput"
+                 th:value="${erpServer.inWeb1DiskUsageBigo}" readonly>
+          <input type="text" class="form-control" name="inWeb1ProcessBigo" id="inWeb1ProcessBigoInput"
+                 th:value="${erpServer.inWeb1ProcessBigo}" readonly>
         </td>
       </tr>
-      <tr align="center">
+      <tr align="center" th:each="erpServer : ${erpServer}">
         <td>INWEB-2</td>
         <td>리눅스</td>
         <td>  
@@ -865,52 +1119,70 @@
         </td>
         <td>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="inWeb2CpuUsageChk" id="inWeb2CpuUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="inWeb2CpuUsageChk" id="inWeb2CpuUsageChkY"
+                   th:checked="${erpServer.inWeb2CpuUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="inWeb2CpuUsageChk" id="inWeb2CpuUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="inWeb2CpuUsageChk" id="inWeb2CpuUsageChkN"
+                   th:checked="${erpServer.inWeb2CpuUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="inWeb2MemUsageChk" id="inWeb2MemUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="inWeb2MemUsageChk" id="inWeb2MemUsageChkY"
+                   th:checked="${erpServer.inWeb2MemUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="inWeb2MemUsageChk" id="inWeb2MemUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="inWeb2MemUsageChk" id="inWeb2MemUsageChkN"
+                   th:checked="${erpServer.inWeb2MemUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="inWeb2SwapUsageChk" id="inWeb2SwapUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="inWeb2SwapUsageChk" id="inWeb2SwapUsageChkY"
+                   th:checked="${erpServer.inWeb2SwapUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="inWeb2SwapUsageChk" id="inWeb2SwapUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="inWeb2SwapUsageChk" id="inWeb2SwapUsageChkN"
+                   th:checked="${erpServer.inWeb2SwapUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="inWeb2OverLoadChk" id="inWeb2OverLoadChkY">
+            <input class="form-check-input" type="radio" value="Y" name="inWeb2OverLoadChk" id="inWeb2OverLoadChkY"
+                   th:checked="${erpServer.inWeb2OverLoadChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="inWeb2OverLoadChk" id="inWeb2OverLoadChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="inWeb2OverLoadChk" id="inWeb2OverLoadChkN"
+                   th:checked="${erpServer.inWeb2OverLoadChk eq 'N'}" disabled>
             무
           </p>  
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="inWeb2DiskUsageChk" id="inWeb2DiskUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="inWeb2DiskUsageChk" id="inWeb2DiskUsageChkY"
+                   th:checked="${erpServer.inWeb2DiskUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="inWeb2DiskUsageChk" id="inWeb2DiskUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="inWeb2DiskUsageChk" id="inWeb2DiskUsageChkN"
+                   th:checked="${erpServer.inWeb2DiskUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="inWeb2ProcessChk" id="inWeb2ProcessChkY">
+            <input class="form-check-input" type="radio" value="Y" name="inWeb2ProcessChk" id="inWeb2ProcessChkY"
+                   th:checked="${erpServer.inWeb2ProcessChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="inWeb2ProcessChk" id="inWeb2ProcessChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="inWeb2ProcessChk" id="inWeb2ProcessChkN"
+                   th:checked="${erpServer.inWeb2ProcessChk eq 'N'}" disabled>
             무
           </p>  
         </td>
         <td>
-          <input type="text" class="form-control" name="inWeb2CpuUsageBigo" id="inWeb2CpuUsageBigInput" placeholder="이상유무 유 체크시 내역기재">
-          <input type="text" class="form-control" name="inWeb2MemUsageBigo" id="inWeb2MemUsageBigoInput">
-          <input type="text" class="form-control" name="inWeb2SwapusageBigo" id="inWeb2SwapUsageBigoInput">
-          <input type="text" class="form-control" name="inWeb2OverLoadBigo" id="inWeb2OverLoadBigoInput">
-          <input type="text" class="form-control" name="inWeb2DiskUsageBigo" id="inWeb2DiskUsageBigoInput">
-          <input type="text" class="form-control" name="inWeb2ProcessBigo" id="inWeb2ProcessBigoInput">
+          <input type="text" class="form-control" name="inWeb2CpuUsageBigo" id="inWeb2CpuUsageBigInput"
+                 th:value="${erpServer.inWeb2CpuUsageBigo" placeholder="이상유무 유 체크시 내역기재" readonly>
+          <input type="text" class="form-control" name="inWeb2MemUsageBigo" id="inWeb2MemUsageBigoInput"
+                 th:value="${erpServer.inWeb2MemUsageBigo" readonly>
+          <input type="text" class="form-control" name="inWeb2SwapUsageBigo" id="inWeb2SwapUsageBigoInput"
+                 th:value="${erpServer.inWeb2SwapUsageBigo" readonly>
+          <input type="text" class="form-control" name="inWeb2OverLoadBigo" id="inWeb2OverLoadBigoInput"
+                 th:value="${erpServer.inWeb2OverLoadBigo" readonly>
+          <input type="text" class="form-control" name="inWeb2DiskUsageBigo" id="inWeb2DiskUsageBigoInput"
+                 th:value="${erpServer.inWeb2DiskUsageBigo" readonly>
+          <input type="text" class="form-control" name="inWeb2ProcessBigo" id="inWeb2ProcessBigoInput"
+                 th:value="${erpServer.inWeb2ProcessBigo" readonly>
         </td>
       </tr>
-      <tr align="center">
+      <tr align="center" th:each="erpServer: ${erpServer}">
         <td>WAS-1</td>
         <td>리눅스</td>
         <td>  
@@ -923,52 +1195,70 @@
         </td>
         <td>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="was1CpuUsageChk" id="was1CpuUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="was1CpuUsageChk" id="was1CpuUsageChkY"
+                   th:checked="${erpServer.was1CpuUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="was1CpuUsageChk" id="was1CpuUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="was1CpuUsageChk" id="was1CpuUsageChkN"
+                   th:checked="${erpServer.was1CpuUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="was1MemUsageChk" id="was1MemUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="was1MemUsageChk" id="was1MemUsageChkY"
+                   th:checked="${erpServer.was1MemUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="was1MemUsageChk" id="was1MemUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="was1MemUsageChk" id="was1MemUsageChkN"
+                   th:checked="${erpServer.was1MemUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="was1SwapUsageChk" id="was1SwapUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="was1SwapUsageChk" id="was1SwapUsageChkY"
+                   th:checked="${erpServer.was1SwapUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="was1SwapUsageChk" id="was1SwapUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="was1SwapUsageChk" id="was1SwapUsageChkN"
+                   th:checked="${erpServer.was1SwapUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="was1OverLoadChk" id="was1OverLoadChkY">
+            <input class="form-check-input" type="radio" value="Y" name="was1OverLoadChk" id="was1OverLoadChkY"
+                   th:checked="${erpServer.was1OverLoadChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="was1OverLoadChk" id="was1OverLoadChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="was1OverLoadChk" id="was1OverLoadChkN"
+                   th:checked="${erpServer.was1OverLoadChk eq 'N'}" disabled>
             무
           </p>  
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="was1DiskUsageChk" id="was1DiskUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="was1DiskUsageChk" id="was1DiskUsageChkY"
+                   th:checked="${erpServer.was1DiskUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="was1DiskUsageChk" id="was1DiskUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="was1DiskUsageChk" id="was1DiskUsageChkN"
+                   th:checked="${erpServer.was1DiskUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="was1ProcessChk" id="was1ProcessChkY">
+            <input class="form-check-input" type="radio" value="Y" name="was1ProcessChk" id="was1ProcessChkY"
+                   th:checked="${erpServer.was1ProcessChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="was1ProcessChk" id="was1ProcessChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="was1ProcessChk" id="was1ProcessChkN"
+                   th:checked="${erpServer.was1ProcessChk eq 'N'}" disabled>
             무
           </p>  
         </td>
         <td>
-          <input type="text" class="form-control" name="was1CpuUsageBigo" id="was1CpuUsageBigInput" placeholder="이상유무 유 체크시 내역기재">
-          <input type="text" class="form-control" name="was1MemUsageBigo" id="was1MemUsageBigoInput">
-          <input type="text" class="form-control" name="was1SwapUsageBigo" id="was1SwapUsageBigoInput">
-          <input type="text" class="form-control" name="was1OverLoadBigo" id="was1OverLoadBigoInput">
-          <input type="text" class="form-control" name="was1DiskUsageBigo" id="was1DiskUsageBigoInput">
-          <input type="text" class="form-control" name="was1ProcessBigo" id="was1ProcessBigoInput">
+          <input type="text" class="form-control" name="was1CpuUsageBigo" id="was1CpuUsageBigInput"
+                 th:value="${erpServer.was1CpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+          <input type="text" class="form-control" name="was1MemUsageBigo" id="was1MemUsageBigoInput"
+                 th:value="${eprServer.was1MemUsageBigo}" readonly>
+          <input type="text" class="form-control" name="was1SwapUsageBigo" id="was1SwapUsageBigoInput"
+                 th:value="${eprServer.was1SwapUsageBigo}" readonly>
+          <input type="text" class="form-control" name="was1OverLoadBigo" id="was1OverLoadBigoInput"
+                 th:value="${eprServer.was1OverLoadBigo}" readonly>
+          <input type="text" class="form-control" name="was1DiskUsageBigo" id="was1DiskUsageBigoInput"
+                 th:value="${eprServer.was1DiskUsageBigo}" readonly>
+          <input type="text" class="form-control" name="was1ProcessBigo" id="was1ProcessBigoInput"
+                 th:value="${eprServer.was1ProcessBigo}" readonly>
         </td>
       </tr>
-      <tr align="center">
+      <tr align="center" th:each="erpServer : ${erpServer}">
         <td>WAS-2</td>
         <td>리눅스</td>
         <td>  
@@ -981,52 +1271,70 @@
         </td>
         <td>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="was2CpuUsageChk" id="was2CpuUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="was2CpuUsageChk" id="was2CpuUsageChkY"
+                    th:checked="${erpServer.was2CpuUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="was2CpuUsageChk" id="was2CpuUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="was2CpuUsageChk" id="was2CpuUsageChkN"
+                   th:checked="${erpServer.was2CpuUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="was2MemUsageChk" id="was2MemUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="was2MemUsageChk" id="was2MemUsageChkY"
+                   th:checked="${erpServer.was2MemUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="was2MemUsageChk" id="was2MemUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="was2MemUsageChk" id="was2MemUsageChkN"
+                   th:checked="${erpServer.was2MemUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="was2SwapUsageChk" id="was2SwapUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="was2SwapUsageChk" id="was2SwapUsageChkY"
+                   th:checked="${erpServer.was2SwapUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="was2SwapUsageChk" id="was2SwapUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="was2SwapUsageChk" id="was2SwapUsageChkN"
+                   th:checked="${erpServer.was2SwapUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="was2OverLoadChk" id="was2OverLoadChkY">
+            <input class="form-check-input" type="radio" value="Y" name="was2OverLoadChk" id="was2OverLoadChkY"
+                   th:checked="${erpServer.was2OverLoadChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="was2OverLoadChk" id="was2OverLoadChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="was2OverLoadChk" id="was2OverLoadChkN"
+                   th:checked="${erpServer.was2OverLoadChk eq 'N'}" disabled>
             무
           </p>  
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="was2DiskUsageChk" id="was2DiskUsageChk">
+            <input class="form-check-input" type="radio" value="Y" name="was2DiskUsageChk" id="was2DiskUsageChk"
+                   th:checked="${erpServer.was2DiskUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="was2DiskUsageChk" id="was2DiskUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="was2DiskUsageChk" id="was2DiskUsageChkN"
+                   th:checked="${erpServer.was2DiskUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="was2ProcessChk" id="was2ProcessChkY">
+            <input class="form-check-input" type="radio" value="Y" name="was2ProcessChk" id="was2ProcessChkY"
+                   th:checked="${erpServer.was2ProcessChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="was2ProcessChk" id="was2ProcessChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="was2ProcessChk" id="was2ProcessChkN"
+                   th:checked="${erpServer.was2ProcessChk eq 'N'}" disabled>
             무
           </p>  
         </td>
         <td>
-          <input type="text" class="form-control" name="was2CpuUsageBigo" id="was2CpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
-          <input type="text" class="form-control" name="was2MemUsageBigo" id="was2MemUsageBigoInput">
-          <input type="text" class="form-control" name="was2SwapUsageBigo" id="was2SwapUsageBigoInput">
-          <input type="text" class="form-control" name="was2OverLoadBigo" id="was2OverLoadBigoInput">
-          <input type="text" class="form-control" name="was2DiskUsageBigo" id="was2DiskUsageBigoInput">
-          <input type="text" class="form-control" name="was2ProcessBigo" id="was2ProcessBigoInput">
+          <input type="text" class="form-control" name="was2CpuUsageBigo" id="was2CpuUsageBigoInput"
+                 th:value="${erpServer.was2CpuUsageBigo" placeholder="이상유무 유 체크시 내역기재" readonly>
+          <input type="text" class="form-control" name="was2MemUsageBigo" id="was2MemUsageBigoInput"
+                 th:value="${erpServer.was2MemUsageBigo}" readonly>
+          <input type="text" class="form-control" name="was2SwapUsageBigo" id="was2SwapUsageBigoInput"
+                 th:value="${erpServer.was2SwapUsageBigo}" readonly>
+          <input type="text" class="form-control" name="was2OverLoadBigo" id="was2OverLoadBigoInput"
+                 th:value="${erpServer.was2OverLoadBigo}" readonly>
+          <input type="text" class="form-control" name="was2DiskUsageBigo" id="was2DiskUsageBigoInput"
+                 th:value="${erpServer.was2DiskUsageBigo}" readonly>
+          <input type="text" class="form-control" name="was2ProcessBigo" id="was2ProcessBigoInput"
+                 th:value="${erpServer.was2ProcessBigo}" readonly>
         </td>
       </tr>
-      <tr align="center">
+      <tr align="center" th:each="erpServer: ${erpServer}">
         <td>ERPMGNT</td>
         <td>리눅스</td>
         <td>  
@@ -1039,52 +1347,70 @@
         </td>
         <td>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="erpMgntCpuUsageChk" id="erpMgntCpuUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="erpMgntCpuUsageChk" id="erpMgntCpuUsageChkY"
+                   th:checked="${erpServer.erpMgntCpuUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="erpMgntCpuUsageChk" id="erpMgntCpuUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="erpMgntCpuUsageChk" id="erpMgntCpuUsageChkN"
+                   th:checked="${erpServer.erpMgntCpuUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="erpMgntMemUsageChk" id="erpMgntMemUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="erpMgntMemUsageChk" id="erpMgntMemUsageChkY"
+                   th:checked="${erpServer.erpMgntMemUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="erpMgntMemUsageChk" id="erpMgntMemUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="erpMgntMemUsageChk" id="erpMgntMemUsageChkN"
+                   th:checked="${erpServer.erpMgntMemUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="erpMgntSwapUsageChk" id="erpMgntSwapUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="erpMgntSwapUsageChk" id="erpMgntSwapUsageChkY"
+                   th:checked="${erpServer.erpMgntSwapUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="erpMgntSwapUsageChk" id="erpMgntSwapUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="erpMgntSwapUsageChk" id="erpMgntSwapUsageChkN"
+                   th:checked="${erpServer.erpMgntSwapUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="erpMgntOverLoadChk" id="erpMgntOverLoadChkY">
+            <input class="form-check-input" type="radio" value="Y" name="erpMgntOverLoadChk" id="erpMgntOverLoadChkY"
+                   th:checked="${erpServer.erpMgntOverLoadChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="erpMgntOverLoadChk" id="erpMgntOverLoadChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="erpMgntOverLoadChk" id="erpMgntOverLoadChkN"
+                   th:checked="${erpServer.erpMgntOverLoadChk eq 'N'}" disabled>
             무
           </p>  
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="erpMgntDiskUsage" id="erpMgntDiskUsageY">
+            <input class="form-check-input" type="radio" value="Y" name="erpMgntDiskUsage" id="erpMgntDiskUsageY"
+                   th:checked="${erpServer.erpMgntDiskUsage eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="erpMgntDiskUsage" id="erpMgntDiskUsageN" checked>
+            <input class="form-check-input" type="radio" value="N" name="erpMgntDiskUsage" id="erpMgntDiskUsageN"
+                   th:checked="${erpServer.erpMgntDiskUsage eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="erpMgntProcessChk" id="erpMgntProcessChkY">
+            <input class="form-check-input" type="radio" value="Y" name="erpMgntProcessChk" id="erpMgntProcessChkY"
+                   th:checked="${erpServer.erpMgntProcessChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="erpMgntProcessChk" id="erpMgntProcessChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="erpMgntProcessChk" id="erpMgntProcessChkN"
+                   th:checked="${erpServer.erpMgntProcessChk eq 'N'}" disabled>
             무
           </p>  
         </td>
         <td>
-          <input type="text" class="form-control" name="erpMgntCpuUsageBigo" id="erpMgntCpuUsageBigInput" placeholder="이상유무 유 체크시 내역기재">
-          <input type="text" class="form-control" name="erpMgntMemUsageBigo" id="erpMgntMemUsageBigoInput">
-          <input type="text" class="form-control" name="erpMgntSwapUsageBigo" id="erpMgntSwapUsageBigoInput">
-          <input type="text" class="form-control" name="erpMgntOverLoadBigo" id="erpMgntOverLoadBigoInput">
-          <input type="text" class="form-control" name="erpMgntDiskUsageBigo" id="erpMgntDiskUsageBigoInput">
-          <input type="text" class="form-control" name="erpMgntProcessBigo" id="erpMgntProcessBigoInput">
+          <input type="text" class="form-control" name="erpMgntCpuUsageBigo" id="erpMgntCpuUsageBigInput"
+                 th:value="${erpServer.erpMgntCpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+          <input type="text" class="form-control" name="erpMgntMemUsageBigo" id="erpMgntMemUsageBigoInput"
+                 th:value="${erpServer.erpMgntMemUsageBigo}" readonly>
+          <input type="text" class="form-control" name="erpMgntSwapUsageBigo" id="erpMgntSwapUsageBigoInput"
+                 th:value="${erpServer.erpMgntSwapUsageBigo}" readonly>
+          <input type="text" class="form-control" name="erpMgntOverLoadBigo" id="erpMgntOverLoadBigoInput"
+                 th:value="${erpServer.erpMgntOverLoadBigo}" readonly>
+          <input type="text" class="form-control" name="erpMgntDiskUsageBigo" id="erpMgntDiskUsageBigoInput"
+                 th:value="${erpServer.erpMgntDiskUsageBigo}" readonly>
+          <input type="text" class="form-control" name="erpMgntProcessBigo" id="erpMgntProcessBigoInput"
+                 th:value="${erpServer.erpMgntProcessBigo}" readonly>
         </td>
       </tr>
-      <tr align="center">
+      <tr align="center" th:each="erpServer: ${erpServer}">
         <td>DEV-WEB</td>
         <td>리눅스</td>
         <td>  
@@ -1097,52 +1423,70 @@
         </td>
         <td>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="devWebCpuUsageChk" id="devWebCpuUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="devWebCpuUsageChk" id="devWebCpuUsageChkY"
+                   th:checked="${erpServer.devWebCpuUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="devWebCpuUsageChk" id="devWebCpuUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="devWebCpuUsageChk" id="devWebCpuUsageChkN"
+                   th:checked="${erpServer.devWebCpuUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="devWebMemUsageChk" id="devWebMemUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="devWebMemUsageChk" id="devWebMemUsageChkY"
+                   th:checked="${erpServer.devWebMemUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="devWebMemUsageChk" id="devWebMemUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="devWebMemUsageChk" id="devWebMemUsageChkN"
+                   th:checked="${erpServer.devWebMemUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="devWebSwapUsageChk" id="devWebSwapUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="devWebSwapUsageChk" id="devWebSwapUsageChkY"
+                   th:checked="${erpServer.devWebSwapUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="devWebSwapUsageChk" id="devWebSwapUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="devWebSwapUsageChk" id="devWebSwapUsageChkN"
+                   th:checked="${erpServer.devWebSwapUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="devWebOverLoadChk" id="devWebOverLoadChkY">
+            <input class="form-check-input" type="radio" value="Y" name="devWebOverLoadChk" id="devWebOverLoadChkY"
+                   th:checked="${erpServer.devWebOverLoadChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="devWebOverLoadChk" id="devWebOverLoadChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="devWebOverLoadChk" id="devWebOverLoadChkN"
+                   th:checked="${erpServer.devWebOverLoadChk eq 'N'}" disabled>
             무
           </p>  
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="devWebDiskUsageChk" id="devWebDiskUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="devWebDiskUsageChk" id="devWebDiskUsageChkY"
+                   th:checked="${erpServer.devWebDiskUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="devWebDiskUsageChk" id="devWebDiskUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="devWebDiskUsageChk" id="devWebDiskUsageChkN"
+                   th:checked="${erpServer.devWebDiskUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="devWebProcessChk" id="devWebProcessChkY">
+            <input class="form-check-input" type="radio" value="Y" name="devWebProcessChk" id="devWebProcessChkY"
+                   th:checked="${erpServer.devWebProcessChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="devWebProcessChk" id="devWebProcessChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="devWebProcessChk" id="devWebProcessChkN"
+                   th:checked="${erpServer.devWebProcessChk eq 'Y'}" disabled>
             무
           </p>  
         </td>
         <td>
-          <input type="text" class="form-control" name="devWebCpuUsageBigo" id="devWebCpuUsageBigInput" placeholder="이상유무 유 체크시 내역기재">
-          <input type="text" class="form-control" name="devWebMemUsageBigo" id="devWebMemUsageBigoInput">
-          <input type="text" class="form-control" name="devWebSwapUsageBigo" id="devWebSwapUsageBigoInput">
-          <input type="text" class="form-control" name="devWebOverLoadBigo" id="devWebOverLoadBigoInput">
-          <input type="text" class="form-control" name="devWebDiskUsageBigo" id="devWebDiskUsageBigoInput">
-          <input type="text" class="form-control" name="devWebProcessBigo" id="devWebProcessBigoInput">
+          <input type="text" class="form-control" name="devWebCpuUsageBigo" id="devWebCpuUsageBigInput"
+                 th:value="${erpServer.devWebCpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+          <input type="text" class="form-control" name="devWebMemUsageBigo" id="devWebMemUsageBigoInput"
+                 th:value="${erpServer.devWebMemUsageBigo}" readonly>
+          <input type="text" class="form-control" name="devWebSwapUsageBigo" id="devWebSwapUsageBigoInput"
+                 th:value="${erpServer.devWebSwapUsageBigo}" readonly>
+          <input type="text" class="form-control" name="devWebOverLoadBigo" id="devWebOverLoadBigoInput"
+                 th:value="${erpServer.devWebOverLoadBigo}" readonly>
+          <input type="text" class="form-control" name="devWebDiskUsageBigo" id="devWebDiskUsageBigoInput"
+                 th:value="${erpServer.devWebDiskUsageBigo}" readonly>
+          <input type="text" class="form-control" name="devWebProcessBigo" id="devWebProcessBigoInput"
+                 th:value="${erpServer.devWebProcessBigo}" readonly>
         </td>
       </tr>
-      <tr align="center">
+      <tr align="center" th:each="erpServer: ${erpServer}">
         <td>DEV-WAS</td>
         <td>리눅스</td>
         <td>  
@@ -1155,52 +1499,70 @@
         </td>
         <td>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="devWasCpuUsageChk" id="devWasCpuUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="devWasCpuUsageChk" id="devWasCpuUsageChkY"
+                   th:checked="${erpServer.devWasCpuUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="devWasCpuUsageChk" id="devWasCpuUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="devWasCpuUsageChk" id="devWasCpuUsageChkN"
+                   th:checked="${erpServer.devWasCpuUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="devWasMemUsageChk" id="devWasMemUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="devWasMemUsageChk" id="devWasMemUsageChkY"
+                   th:checked="${erpServer.devWasMemUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="devWasMemUsageChk" id="devWasMemUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="devWasMemUsageChk" id="devWasMemUsageChkN"
+                   th:checked="${erpServer.devWasMemUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="devWasSwapUsageChk" id="devWasSwapUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="devWasSwapUsageChk" id="devWasSwapUsageChkY"
+                   th:checked="${erpServer.devWasSwapUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="devWasSwapUsageChk" id="devWasSwapUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="devWasSwapUsageChk" id="devWasSwapUsageChkN"
+                   th:checked="${erpServer.devWasSwapUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="devWasOverLoadChk" id="devWasOverLoadChkY">
+            <input class="form-check-input" type="radio" value="Y" name="devWasOverLoadChk" id="devWasOverLoadChkY"
+                   th:checked="${erpServer.devWasOverLoadChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="devWasOverLoadChk" id="devWasOverLoadChk" checked>
+            <input class="form-check-input" type="radio" value="N" name="devWasOverLoadChk" id="devWasOverLoadChk"
+                   th:checked="${erpServer.devWasOverLoadChk eq 'N'}" disabled>
             무
           </p>  
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="devWasDiskUsageChk" id="devWasDiskUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="devWasDiskUsageChk" id="devWasDiskUsageChkY"
+                   th:checked="${erpServer.devWasDiskUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="devWasDiskUsageChk" id="devWasDiskUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="devWasDiskUsageChk" id="devWasDiskUsageChkN"
+                   th:checked="${erpServer.devWasDiskUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="devWasProcessChk" id="devWasProcessChkY">
+            <input class="form-check-input" type="radio" value="Y" name="devWasProcessChk" id="devWasProcessChkY"
+                   th:checked="${erpServer.devWasProcessChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="devWasProcessChk" id="devWasProcessChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="devWasProcessChk" id="devWasProcessChkN"
+                   th:checked="${erpServer.devWasProcessChk eq 'N'}" disabled>
             무
           </p>  
         </td>
         <td>
-          <input type="text" class="form-control" name="devWasCpuUsageBigo" id="devWasCpuUsageBigInput" placeholder="이상유무 유 체크시 내역기재">
-          <input type="text" class="form-control" name="devWasMemUsageBigo" id="devWasMemUsageBigoInput">
-          <input type="text" class="form-control" name="devWasSwapUsageBigo" id="devWasSwapUsageBigoInput">
-          <input type="text" class="form-control" name="devWasOverLoadBigo" id="devWasOverLoadBigoInput">
-          <input type="text" class="form-control" name="devWasDiskUsageBigo" id="devWasDiskUsageBigoInput">
-          <input type="text" class="form-control" name="devWasProcessBigo" id="devWasProcessBigoInput">
+          <input type="text" class="form-control" name="devWasCpuUsageBigo" id="devWasCpuUsageBigInput"
+                 th:value="${erpServer.devWasCpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+          <input type="text" class="form-control" name="devWasMemUsageBigo" id="devWasMemUsageBigoInput"
+                 th:value="${erpServer.devWasMemUsageBigo}" readonly>
+          <input type="text" class="form-control" name="devWasSwapUsageBigo" id="devWasSwapUsageBigoInput"
+                 th:value="${erpServer.devWasSwapUsageBigo}" readonly>
+          <input type="text" class="form-control" name="devWasOverLoadBigo" id="devWasOverLoadBigoInput"
+                 th:value="${erpServer.devWasOverLoadBigo}" readonly>
+          <input type="text" class="form-control" name="devWasDiskUsageBigo" id="devWasDiskUsageBigoInput"
+                 th:value="${erpServer.devWasDiskUsageBigo}" readonly>
+          <input type="text" class="form-control" name="devWasProcessBigo" id="devWasProcessBigoInput"
+                 th:value="${erpServer.devWasProcessBigo}" readonly>
         </td>
       </tr>
-      <tr align="center">
+      <tr align="center" th:each="erpServer : ${erpServer}">
         <td>Jenius</td>
         <td>리눅스</td>
         <td>  
@@ -1213,52 +1575,70 @@
         </td>
         <td>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="jeniusCpuUsageChk" id="jeniusCpuUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="jeniusCpuUsageChk" id="jeniusCpuUsageChkY"
+                   th:checked="${erpServer.jeniusCpuUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="jeniusCpuUsageChk" id="jeniusCpuUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="jeniusCpuUsageChk" id="jeniusCpuUsageChkN"
+                   th:checked="${erpServer.jeniusCpuUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="jeniusWasMemUsageChk" id="jeniusWasMemUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="jeniusWasMemUsageChk" id="jeniusWasMemUsageChkY"
+                   th:checked="${erpServer.jeniusWasMemUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="jeniusWasMemUsageChk" id="jeniusWasMemUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="jeniusWasMemUsageChk" id="jeniusWasMemUsageChkN"
+                   th:checked="${erpServer.jeniusWasMemUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="jeniusSwapUsageChk" id="jeniusSwapUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="jeniusSwapUsageChk" id="jeniusSwapUsageChkY"
+                   th:checked="${erpServer.jeniusSwapUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="jeniusSwapUsageChk" id="jeniusSwapUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="jeniusSwapUsageChk" id="jeniusSwapUsageChkN"
+                   th:checked="${erpServer.jeniusSwapUsageChk eq 'N'}" disabled>
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="jeniusOverLoadChk" id="jeniusOverLoadChkY">
+            <input class="form-check-input" type="radio" value="Y" name="jeniusOverLoadChk" id="jeniusOverLoadChkY"
+                   th:checked="${erpServer.jeniusOverLoadChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="jeniusOverLoadChk" id="jeniusOverLoadChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="jeniusOverLoadChk" id="jeniusOverLoadChkN"
+                   th:checked="${erpServer.jeniusOverLoadChk eq 'N'}" disabled>
             무
           </p>  
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="jeniusDiskUsageChk" id="jeniusDiskUsageChkY">
+            <input class="form-check-input" type="radio" value="Y" name="jeniusDiskUsageChk" id="jeniusDiskUsageChkY"
+                   th:checked="${erpServer.jeniusDiskUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="jeniusDiskUsageChk" id="jeniusDiskUsageChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="jeniusDiskUsageChk" id="jeniusDiskUsageChkN"
+                   th:checked="${erpServer.jeniusDiskUsageChk eq 'N'}" disabled>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="jeniusProcessChk" id="jeniusProcessChkY">
+            <input class="form-check-input" type="radio" value="Y" name="jeniusProcessChk" id="jeniusProcessChkY"
+                   th:checked="${erpServer.jeniusProcessChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="jeniusProcessChk" id="jeniusProcessChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="jeniusProcessChk" id="jeniusProcessChkN"
+                   th:checked="${erpServer.jeniusProcessChk eq 'N'}" disabled>
             무
           </p>  
         </td>
         <td>
-          <input type="text" class="form-control" name="jeniusCpuUsageBigo" id="jeniusCpuUsageBigInput" placeholder="이상유무 유 체크시 내역기재">
-          <input type="text" class="form-control" name="jeniusMemUsageBigo" id="jeniusMemUsageBigoInput">
-          <input type="text" class="form-control" name="jeniusSwapUsageBigo" id="jeniusSwapUsageBigoInput">
-          <input type="text" class="form-control" name="jeniusOverLoadBigo" id="jeniusOverLoadBigoInput">
-          <input type="text" class="form-control" name="jeniusDiskUsageBigo" id="jeniusDiskUsageBigoInput">
-          <input type="text" class="form-control" name="jeniusProcessBigo" id="jeniusProcessBigoInput">
+          <input type="text" class="form-control" name="jeniusCpuUsageBigo" id="jeniusCpuUsageBigInput"
+                 th:value="${erpServer.jeniusCpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+          <input type="text" class="form-control" name="jeniusMemUsageBigo" id="jeniusMemUsageBigoInput"
+                 th:value="${erpServer.jeniusMemUsageBigo}" readonly>
+          <input type="text" class="form-control" name="jeniusSwapUsageBigo" id="jeniusSwapUsageBigoInput"
+                 th:value="${erpServer.jeniusSwapUsageBigo}" readonly>
+          <input type="text" class="form-control" name="jeniusOverLoadBigo" id="jeniusOverLoadBigoInput"
+                 th:value="${erpServer.jeniusOverLoadBigo}" readonly>
+          <input type="text" class="form-control" name="jeniusDiskUsageBigo" id="jeniusDiskUsageBigoInput"
+                 th:value="${erpServer.jeniusDiskUsageBigo}" readonly>
+          <input type="text" class="form-control" name="jeniusProcessBigo" id="jeniusProcessBigoInput"
+                 th:value="${erpServer.jeniusProcessBigo}" readonly>
         </td>
       </tr>
-      <tr align="center">
+      <tr align="center" th:each="erpStroage: ${erpStorage}">
         <td>스토리지</td>
         <td>  
           <p>NAS(SAN)</p>
@@ -1271,19 +1651,23 @@
         </td>
         <td>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="erpNasSanClustChk" id="erpNasSanClustChkY">
+            <input class="form-check-input" type="radio" value="Y" name="erpNasSanClustChk" id="erpNasSanClustChkY"
+                   th:checked="${erpStorage.erpNasSanClustChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="erpNasSanClustChk" id="erpNasSanClustChkN" checked>
+            <input class="form-check-input" type="radio" value="N" name="erpNasSanClustChk" id="erpNasSanClustChkN"
+                   th:checked="${erpStorage.erpNasSanClustChk eq 'N'}" disabled>
             무
           </p>
         </td>
         <td>
-          <input type="text" class="form-control" name="erpNasSanClustBigo"id="erpNasSanClustBigoInput">
+          <input type="text" class="form-control" name="erpNasSanClustBigo" id="erpNasSanClustBigoInput"
+                 th:value="${erpStorage.erpNasSanClustBigo}" readonly>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
+</form>
 </body>
 </html>     
     
