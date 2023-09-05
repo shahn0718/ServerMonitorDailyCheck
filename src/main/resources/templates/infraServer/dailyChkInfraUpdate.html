@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <title>일일점검일지(INFRA) 수정</title>
+</head>
+
+<script>
+
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if(this.readyState == 4 && this.status == 200){
+
+        getXmlData(this);
+      }
+    }
+    xhr.open("GET" ,"donga-devwas.xml",true);
+    xhr.send();
+
+  function getXmlData(xml) {
+    var num, name;
+    var num, name;
+    var txt, ntxt, xmlDoc;
+
+    //this.reponseText와 비슷.
+    xmlData = xml.responseXML;
+
+    console.log(xmlData);
+
+    const hostname = xmlData.getElementsByTagName("hostname");
+    const hostnameValue =  hostname[0].childNodes[0].nodeValue;
+
+    console.log("hostname: " + hostnameValue);
+
+
+    const date = xmlData.getElementsByTagName("date");
+    const dateValue = date[0].childNodes[0].nodeValue;
+
+    console.log("date: " + dateValue);
+
+    const time = xmlData.getElementsByTagName("time");
+    const timeValue = time[0].childNodes[0].nodeValue
+
+    console.log("time: " + timeValue);
+
+    const osver = xmlData.getElementsByTagName("osver");
+    const osverValue = osver[0].childNodes[0].nodeValue;
+
+    console.log("osver: " + osverValue);
+
+    const ipAddr = xmlData.getElementsByTagName("ipaddr");
+    const ipAddrValue = ipAddr[0].childNodes[0].nodeValue;
+
+    console.log("ipAddress: " + ipAddrValue);
+    
+    console.log(" ");
+    let getXmlAttribute= xmlData.documentElement.childNodes[1].childNodes;
+    console.log(getXmlAttribute);
+
+    for(i=1; i<getXmlAttribute.length; i+=2){
+      console.log(xmlData.documentElement.childNodes[1].childNodes[i].firstChild.nodeValue);
+    }
+};
+
+</script>
+
+<body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+<form class="row g-3" method="post">
+  <div class="container-fluid container-lg mt-lg-5">
+
+    <div class="form-row float-end">
+      <button type="submit" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" >수정 완료</button>
+      <button type="button" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" th:onclick="|location.href='@{/}'|">뒤로가기</button>
+    </div>
+
+    <table class="table table-bordered align-middle table-hover mt-5">
+      <thead>
+        <tr align="center"  style="background-color: #81BEF7;">
+          <th scope="col">구분</th>
+          <th scope="col">항목명</th>
+          <th scope="col">운영체제</th>
+          <th scope="col">체크항목</th>
+          <th scope="col">이상유무</th>
+          <th scope="col">비고</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr align="center" th:each="infraService:${infraService}">
+          <td style="background-color: #81BEF7;">서비스</td>
+          <td>  
+            <p>백업</p>
+            <p>스팸 솔루션</p>
+            <p>메일</p>
+            <p>DNS</p>
+          </td>
+          <td> 
+            <p>-</p> 
+            <p></p>
+            <p></p>
+            <p>-</p>
+          </td>
+          <td> 
+            <p>백업스케쥴</p> 
+            <p>메일송수신</p>
+            <p>메일송수신</p>
+            <p>내외부 DNS</p>
+          </td>
+          <td> 
+            <p>
+              <input class="form-check-input" type="radio" value="Y" name="infraBackUpServiceChk" id="infraBackUpServiceChkY"
+                     th:checked="${infraService.infraBackUpServiceChk eq 'Y'}" disabled>
+              유
+              <input class="form-check-input" type="radio" value="N" name="infraBackUpServiceChk" id="infraBackUpServiceChkN"
+                     th:checked="${infraService.infraBackUpServiceChk eq 'N'}" disabled>
+              무
+            </p> 
+            <p>
+              <input class="form-check-input" type="radio" value="Y" name="infraSpamServiceChk" id="infraSpamServiceChkY"
+                     th:checked="${infraService.infraSpamServiceChk eq 'Y'}" disabled>
+              유
+              <input class="form-check-input" type="radio" value="N" name="infraSpamServiceChk" id="infraSpamServiceChkN"
+                     th:checked="${infraService.infraSpamServiceChk eq 'N'}" disabled>
+              무  
+            </p>
+            <p>
+                <input class="form-check-input" type="radio" value="Y" name="infraMailServiceChk" id="infraMailServiceChkY"
+                       th:checked="${infraService.infraMailServiceChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="infraMailServiceChk" id="infraMailServiceChkN"
+                       th:checked="${infraService.infraMailServiceChk eq 'N'}" disabled>
+                무  
+            </p>
+            <p>
+                <input class="form-check-input" type="radio" value="Y" name="infraDNSServiceChk" id="infraDNSServiceChkY"
+                       th:checked="${infraService.infraDNSServiceChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="infraDNSServiceChk" id="infraDNSServiceChkN"
+                       th:checked="${infraService.infraDNSServiceChk eq 'N'}" disabled>
+                무  
+              </p>
+          </td>
+          <td>
+            <input type="text" class="form-control" name="infraBackUpServiceBigo" id="infraBackUpServiceBigoInput"
+                   th:value="${infraService.infraBackUpServiceBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+            <input type="text" class="form-control" name="infraSpamServiceBigo" id="infraSpamServiceBigoInput"
+                   th:value="${infraService.infraSpamServiceBigo}" readonly>
+            <input type="text" class="form-control" name="infraMailServiceBigo" id="infraMailServiceBigoInput"
+                   th:value="${infraService.infraMailServiceBigo}" readonly>
+            <input type="text" class="form-control" name="infraDNSServiceBigo" id="infraDNSServiceBigoInput"
+                   th:value="${infraService.infraDNSServiceBigo}" readonly>>
+          </td>
+        </tr>
+        <tr align="center" th:each="infraServer:${infraServer}">
+          <td rowspan="7" style="background-color: #81BEF7;">서버</td>
+          <td>Nwblock-1</td>
+          <td>윈도우</td>
+          <td>  
+            <p>CPU 사용량</p>
+            <p>메모리 사용량</p>
+            <p>디스크 사용량</p>
+            <p>이벤트 로그</p>
+          </td>
+          <td> 
+            <p>
+              <input class="form-check-input" type="radio" value="Y" name="nwblock1CpuUsageChk" id="nwblock1CpuUsageChkY"
+                     th:checked="${infraServer.nwblock1CpuUsageChk eq 'Y'}" disabled>
+              유
+              <input class="form-check-input" type="radio" value="N" name="nwblock1CpuUsageChk" id="nwblock1CpuUsageChkN"
+                     th:checked="${infraServer.nwblock1CpuUsageChk eq 'N'}" disabled>
+              무
+            </p> 
+            <p>
+              <input class="form-check-input" type="radio" value="Y" name="nwblock1MemUsageChk" id="nwblock1MemUsageChkY"
+                     th:checked="${infraServer.nwblock1MemUsageChk eq 'Y'}" disabled>
+              유
+              <input class="form-check-input" type="radio" value="N" name="nwblock1MemUsageChk" id="nwblock1MemUsageChkN"
+                     th:checked="${infraServer.nwblock1MemUsageChk eq 'N'}" disabled>
+              무  
+            </p>
+            <p>
+              <input class="form-check-input" type="radio" value="Y" name="nwblock1DiskUsageChk" id="nwblock1DiskUsageChkY"
+                     th:checked="${infraServer.nwblock1DiskUsageChk eq 'Y'}" disabled>
+              유
+              <input class="form-check-input" type="radio" value="N" name="nwblock1DiskUsageChk" id="nwblock1DiskUsageChkN"
+                     th:checked="${infraServer.nwblock1DiskUsageChk eq 'N'}" disabled>
+              무  
+            </p>
+            <p>
+              <input class="form-check-input" type="radio" value="Y" name="nwblock1EventChk" id="nwblock1EventChkY"
+                     th:checked="${infraServer.nwblock1EventChk eq 'Y'}" disabled>
+              유
+              <input class="form-check-input" type="radio" value="N" name="nwblock1EventChk" id="nwblock1EventChkN"
+                     th:checked="${infraServer.nwblock1EventChk eq 'N'}" disabled>
+              무  
+            </p>
+          </td>
+          <td>
+            <input type="text" class="form-control" name="nwblock1CpuUsageBigo" id="nwblock1CpuUsageBigoInput"
+                   th:value="${infraServer.nwblock1CpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+            <input type="text" class="form-control" name="nwblock1MemUsageBigo" id="nwblock1MemUsageBigoInput"
+                   th:value="${infraServer.nwblock1MemUsageBigo}" readonly>
+            <input type="text" class="form-control" name="nwblock1DiskUsageBigo" id="nwblock1DiskUsageBigoInput"
+                   th:value="${infraServer.nwblock1DiskUsageBigo}" readonly>
+            <input type="text" class="form-control" name="nwblock1EventBigo" id="nwblock1EventBigoInput"
+                   th:value="${infraServer.nwblock1EventBigo}" readonly>
+          </td>
+        </tr>
+        <tr align="center" th:each="infraServer:${infraServer}">
+            <td>Nwblock-2</td>
+            <td>윈도우</td>
+            <td>  
+              <p>CPU 사용량</p>
+              <p>메모리 사용량</p>
+              <p>디스크 사용량</p>
+              <p>이벤트 로그</p>
+            </td>
+            <td> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="nwblock2CpuUsageChk" id="nwblock2CpuUsageChkY"
+                       th:checked="${infraServer.nwblock2CpuUsageChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="nwblock2CpuUsageChk" id="nwblock2CpuUsageChkN"
+                       th:checked="${infraServer.nwblock2CpuUsageChk eq 'N'}" disabled>
+                무
+              </p> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="nwblock2MemUsageChk" id="nwblock2MemUsageChkY"
+                       th:checked="${infraServer.nwblock2MemUsageChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="nwblock2MemUsageChk" id="nwblock2MemUsageChkN"
+                       th:checked="${infraServer.nwblock2MemUsageChk eq 'N'}" disabled>
+                무  
+              </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="nwblock2DiskUsageChk" id="nwblock2DiskUsageChkY"
+                       th:checked="${infraServer.nwblock2DiskUsageChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="nwblock2DiskUsageChk" id="nwblock2DiskUsageChkN"
+                       th:checked="${infraServer.nwblock2DiskUsageChk eq 'N'}" disabled>
+                무  
+              </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="nwblock2EventChk" id="nwblock2EventChkY"
+                       th:checked="${infraServer.nwblock2EventChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="nwblock2EventChk" id="nwblock2EventChkN"
+                       th:checked="${infraServer.nwblock2EventChk eq 'N'}" disabled>
+                무  
+              </p>
+            </td>
+            <td>
+              <input type="text" class="form-control" name="nwblock2CpuUsageBigo" id="nwblock2CpuUsageBigoInput"
+                     th:value="${infraServer.nwblock2CpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+              <input type="text" class="form-control" name="nwblock2MemUsageBigo" id="nwblock2MemUsageBigoInput"
+                     th:value="${infraServer.nwblock2MemUsageBigo}" readonly>
+              <input type="text" class="form-control" name="nwblock2DiskUsageBigo" id="nwblock2DiskUsageBigoInput"
+                     th:value="${infraServer.nwblock2DiskUsageBigo}" readonly>
+              <input type="text" class="form-control" name="nwblock2EventBigo" id="nwblock2EventBigoInput"
+                     th:value="${infraServer.nwblock2EventBigo}" readonly>
+            </td>
+          </tr>
+          <tr align="center" th:each="infraServer:${infraServer}">
+            <td>DDC-Backup</td>
+            <td>윈도우</td>
+            <td>  
+              <p>CPU 사용량</p>
+              <p>메모리 사용량</p>
+              <p>디스크 사용량</p>
+              <p>이벤트 로그</p>
+            </td>
+            <td> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="ddcBackUpCpuUsageChk" id="ddcBackUpCpuUsageChkY"
+                       th:checked="${infraServer.ddcBackUpCpuUsageChk eq 'Y'}" readonly>
+                유
+                <input class="form-check-input" type="radio" value="N" name="ddcBackUpCpuUsageChk" id="ddcBackUpCpuUsageChkN"
+                       th:checked="${infraServer.ddcBackUpCpuUsageChk eq 'N'}" readonly>
+                무
+              </p> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="ddcBackUpMemUsageChk" id="ddcBackUpMemUsageChkY"
+                       th:checked="${infraServer.ddcBackUpMemUsageChk eq 'Y'}" readonly>
+                유
+                <input class="form-check-input" type="radio" value="N" name="ddcBackUpMemUsageChk" id="ddcBackUpMemUsageChkN"
+                       th:checked="${infraServer.ddcBackUpMemUsageChk eq 'N'}" readonly>
+                무  
+              </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="ddcBackUpDiskUsageChk" id="ddcBackUpDiskUsageChkY"
+                       th:checked="${infraServer.ddcBackUpDiskUsageChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="ddcBackUpDiskUsageChk" id="ddcBackUpDiskUsageChkN"
+                       th:checked="${infraServer.ddcBackUpDiskUsageChk eq 'N'}" readonly>
+                무  
+              </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="ddcBackUpEventChk" id="ddcBackUpEventLogY"
+                       th:checked="${infraServer.ddcBackUpEventChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="ddcBackUpEventLog" id="ddcBackUpEventLogN"
+                       th:checked="${infraServer.ddcBackUpEventLog eq 'N'}" readonly>
+                무  
+              </p>
+            </td>
+            <td>
+              <input type="text" class="form-control" name="ddcBackUpCpuUsageBigo" id="ddcBackUpCpuUsageBigoInput"
+                     th:value="${infraServer.ddcBackUpCpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+              <input type="text" class="form-control" name="ddcBackUpMemUSageBigo" id="ddcBackUpMemUSageBigoInput"
+                     th:value="${infraServer.ddcBackUpMemUsageBigo}" readonly>
+              <input type="text" class="form-control" name="ddcBackUpDiskUsageBigo" id="ddcBackupDiskUsageBigoInput"
+                     th:value="${infraServer.ddcBackUpDiskUsageBigo}" readonly>
+              <input type="text" class="form-control" name="ddcBackUpEventBigo" id="ddcBackUpEventBigoInput"
+                     th:value="${infraServer.ddcBackUpEventBigo}" readonly>
+            </td>
+          </tr>
+          <tr align="center" th:each="infraServer:${infraServer}">
+            <td>CHA-Backup</td>
+            <td>윈도우</td>
+            <td>  
+              <p>CPU 사용량</p>
+              <p>메모리 사용량</p>
+              <p>디스크 사용량</p>
+              <p>이벤트 로그</p>
+            </td>
+            <td> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="chaBackUpCpuUsageChk" id="chaBackUpCpuUsageChkY"
+                       th:checked="${infraServer.chaBackUpCpuUsageChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="chaBackUpCpuUsageChk" id="chaBackUpCpuUsageChkN"
+                       th:checked="${infraServer.chaBackUpCpuUsageChk eq 'N'}" disabled>
+                무
+              </p> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="chaBackUpMemUsageChk" id="chaBackUpMemUsageChkY"
+                       th:checked="${infraServer.chaBackUpMemUsageChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="chaBackUpMemUsageChk" id="chaBackUpMemUsageChkN"
+                       th:checked="${infraServer.chaBackUpMemUsageChk eq 'N'}" disabled>
+                무  
+              </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="chaBackUpDiskUsageChk" id="chaBackUpDiskUsageChkY"
+                       th:checked="${infraServer.chaBackUpDiskUsageChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="chaBackUpDiskUsageChk" id="chaBackUpDiskUsageChkN"
+                       th:checked="${infraServer.chaBackUpDiskUsageChk eq 'N'}" disabled>
+                무  
+              </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="chaBackUpEventChk" id="chaBackUpEventChkY"
+                       th:checked="${infraServer.chaBackUpEventChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="chaBackUpEventChk" id="chaBackUpEventChkN"
+                       th:checked="${infraServer.chaBackUpEventChk eq 'N'}" disabled>
+                무  
+              </p>
+            </td>
+            <td>
+              <input type="text" class="form-control" name="chaBackUpCpuUsageBigo" id="chaBackUpCpuUsageBigoInput"
+                     th:value="${infraServer.chaBackUpCpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+              <input type="text" class="form-control" name="chaBackUpMemUsageBigo" id="chaBackUpMemUsageBigoInput"
+                     th:value="${infraServer.chaBackUpMemUsageBigo}" readonly>
+              <input type="text" class="form-control" name="chaBackUpDiskUsageBigo" id="chaBackUpDiskUsageBigoInput"
+                     th:value="${infraServer.chaBackUpDiskUsageBigo}" readonly>
+              <input type="text" class="form-control" name="chaBackUpEventBigo" id="chaBackUpEventBigoInput"
+                     th:value="${infraServer.chaBackUpEventBigo}" readonly>
+            </td>
+          </tr>
+          <tr align="center" th:each="infraServer:${infraServer}">
+            <td>NewFile</td>
+            <td>윈도우</td>
+            <td>  
+              <p>CPU 사용량</p>
+              <p>메모리 사용량</p>
+              <p>디스크 사용량</p>
+              <p>이벤트 로그</p>
+            </td>
+            <td> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="newFileCpuUsageChk" id="newFileCpuUsageChkY"
+                       th:checked="${infraServer.newFileCpuUsageChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="newFileCpuUsageChk" id="newFileCpuUsageChkN"
+                       th:checked="${infraServer.newFileCpuUsageChk eq 'N'}" disabled>
+                무
+              </p> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="newFileMemUsageChk" id="newFileMemUsageChkY"
+                       th:checked="${infraServer.newFileMemUsageChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="newFileMemUsageChk" id="newFileMemUsageChkN"
+                       th:checked="${infraServer.newFileMemUsageChk eq 'N'}" disabled>
+                무  
+              </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="newFileDiskUsageChk" id="newFileDiskUsageChkY"
+                       th:checked="${infraServer.newFileDiskUsageChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="newFileDiskUsageChk" id="newFileDiskUsageChkN"
+                       th:checked="${infraServer.newFileDiskUsageChk eq 'N'}" disabled>
+                무  
+              </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="newFileEventChk" id="newFileEventChkY"
+                       th:checked="${infraServer.newFileEventChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="newFileEventChk" id="newFileEventChkN"
+                       th:checked="${infraServer.newFileEventChk eq 'N'}" disabled>
+                무  
+              </p>
+            </td>
+            <td>
+              <input type="text" class="form-control" name="newFileCpuUsageBigo" id="newFileCpuUsageBigoInput"
+                     th:value="${infraServer.newFileCpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+              <input type="text" class="form-control" name="newFileMemUsageBigo" id="newFileMemUsageBigoInput"
+                     th:value="${infraServer.newFileMemUsageBigo}" readonly>
+              <input type="text" class="form-control" name="newFileDiskUsageBigo" id="newFileDiskUsageBigoInput"
+                     th:value="${infraServer.newFileDiskUsageBigo}" readonly>
+              <input type="text" class="form-control" name="newFileEventBigo" id="newFileEventBigoInput"
+                     th:value="${infraServer.newFileEventBigo}" readonly>
+            </td>
+          </tr>
+          <tr align="center" th:each="infraServer:${infraServer}">
+            <td>AD-1</td>
+            <td>윈도우</td>
+            <td>  
+              <p>CPU 사용량</p>
+              <p>메모리 사용량</p>
+              <p>디스크 사용량</p>
+              <p>이벤트 로그</p>
+            </td>
+            <td> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="ad1CpuUsageChk" id="ad1CpuUsageChkY"
+                       th:checked="${infraServer.ad1CpuUsageChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="ad1CpuUsageChk" id="ad1CpuUsageChkN"
+                       th:checked="${infraServer.ad1CpuUsageChk eq 'N'}" disabled>
+                무
+              </p> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="ad1MemUsageChk" id="ad1MemUsageChkY"
+                       th:checked="${infraServer.ad1MemUsageChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="ad1MemUsageChk" id="ad1MemUsageChkN"
+                       th:checked="${infraServer.ad1MemUsageChk eq 'N'}" disabled>
+                무  
+              </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="ad1DiskUsageChk" id="ad1DiskUsageChkY"
+                       th:checked="${infraServer.ad1DiskUsageChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="ad1DiskUsageChk" id="ad1DiskUsageChkN"
+                       th:checked="${infraServer.ad1DiskUsageChk eq 'N'}" disabled>
+                무  
+              </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="ad1EventChk" id="ad1EventChkY"
+                       th:checked="${infraServer.ad1EventChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="ad1EventChk" id="ad1EventChkN"
+                       th:checked="${infraServer.ad1EventChk eq 'N'}" disabled>
+                무  
+              </p>
+            </td>
+            <td>
+              <input type="text" class="form-control" name="ad1CpuUsageBigo" id="ad1CpuUsageBigoInput"
+                     th:value="${infraServer.ad1CpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+              <input type="text" class="form-control" name="ad1MemUsageBigo" id="ad1MemUsageBigoInput"
+                     th:value="${infraServer.ad1MemUsageBigo}" readonly>
+              <input type="text" class="form-control" name="ad1DiskUsageBigo" id="ad1DiskUsageBigoInput"
+                     th:value="${infraServer.ad1DiskUsageBigo}" readonly>
+              <input type="text" class="form-control" name="ad1EventBigo" id="ad1EventBigoInput"
+                     th:value="${infraServer.ad1EventBigo}" readonly>
+            </td>
+          </tr>
+          <tr align="center" th:each="infraServer:${infraServer}">
+            <td>AD-2</td>
+            <td>윈도우</td>
+            <td>  
+              <p>CPU 사용량</p>
+              <p>메모리 사용량</p>
+              <p>디스크 사용량</p>
+              <p>이벤트 로그</p>
+            </td>
+            <td> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="ad2CpuUsageChk" id="ad2CpuUsageChkY"
+                       th:checked="${infraServer.ad2CpuUsageChk eq 'Y'}" readonly>
+                유
+                <input class="form-check-input" type="radio" value="N" name="ad2CpuUsageChk" id="ad2CpuUsageChkN"
+                       th:checked="${infraServer.ad2CpuUsageChk eq 'N'}" readonly>
+                무
+              </p> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="ad2MemUsageChk" id="ad2MemUsageChkY"
+                       th:checked="${infraServer.ad2MemUsageChk eq 'Y'}" readonly>
+                유
+                <input class="form-check-input" type="radio" value="N" name="ad2MemUsageChk" id="ad2MemUsageChkN"
+                       th:checked="${infraServer.ad2MemUsageChk eq 'N'}" readonly>
+                무  
+              </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="ad2DiskUsageChk" id="ad2DiskUsageChkY"
+                       th:checked="${infraServer.ad2DiskUsageChk eq 'Y'}" readonly>
+                유
+                <input class="form-check-input" type="radio" value="N" name="ad2DiskUsageChk" id="ad2DiskUsageChkN"
+                       th:checked="${infraServer.ad2DiskUsageChk eq 'N'}" readonly>
+                무  
+              </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="ad2EventChk" id="ad2EventChkY"
+                       th:checked="${infraServer.ad2EventChk eq 'Y'}" readonly>
+                유
+                <input class="form-check-input" type="radio" value="N" name="ad2EventChk" id="ad2EventChkN"
+                       th:checked="${infraServer.ad2EventChk eq 'N'}" readonly>
+                무  
+              </p>
+            </td>
+            <td>
+              <input type="text" class="form-control" name="ad2CpuUsageBigo" id="ad2CpuUsageBigoInput"
+                     th:value="${infraServer.ad2CpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+              <input type="text" class="form-control" name="ad2MemUsageBigo" id="ad2MemUsageBigoInput"
+                     th:value="${infraServer.ad2MemUsageBigo}" readonly>
+              <input type="text" class="form-control" name="ad2DiskUsageBigo" id="ad2DiskUsageBigoInput"
+                     th:value="${infraServer.ad2DiskUsageBigo}" readonly>
+              <input type="text" class="form-control" name="ad2EventBigo" id="ad2EventBigoInput"
+                     th:value="${infraServer.ad2EventBigo}" readonly>
+            </td>
+          </tr>
+        <tr align="center" th:each="infraVM:${infraVM}">
+            <td rowspan="2" style="background-color: #81BEF7;">VM</td>
+            <td>ERP-HVDC-01</td>
+            <td>윈도우</td>
+            <td>  
+              <p>CPU 사용량</p>
+              <p>메모리 사용량</p>
+              <p>디스크 사용량</p>
+              <p>이벤트 로그</p>
+            </td>
+            <td> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="erpHvdc1CpuUsageChk" id="erpHvdc1CpuUsageChkY"
+                       th:checked="${infraVM.erpHvdc1CpuUsageChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="erpHvdc1CpuUsageChk" id="erpHvdc1CpuUsageChkN"
+                       th:checked="${infraVM.erpHvdc1CpuUsageChk eq 'N'}" disabled>
+                무
+              </p> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="erpHvdc1MemUsageChk" id="erpHvdc1MemUsageChkY"
+                       th:checked="${infraVM.erpHvdc1MemUsageChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="erpHvdc1MemUsageChk" id="erpHvdc1MemUsageChkN"
+                       th:checked="${infraVM.erpHvdc1MemUsageChk eq 'N'}" disabled>
+                무  
+              </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="erpHvdc1DiskUsageChk" id="erpHvdc1DiskUsageChkY"
+                       th:checked="${infraVM.erpHvdc1DiskUsageChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="erpHvdc1DiskUsageChk" id="erpHvdc1DiskUsageChkN"
+                       th:checked="${infraVM.erpHvdc1DiskUsageChk eq 'N'}" disabled>
+                무  
+              </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="erpHvdc1EventChk" id="erpHvdc1EventChkY"
+                       th:checked="${infraVM.erpHvdc1EventChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="erpHvdc1EventChk" id="erpHvdc1EventChkN"
+                       th:checked="${infraVM.erpHvdc1EventChk eq 'N'}" disabled>
+                무  
+              </p>
+            </td>
+            <td>
+              <input type="text" class="form-control" name="erpHvdc1CpuUsageBigo" id="erpHvdc1CpuUsageBigoInput"
+                     th:value="${infraVM.erpHvdc1CpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+              <input type="text" class="form-control" name="erpHvdc1MemUsageBigo" id="erpHvdc1MemUsageBigoInput"
+                     th:value="${infraVM.erpHvdc1MemUsageBigo}" readonly>
+              <input type="text" class="form-control" name="erpHvdc1DiskUsageBigo" id="erpHvdc1DiskUsageBigoInput"
+                     th:value="${infraVM.erpHvdc1DiskUsageBigo}" readonly>
+              <input type="text" class="form-control" name="erpHvdc1EventBigo" id="erpHvdc1EventBigoInput"
+                     th:value="${infraVM.erpHvdc1EventBigo}" readonly>
+            </td>
+          </tr>
+          <tr align="center" th:each="infraVM : ${infraVM}">
+            <td>ERP-HVDC-02</td>
+            <td>윈도우</td>
+            <td>  
+              <p>CPU 사용량</p>
+              <p>메모리 사용량</p>
+              <p>디스크 사용량</p>
+              <p>이벤트 로그</p>
+            </td>
+            <td> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="erpHvdc2CpuUsageChk" id="erpHvdc2CpuUsageChkY"
+                       th:checked="${infraVM.erpHvdc2CpuUsageChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="erpHvdc2CpuUsageChk" id="erpHvdc2CpuUsageChkN"
+                       th:checked="${infraVM.erpHvdc2CpuUsageChk eq 'N'}" disabled>
+                무
+              </p> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="erpHvdc2MemUsageChk" id="erpHvdc2MemUsageChkY"
+                       th:checked="${infraVM.erpHvdc2MemUsageChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="erpHvdc2MemUsageChk" id="erpHvdc2MemUsageChkN"
+                       th:checked="${infraVM.erpHvdc2MemUsageChk eq 'N'}" disabled>
+                무  
+              </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="erpHvdc2DiskUsageChk" id="erpHvdc2DiskUsageChkY"
+                       th:checked="${infraVM.erpHvdc2DiskUsageChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="erpHvdc2DiskUsageChk" id="erpHvdc2DiskUsageChkN"
+                       th:checked="${infraVM.erpHvdc2DiskUsageChk eq 'N'}" disabled>
+                무  
+              </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="erpHvdc2EventChk" id="erpHvdc2EventChkY"
+                       th:checked="${infraVM.erpHvdc2EventChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="erpHvdc2EventChk" id="erpHvdc2EventChkN"
+                       th:checked="${infraVM.erpHvdc2EventChk eq 'N'}" disabled>
+                무  
+              </p>
+            </td>
+            <td>
+              <input type="text" class="form-control" name="erpHvdc2CpuUsageBigo" id="erpHvdc2CpuUsageBigoInput"
+                     th:value="${infraVM.erpHvdc2CpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+              <input type="text" class="form-control" name="erpHvdc2MemUsageBigo" id="erpHvdc2MemUsageBigoInput"
+                     th:value="${infraVM.erpHvdc2MemUsageBigo}" readonly>
+              <input type="text" class="form-control" name="erpHvdc2DiskUsageBigo" id="erpHvdc2DiskUsageBigoInput"
+                     th:value="${infraVM.erpHvdc2DiskUsageBigo}" readonly>
+              <input type="text" class="form-control" name="erpHvdc2EventBigo" id="erpHvdc2EventBigoInput"
+                     th:value="${infraVM.erpHvdc2EventBigo}" readonly>
+            </td>
+          </tr>
+          <tr align="center" th:each="infraEtc :${infraEtc}">
+            <td rowspan="12" style="background-color: #81BEF7;">보안 및 기타 솔루션</td>
+            <td>VPN-1</td>
+            <td>-</td>
+            <td>  
+              <p>클러스터</p>
+              <p>이벤트 로그</p>
+            </td>
+            <td> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="vpn1ClustChk" id="vpn1ClustChkY"
+                       th:checked="${infraEtc.vpn1ClustChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="vpn1ClustChk" id="vpn1ClustChkN"
+                       th:checked="${infraEtc.vpn1ClustChk eq 'N'}" disabled>
+                무
+              </p> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="vpn1EventChk" id="vpn1EventChkY"
+                       th:checked="${infraEtc.vpn1EventChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="vpn1EventChk" id="vpn1EventChkN"
+                       th:checked="${infraEtc.vpn1EventChk eq 'N'}" disabled>
+                무  
+              </p>
+            </td>
+            <td>
+              <input type="text" class="form-control" name="vpn1ClustBigo" id="vpn1ClustBigoInput"
+                     th:value="${infraEtc.vpn1ClustBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+              <input type="text" class="form-control" name="vpn1EventBigo" id="vpn1EventBigoInput"
+                     th:value="${infraEtc.vpn1EventBigo}" readonly>
+            </td>
+          </tr>
+          <tr align="center" th:each="infraEtc : ${infraEtc}">
+            <td>VPN-2</td>
+            <td>-</td>
+            <td>  
+              <p>클러스터</p>
+              <p>이벤트 로그</p>
+            </td>
+            <td> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="vpn2ClustChk" id="vpn2ClustChkY"
+                       th:checked="${infraEtc.vpn2ClustChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="vpn2ClustChk" id="vpn2ClustChkN"
+                       th:checked="${infraEtc.vpn2ClustChk eq 'N'}" disabled>
+                무
+              </p> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="vpn2EventChk" id="vpn2EventChkY"
+                       th:checked="${infraEtc.vpn2EventChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="vpn2EventChk" id="vpn2EventChkN"
+                       th:checked="${infraEtc.vpn2EventChk eq 'N'}" disabled>
+                무  
+              </p>
+            </td>
+            <td>
+              <input type="text" class="form-control" name="vpn2ClustBigo" id="vpn2ClustBigoInput"
+                     th:value="${infraEtc.vpn2ClustBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+              <input type="text" class="form-control" name="vpn2EventBigo" id="vpn2EventBigoInput"
+                     th:value="${infraEtc.vpn2EventBigo}" readonly>
+            </td>
+          </tr>
+          <tr align="center" th:each="infraEtc:${infraEtc}">
+            <td>SSO-1</td>
+            <td>-</td>
+            <td>  
+              <p>클러스터</p>
+              <p>이벤트 로그</p>
+            </td>
+            <td> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="sso1ClustChk" id="sso1ClustChkY"
+                       th:checked="${infraEtc.sso1ClustChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="sso1ClustChk" id="sso1ClustChkN"
+                       th:checked="${infraEtc.sso1ClustChk eq 'N'}" disabled>
+                무
+              </p> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="sso1EventChk" id="sso1EventChkY"
+                       th:checked="${infraEtc.sso1EventChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="sso1EventChk" id="sso1EventChkN"
+                       th:checked="${infraEtc.sso1EventChk eq 'N'}" disabled>
+                무  
+              </p>
+            </td>
+            <td>
+              <input type="text" class="form-control" name="sso1ClustBigo" id="sso1ClustBigoInput"
+                     th:value="${infraEtc.sso1ClustBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+              <input type="text" class="form-control" name="sso1EventBigo" id="sso1EventBigoInput"
+                     th:value="${infraEtc.sso1EventBigo}" readonly>
+            </td>
+          </tr>
+          <tr align="center" th:each="infraEtc:${infraEtc}">
+            <td>SSO-2</td>
+            <td>-</td>
+            <td>  
+              <p>클러스터</p>
+              <p>이벤트 로그</p>
+            </td>
+            <td> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="sso2ClustChk" id="sso2ClustChkY"
+                       th:checked="${infraEtc.sso2ClustChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="sso2ClustChk" id="sso2ClustChkN"
+                       th:checked="${infraEtc.sso2ClustChk eq 'N'}" disabled>
+                무
+              </p> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="sso2EventChk" id="sso2EventChkY"
+                       th:checked="${infraEtc.sso2EventChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="sso2EventChk" id="sso2EventChkN"
+                       th:checked="${infraEtc.sso2EventChk eq 'N'}" disabled>
+                무  
+              </p>
+            </td>
+            <td>
+              <input type="text" class="form-control" name="sso2ClustBigo" id="sso2ClustBigoInput"
+                     th:value="${infraEtc.sso2ClustBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+              <input type="text" class="form-control" name="sso2EventBigo" id="sso2EventBigoInput"
+                     th:value="${infraEtc.sso2EvnetBigo}" readonly>
+            </td>
+          </tr>
+          <tr align="center" th:each="infraEtc:${infraEtc}">
+            <td>DDoS-1</td>
+            <td>-</td>
+            <td>  
+              <p>클러스터</p>
+              <p>이벤트 로그</p>
+            </td>
+            <td> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="ddos1ClustChk" id="ddos1ClustChkY"
+                       th:checked="${infraEtc.ddos1ClustChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="ddos1ClustChk" id="ddos1ClustChkN"
+                       th:checked="${infraEtc.ddos1ClustChk eq 'N'}" disabled>
+                무
+              </p> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="ddos1EventChk" id="ddos1EventChkY"
+                       th:checked="${infraEtc.ddos1EventChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="ddos1EventChk" id="ddos1EventChkN"
+                       th:checked="${infraEtc.ddos1EventChk eq 'N'}" disabled>
+                무  
+              </p>
+            </td>
+            <td>
+              <input type="text" class="form-control" name="ddos1ClustBigo" id="ddos1ClustBigoInput"
+                     th:value="${infraEtc.ddos1ClustBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+              <input type="text" class="form-control" name="ddos1EventBigo" id="ddos1EventBigoInput"
+                     th:value="${infraEtc.ddos1EventBigo}" readonly>
+            </td>
+          </tr>
+          <tr align="center"  th:each="infraEtc:${infraEtc}">
+            <td>DDoS-2</td>
+            <td>-</td>
+            <td>  
+              <p>클러스터</p>
+              <p>이벤트 로그</p>
+            </td>
+            <td> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="ddos2ClustChk" id="ddos2ClustChkY"
+                       th:checked="${infraEtc.ddos2ClustChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="ddos2ClustChk" id="ddos2ClustChkN"
+                       th:checked="${infraEtc.ddos2ClustChk eq 'N'}" disabled>
+                무
+              </p> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="ddos2EventChk" id="ddos2EventChkY"
+                       th:checked="${infraEtc.ddos2EventChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="ddos2EventChk" id="ddos2EventChkN"
+                       th:checked="${infraEtc.ddos2EventChk eq 'N'}" disabled>
+                무  
+              </p>
+            </td>
+            <td>
+              <input type="text" class="form-control" name="ddos2ClustBigo" id="ddos2ClustBigoInput"
+                     th:value="${infraEtc.ddos2ClustBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+              <input type="text" class="form-control" name="ddos2EventBigo" id="ddos2EventBigoInput"
+                     th:value="${infraEtc.ddos2EventBigo}" readonly>
+            </td>
+          </tr>
+          <tr align="center" th:each="infraEtc:${infraEtc}">
+            <td>FW-1</td>
+            <td>-</td>
+            <td>  
+              <p>클러스터</p>
+              <p>이벤트 로그</p>
+            </td>
+            <td> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="fw1ClustChk" id="fw1ClustChkY"
+                       th:checked="${infraEtc.fw1ClustChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="fw1ClustChk" id="fw1ClustChkN"
+                       th:checked="${infraEtc.fw1ClustChk eq 'N'}" disabled>
+                무
+              </p> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="fw1EventChk" id="fw1EventChkY"
+                       th:checked="${infraEtc.fw1EventChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="fw1EventChk" id="fw1EventChkN"
+                       th:checked="${infraEtc.fw1EventChk eq 'N'}" disabled>
+                무  
+              </p>
+            </td>
+            <td>
+              <input type="text" class="form-control" name="fw1ClustBigo" id="fw1ClustBigoInput"
+                     th:value="${infraEtc.fw1ClustBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+              <input type="text" class="form-control" name="fw1EventBigo" id="fw1EventBigoInput"
+                     th:value="${infraEtc.fw1EventBigo}" readonly>
+            </td>
+          </tr>
+          <tr align="center" th:each="infraEtc:${infraEtc}">
+            <td>FW-2</td>
+            <td>-</td>
+            <td>  
+              <p>클러스터</p>
+              <p>이벤트 로그</p>
+            </td>
+            <td> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="fw2ClustChk" id="fw2ClustChkY"
+                       th:checked="${infraEtc.fw2ClustChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="fw2ClustChk" id="fw2ClustChkN"
+                       th:checked="${infraEtc.fw2ClustChk eq 'N'}" disabled>
+                무
+              </p> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="fw2EventChk" id="fw2EventChkY"
+                       th:checked="${infraEtc.fw2EventChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="fw2EventChk" id="fw2EventChkN"
+                       th:checked="${infraEtc.fw2EventChk eq 'N'}" disabled>
+                무  
+              </p>
+            </td>
+            <td>
+              <input type="text" class="form-control" name="fw2ClustBigo" id="fw2ClustBigoInput"
+                     th:value="${infraEtc.fw2ClustBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+              <input type="text" class="form-control" name="fw2EventBigo" id="fw2EventBigoInput"
+                     th:value="${infraEtc.fw2EventBigo}" readonly>
+            </td>
+          </tr>
+          <tr align="center" th:each="infraEtc:${infraEtc}">
+            <td>SPAM-1</td>
+            <td>-</td>
+            <td>  
+              <p>클러스터</p>
+              <p>이벤트 로그</p>
+            </td>
+            <td> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="spam1ClustChk" id="spam1ClustChkY"
+                       th:checked="${infraEtc.spam1ClustChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="spam1ClustChk" id="spam1ClustChkN"
+                       th:checked="${infraEtc.spam1ClustChk eq 'N'}" disabled>
+                무
+              </p> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="spam1EventChk" id="spam1EventChkY"
+                       th:checked="${infraEtc.spam1EventChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="spam1EventChk" id="spam1EventChkN"
+                       th:checked="${infraEtc.spam1EventChk eq 'N'}" disabled>
+                무  
+              </p>
+            </td>
+            <td>
+              <input type="text" class="form-control" name="spam1ClustBigo" id="spam1ClustBigoInput"
+                     th:value="${infraEtc.spam1ClustBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+              <input type="text" class="form-control" name="spam1EventBigo" id="spam1EventBigoInput"
+                     th:value="${infraEtc.spm1EventBigo" readonly>
+            </td>
+          </tr>
+          <tr align="center" th:each="infraEtc:${infraEtc}">
+            <td>SPAM-2</td>
+            <td>-</td>
+            <td>  
+              <p>클러스터</p>
+              <p>이벤트 로그</p>
+            </td>
+            <td> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="spam2ClustChk" id="spam2ClustChkY"
+                       th:checked="${infraEtc.spam2ClustChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="spam2ClustChk" id="spam2ClustChkN"
+                       th:checked="${infraEtc.spam2ClustChk eq 'N'}" disabled>
+                무
+              </p> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="spam2EventChk" id="spam2EventChkY"
+                       th:checked="${infraEtc.spam2EventChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="spam2EventChk" id="spam2EventChkN"
+                       th:checked="${infraEtc.spam2EventChk eq 'N'}" disabled>
+                무  
+              </p>
+            </td>
+            <td>
+              <input type="text" class="form-control" name="spam2ClustBigo" id="spam2ClustBigoInput"
+                     th:value="${infraEtc.spam2ClustBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+              <input type="text" class="form-control" name="spam2EventBigo" id="spam2EventBigoInput"
+                     th:value="${infraEtc.spam2EventBigo}" readonly>
+            </td>
+          </tr>
+          <tr align="center"  th:each="infraEtc:${infraEtc}">
+            <td>지니어스모니터링</td>
+            <td>-</td>
+            <td>  
+              <p>클러스터</p>
+              <p>이벤트 로그</p>
+            </td>
+            <td> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="gMonitorClustChk" id="gMonitorClustChkY"
+                       th:checked="${infraEtc.gMonitorClustChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="gMonitorClustChk" id="gMonitorClustChkN"
+                       th:checked="${infraEtc.gMonitorClustChk eq 'N'}" disabled>
+                무
+              </p> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="gMonitorEventChk" id="gMonitorEventChkY"
+                       th:checked="${infraEtc.gMonitorEventChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="gMonitorEventChk" id="gMonitorEventChkN"
+                       th:checked="${infraEtc.gMonitorEventChk eq 'N'}" disabled>
+                무  
+              </p>
+            </td>
+            <td>
+              <input type="text" class="form-control" name="gMonitorClustBigo" id="gMonitorClustBigoInput"
+                     th:value="${infraEtc.gMonitorClustBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+              <input type="text" class="form-control" name="gMonitorEventBigo" id="gMonitorEventBigoInput"
+                     th:value="${infraEtc.gMonitorEventBigo}" readonly>
+            </td>
+          </tr>
+          <tr align="center"  th:each="infraEtc:${infraEtc}">
+            <td>ERP모니터링</td>
+            <td>-</td>
+            <td>  
+              <p>클러스터</p>
+              <p>이벤트 로그</p>
+            </td>
+            <td> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="eMonitorClustChk" id="eMonitorClustChkY"
+                       th:checked="${infraEtc.eMonitorClustChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="eMonitorClustChk" id="eMonitorClustChkN"
+                       th:checked="${infraEtc.eMonitorClustChk eq 'N'}" disabled>
+                무
+              </p> 
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="eMonitorEventChk" id="eMonitorEventChkY"
+                       th:checked="${infraEtc.eMonitorEventChk eq 'Y'}" disabled>
+                유
+                <input class="form-check-input" type="radio" value="N" name="eMonitorEventChk" id="eMonitorEventChkN"
+                       th:checked="${infraEtc.eMonitorEventChk eq 'N'}" disabled>
+                무  
+              </p>
+            </td>
+            <td>
+              <input type="text" class="form-control" name="eMonitorClustBigo" id="eMonitorClustBigoInput"
+                     th:value="${infraEtc.eMonitorClustBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+              <input type="text" class="form-control" name="eMonitorEventBigo" id="eMonitorEventBigoInput"
+                     th:value="${infraEtc.eMonitorEventBigo}" readonly>
+            </td>
+          </tr>
+    </tbody>
+    </table>
+</div>
+</form>
+</body>
+</html>
