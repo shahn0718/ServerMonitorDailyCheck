@@ -97,7 +97,7 @@
 
   <table class="table table-bordered align-middle table-hover mt-5">
     <thead>
-      <tr align="center">
+      <tr align="center" style="background-color: #81BEF7;">
         <th scope="col">구분</th>
         <th scope="col">항목명</th>
         <th scope="col">운영체제</th>
@@ -108,7 +108,7 @@
     </thead>
     <tbody>
       <tr th:each="erpService:${erpService}" align="center">
-        <td>서비스</td>
+        <td style="background-color: #81BEF7;">서비스</td>
         <td>  
           <p></p>
           <p></p>
@@ -160,7 +160,7 @@
         </td>
       </tr>
       <tr align="center" th:each="erpServer:${erpServer}">
-        <td rowspan="7">서버</td>
+        <td rowspan="7" style="background-color: #81BEF7;">서버</td>
         <td>Main-1</td>
         <td>윈도우</td>
         <td>  
@@ -661,7 +661,7 @@
         </td>
       </tr>
       <tr align="center" th:each="erpServer: ${erpServer}">
-        <td rowspan="14">VM</td>
+        <td rowspan="14" style="background-color: #81BEF7;">VM</td>
         <td>BNK-1</td>
         <td>윈도우</td>
         <td>  
@@ -1639,7 +1639,7 @@
         </td>
       </tr>
       <tr align="center" th:each="erpStroage: ${erpStorage}">
-        <td>스토리지</td>
+        <td style="background-color: #81BEF7;">스토리지</td>
         <td>  
           <p>NAS(SAN)</p>
         </td>

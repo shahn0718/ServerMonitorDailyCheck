@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="kor">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <title>일일점검일지(ERP-2)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <title>일일점검일지(ERP ETC)</title>
 </head>
 
 <script>
@@ -68,20 +69,34 @@
 };
 
 </script>
-
 <body>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-<script type="text/javascript" src="./js/getFileSetting.js"></script>
+
+<form class="row g-3" method="post">
 <div class="container-fluid container-lg mt-lg-5">
-   
-    <div class="row text-center text-dark">
-        <div class="col border">
-            작성자:&nbsp;&nbsp;   안상형
-        </div>
-        <div class="col border">
-            작성시간:&nbsp;&nbsp;   <script>getTime();</script>
-         </div>
+
+  <div class="row text-center text-dark mb-5">
+    <div class="col border mt-3">
+      작성자:&nbsp;
+      <select class="form-select-s" th:name="admin_nm">
+        <option value="선택">선택</option>
+        <option th:each="adminUser : ${adminUser}"
+                th:value="${adminUser.admin_nm}"
+                th:text="${adminUser.admin_nm}" >
+        </option>
+      </select>
     </div>
+    <div class="col border mt-3" >
+      작성시간:&nbsp;
+      <span th:text="${#temporals.format(createdTime,'yyyy-MM-dd HH:mm:ss')}"></span>
+    </div>
+  </div>
+
+  <div class="form-row float-end">
+    <button type="submit" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" >저장</button>
+    <button type="button" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" th:onclick="|location.href='@{/}'|" >뒤로가기</button>
+  </div>
    
     <table class="table table-bordered align-middle table-hover mt-5">
       <thead>
@@ -95,6 +110,7 @@
         </tr>
       </thead>
       <tbody>
+      <form name="etcErpService" th:action method="post">
         <tr align="center">
           <td style="background-color: #81BEF7;">서비스</td>
           <td>  
@@ -113,13 +129,13 @@
             <p>백업스케쥴</p>
           </td>
           <td> 
-            <p><!--추후 수정 필요-->
+            <p><!--추후 수정 필요 현재는 백업 서비스만 체크 진행-->
               <input class="form-check-input" type="radio" value="Y" name="etcErpMailServiceChk" id="etcErpMailServiceChkY">
               유
               <input class="form-check-input" type="radio" value="N" name="etcErpMailServiceChk" id="etcErpMailServiceChkN" checked>
               무
             </p> 
-            <p><!--추후 수정 필요-->
+            <p><!--추후 수정 필요 현재는 백업 서비스만 체크 진행-->
               <input class="form-check-input" type="radio" value="Y" name="etcErpApproveServiceChk" id="etcErpApproveServiceChkY">
               유
               <input class="form-check-input" type="radio" value="N" name="etcErpApproveServiceChk" id="etcErpApproveServiceChkN" checked>
@@ -133,11 +149,12 @@
             </p>
           </td>
           <td>
-            <input type="text" class="form-control" id="etcErpMailServiceBigoInput" placeholder="이상유무 유 체크시 내역기재">
-            <input type="text" class="form-control" id="etcErpApproveServiceBigoInput">
-            <input type="text" class="form-control" id="etcErpBackUpServiceBigoInput">
+            <input type="text" class="form-control" name="etcErpMailServiceBigo" id="etcErpMailServiceBigoInput" placeholder="이상유무 유 체크시 내역기재">
+            <input type="text" class="form-control" name="etcErpApproveServiceBigo" id="etcErpApproveServiceBigoInput">
+            <input type="text" class="form-control" name="etcErpBackUpServiceBigo" id="etcErpBackUpServiceBigoInput">
           </td>
         </tr>
+        <form name="etcErpServer" th:action="post">
         <tr align="center">
           <td rowspan="12" style="background-color:#81BEF7;">서버</td>
           <td>CHA-ERP-LINK</td>
@@ -643,8 +660,11 @@
               <input type="text" class="form-control" name="dongaBEventBigo" id="dongaBEventBigoInput">
             </td>
           </tr>
+        </form>
+      </form>
     </tbody>
     </table>
 </div>
+</form>
 </body>
 </html>
