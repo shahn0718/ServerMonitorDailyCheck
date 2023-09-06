@@ -27,7 +27,7 @@ public class MInsertInfraDailyVMMain {
     private String erpHvdc1MemUsageChk;
     private String erpHvdc1MemUsageBigo;
     private String erpHvdc1DiskUsageChk;
-    private String erpHvdc1DiskusageBigo;
+    private String erpHvdc1DiskUsageBigo;
     private String erpHvdc1EventChk;
     private String erpHvdc1EventBigo;
 
