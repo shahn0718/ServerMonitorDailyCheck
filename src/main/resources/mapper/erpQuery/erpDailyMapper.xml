@@ -1,0 +1,1133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.damg.upit.monitor.dailyCheck.domain.erpDaily.mapper.erpDailyMapper">
+
+    <insert id="insertErpDailyServiceMain" parameterType="com.damg.upit.monitor.dailyCheck.domain.erpDaily.model.MInsertErpDailyServiceMain"
+            useGeneratedKeys="true" keyProperty="erpMainId">
+
+        /* insertErpDailyServiceMain */
+
+        INSERT INTO ERP_DAILY_SERVICE (
+
+                ERP_SERVICE_ID
+               ,ERP_MAIN_ID
+               ,ERP_MAIL_CHK
+               ,ERP_MAIL_BIGO
+               ,ERP_APPROVE_CHK
+               ,ERP_APPROVE_BIGO
+               ,ERP_BACKUP_CHK
+               ,ERP_BACKUP_BIGO
+        ) VALUES (
+
+                #{erpServiceId}
+               ,#{erpMainId}
+               ,#{erpMailServiceChk}
+               ,#{erpMailServiceBigo}
+               ,#{erpApproveServiceChk}
+               ,#{erpApproveServiceBigo}
+               ,#{erpBackUpServiceChk}
+               ,#{erpBackUpServiceBigo}
+        )
+    </insert>
+
+    <insert id="insertErpDailyServerMain" parameterType="com.damg.upit.monitor.dailyCheck.domain.erpDaily.model.MInsertErpDailyServerMain"
+            useGeneratedKeys="true" keyProperty="erpMainId">
+
+        /*InsertErpDailyServerMain*/
+
+        INSERT INTO ERP_DAILY_SERVER (
+
+            ERP_SERVER_ID
+           ,ERP_MAIN_ID
+           ,MAIN1_CPUUSAGE_CHK
+           ,MAIN1_CPUUSAGE_BIGO
+           ,MAIN1_MEMUSAGE_CHK
+           ,MAIN1_MEMUSAGE_BIGO
+           ,MAIN1_DISKUSAGE_CHK
+           ,MAIN1_DISKUSAGE_BIGO
+           ,MAIN1_CLUST_CHK
+           ,MAIN1_CSLUT_BIGO
+           ,MAIN1_EVENT_CHK
+           ,MAIN1_EVENT_BIGO
+           ,MAIN2_CPUUSAGE_CHK
+           ,MAIN2_CPUUSAGE_BIGO
+           ,MAIN2_MEMUSAGE_CHK
+           ,MAIN2_MEMUSAGE_BIGO
+           ,MAIN2_DISKUSAGE_CHK
+           ,MAIN2_DISKUSAGE_BIGO
+           ,MAIN2_CLUST_CHK
+           ,MAIN2_CSLUT_BIGO
+           ,MAIN2_EVENT_CHK
+           ,MAIN2_EVENT_BIGO
+           ,MAIN3_CPUUSAGE_CHK
+           ,MAIN3_CPUUSAGE_BIGO
+           ,MAIN3_MEMUSAGE_CHK
+           ,MAIN3_MEMUSAGE_BIGO
+           ,MAIN3_DISKUSAGE_CHK
+           ,MAIN3_DISKUSAGE_BIGO
+           ,MAIN3_CLUST_CHK
+           ,MAIN3_CSLUT_BIGO
+           ,MAIN3_EVENT_CHK
+           ,MAIN3_EVENT_BIGO
+           ,DB1_CPUUSAGE_CHK
+           ,DB1_CPUUSAGE_BIGO
+           ,DB1_MEMUSAGE_CHK
+           ,DB1_MEMUSAGE_BIGO
+           ,DB1_SWAPUSAGE_CHK
+           ,DB1_SWAPUSAGE_BIGO
+           ,DB1_OVERLOAD_CHK
+           ,DB1_OVERLOAD_BIGO
+           ,DB1_DISKUSAGE_CHK
+           ,DB1_DISKUSAGE_BIGO
+           ,DB1_PROCESS_CHK
+           ,DB1_PROCESS_BIGO
+           ,DB1_CPUUSAGE_CHK
+           ,DB1_CPUUSAGE_BIGO
+           ,DB2_CPUUSAGE_CHK
+           ,DB2_CPUUSAGE_BIGO
+           ,DB2_MEMUSAGE_CHK
+           ,DB2_MEMUSAGE_BIGO
+           ,DB2_SWAPUSAGE_CHK
+           ,DB2_SWAPUSAGE_BIGO
+           ,DB2_OVERLOAD_CHK
+           ,DB2_OVERLOAD_BIGO
+           ,DB2_DISKUSAGE_CHK
+           ,DB2_DISKUSAGE_BIGO
+           ,DB2_PROCESS_CHK
+           ,DB2_PROCESS_BIGO
+           ,DB2_CPUUSAGE_CHK
+           ,DB2_CPUUSAGE_BIGO
+           ,DEVDB_CPUUSAGE_CHK
+           ,DEVDB_CPUUSAGE_BIGO
+           ,DEVDB_MEMUSAGE_CHK
+           ,DEVDB_MEMUSAGE_BIGO
+           ,DEVDB_SWAPUSAGE_CHK
+           ,DEVDB_SWAPUSAGE_BIGO
+           ,DEVDB_OVERLOAD_CHK
+           ,DEVDB_OVERLOAD_BIGO
+           ,DEVDB_DISKUSAGE_CHK
+           ,DEVDB_DISKUSAGE_BIGO
+           ,DEVDB_PROCESS_CHK
+           ,DEVDB_PROCESS_BIGO
+           ,BACK_CPUUSAGE_CHK
+           ,BACK_CPUUSAGE_BIGO
+           ,BACK_MEMUSAGE_CHK
+           ,BACK_MEMUSAGE_BIGO
+           ,BACK_SWAPUSAGE_CHK
+           ,BACK_SWAPUSAGE_BIGO
+           ,BACK_OVERLOAD_CHK
+           ,BACK_OVERLOAD_BIGO
+           ,BACK_DISKUSAGE_CHK
+           ,BACK_DISKUSAGE_BIGO
+           ,BACK_PROCESS_CHK
+           ,BACK_PROCESS_BIGO
+
+        ) VALUES (
+
+             #{erpServerId}
+            ,#{erpMainId}
+            ,#{main1CpuUsageChk}
+            ,#{main1CpuUsageBigo}
+            ,#{main1MemUsageChk}
+            ,#{main1MemUsageBigo}
+            ,#{main1DiskUsageChk}
+            ,#{main1DiskUsageBigo}
+            ,#{main1ClustChk}
+            ,#{main1ClustBigo}
+            ,#{main1EventChk}
+            ,#{main1EventBigo}
+            ,#{main2CpuUsageChk}
+            ,#{main2CpuUsageBigo}
+            ,#{main2MemUsageChk}
+            ,#{main2MemUsageBigo}
+            ,#{main2DiskUsageChk}
+            ,#{main2DiskUsageBigo}
+            ,#{main2ClustChk}
+            ,#{main2ClustBigo}
+            ,#{main2EventChk}
+            ,#{main2EventBigo}
+            ,#{main3CpuUsageChk}
+            ,#{main3CpuUsageBigo}
+            ,#{main3MemUsageChk}
+            ,#{main3MemUsageBigo}
+            ,#{main3DiskUsageChk}
+            ,#{main3DiskUsageBigo}
+            ,#{main3ClustChk}
+            ,#{main3ClustBigo}
+            ,#{main3EventChk}
+            ,#{main3EventBigo}
+            ,#{db1CpuUsageChk}
+            ,#{db1CpuUsageBigo}
+            ,#{db1MemUsageChk}
+            ,#{db1MemUsageBigo}
+            ,#{db1SwapUsageChk}
+            ,#{db1SwapUsageBigo}
+            ,#{db1OverLoadChk}
+            ,#{db1OverLoadBigo}
+            ,#{db1DiskUsageChk}
+            ,#{db1DiskUsageBigo}
+            ,#{db1ProcessChk}
+            ,#{db1ProcessBigo}
+            ,#{db2CpuUsageChk}
+            ,#{db2CpuUsageBigo}
+            ,#{db2MemUsageChk}
+            ,#{db2MemUsageBigo}
+            ,#{db2SwapUsageChk}
+            ,#{db2SwapUsageBigo}
+            ,#{db2OverLoadChk}
+            ,#{db2OverLoadBigo}
+            ,#{db2DiskUsageChk}
+            ,#{db2DiskUsageBigo}
+            ,#{db2ProcessChk}
+            ,#{db2ProcessBigo}
+            ,#{devDbCpuUsageChk}
+            ,#{devDbCpuUsageBigo}
+            ,#{devDbMemUsageChk}
+            ,#{devDbMemUsageBigo}
+            ,#{devDbSwapUsageChk}
+            ,#{devDbSwapUsageBigo}
+            ,#{devDbOverLoadChk}
+            ,#{devDbOverLoadBigo}
+            ,#{devDbDiskUsageChk}
+            ,#{devDbDiskUsageBigo}
+            ,#{devDbProcessChk}
+            ,#{devDbProcessBigo}
+            ,#{backUpCpuUsageChk}
+            ,#{backUpCpuUsageBigo}
+            ,#{backUpMemUsageChk}
+            ,#{backUpMemUsageBigo}
+            ,#{backUpSwapUsageChk}
+            ,#{backUpSwapUsageBigo}
+            ,#{backUpOverLoadChk}
+            ,#{backUpOverLoadBigo}
+            ,#{backUpDiskUsageChk}
+            ,#{backUpDiskUsageBigo}
+            ,#{backUpProcessChk}
+            ,#{backUpProcessBigo}
+        )
+
+    </insert>
+
+    <insert id="insertErpDailyVMMain" parameterType="com.damg.upit.monitor.dailyCheck.domain.erpDaily.model.MInsertErpDailyVMMain"
+            useGeneratedKeys="true" keyProperty="erpMainId">
+
+        /*insertErpDailyVMMain*/
+
+        INSERT INTO ERP_DAILY_VM (
+
+                 ERP_VM_ID
+                ,ERP_MAIN_ID
+                ,BNK1_CPUUSAGE_CHK
+                ,BNK1_CPUUSAGE_BIGO
+                ,BNK1_MEMUSAGE_CHK
+                ,BNK1_MEMUSAGE_BIGO
+                ,BNK1_DISKUSAGE_CHK
+                ,BNK1_DISKUSAGE_BIGO
+                ,BNK1_EVENT_CHK
+                ,BNK1_EVENT_BIGO
+                ,BNK2_CPUUSAGE_CHK
+                ,BNK2_CPUUSAGE_BIGO
+                ,BNK2_MEMUSAGE_CHK
+                ,BNK2_MEMUSAGE_BIGO
+                ,BNK2_DISKUSAGE_CHK
+                ,BNK2_DISKUSAGE_BIGO
+                ,BNK2_EVENT_CHK
+                ,BNK2_EVENT_BIGO
+                ,TAX1_CPUUSAGE_CHK
+                ,TAX1_CPUUSAGE_BIGO
+                ,TAX1_MEMUSAGE_CHK
+                ,TAX1_MEMUSAGE_BIGO
+                ,TAX1_DISKUSAGE_CHK
+                ,TAX1_DISKUSAGE_BIGO
+                ,TAX1_EVENT_CHK
+                ,TAX1_EVENT_BIGO
+                ,TAX2_CPUUSAGE_CHK
+                ,TAX2_CPUUSAGE_BIGO
+                ,TAX2_MEMUSAGE_CHK
+                ,TAX2_MEMUSAGE_BIGO
+                ,TAX2_DISKUSAGE_CHK
+                ,TAX2_DISKUSAGE_BIGO
+                ,TAX2_EVENT_CHK
+                ,TAX2_EVENT_BIGO
+                ,EXWEB1_CPUUSAGE_CHK
+                ,EXWEB1_CPUUSAGE_BIGO
+                ,EXWEB1_MEMUSAGE_CHK
+                ,EXWEB1_MEMUSAGE_BIGO
+                ,EXWEB1_SWAPUSAGE_CHK
+                ,EXWEB1_SWAPUSAGE_BIGO
+                ,EXWEB1_OVERLOAD_CHK
+                ,EXWEB1_OVERLOAD_BIGO
+                ,EXWEB1_DISKUSAGE_CHK
+                ,EXWEB1_DISKUSAGE_BIGO
+                ,EXWEB1_PROCESS_CHK
+                ,EXWEB1_PROCESS_BIGO
+                ,EXWEB2_CPUUSAGE_CHK
+                ,EXWEB2_CPUUSAGE_BIGO
+                ,EXWEB2_MEMUSAGE_CHK
+                ,EXWEB2_MEMUSAGE_BIGO
+                ,EXWEB2_SWAPUSAGE_CHK
+                ,EXWEB2_SWAPUSAGE_BIGO
+                ,EXWEB2_OVERLOAD_CHK
+                ,EXWEB2_OVERLOAD_BIGO
+                ,EXWEB2_DISKUSAGE_CHK
+                ,EXWEB2_DISKUSAGE_BIGO
+                ,EXWEB2_PROCESS_CHK
+                ,EXWEB2_PROCESS_BIGO
+                ,INWEB1_CPUUSAGE_CHK
+                ,INWEB1_CPUUSAGE_BIGO
+                ,INWEB1_MEMUSAGE_CHK
+                ,INWEB1_MEMUSAGE_BIGO
+                ,INWEB1_SWAPUSAGE_CHK
+                ,INWEB1_SWAPUSAGE_BIGO
+                ,INWEB1_OVERLOAD_CHK
+                ,INWEB1_OVERLOAD_BIGO
+                ,INWEB1_DISKUSAGE_CHK
+                ,INWEB1_DISKUSAGE_BIGO
+                ,INWEB1_PROCESS_CHK
+                ,INWEB1_PROCESS_BIGO
+                ,INWEB2_CPUUSAGE_CHK
+                ,INWEB2_CPUUSAGE_BIGO
+                ,INWEB2_MEMUSAGE_CHK
+                ,INWEB2_MEMUSAGE_BIGO
+                ,INWEB2_SWAPUSAGE_CHK
+                ,INWEB2_SWAPUSAGE_BIGO
+                ,INWEB2_OVERLOAD_CHK
+                ,INWEB2_OVERLOAD_BIGO
+                ,INWEB2_DISKUSAGE_CHK
+                ,INWEB2_DISKUSAGE_BIGO
+                ,INWEB2_PROCESS_CHK
+                ,INWEB2_PROCESS_BIGO
+                ,WAS1_CPUUSAGE_CHK
+                ,WAS1_CPUUSAGE_BIGO
+                ,WAS1_MEMUSAGE_CHK
+                ,WAS1_MEMUSAGE_BIGO
+                ,WAS1_SWAPUSAGE_CHK
+                ,WAS1_SWAPUSAGE_BIGO
+                ,WAS1_OVERLOAD_CHK
+                ,WAS1_OVERLOAD_BIGO
+                ,WAS1_DISKUSAGE_CHK
+                ,WAS1_DISKUSAGE_BIGO
+                ,WAS1_PROCESS_CHK
+                ,WAS1_PROCESS_BIGO
+                ,WAS2_CPUUSAGE_CHK
+                ,WAS2_CPUUSAGE_BIGO
+                ,WAS2_MEMUSAGE_CHK
+                ,WAS2_MEMUSAGE_BIGO
+                ,WAS2_SWAPUSAGE_CHK
+                ,WAS2_SWAPUSAGE_BIGO
+                ,WAS2_OVERLOAD_CHK
+                ,WAS2_OVERLOAD_BIGO
+                ,WAS2_DISKUSAGE_CHK
+                ,WAS2_DISKUSAGE_BIGO
+                ,WAS2_PROCESS_CHK
+                ,WAS2_PROCESS_BIGO
+                ,ERPMGNT_CPUUSAGE_CHK
+                ,ERPMGNT_CPUUSAGE_BIGO
+                ,ERPMGNT_MEMUSAGE_CHK
+                ,ERPMGNT_MEMUSAGE_BIGO
+                ,ERPMGNT_SWAPUSAGE_CHK
+                ,ERPMGNT_SWAPUSAGE_BIGO
+                ,ERPMGNT_OVERLOAD_CHK
+                ,ERPMGNT_OVERLOAD_BIGO
+                ,ERPMGNT_DISKUSAGE_CHK
+                ,ERPMGNT_DISKUSAGE_BIGO
+                ,ERPMGNT_PROCESS_CHK
+                ,ERPMGNT_PROCESS_BIGO
+                ,DEVWEB_CPUUSAGE_CHK
+                ,DEVWEB_CPUUSAGE_BIGO
+                ,DEVWEB_MEMUSAGE_CHK
+                ,DEVWEB_MEMUSAGE_BIGO
+                ,DEVWEB_SWAPUSAGE_CHK
+                ,DEVWEB_SWAPUSAGE_BIGO
+                ,DEVWEB_OVERLOAD_CHK
+                ,DEVWEB_OVERLOAD_BIGO
+                ,DEVWEB_DISKUSAGE_CHK
+                ,DEVWEB_DISKUSAGE_BIGO
+                ,DEVWEB_PROCESS_CHK
+                ,DEVWEB_PROCESS_BIGO
+                ,DEVWAS_CPUUSAGE_CHK
+                ,DEVWAS_CPUUSAGE_BIGO
+                ,DEVWAS_MEMUSAGE_CHK
+                ,DEVWAS_MEMUSAGE_BIGO
+                ,DEVWAS_SWAPUSAGE_CHK
+                ,DEVWAS_SWAPUSAGE_BIGO
+                ,DEVWAS_OVERLOAD_CHK
+                ,DEVWAS_OVERLOAD_BIGO
+                ,DEVWAS_DISKUSAGE_CHK
+                ,DEVWAS_DISKUSAGE_BIGO
+                ,DEVWAS_PROCESS_CHK
+                ,DEVWAS_PROCESS_BIGO
+                ,JENIUS_CPUUSAGE_CHK
+                ,JENIUS_CPUUSAGE_BIGO
+                ,JENIUS_MEMUSAGE_CHK
+                ,JENIUS_MEMUSAGE_BIGO
+                ,JENIUS_SWAPUSAGE_CHK
+                ,JENIUS_SWAPUSAGE_BIGO
+                ,JENIUS_OVERLOAD_CHK
+                ,JENIUS_OVERLOAD_BIGO
+                ,JENIUS_DISKUSAGE_CHK
+                ,JENIUS_DISKUSAGE_BIGO
+                ,JENIUS_PROCESS_CHK
+                ,JENIUS_PROCESS_BIGO
+
+                ) VALUES (
+
+                 #{erpVmId}
+                ,#{erpMainId}
+                ,#{bnk1CpuUsageChk}
+                ,#{bnk1CpuUsageBigo}
+                ,#{bnk1MemUsageChk}
+                ,#{bnk1MemUsageBigo}
+                ,#{bnk1DiskUsageChk}
+                ,#{bnk1DiskUsageBigo}
+                ,#{bnk1EventChk}
+                ,#{bnk1EventBigo}
+                ,#{bnk2CpuUsageChk}
+                ,#{bnk2CpuUsageBigo}
+                ,#{bnk2MemUsageChk}
+                ,#{bnk2MemUsageBigo}
+                ,#{bnk2DiskUsageChk}
+                ,#{bnk2DiskUsageBigo}
+                ,#{bnk2EventChk}
+                ,#{bnk2EventBigo}
+                ,#{tax1CpuUsageChk}
+                ,#{tax1CpuUsageBigo}
+                ,#{tax1MemUsageChk}
+                ,#{tax1MemUsageBigo}
+                ,#{tax1DiskUsageChk}
+                ,#{tax1DiskUsageBigo}
+                ,#{tax1EventChk}
+                ,#{tax1EventBigo}
+                ,#{tax2CpuUsageChk}
+                ,#{tax2CpuUsageBigo}
+                ,#{tax2MemUsageChk}
+                ,#{tax2MemUsageBigo}
+                ,#{tax2DiskUsageChk}
+                ,#{tax2DiskUsageBigo}
+                ,#{tax2EventChk}
+                ,#{tax2EventBigo}
+                ,#{exWeb1CpuUsageChk}
+                ,#{exWeb1CpuUsageBigo}
+                ,#{exWeb1MemUsageChk}
+                ,#{exWeb1MemUsageBigo}
+                ,#{exWeb1SwapUsageChk}
+                ,#{exWeb1SwapUsageBigo}
+                ,#{exWeb1OverLoadChk}
+                ,#{exWeb1OverLoadBigo}
+                ,#{exWeb1DiskUsageChk}
+                ,#{exWeb1DiskUsageBigo}
+                ,#{exWeb1ProcessChk}
+                ,#{exWeb1ProcessBigo}
+                ,#{exWeb2CpuUsageChk}
+                ,#{exWeb2CpuUsageBigo}
+                ,#{exWeb2MemUsageChk}
+                ,#{exWeb2MemUsageBigo}
+                ,#{exWeb2SwapUsageChk}
+                ,#{exWeb2SwapUsageBigo}
+                ,#{exWeb2OverLoadChk}
+                ,#{exWeb2OverLoadBigo}
+                ,#{exWeb2DiskUsageChk}
+                ,#{exWeb2DiskUsageBigo}
+                ,#{exWeb2ProcessChk}
+                ,#{exWeb2ProcessBigo}
+                ,#{inWeb1CpuUsageChk}
+                ,#{inWeb1CpuUsageBigo}
+                ,#{inWeb1MemUsageChk}
+                ,#{inWeb1MemUsageBigo}
+                ,#{inWeb1SwapUsageChk}
+                ,#{inWeb1SwapUsageBigo}
+                ,#{inWeb1OverLoadChk}
+                ,#{inWeb1OverLoadBigo}
+                ,#{inWeb1DiskUsageChk}
+                ,#{inWeb1DiskUsageBigo}
+                ,#{inWeb1ProcessChk}
+                ,#{inWeb1ProcessBigo}
+                ,#{inWeb2CpuUsageChk}
+                ,#{inWeb2CpuUsageBigo}
+                ,#{inWeb2MemUsageChk}
+                ,#{inWeb2MemUsageBigo}
+                ,#{inWeb2SwapUsageChk}
+                ,#{inWeb2SwapUsageBigo}
+                ,#{inWeb2OverLoadChk}
+                ,#{inWeb2OverLoadBigo}
+                ,#{inWeb2DiskUsageChk}
+                ,#{inWeb2DiskUsageBigo}
+                ,#{inWeb2ProcessChk}
+                ,#{inWeb2ProcessBigo}
+                ,#{was1CpuUsageChk}
+                ,#{was1CpuUsageBigo}
+                ,#{was1MemUsageChk}
+                ,#{was1MemUsageBigo}
+                ,#{was1SwapUsageChk}
+                ,#{was1SwapUsageBigo}
+                ,#{was1OverLoadChk}
+                ,#{was1OverLoadBigo}
+                ,#{was1DiskUsageChk}
+                ,#{was1DiskUsageBigo}
+                ,#{was1ProcessChk}
+                ,#{was1ProcessBigo}
+                ,#{was2CpuUsageChk}
+                ,#{was2CpuUsageBigo}
+                ,#{was2MemUsageChk}
+                ,#{was2MemUsageBigo}
+                ,#{was2SwapUsageChk}
+                ,#{was2SwapUsageBigo}
+                ,#{was2OverLoadChk}
+                ,#{was2OverLoadBigo}
+                ,#{was2DiskUsageChk}
+                ,#{was2DiskUsageBigo}
+                ,#{was2ProcessChk}
+                ,#{was2ProcessBigo}
+                ,#{erpMgntCpuUsageChk}
+                ,#{erpMgntCpuUsageBigo}
+                ,#{erpMgntMemUsageChk}
+                ,#{erpMgntMemUsageBigo}
+                ,#{erpMgntSwapUsageChk}
+                ,#{erpMgntSwapUsageBigo}
+                ,#{erpMgntOverLoadChk}
+                ,#{erpMgntOverLoadBigo}
+                ,#{erpMgntDiskUsageChk}
+                ,#{erpMgntDiskUsageBigo}
+                ,#{erpMgntProcessChk}
+                ,#{erpMgntProcessBigo}
+                ,#{devWebCpuUsageChk}
+                ,#{devWebCpuUsageBigo}
+                ,#{devWebMemUsageChk}
+                ,#{devWebMemUsageBigo}
+                ,#{devWebSwapUsageChk}
+                ,#{devWebSwapUsageBigo}
+                ,#{devWebOverLoadChk}
+                ,#{devWebOverLoadBigo}
+                ,#{devWebDiskUsageChk}
+                ,#{devWebDiskUsageBigo}
+                ,#{devWebProcessChk}
+                ,#{devWebProcessBigo}
+                ,#{devWasCpuUsageChk}
+                ,#{devWasCpuUsageBigo}
+                ,#{devWasMemUsageChk}
+                ,#{devWasMemUsageBigo}
+                ,#{devWasSwapUsageChk}
+                ,#{devWasSwapUsageBigo}
+                ,#{devWasOverLoadChk}
+                ,#{devWasOverLoadBigo}
+                ,#{devWasDiskUsageChk}
+                ,#{devWasDiskUsageBigo}
+                ,#{devWasProcessChk}
+                ,#{devWasProcessBigo}
+                ,#{jeniusCpuUsageChk}
+                ,#{jeniusCpuUsageBigo}
+                ,#{jeniusMemUsageChk}
+                ,#{jeniusMemUsageBigo}
+                ,#{jeniusSwapUsageChk}
+                ,#{jeniusSwapUsageBigo}
+                ,#{jeniusOverLoadChk}
+                ,#{jeniusOverLoadBigo}
+                ,#{jeniusDiskUsageChk}
+                ,#{jeniusDiskUsageBigo}
+                ,#{jeniusProcessChk}
+                ,#{jeniusProcessBigo}
+        )
+    </insert>
+
+    <insert id="insertErpDailyStorageMain" parameterType="com.damg.upit.monitor.dailyCheck.domain.erpDaily.model.MInsertErpDailyStorageMain"
+            useGeneratedKeys="true" keyProperty="erpMainId">
+
+        /* insertErpDailyStorageMain */
+
+        INSERT INTO ERP_DAILY_STORAGE (
+
+                 ERP_STORAGE_ID
+                ,ERP_MAIN_ID
+                ,ERP_NASMAIN_CHK
+                ,ERP_NASMAIN_BIGO
+        VALUES (
+                 #{erpStorageId}
+                ,#{erpMainId}
+                ,#{erpNasSanClustChk}
+                ,#{erpNasSanClustBigo}
+        )
+    </insert>
+
+    <select id="selectErpDailyServiceMain" parameterType="long"
+            resultType="com.damg.upit.monitor.dailyCheck.domain.erpDaily.model.MInsertErpDailyServiceMain">
+
+
+        /* selectErpDailyServiceMain */
+
+        SELECT
+                 ERP_SERVICE_ID         AS erpServiceId
+                ,ERP_MAIN_ID            AS erpMainId
+                ,ERP_MAIL_CHK           AS erpMailServiceChk
+                ,ERP_MAIL_BIGO          AS erpMainServiceBigo
+                ,ERP_APPROVE_CHK        AS erpApproveServiceChk
+                ,ERP_APPROVE_BIGO       AS erpApproveServiceBigo
+                ,ERP_BACKUP_CHK         AS erpBackUpServiceChk
+                ,ERP_BACKUP_BIGO        AS erpBackUpServiceBigo
+        FROM
+                ERP_DAILY_SERVICE
+
+        WHERE
+                ERP_MAIN_ID     = #{erpMainId}
+    </select>
+
+    <select id="selectErpDailyServerMain" parameterType="long"
+            resultType="com.damg.upit.monitor.dailyCheck.domain.erpDaily.model.MInsertErpDailyServerMain">
+
+        SELECT
+                 ERP_SERVER_ID          AS erpServerId
+                ,ERP_MAIN_ID            AS erpMainId
+                ,MAIN1_CPUUSAGE_CHK     AS main1CpuUsageChk
+                ,MAIN1_CPUUSAGE_BIGO    AS main1CpuUsageBigo
+                ,MAIN1_MEMUSAGE_CHK     AS main1MemUsageChk
+                ,MAIN1_MEMUSAGE_BIGO    AS main1MemUsageBigo
+                ,MAIN1_DISKUSAGE_CHK    AS main1DiskUsageChk
+                ,MAIN1_DISKUSAGE_BIGO   AS main1DiskUsageBigo
+                ,MAIN1_CLUST_CHK        AS main1ClustChk
+                ,MAIN1_CSLUT_BIGO       AS main1ClustBigo
+                ,MAIN1_EVENT_CHK        AS main1EventChk
+                ,MAIN1_EVENT_BIGO       AS main1EventBigo
+                ,MAIN2_CPUUSAGE_CHK     AS main2CpuUsageChk
+                ,MAIN2_CPUUSAGE_BIGO    AS main2CpuUsageBigo
+                ,MAIN2_MEMUSAGE_CHK     AS main2MemUsageChk
+                ,MAIN2_MEMUSAGE_BIGO    AS main2MemUsageBigo
+                ,MAIN2_DISKUSAGE_CHK    AS main2DiskUsageChk
+                ,MAIN2_DISKUSAGE_BIGO   AS main2DiskUsageBigo
+                ,MAIN2_CLUST_CHK        AS main2ClustChk
+                ,MAIN2_CLUST_BIGO       AS main2ClustBigo
+                ,MAIN2_EVENT_CHK        AS main2EventChk
+                ,MAIN2_EVENT_BIGO       AS main2EventBigo
+                ,MAIN3_CPUUSAGE_CHK     AS main3CpuUsageChk
+                ,MAIN3_CPUUSAGE_BIGO    AS main3CpuUSageBigo
+                ,MAIN3_MEMUSAGE_CHK     AS main3MemUsageChk
+                ,MAIN3_MEMUSAGE_BIGO    AS main3MemUsageBigo
+                ,MAIN3_DISKUSAGE_CHK    AS main3DiskUsageChk
+                ,MAIN3_DISKUSAGE_BIGO   AS main3DiskUsageBigo
+                ,MAIN3_CLUST_CHK        AS main3ClustChk
+                ,MAIN3_CSLUT_BIGO       AS main3ClustBigo
+                ,MAIN3_EVENT_CHK        AS main3EventChk
+                ,MAIN3_EVENT_BIGO       AS main3EventBigo
+                ,DB1_CPUUSAGE_CHK       AS db1CpuUsageCHk
+                ,DB1_CPUUSAGE_BIGO      AS db1CpuUsageBigo
+                ,DB1_MEMUSAGE_CHK       AS db1MemUsageChk
+                ,DB1_MEMUSAGE_BIGO      AS db1MemUsageBigo
+                ,DB1_SWAPUSAGE_CHK      AS db1SwapUsageChk
+                ,DB1_SWAPUSAGE_BIGO     AS db1SwapUsageBigo
+                ,DB1_OVERLOAD_CHK       AS db1OverLoadChk
+                ,DB1_OVERLOAD_BIGO      AS db1OverLoadBigo
+                ,DB1_DISKUSAGE_CHK      AS db1DiskUsageChk
+                ,DB1_DISKUSAGE_BIGO     AS db1DiskUsageBigo
+                ,DB1_PROCESS_CHK        AS db1ProcessChk
+                ,DB1_PROCESS_BIGO       AS db1ProcessBigo
+                ,DB2_CPUUSAGE_CHK       AS db2CpuUsageChk
+                ,DB2_CPUUSAGE_BIGO      AS db2CpuUsageBigo
+                ,DB2_MEMUSAGE_CHK       AS db2MemUsageChk
+                ,DB2_MEMUSAGE_BIGO      AS db2MemUsageBigo
+                ,DB2_SWAPUSAGE_CHK      AS db2SwapUsageChk
+                ,DB2_SWAPUSAGE_BIGO     AS db2SwapUsageBigo
+                ,DB2_OVERLOAD_CHK       AS db2OverLoadChk
+                ,DB2_OVERLOAD_BIGO      AS db2OverLoadBigo
+                ,DB2_DISKUSAGE_CHK      AS db2DiskUsageChk
+                ,DB2_DISKUSAGE_BIGO     AS db2DiskUsageBigo
+                ,DB2_PROCESS_CHK        AS db2ProcessChk
+                ,DB2_PROCESS_BIGO       AS db2ProcessBigo
+                ,DB2_CPUUSAGE_CHK       AS db2CpuUsageChk
+                ,DB2_CPUUSAGE_BIGO      AS db2CpuUsageBigo
+                ,DEVDB_CPUUSAGE_CHK     AS devDbCpuUsageChk
+                ,DEVDB_CPUUSAGE_BIGO    AS devDbCpuUsageBigo
+                ,DEVDB_MEMUSAGE_CHK     AS devDbMemUsageChk
+                ,DEVDB_MEMUSAGE_BIGO    AS devDbMemUsageBigo
+                ,DEVDB_SWAPUSAGE_CHK    AS devDbSwapUsageChk
+                ,DEVDB_SWAPUSAGE_BIGO   AS devDbSwapUsageBigo
+                ,DEVDB_OVERLOAD_CHK     AS devDbOverLoadChk
+                ,DEVDB_OVERLOAD_BIGO    AS devDbOverLoadBigo
+                ,DEVDB_DISKUSAGE_CHK    AS devDbDiskUsageChk
+                ,DEVDB_DISKUSAGE_BIGO   AS devDbDiskUsageBigo
+                ,DEVDB_PROCESS_CHK      AS devDbProcessChk
+                ,DEVDB_PROCESS_BIGO     AS devDbProcessBigo
+                ,BACK_CPUUSAGE_CHK      AS backUpCpuUsageChk
+                ,BACK_CPUUSAGE_BIGO     AS backUpCpuUsageBigo
+                ,BACK_MEMUSAGE_CHK      AS backUpMemUsageChk
+                ,BACK_MEMUSAGE_BIGO     AS backUpMemUsageBigo
+                ,BACK_SWAPUSAGE_CHK     AS backUpSwapUsageChk
+                ,BACK_SWAPUSAGE_BIGO    AS backUpSwapUsageBigo
+                ,BACK_OVERLOAD_CHK      AS backUpOverLoadChk
+                ,BACK_OVERLOAD_BIGO     AS backUpOverLoadBigo
+                ,BACK_DISKUSAGE_CHK     AS backUpDiskUsageChk
+                ,BACK_DISKUSAGE_BIGO    AS backUpDiskUsageBigo
+                ,BACK_PROCESS_CHK       AS backUpProcessChk
+                ,BACK_PROCESS_BIGO      AS backUpProcessBigo
+
+        FROM
+
+                ERP_DAILY_SERVER
+
+        WHERE
+
+                ERP_MAIN_ID     = #{erpMainId}
+    </select>
+
+    <select id="selectErpDailyVMMain" parameterType="long"
+            resultType="com.damg.upit.monitor.dailyCheck.domain.erpDaily.model.MInsertErpDailyVMMain">
+
+        SELECT
+                 ERP_VM_ID              AS erpVmId
+                ,ERP_MAIN_ID            AS erpMainId
+                ,BNK1_CPUUSAGE_CHK      AS bnk1CpuUsageChk
+                ,BNK1_CPUUSAGE_BIGO     AS bnk1CpuUsageBigo
+                ,BNK1_MEMUSAGE_CHK      AS bnk1MemUsageChk
+                ,BNK1_MEMUSAGE_BIGO     AS bnk1MemUsageBigo
+                ,BNK1_DISKUSAGE_CHK     AS bnk1DiskUsageChk
+                ,BNK1_DISKUSAGE_BIGO    AS bnk1DiskUsageBigo
+                ,BNK1_EVENT_CHK         AS bnk1EventChk
+                ,BNK1_EVENT_BIGO        AS bnk1EventBigo
+                ,BNK2_CPUUSAGE_CHK      AS bnk2CpuUsageChk
+                ,BNK2_CPUUSAGE_BIGO     AS bnk2CpuUsageBigo
+                ,BNK2_MEMUSAGE_CHK      AS bnk2MemUsageChk
+                ,BNK2_MEMUSAGE_BIGO     AS bnk2MemUsageBigo
+                ,BNK2_DISKUSAGE_CHK     AS bnk2DiskUsageChk
+                ,BNK2_DISKUSAGE_BIGO    AS bnk2DiskUsageBigo
+                ,BNK2_EVENT_CHK         AS bnk2EventChk
+                ,BNK2_EVENT_BIGO        AS bnk2EventBigo
+                ,TAX1_CPUUSAGE_CHK      AS tax1CpuUsageChk
+                ,TAX1_CPUUSAGE_BIGO     AS tax1CpuUsageBigo
+                ,TAX1_MEMUSAGE_CHK      AS tax1MemUsageChk
+                ,TAX1_MEMUSAGE_BIGO     AS tax1MemUsageBigo
+                ,TAX1_DISKUSAGE_CHK     AS tax1DiskUsageChk
+                ,TAX1_DISKUSAGE_BIGO    AS tax1DiskUsageBigo
+                ,TAX1_EVENT_CHK         AS tax1EventChk
+                ,TAX1_EVENT_BIGO        AS tax1EventBigo
+                ,TAX2_CPUUSAGE_CHK      AS tax2CpuUsageChk
+                ,TAX2_CPUUSAGE_BIGO     AS tax2CpuUsageBigo
+                ,TAX2_MEMUSAGE_CHK      AS tax2MemUsageChk
+                ,TAX2_MEMUSAGE_BIGO     AS tax2MemUsageBigo
+                ,TAX2_DISKUSAGE_CHK     AS tax2DiskUsageChk
+                ,TAX2_DISKUSAGE_BIGO    AS tax2DiskUsageBigo
+                ,TAX2_EVENT_CHK         AS tax2EventChk
+                ,TAX2_EVENT_BIGO        AS tax2EventBigo
+                ,EXWEB1_CPUUSAGE_CHK    AS exWeb1CpuUsageChk
+                ,EXWEB1_CPUUSAGE_BIGO   AS exWeb1CpuUsageBigo
+                ,EXWEB1_MEMUSAGE_CHK    AS exWeb1MemUsageChk
+                ,EXWEB1_MEMUSAGE_BIGO   AS exWeb1MemUsageBigo
+                ,EXWEB1_SWAPUSAGE_CHK   AS exWeb1SwapUsageChk
+                ,EXWEB1_SWAPUSAGE_BIGO  AS exWeb1SwapUsageBigo
+                ,EXWEB1_OVERLOAD_CHK    AS exWeb1OverLoadChk
+                ,EXWEB1_OVERLOAD_BIGO   AS exWeb1OverLoadBigo
+                ,EXWEB1_DISKUSAGE_CHK   AS exWeb1DiskUsageChk
+                ,EXWEB1_DISKUSAGE_BIGO  AS exWeb1DiskUsageBigo
+                ,EXWEB1_PROCESS_CHK     AS exWeb1ProcessChk
+                ,EXWEB1_PROCESS_BIGO    AS exWeb1ProcessBigo
+                ,EXWEB2_CPUUSAGE_CHK    AS exWeb2CpuUsageChk
+                ,EXWEB2_CPUUSAGE_BIGO   AS exWeb2CpuUsageBigo
+                ,EXWEB2_MEMUSAGE_CHK    AS exWeb2MemUsageChk
+                ,EXWEB2_MEMUSAGE_BIGO   AS exWeb2MemUsageBigo
+                ,EXWEB2_SWAPUSAGE_CHK   AS exWeb2SwapUsageChk
+                ,EXWEB2_SWAPUSAGE_BIGO  AS exWeb2SwapUsageBigo
+                ,EXWEB2_OVERLOAD_CHK    AS exWeb2OverLoadChk
+                ,EXWEB2_OVERLOAD_BIGO   AS exWeb2OverLoadBigo
+                ,EXWEB2_DISKUSAGE_CHK   AS exWeb2DiskUsageChk
+                ,EXWEB2_DISKUSAGE_BIGO  AS exWeb2DiskUsageBigo
+                ,EXWEB2_PROCESS_CHK     AS exWeb2ProcessChk
+                ,EXWEB2_PROCESS_BIGO    AS exWeb2ProcessBigo
+                ,INWEB1_CPUUSAGE_CHK    AS inWeb1CpuUsageChk
+                ,INWEB1_CPUUSAGE_BIGO   AS inWeb1CpuUsageBigo
+                ,INWEB1_MEMUSAGE_CHK    AS inWeb1MemUsageChk
+                ,INWEB1_MEMUSAGE_BIGO   AS inWeb1MemUsageBigo
+                ,INWEB1_SWAPUSAGE_CHK   AS inWeb1SwapUsageChk
+                ,INWEB1_SWAPUSAGE_BIGO  AS inWeb1SwapUsageBigo
+                ,INWEB1_OVERLOAD_CHK    AS inWeb1OverLoadChk
+                ,INWEB1_OVERLOAD_BIGO   AS inWeb1OverLoadBigo
+                ,INWEB1_DISKUSAGE_CHK   AS inWeb1DiskUsageChk
+                ,INWEB1_DISKUSAGE_BIGO  AS inWeb1DiskUsageBigo
+                ,INWEB1_PROCESS_CHK     AS inWeb1ProcessChk
+                ,INWEB1_PROCESS_BIGO    AS inWeb1ProcessBigo
+                ,INWEB2_CPUUSAGE_CHK    AS inWeb2CpuUsageChk
+                ,INWEB2_CPUUSAGE_BIGO   AS inWeb2CpuUsageBigo
+                ,INWEB2_MEMUSAGE_CHK    AS inWeb2MemUsageChk
+                ,INWEB2_MEMUSAGE_BIGO   AS inWeb2MemUsageBigo
+                ,INWEB2_SWAPUSAGE_CHK   AS inWeb2SwapUsageChk
+                ,INWEB2_SWAPUSAGE_BIGO  AS inWeb2SwapUsageBigo
+                ,INWEB2_OVERLOAD_CHK    AS inWeb2OverLoadChk
+                ,INWEB2_OVERLOAD_BIGO   AS inWeb2OverLoadBigo
+                ,INWEB2_DISKUSAGE_CHK   AS inWeb2DiskUsageChk
+                ,INWEB2_DISKUSAGE_BIGO  AS inWeb2DiskUsageBigo
+                ,INWEB2_PROCESS_CHK     AS inWeb2ProcessChk
+                ,INWEB2_PROCESS_BIGO    AS inWeb2ProcessBigo
+                ,WAS1_CPUUSAGE_CHK      AS was1CpuUsageChk
+                ,WAS1_CPUUSAGE_BIGO     AS was1CpuUsageBigo
+                ,WAS1_MEMUSAGE_CHK      AS was1MemUsageChk
+                ,WAS1_MEMUSAGE_BIGO     AS was1MemUsageBigo
+                ,WAS1_SWAPUSAGE_CHK     AS was1SwapUsageChk
+                ,WAS1_SWAPUSAGE_BIGO    AS was1SwapUsageBigo
+                ,WAS1_OVERLOAD_CHK      AS was1OverLoadChk
+                ,WAS1_OVERLOAD_BIGO     AS was1OverLoadBigo
+                ,WAS1_DISKUSAGE_CHK     AS was1DiskUsageChk
+                ,WAS1_DISKUSAGE_BIGO    AS was1DiskUsageBigo
+                ,WAS1_PROCESS_CHK       AS was1ProcessChk
+                ,WAS1_PROCESS_BIGO      AS was1ProcessBigo
+                ,WAS2_CPUUSAGE_CHK      AS was2CpuUsageChk
+                ,WAS2_CPUUSAGE_BIGO     AS was2CpuUsageBigo
+                ,WAS2_MEMUSAGE_CHK      AS was2MemUsageChk
+                ,WAS2_MEMUSAGE_BIGO     AS was2MemUsageBigo
+                ,WAS2_SWAPUSAGE_CHK     AS was2SwapUsageChk
+                ,WAS2_SWAPUSAGE_BIGO    AS was2SwapUsageBigo
+                ,WAS2_OVERLOAD_CHK      AS was2OverLoadChk
+                ,WAS2_OVERLOAD_BIGO     AS was2OverLoadBigo
+                ,WAS2_DISKUSAGE_CHK     AS was2DiskUsageChk
+                ,WAS2_DISKUSAGE_BIGO    AS was2DiskUsageBigo
+                ,WAS2_PROCESS_CHK       AS was2ProcessChk
+                ,WAS2_PROCESS_BIGO      AS was2ProcessBigo
+                ,ERPMGNT_CPUUSAGE_CHK   AS erpMgntCpuUsageChk
+                ,ERPMGNT_CPUUSAGE_BIGO  AS erpMgntCpuUsageBigo
+                ,ERPMGNT_MEMUSAGE_CHK   AS erpMgntMemUsageChk
+                ,ERPMGNT_MEMUSAGE_BIGO  AS erpMgntMemUsageBigo
+                ,ERPMGNT_SWAPUSAGE_CHK  AS erpMgntSwapUsageChk
+                ,ERPMGNT_SWAPUSAGE_BIGO AS erpMgntSwapUsageBigo
+                ,ERPMGNT_OVERLOAD_CHK   AS erpMgntOverLoadChk
+                ,ERPMGNT_OVERLOAD_BIGO  AS erpMgntOverLoadBigo
+                ,ERPMGNT_DISKUSAGE_CHK  AS erpMgntDiskUsageChk
+                ,ERPMGNT_DISKUSAGE_BIGO AS erpMgntDiskUsageBigo
+                ,ERPMGNT_PROCESS_CHK    AS erpMgntProcessChk
+                ,ERPMGNT_PROCESS_BIGO   AS erpMgntProcessBigo
+                ,DEVWEB_CPUUSAGE_CHK    AS devWebCpuUsageChk
+                ,DEVWEB_CPUUSAGE_BIGO   AS devWebCpuUsageBigo
+                ,DEVWEB_MEMUSAGE_CHK    AS devWebMemUsageChk
+                ,DEVWEB_MEMUSAGE_BIGO   AS devWebMemUsageBigo
+                ,DEVWEB_SWAPUSAGE_CHK   AS devWebSwapUsageChk
+                ,DEVWEB_SWAPUSAGE_BIGO  AS devWebSwapUsageBigo
+                ,DEVWEB_OVERLOAD_CHK    AS devWebOverLoadChk
+                ,DEVWEB_OVERLOAD_BIGO   AS devWebOverLoadBigo
+                ,DEVWEB_DISKUSAGE_CHK   AS devWebDiskUsageChk
+                ,DEVWEB_DISKUSAGE_BIGO  AS devWebDiskUsageBigo
+                ,DEVWEB_PROCESS_CHK     AS devWebProcessChk
+                ,DEVWEB_PROCESS_BIGO    AS devWebProcessBigo
+                ,DEVWAS_CPUUSAGE_CHK    AS devWasCpuUsageChk
+                ,DEVWAS_CPUUSAGE_BIGO   AS devWasCpuUsageBigo
+                ,DEVWAS_MEMUSAGE_CHK    AS devWasMemUsageChk
+                ,DEVWAS_MEMUSAGE_BIGO   AS devWasMemUsageBigo
+                ,DEVWAS_SWAPUSAGE_CHK   AS devWasSwapUsageChk
+                ,DEVWAS_SWAPUSAGE_BIGO  AS devWasSwapUsageBigo
+                ,DEVWAS_OVERLOAD_CHK    AS devWasOverLoadChk
+                ,DEVWAS_OVERLOAD_BIGO   AS devWasOverLoadBigo
+                ,DEVWAS_DISKUSAGE_CHK   AS devWasDiskUsageChk
+                ,DEVWAS_DISKUSAGE_BIGO  AS devWasDiskUsageBigo
+                ,DEVWAS_PROCESS_CHK     AS devWasProcessChk
+                ,DEVWAS_PROCESS_BIGO    AS devWasProcessBigo
+                ,JENIUS_CPUUSAGE_CHK    AS jeniusCpuUsageChk
+                ,JENIUS_CPUUSAGE_BIGO   AS jeniusCpuUsageBigo
+                ,JENIUS_MEMUSAGE_CHK    AS jeniusMemUsageChk
+                ,JENIUS_MEMUSAGE_BIGO   AS jeniusMemUsageBigo
+                ,JENIUS_SWAPUSAGE_CHK   AS jeniusSwapUsageChk
+                ,JENIUS_SWAPUSAGE_BIGO  AS jeniusSwapUsageBigo
+                ,JENIUS_OVERLOAD_CHK    AS jeniusOverLoadChk
+                ,JENIUS_OVERLOAD_BIGO   AS jeniusOverLoadBigo
+                ,JENIUS_DISKUSAGE_CHK   AS jeniusDiskUsageChk
+                ,JENIUS_DISKUSAGE_BIGO  AS jeniusDiskUsageBigo
+                ,JENIUS_PROCESS_CHK     AS jeniusProcessChk
+                ,JENIUS_PROCESS_BIGO    AS jeniusProcessBigo
+        FROM
+                ERP_DAILY_VM
+        WHERE
+                ERP_MAIN_ID     = #{erpMainId}
+    </select>
+
+    <select id="selectErpDailyStorageMain" parameterType="long"
+            resultType="com.damg.upit.monitor.dailyCheck.domain.erpDaily.model.MInsertErpDailyStorageMain">
+
+        SELECT
+                 ERP_STORAGE_ID         AS erpStorageId
+                ,ERP_MAIN_ID            AS erpMainId
+                ,ERP_NASCLUST_CHK       AS erpNasSanClustChk
+                ,ERP_NASCLUST_BIGO      AS erpNasSanClustBigo
+        FROM
+                ERP_DAILY_STORAGE
+        WHERE
+                ERP_MAIN_ID     = #{erpMainId}
+
+    </select>
+
+    <update id="updateErpDailyServiceMain"
+            parameterType="com.damg.upit.monitor.dailyCheck.domain.erpDaily.model.MInsertErpDailyServiceMain">
+
+        /* updateErpDailyServiceMain */
+
+        UPDATE
+                 ERP_DAILY_SERVICE
+
+        SET
+                 ERP_MAIL_CHK       = #{erpMailServiceChk}
+                ,ERP_MAIL_BIGO      = #{erpMailServiceBigo}
+                ,ERP_APPROVE_CHK    = #{erpApproveServiceChk}
+                ,ERP_APPROVE_BIGO   = #{erpApproveServiceBigo}
+                ,ERP_BACKUP_CHK     = #{erpBackUpServiceChk}
+                ,ERP_BACKUP_BIGO    = #{erpBackUpServiceBigo}
+        WHERE
+                ERP_MAIN_ID     = #{erpMainId}
+    </update>
+    <update id="updateErpDailyServerMain"
+            parameterType="com.damg.upit.monitor.dailyCheck.domain.erpDaily.model.MInsertErpDailyServerMain">
+
+        UPDATE
+                 ERP_DAILY_SERVER
+        SET
+                 MAIN1_CPUUSAGE_CHK         = #{main1CpuUsageChk}
+                ,MAIN1_CPUUSAGE_BIGO        = #{main1CpuUsageBigo}
+                ,MAIN1_MEMUSAGE_CHK         = #{main1MemUsageChk}
+                ,MAIN1_MEMUSAGE_BIGO        = #{main1MemUsageBigo}
+                ,MAIN1_DISKUSAGE_CHK        = #{main1DiskUsageChk}
+                ,MAIN1_DISKUSAGE_BIGO       = #{main1DiskUsageBigo}
+                ,MAIN1_CLUST_CHK            = #{main1ClustChk}
+                ,MAIN1_CSLUT_BIGO           = #{main1ClustBigo}
+                ,MAIN1_EVENT_CHK            = #{main1EventChk}
+                ,MAIN1_EVENT_BIGO           = #{main1EventBigo}
+                ,MAIN2_CPUUSAGE_CHK         = #{main2CpuUsageChk}
+                ,MAIN2_CPUUSAGE_BIGO        = #{main2CpuUsageBigo}
+                ,MAIN2_MEMUSAGE_CHK         = #{main2MemUsageChk}
+                ,MAIN2_MEMUSAGE_BIGO        = #{main2MemUsageBigo}
+                ,MAIN2_DISKUSAGE_CHK        = #{main2DiskUsageChk}
+                ,MAIN2_DISKUSAGE_BIGO       = #{main2DiskUsageBigo}
+                ,MAIN2_CLUST_CHK            = #{main2ClustChk}
+                ,MAIN2_CSLUT_BIGO           = #{main2ClustBigo}
+                ,MAIN2_EVENT_CHK            = #{main2EventChk}
+                ,MAIN2_EVENT_BIGO           = #{main2EventBigo}
+                ,MAIN3_CPUUSAGE_CHK         = #{main3CpuUsageChk}
+                ,MAIN3_CPUUSAGE_BIGO        = #{main#CpuUsageBigo}
+                ,MAIN3_MEMUSAGE_CHK         = #{main3MemUsageChk}
+                ,MAIN3_MEMUSAGE_BIGO        = #{main3MemUsageBigo}
+                ,MAIN3_DISKUSAGE_CHK        = #{main3DiskUsageChk}
+                ,MAIN3_DISKUSAGE_BIGO       = #{main3DiskUsageBigo}
+                ,MAIN3_CLUST_CHK            = #{main3ClustChk}
+                ,MAIN3_CSLUT_BIGO           = #{main3ClustBigo}
+                ,MAIN3_EVENT_CHK            = #{main3EventChk}
+                ,MAIN3_EVENT_BIGO           = #{main3EventBigo}
+                ,DB1_CPUUSAGE_CHK           = #{db1CpuUsageChk}
+                ,DB1_CPUUSAGE_BIGO          = #{db1CpuUsageBigo}
+                ,DB1_MEMUSAGE_CHK           = #{db1MemUsageChk}
+                ,DB1_MEMUSAGE_BIGO          = #{db1MemUsageBigo}
+                ,DB1_SWAPUSAGE_CHK          = #{db1SwapUsageChk}
+                ,DB1_SWAPUSAGE_BIGO         = #{db1SwapUsageBigo}
+                ,DB1_OVERLOAD_CHK           = #{db1OverLoadChk}
+                ,DB1_OVERLOAD_BIGO          = #{db1OverLoadBigo}
+                ,DB1_DISKUSAGE_CHK          = #{db1DiskUsageChk}
+                ,DB1_DISKUSAGE_BIGO         = #{db1DiskUsageBigo}
+                ,DB1_PROCESS_CHK            = #{db1ProcessChk}
+                ,DB1_PROCESS_BIGO           = #{db1ProcessBigo}
+                ,DB1_CPUUSAGE_CHK           = #{db1CpuUsageChk}
+                ,DB1_CPUUSAGE_BIGO          = #{db1CpuUsageBigo}
+                ,DB2_CPUUSAGE_CHK           = #{db2CpuUsageChk}
+                ,DB2_CPUUSAGE_BIGO          = #{db2CpuUsageBigo}
+                ,DB2_MEMUSAGE_CHK           = #{db2MemUsageChk}
+                ,DB2_MEMUSAGE_BIGO          = #{db2MemUsageBigo}
+                ,DB2_SWAPUSAGE_CHK          = #{db2SwapUsageChk}
+                ,DB2_SWAPUSAGE_BIGO         = #{db2SwapUsageBigo}
+                ,DB2_OVERLOAD_CHK           = #{db2OverLoadChk}
+                ,DB2_OVERLOAD_BIGO          = #{db2OverLoadBigo}
+                ,DB2_DISKUSAGE_CHK          = #{db2DiskUsageChk}
+                ,DB2_DISKUSAGE_BIGO         = #{db2DiskUsageBigo}
+                ,DB2_PROCESS_CHK            = #{db2ProcessChk}
+                ,DB2_PROCESS_BIGO           = #{db2ProcessBigo}
+                ,DB2_CPUUSAGE_CHK           = #{db2CpuUsageChk}
+                ,DB2_CPUUSAGE_BIGO          = #{db2CpuUsageBigo}
+                ,DEVDB_CPUUSAGE_CHK         = #{devDbCpuUsageChk}
+                ,DEVDB_CPUUSAGE_BIGO        = #{devDbCpuUsageBigo}
+                ,DEVDB_MEMUSAGE_CHK         = #{devDbMemUsageChk}
+                ,DEVDB_MEMUSAGE_BIGO        = #{devDbMemUsageBigo}
+                ,DEVDB_SWAPUSAGE_CHK        = #{devDbSwapUsageChk}
+                ,DEVDB_SWAPUSAGE_BIGO       = #{devDbSwapUsageBigo}
+                ,DEVDB_OVERLOAD_CHK         = #{devDbOverLoadChk}
+                ,DEVDB_OVERLOAD_BIGO        = #{devDbOverLoadBigo}
+                ,DEVDB_DISKUSAGE_CHK        = #{devDbDiskUsageChk}
+                ,DEVDB_DISKUSAGE_BIGO       = #{devDbDiskUsageBigo}
+                ,DEVDB_PROCESS_CHK          = #{devDbProcessChk}
+                ,DEVDB_PROCESS_BIGO         = #{devDbProcessBigo}
+                ,BACK_CPUUSAGE_CHK          = #{backUpCpuUsageChk}
+                ,BACK_CPUUSAGE_BIGO         = #{backUpCpuUsageBigo}
+                ,BACK_MEMUSAGE_CHK          = #{backUpMemUsageChk}
+                ,BACK_MEMUSAGE_BIGO         = #{backUpMemUsageBigo}
+                ,BACK_SWAPUSAGE_CHK         = #{backUpSwapUsageChk}
+                ,BACK_SWAPUSAGE_BIGO        = #{backUpSwapUsageBigo}
+                ,BACK_OVERLOAD_CHK          = #{backUpOverLoadChk}
+                ,BACK_OVERLOAD_BIGO         = #{backUpOverLoadBigo}
+                ,BACK_DISKUSAGE_CHK         = #{backUpDiskUsageChk}
+                ,BACK_DISKUSAGE_BIGO        = #{backUpDiskUsageBigo}
+                ,BACK_PROCESS_CHK           = #{backUpProcessChk}
+                ,BACK_PROCESS_BIGO          = #{backUpProcessBigo}
+
+        WHERE
+                ERP_MAIN_ID     = #{erpMainId}
+    </update>
+
+    <update id="updateErpDailyVMMain"
+            parameterType="com.damg.upit.monitor.dailyCheck.domain.erpDaily.model.MInsertErpDailyVMMain">
+
+        UPDATE
+                 ERP_DAILY_VM
+        SET
+                 BNK1_CPUUSAGE_CHK          = #{bnk1CpuUsageChk}
+                ,BNK1_CPUUSAGE_BIGO         = #{bnk1CpuUsageBigo}
+                ,BNK1_MEMUSAGE_CHK          = #{bnk1MemUsageChk}
+                ,BNK1_MEMUSAGE_BIGO         = #{bnk1MemUsageBigo}
+                ,BNK1_DISKUSAGE_CHK         = #{bnk1DiskUsageChk}
+                ,BNK1_DISKUSAGE_BIGO        = #{bnk1DiskUsageBigo}
+                ,BNK1_EVENT_CHK             = #{bnk1EventChk}
+                ,BNK1_EVENT_BIGO            = #{bnk1EventBigo}
+                ,BNK2_CPUUSAGE_CHK          = #{bnk2CpuUsageChk}
+                ,BNK2_CPUUSAGE_BIGO         = #{bnk2CpuUsageBigo}
+                ,BNK2_MEMUSAGE_CHK          = #{bnk2MemUsageChk}
+                ,BNK2_MEMUSAGE_BIGO         = #{bnk2MemUsageBigo}
+                ,BNK2_DISKUSAGE_CHK         = #{bnk2DiskUsageChk}
+                ,BNK2_DISKUSAGE_BIGO        = #{bnk2DiskUsageBigo}
+                ,BNK2_EVENT_CHK             = #{bnk2EventChk}
+                ,BNK2_EVENT_BIGO            = #{bnk2EventBigo}
+                ,TAX1_CPUUSAGE_CHK          = #{tax1CpuUsageChk}
+                ,TAX1_CPUUSAGE_BIGO         = #{tax1CpuUsageBigo}
+                ,TAX1_MEMUSAGE_CHK          = #{tax1MemUsageChk}
+                ,TAX1_MEMUSAGE_BIGO         = #{tax1MemUsageBigo}
+                ,TAX1_DISKUSAGE_CHK         = #{tax1DiskUsageChk}
+                ,TAX1_DISKUSAGE_BIGO        = #{tax1DiskUsageBigo}
+                ,TAX1_EVENT_CHK             = #{tax1EventChk}
+                ,TAX1_EVENT_BIGO            = #{tax1EventBigo}
+                ,TAX2_CPUUSAGE_CHK          = #{tax2CpuUsageChk}
+                ,TAX2_CPUUSAGE_BIGO         = #{tax2CpuUsageBigo}
+                ,TAX2_MEMUSAGE_CHK          = #{tax2MemUsageChk}
+                ,TAX2_MEMUSAGE_BIGO         = #{tax2MemUsageBigo}
+                ,TAX2_DISKUSAGE_CHK         = #{tax2DiskUsageChk}
+                ,TAX2_DISKUSAGE_BIGO        = #{tax2DiskUsageBigo}
+                ,TAX2_EVENT_CHK             = #{tax2EventChk}
+                ,TAX2_EVENT_BIGO            = #{tax2EventBigo}
+                ,EXWEB1_CPUUSAGE_CHK        = #{exWeb1CpuUsageChk}
+                ,EXWEB1_CPUUSAGE_BIGO       = #{exWeb1CpuUsageBigo}
+                ,EXWEB1_MEMUSAGE_CHK        = #{exWeb1MemUsageChk}
+                ,EXWEB1_MEMUSAGE_BIGO       = #{exWeb1MemUsageBigo}
+                ,EXWEB1_SWAPUSAGE_CHK       = #{exWeb1SwapUsageChk}
+                ,EXWEB1_SWAPUSAGE_BIGO      = #{exWeb1SwapUsageBigo}
+                ,EXWEB1_OVERLOAD_CHK        = #{exWeb1OverLoadChk}
+                ,EXWEB1_OVERLOAD_BIGO       = #{exWeb1OverLoadBigo}
+                ,EXWEB1_DISKUSAGE_CHK       = #{exWeb1DiskUsageChk}
+                ,EXWEB1_DISKUSAGE_BIGO      = #{exWeb1DiskUsageBigo}
+                ,EXWEB1_PROCESS_CHK         = #{exWeb1ProcessChk}
+                ,EXWEB1_PROCESS_BIGO        = #{exWeb1ProcessBigo}
+                ,EXWEB2_CPUUSAGE_CHK        = #{exWeb2CpuUsageChk}
+                ,EXWEB2_CPUUSAGE_BIGO       = #{exWeb2CpuUsageBigo}
+                ,EXWEB2_MEMUSAGE_CHK        = #{exWeb2MemUsageChk}
+                ,EXWEB2_MEMUSAGE_BIGO       = #{exWeb2MemUsageBigo}
+                ,EXWEB2_SWAPUSAGE_CHK       = #{exWeb2SwapUsageChk}
+                ,EXWEB2_SWAPUSAGE_BIGO      = #{exWeb2SwapUsageBigo}
+                ,EXWEB2_OVERLOAD_CHK        = #{exWeb2OverLoadChk}
+                ,EXWEB2_OVERLOAD_BIGO       = #{exWeb2OverLoadBigo}
+                ,EXWEB2_DISKUSAGE_CHK       = #{exWeb2DiskUsageChk}
+                ,EXWEB2_DISKUSAGE_BIGO      = #{exWeb2DiskUsageBigo}
+                ,EXWEB2_PROCESS_CHK         = #{exWeb2ProcessChk}
+                ,EXWEB2_PROCESS_BIGO        = #{exWeb2ProcessBigo}
+                ,INWEB1_CPUUSAGE_CHK        = #{inWeb1CpuUsageChk}
+                ,INWEB1_CPUUSAGE_BIGO       = #{inWeb1CpuUsageBigo}
+                ,INWEB1_MEMUSAGE_CHK        = #{inWeb1MemUsageChk}
+                ,INWEB1_MEMUSAGE_BIGO       = #{inWeb1MemUsageBigo}
+                ,INWEB1_SWAPUSAGE_CHK       = #{inWeb1SwapUsageChk}
+                ,INWEB1_SWAPUSAGE_BIGO      = #{inWeb1SwapUsageBigo}
+                ,INWEB1_OVERLOAD_CHK        = #{inWeb1OverLoadChk}
+                ,INWEB1_OVERLOAD_BIGO       = #{inWeb1OverLoadBigo}
+                ,INWEB1_DISKUSAGE_CHK       = #{inWeb1DiskUsageChk}
+                ,INWEB1_DISKUSAGE_BIGO      = #{inWeb1DiskUsageBigo}
+                ,INWEB1_PROCESS_CHK         = #{inWeb1ProcessChk}
+                ,INWEB1_PROCESS_BIGO        = #{inWeb1ProcessBigo}
+                ,INWEB2_CPUUSAGE_CHK        = #{inWeb2CpuUsageChk}
+                ,INWEB2_CPUUSAGE_BIGO       = #{inWeb2CpuUsageBigo}
+                ,INWEB2_MEMUSAGE_CHK        = #{inWeb2MemUsageChk}
+                ,INWEB2_MEMUSAGE_BIGO       = #{inWeb2MemUsageBigo}
+                ,INWEB2_SWAPUSAGE_CHK       = #{inWeb2SwapUsageChk}
+                ,INWEB2_SWAPUSAGE_BIGO      = #{inWeb2SwapUsageBigo}
+                ,INWEB2_OVERLOAD_CHK        = #{inWeb2OverLoadChk}
+                ,INWEB2_OVERLOAD_BIGO       = #{inWeb2OverLoadBigo}
+                ,INWEB2_DISKUSAGE_CHK       = #{inWeb2DiskUsageChk}
+                ,INWEB2_DISKUSAGE_BIGO      = #{inWeb2DiskUsageBigo}
+                ,INWEB2_PROCESS_CHK         = #{inWeb2ProcessChk}
+                ,INWEB2_PROCESS_BIGO        = #{inWeb2ProcessBigo}
+                ,WAS1_CPUUSAGE_CHK          = #{was1CpuUsageChk}
+                ,WAS1_CPUUSAGE_BIGO         = #{was1CpuUsageBigo}
+                ,WAS1_MEMUSAGE_CHK          = #{was1MemUsageChk}
+                ,WAS1_MEMUSAGE_BIGO         = #{was1MemUsageBigo}
+                ,WAS1_SWAPUSAGE_CHK         = #{was1SwapUsageChk}
+                ,WAS1_SWAPUSAGE_BIGO        = #{was1SwapUsageBigo}
+                ,WAS1_OVERLOAD_CHK          = #{was1OverLoadChk}
+                ,WAS1_OVERLOAD_BIGO         = #{was1OverLoadBigo}
+                ,WAS1_DISKUSAGE_CHK         = #{was1DiskUsageChk}
+                ,WAS1_DISKUSAGE_BIGO        = #{was1DiskUsageBigo}
+                ,WAS1_PROCESS_CHK           = #{was1ProcessChk}
+                ,WAS1_PROCESS_BIGO          = #{was1ProcessBigo}
+                ,WAS2_CPUUSAGE_CHK          = #{was2CpuUsageChk}
+                ,WAS2_CPUUSAGE_BIGO         = #{was2CpuUsageBigo}
+                ,WAS2_MEMUSAGE_CHK          = #{was2MemUsageChk}
+                ,WAS2_MEMUSAGE_BIGO         = #{was2MemUsageBigo}
+                ,WAS2_SWAPUSAGE_CHK         = #{was2SwapUsageChk}
+                ,WAS2_SWAPUSAGE_BIGO        = #{was2SwapUsageBigo}
+                ,WAS2_OVERLOAD_CHK          = #{was2OverLoadChk}
+                ,WAS2_OVERLOAD_BIGO         = #{was2OverLoadBigo}
+                ,WAS2_DISKUSAGE_CHK         = #{was2DiskUsageChk}
+                ,WAS2_DISKUSAGE_BIGO        = #{was2DiskUsageBigo}
+                ,WAS2_PROCESS_CHK           = #{was2ProcessChk}
+                ,WAS2_PROCESS_BIGO          = #{was2ProcessBigo}
+                ,ERPMGNT_CPUUSAGE_CHK       = #{erpMgntCpuUsageChk}
+                ,ERPMGNT_CPUUSAGE_BIGO      = #{erpMgntCpuUsageBigo}
+                ,ERPMGNT_MEMUSAGE_CHK       = #{erpMgntMemUsageChk}
+                ,ERPMGNT_MEMUSAGE_BIGO      = #{erpMgntMemUsageBigo}
+                ,ERPMGNT_SWAPUSAGE_CHK      = #{erpMgntSwapUsageChk}
+                ,ERPMGNT_SWAPUSAGE_BIGO     = #{erpMgntSwapUsageBigo}
+                ,ERPMGNT_OVERLOAD_CHK       = #{erpMgntOverLoadChk}
+                ,ERPMGNT_OVERLOAD_BIGO      = #{erpMgntOverLoadBigo}
+                ,ERPMGNT_DISKUSAGE_CHK      = #{erpMgntDiskUsageChk}
+                ,ERPMGNT_DISKUSAGE_BIGO     = #{erpMgntDiskUsageBigo}
+                ,ERPMGNT_PROCESS_CHK        = #{erpMgntProcessChk}
+                ,ERPMGNT_PROCESS_BIGO       = #{erpMgntProcessBigo}
+                ,DEVWEB_CPUUSAGE_CHK        = #{devWebCpuUsageChk}
+                ,DEVWEB_CPUUSAGE_BIGO       = #{devWebCpuUsageBigo}
+                ,DEVWEB_MEMUSAGE_CHK        = #{devWebMemUsageChk}
+                ,DEVWEB_MEMUSAGE_BIGO       = #{devWebMemUsageBigo}
+                ,DEVWEB_SWAPUSAGE_CHK       = #{devWebSwapUsageChk}
+                ,DEVWEB_SWAPUSAGE_BIGO      = #{devWebSwapUsageBigo}
+                ,DEVWEB_OVERLOAD_CHK        = #{devWebOverLoadChk}
+                ,DEVWEB_OVERLOAD_BIGO       = #{devWebOverLoadBigo}
+                ,DEVWEB_DISKUSAGE_CHK       = #{devWebDiskUsageChk}
+                ,DEVWEB_DISKUSAGE_BIGO      = #{devWebDiskUsageBigo}
+                ,DEVWEB_PROCESS_CHK         = #{devWebProcessChk}
+                ,DEVWEB_PROCESS_BIGO        = #{devWebProcessBigo}
+                ,DEVWAS_CPUUSAGE_CHK        = #{devWasCpuUsageChk}
+                ,DEVWAS_CPUUSAGE_BIGO       = #{devWasCpuUsageBigo}
+                ,DEVWAS_MEMUSAGE_CHK        = #{devWasMemUsageChk}
+                ,DEVWAS_MEMUSAGE_BIGO       = #{devWasMemUsageBigo}
+                ,DEVWAS_SWAPUSAGE_CHK       = #{devWasSwapUsageChk}
+                ,DEVWAS_SWAPUSAGE_BIGO      = #{devWasSwapUsageBigo}
+                ,DEVWAS_OVERLOAD_CHK        = #{devWasOverLoadChk}
+                ,DEVWAS_OVERLOAD_BIGO       = #{devWasOverLoadBigo}
+                ,DEVWAS_DISKUSAGE_CHK       = #{devWasDiskUsageChk}
+                ,DEVWAS_DISKUSAGE_BIGO      = #{devWasDiskUsageBigo}
+                ,DEVWAS_PROCESS_CHK         = #{devWasProcessChk}
+                ,DEVWAS_PROCESS_BIGO        = #{devWasProcessBigo}
+                ,JENIUS_CPUUSAGE_CHK        = #{jeniusCpuUsageChk}
+                ,JENIUS_CPUUSAGE_BIGO       = #{jeniusCpuUsageBigo}
+                ,JENIUS_MEMUSAGE_CHK        = #{jeniusMemUsageChk}
+                ,JENIUS_MEMUSAGE_BIGO       = #{jeniusMemUsageBigo}
+                ,JENIUS_SWAPUSAGE_CHK       = #{jeniusSwapUsageChk}
+                ,JENIUS_SWAPUSAGE_BIGO      = #{jeniusSwapUsageBigo}
+                ,JENIUS_OVERLOAD_CHK        = #{jeniusOverLoadChk}
+                ,JENIUS_OVERLOAD_BIGO       = #{jeniusOverLoadBigo}
+                ,JENIUS_DISKUSAGE_CHK       = #{jeniusDiskUsageChk}
+                ,JENIUS_DISKUSAGE_BIGO      = #{jeniusDiskUsageBigo}
+                ,JENIUS_PROCESS_CHK         = #{jeniusProcessChk}
+                ,JENIUS_PROCESS_BIGO        = #{jeniusProcessBigo}
+        WHERE
+                ERP_MAIN_ID     = #{erpMainId}
+    </update>
+
+    <update id="updateErpDailyStorageMain"
+            parameterType="com.damg.upit.monitor.dailyCheck.domain.erpDaily.model.MInsertErpDailyStorageMain">
+
+        UPDATE
+                ERP_DAILY_STORAGE
+        SET
+
+                 ERP_NASCLUST_CHK   = #{erpNasSanClustChk}
+                ,ERP_NASCLUST_BIGO  = #{erpNasSanClustBigo}
+        WHERE
+                ERP_MAIN_ID     = #{erpMainId}
+    </update>
+</mapper>

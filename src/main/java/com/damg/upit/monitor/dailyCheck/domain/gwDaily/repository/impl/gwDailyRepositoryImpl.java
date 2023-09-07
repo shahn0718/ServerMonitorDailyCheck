@@ -5,7 +5,6 @@ import com.damg.upit.monitor.dailyCheck.domain.gwDaily.model.MInsertGwDailyServe
 import com.damg.upit.monitor.dailyCheck.domain.gwDaily.model.MInsertGwDailyServiceMain;
 import com.damg.upit.monitor.dailyCheck.domain.gwDaily.model.MInsertGwDailyStorageMain;
 import com.damg.upit.monitor.dailyCheck.domain.gwDaily.repository.gwDailyRepository;
-import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
