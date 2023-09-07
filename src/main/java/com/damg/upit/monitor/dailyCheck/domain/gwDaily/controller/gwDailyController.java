@@ -8,7 +8,6 @@ import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MDailyCheckElemen
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckAdminMain;
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain;
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.service.mainDailyService;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,17 +23,16 @@ import java.util.List;
 public class gwDailyController {
 
     private final gwDailyService gwService;
+    private final mainDailyService mainService;
 
-    @Autowired
-    private mainDailyService mainService;
+    public gwDailyController(gwDailyService gwService, mainDailyService mainService) {
+        this.gwService = gwService;
+        this.mainService = mainService;
+    }
 
     private long gwSVMainId;
 
     public MDailyCheckElement mDailyCheckElement;
-
-    public gwDailyController(gwDailyService gwService) {
-        this.gwService = gwService;
-    }
 
     @GetMapping("/geniousDailyCheck")
     public String home(Model model){
