@@ -6,9 +6,14 @@ import com.damg.upit.monitor.dailyCheck.domain.etcDaily.model.ehr.MInsertEtcHrDa
 import com.damg.upit.monitor.dailyCheck.domain.etcDaily.model.ehr.MInsertEtcHrDailyServerMain;
 import com.damg.upit.monitor.dailyCheck.domain.etcDaily.model.ehr.MInsertEtcHrDailyServiceMain;
 import com.damg.upit.monitor.dailyCheck.domain.etcDaily.repository.etcHrDailyRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
+@Slf4j
+@Repository
 public class etcHrDailyRepositoryImpl implements etcHrDailyRepository {
 
     private final etcHrDailyMapper hrDailyMapper;

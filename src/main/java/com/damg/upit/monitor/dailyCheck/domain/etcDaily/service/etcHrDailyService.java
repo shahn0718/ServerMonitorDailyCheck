@@ -4,9 +4,13 @@ package com.damg.upit.monitor.dailyCheck.domain.etcDaily.service;
 import com.damg.upit.monitor.dailyCheck.domain.etcDaily.model.ehr.MInsertEtcHrDailyServerMain;
 import com.damg.upit.monitor.dailyCheck.domain.etcDaily.model.ehr.MInsertEtcHrDailyServiceMain;
 import com.damg.upit.monitor.dailyCheck.domain.etcDaily.repository.etcHrDailyRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
+@Service
 public class etcHrDailyService {
 
     private final etcHrDailyRepository ehrRepository;
