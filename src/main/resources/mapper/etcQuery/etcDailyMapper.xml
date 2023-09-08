@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.damg.upit.monitor.dailyCheck.domain.etcDaily.mapper.etcDailyMapper">
+
+    <insert id="insertEtcDailyServiceMain" parameterType="com.damg.upit.monitor.dailyCheck.domain.etcDaily.model.erp.MInsertEtcDailyServiceMain"
+            useGeneratedKeys="true" keyProperty="etcMainId">
+
+        /* insertEtcDailyServiceMain */
+
+        INSERT INTO ETC_DAILY_SERVICE (
+
+                 ETC_SERVICE_ID
+                ,ETC_MAIN_ID
+                ,ETC_MAIL_CHK
+                ,ETC_MAIL_BIGO
+                ,ETC_APPROVE_CHK
+                ,ETC_APPROVE_BIGO
+                ,ETC_BACKUP_CHK
+                ,ETC_BACKUP_BIGO
+
+        ) VALUES (
+
+                #{etcServiceId}
+                ,#{etcMainId}
+                ,#{etcMailServiceChk}
+                ,#{etcMailServiceBigo}
+                ,#{etcApproveServiceChk}
+                ,#{etcApproveServiceBigo}
+                ,#{etcBackUpServiceChk}
+                ,#{etcBackUpServiceBigo}
+
+        )
+    </insert>
+
+    <insert id="insertEtcDailyServerMain" parameterType="com.damg.upit.monitor.dailyCheck.domain.etcDaily.model.erp.MInsertEtcDailyServerMain"
+            useGeneratedKeys="true" keyProperty="etcMainId">
+
+        /* insertEtcDailyServerMain */
+
+        INSERT INTO ETC_DAILY_SERVER (
+
+                 ETC_SERVER_ID
+                ,ETC_MAIN_ID
+                ,CHAERPLINK_CPUUSAGE_CHK
+                ,CHAERPLINK_CPUUSAGE_BIGO
+                ,CHAERPLINK_MEMUSAGE_CHK
+                ,CHAERPLINK_MEMUSAGE_BIGO
+                ,CHAERPLINK_DISKUSAGE_CHK
+                ,CHAERPLINK_DISKUSAGE_BIGO
+                ,CHAERPLINK_EVENT_CHK
+                ,CHAERPLINK_EVENT_BIGO
+                ,CHAERPAPP1_CPUUSAGE_CHK
+                ,CHAERPAPP1_CPUUSAGE_BIGO
+                ,CHAERPAPP1_MEMUSAGE_CHK
+                ,CHAERPAPP1_MEMUSAGE_BIGO
+                ,CHAERPAPP1_DISKUSAGE_CHK
+                ,CHAERPAPP1_DISKUSAGE_BIGO
+                ,CHAERPAPP1_EVENT_CHK
+                ,CHAERPAPP1_EVENT_BIGO
+                ,CHAERPAPP2_CPUUSAGE_CHK
+                ,CHAERPAPP2_CPUUSAGE_BIGO
+                ,CHAERPAPP2_MEMUSAGE_CHK
+                ,CHAERPAPP2_MEMUSAGE_BIGO
+                ,CHAERPAPP2_DISKUSAGE_CHK
+                ,CHAERPAPP2_DISKUSAGE_BIGO
+                ,CHAERPAPP2_EVENT_CHK
+                ,CHAERPAPP2_EVENT_BIGO
+                ,CHAERPDB1_CPUUSAGE_CHK
+                ,CHAERPDB1_CPUUSAGE_BIGO
+                ,CHAERPDB1_MEMUSAGE_CHK
+                ,CHAERPDB1_MEMUSAGE_BIGO
+                ,CHAERPDB1_DISKUSAGE_CHK
+                ,CHAERPDB1_DISKUSAGE_BIGO
+                ,CHAERPDB1_EVENT_CHK
+                ,CHAERPDB1_EVENT_BIGO
+                ,CHAERPDB2_CPUUSAGE_CHK
+                ,CHAERPDB2_CPUUSAGE_BIGO
+                ,CHAERPDB2_MEMUSAGE_CHK
+                ,CHAERPDB2_MEMUSAGE_BIGO
+                ,CHAERPDB2_DISKUSAGE_CHK
+                ,CHAERPDB2_DISKUSAGE_BIGO
+                ,CHAERPDB2_EVENT_CHK
+                ,CHAERPDB2_EVENT_BIGO
+                ,CHAERPDEV_CPUUSAGE_CHK
+                ,CHAERPDEV_CPUUSAGE_BIGO
+                ,CHAERPDEV_MEMUSAGE_CHK
+                ,CHAERPDEV_MEMSUAGE_BIGO
+                ,CHAERPDEV_DISKUSAGE_CHK
+                ,CHAERPDEV_DISKUSAGE_BIGO
+                ,CHAERPDEV_EVENT_CHK
+                ,CHAERPDEV_EVENT_BIGO
+                ,DDCETI_CPUUSAGE_CHK
+                ,DDCETI_CPUUSAGE_BIGO
+                ,DDCETI_MEMUSAGE_CHK
+                ,DDCETI_MEMUSAGE_BIGO
+                ,DDCETI_DISKUSAGE_CHK
+                ,DDCETI_DISKUSAGE_BIGO
+                ,DDCETI_EVENT_CHK
+                ,DDCETI_EVENT_BIGO
+                ,DDCMISAPP_CPUUSAGE_CHK
+                ,DDCMISAPP_CPUUSAGE_BIGO
+                ,DDCMISAPP_MEMUSAGE_CHK
+                ,DDCMISAPP_MEMUSAGE_BIGO
+                ,DDCMISAPP_DISKUSAGE_CHK
+                ,DDCMISAPP_DISKUSAGE_BIGO
+                ,DDCMISAPP_EVENT_CHK
+                ,DDCMISAPP_EVENT_BIGO
+                ,DDCERPDB_CPUUSAGE_CHK
+                ,DDCERPDB_CPUUSAGE_BIGO
+                ,DDCERPDB_MEMUSAGE_CHK
+                ,DDCERPDB_MEMUSAGE_BIGO
+                ,DDCERPDB_DISKUSAGE_CHK
+                ,DDCERPDB_DISKUSAGE_BIGO
+                ,DDCERPDB_EVENT_CHK
+                ,DDCERPDB_EVNET_BIGO
+                ,DKF1_CPUUSAGE_CHK
+                ,DKF1_CPUUSAGE_BIGO
+                ,DKF1_MEMUSAGE_CHK
+                ,DKF1_MEMUSAGE_BIGO
+                ,DKF1_DISKUSAGE_CHK
+                ,DKF1_DISKUSAGE_BIGO
+                ,DKF1_EVENT_CHK
+                ,DKF1_EVENT_BIGO
+                ,DKF2_CPUUSAGE_CHK
+                ,DKF2_CPUUSAGE_BIGO
+                ,DKF2_MEMUSAGE_CHK
+                ,DKF2_MEMUSAGE_BIGO
+                ,DKF2_DISKUSAGE_CHK
+                ,DKF2_DISKUSAGE_BIGO
+                ,DKF2_EVENT_CHK
+                ,DKF2_EVENT_BIGO
+                ,DONGAB_CPUUSAGE_CHK
+                ,DONGAB_CPUUSAGE_BIGO
+                ,DONGAB_MEMUSAGE_CHK
+                ,DONGAB_MEMUSAGE_BIGO
+                ,DONGAB_EVENT_CHK
+                ,DONGAB_EVNET_BIGO
+
+        ) VALUES (
+
+                #{etcServerId}
+                ,#{etcMainId}
+                ,#{chaErpLinkCpuUsageChk}
+                ,#{chaErpLinkCpuUsageBigo}
+                ,#{chaErpLinkMemUsageChk}
+                ,#{chaErpLinkMemUsageBigo}
+                ,#{chaErpLinkDiskUsageChk}
+                ,#{chaErpLinkDiskUsageBigo}
+                ,#{chaErpLinkEventChk}
+                ,#{chaErpLinkEventBigo}
+                ,#{chaErpApp1CpuUsageChk}
+                ,#{chaErpApp1CpuUsageBigo}
+                ,#{chaErpApp1MemUsageChk}
+                ,#{chaErpApp1MemUsageBigo}
+                ,#{chaErpApp1DiskUsageChk}
+                ,#{chaErpApp1DiskUsageBigo}
+                ,#{chaErpApp1EventChk}
+                ,#{chaErpApp1EventBigo}
+                ,#{chaErpApp2CpuUsageChk}
+                ,#{chaErpApp2CpuUsageBigo}
+                ,#{chaErpApp2MemUsageChk}
+                ,#{chaErpApp2MemUsageBigo}
+                ,#{chaErpApp2DiskUsageChk}
+                ,#{chaErpApp2DiskUsageBigo}
+                ,#{chaErpApp2EventChk}
+                ,#{chaErpApp2EventBigo}
+                ,#{chaErpDb1CpuUsageChk}
+                ,#{chaErpDb1CpuUsageBigo}
+                ,#{chaErpDb1MemUsageChk}
+                ,#{chaErpDb1MemUsageBigo}
+                ,#{chaErpDb1DiskUsageChk}
+                ,#{chaErpDb1DiskUsageBigo}
+                ,#{chaErpDb1DiskEventChk}
+                ,#{chaErpDb1DiskEventBigo}
+                ,#{chaErpDb2CpuUsageChk}
+                ,#{chaErpDb2CpuUsageBigo}
+                ,#{chaErpDb2MemUsageChk}
+                ,#{chaErpDb2MemUsageBigo}
+                ,#{chaErpDb2DiskUsageChk}
+                ,#{chaErpDb2DiskUsageBigo}
+                ,#{chaErpDb2DiskEventChk}
+                ,#{chaErpDb2DiskEventBigo}
+                ,#{chaErpDevCpuUsageChk}
+                ,#{chaErpDevCpuUsageBigo}
+                ,#{chaErpDevMemUsageChk}
+                ,#{chaErpDevMemUsageBigo}
+                ,#{chaErpDevDiskUsageChk}
+                ,#{chaErpDevDiskUsageBigo}
+                ,#{chaErpDevEventChk}
+                ,#{chaErpDevEventBigo}
+                ,#{ddcEtiCpuUsageChk}
+                ,#{ddcEtiCpuUsageBigo}
+                ,#{ddcEtiMemUsageChk}
+                ,#{ddcEtiMemUsageBigo}
+                ,#{ddcEtiDiskUsageChk}
+                ,#{ddcEtiDiskUsageBigo}
+                ,#{ddcEtiEventChk}
+                ,#{ddcEtiEventBigo}
+                ,#{ddcMisAppCpuUsageChk}
+                ,#{ddcMisAppCpuUsageBigo}
+                ,#{ddcMisAppMemUsageChk}
+                ,#{ddcMisAppMemUsageBigo}
+                ,#{ddcMisAppDiskUsageChk}
+                ,#{ddcMisAppDiskUsageBigo}
+                ,#{ddcMisAppEventChk}
+                ,#{ddcMisAppEventBigo}
+                ,#{ddcErpDbCpuUsageChk}
+                ,#{ddcErpDbCpuUsageBigo}
+                ,#{ddcErpDbMemUsageChk}
+                ,#{ddcErpDbMemUsageBigo}
+                ,#{ddcErpDbDiskUsageChk}
+                ,#{ddcErpDbDiskUsageBigo}
+                ,#{ddcErpDbEventChk}
+                ,#{ddcErpDbEventBigo}
+                ,#{dkf1CpuUsageChk}
+                ,#{dkf1CpuUsageBigo}
+                ,#{dkf1MemUsageChk}
+                ,#{dkf1MemUsageBigo}
+                ,#{dkf1DiskUsageChk}
+                ,#{dkf1DiskUsageBigo}
+                ,#{dkf1EventChk}
+                ,#{dkf1EventBigo}
+                ,#{dkf2CpuUsageChk}
+                ,#{dkf2CpuUsageBigo}
+                ,#{dkf2MemUsageChk}
+                ,#{dkf2MemUsageBigo}
+                ,#{dkf2DiskUsageChk}
+                ,#{dkf2DiskUsageBigo}
+                ,#{dkf2EventChk}
+                ,#{dkf2EventBigo}
+                ,#{dongaBCpuUsageChk}
+                ,#{dongaBCpuUsageBigo}
+                ,#{dongaBMemUsageChk}
+                ,#{dongaBMemUsageBigo}
+                ,#{dongaBDiskUsageChk}
+                ,#{dongaBDiskUsageBigo}
+                ,#{dongaBEventChk}
+                ,#{dongaBEventBigo}
+        )
+
+        </insert>
+
+        <select id="selectEtcDailyServiceMain"
+                parameterType="com.damg.upit.monitor.dailyCheck.domain.etcDaily.model.erp.MInsertEtcDailyServiceMain">
+
+            /* selectEtcDailyServiceMain */
+
+           SELECT
+                         ETC_SERVICE_ID         AS  etcServiceId
+                        ,ETC_MAIN_ID            AS  etcMainId
+                        ,ETC_MAIL_CHK           AS  etcMailServiceChk
+                        ,ETC_MAIL_BIGO          AS  etcMailServiceBigo
+                        ,ETC_APPROVE_CHK        AS  etcApproveServiceChk
+                        ,ETC_APPROVE_BIGO       AS  etcApproveServiceBigo
+                        ,ETC_BACKUP_CHK         AS  etcBackUpServiceChk
+                        ,ETC_BACKUP_BIGO        AS  etcBackUpServiceBigo
+           FROM
+                        ETC_DAILY_SERVICE
+           WEHRE
+                        ETC_MAIN_ID = #{etcMainId}
+        </select>
+
+        <select id="selectEtcDailyServerMain"
+                parameterType="com.damg.upit.monitor.dailyCheck.domain.etcDaily.model.erp.MInsertEtcDailyServerMain">
+
+            /* selectEtcDailyServerMain */
+
+            SELECT
+                         ETC_SERVER_ID                  AS   etcServerId
+                        ,ETC_MAIN_ID                    AS   etcMainId
+                        ,CHAERPLINK_CPUUSAGE_CHK        AS   chaErpLinkCpuUsageChk
+                        ,CHAERPLINK_CPUUSAGE_BIGO       AS   chaErpLinkCpuUsageBigo
+                        ,CHAERPLINK_MEMUSAGE_CHK        AS   chaErpLinkMemUsageChk
+                        ,CHAERPLINK_MEMUSAGE_BIGO       AS   chaErpLinkMemUsageBigo
+                        ,CHAERPLINK_DISKUSAGE_CHK       AS   chaErpLinkDiskUsageChk
+                        ,CHAERPLINK_DISKUSAGE_BIGO      AS   chaErpLinkDiskUsageBigo
+                        ,CHAERPLINK_EVENT_CHK           AS   chaErpLinkEventChk
+                        ,CHAERPLINK_EVENT_BIGO          AS   chaErpLinkEventBigo
+                        ,CHAERPAPP1_CPUUSAGE_CHK        AS   chaErpApp1CpuUsageChk
+                        ,CHAERPAPP1_CPUUSAGE_BIGO       AS   chaErpApp1CpuUsageBigo
+                        ,CHAERPAPP1_MEMUSAGE_CHK        AS   chaErpApp1MemUsageChk
+                        ,CHAERPAPP1_MEMUSAGE_BIGO       AS   chaErpApp1MemUsageBigo
+                        ,CHAERPAPP1_DISKUSAGE_CHK       AS   chaErpApp1DiskUsageChk
+                        ,CHAERPAPP1_DISKUSAGE_BIGO      AS   chaErpApp1DiskUsageBigo
+                        ,CHAERPAPP1_EVENT_CHK           AS   chaErpApp1EventChk
+                        ,CHAERPAPP1_EVENT_BIGO          AS   chaErpApp1EventBigo
+                        ,CHAERPAPP2_CPUUSAGE_CHK        AS   chaErpApp2CpuUsageChk
+                        ,CHAERPAPP2_CPUUSAGE_BIGO       AS   chaErpApp2CpuUsageBigo
+                        ,CHAERPAPP2_MEMUSAGE_CHK        AS   chaErpApp2MemUsageChk
+                        ,CHAERPAPP2_MEMUSAGE_BIGO       AS   chaErpApp2MemUsageBigo
+                        ,CHAERPAPP2_DISKUSAGE_CHK       AS   chaErpApp2DiskUsageChk
+                        ,CHAERPAPP2_DISKUSAGE_BIGO      AS   chaErpApp2DiskUsageBigo
+                        ,CHAERPAPP2_EVENT_CHK           AS   chaErpApp2EventChk
+                        ,CHAERPAPP2_EVENT_BIGO          AS   chaErpApp2EventBigo
+                        ,CHAERPDB1_CPUUSAGE_CHK         AS   chaErpDb1CpuUsageChk
+                        ,CHAERPDB1_CPUUSAGE_BIGO        AS   chaErpDb1CpuUsageBigo
+                        ,CHAERPDB1_MEMUSAGE_CHK         AS   chaErpDb1MemUsageChk
+                        ,CHAERPDB1_MEMUSAGE_BIGO        AS   chaErpDb1MemUsageBigo
+                        ,CHAERPDB1_DISKUSAGE_CHK        AS   chaErpDb1DiskUsageChk
+                        ,CHAERPDB1_DISKUSAGE_BIGO       AS   chaErpDb1DiskUsageBigo
+                        ,CHAERPDB1_EVENT_CHK            AS   chaErpDb1DiskEventChk
+                        ,CHAERPDB1_EVENT_BIGO           AS   chaErpDb1DiskEventBigo
+                        ,CHAERPDB2_CPUUSAGE_CHK         AS   chaErpDb2CpuUsageChk
+                        ,CHAERPDB2_CPUUSAGE_BIGO        AS   chaErpDb2CpuUsageBigo
+                        ,CHAERPDB2_MEMUSAGE_CHK         AS   chaErpDb2MemUsageChk
+                        ,CHAERPDB2_MEMUSAGE_BIGO        AS   chaErpDb2MemUsageBigo
+                        ,CHAERPDB2_DISKUSAGE_CHK        AS   chaErpDb2DiskUsageChk
+                        ,CHAERPDB2_DISKUSAGE_BIGO       AS   chaErpDb2DiskUsageBigo
+                        ,CHAERPDB2_EVENT_CHK            AS   chaErpDb2DiskEventChk
+                        ,CHAERPDB2_EVENT_BIGO           AS   chaErpDb2DiskEventBigo
+                        ,CHAERPDEV_CPUUSAGE_CHK         AS   chaErpDevCpuUsageChk
+                        ,CHAERPDEV_CPUUSAGE_BIGO        AS   chaErpDevCpuUsageBigo
+                        ,CHAERPDEV_MEMUSAGE_CHK         AS   chaErpDevMemUsageChk
+                        ,CHAERPDEV_MEMSUAGE_BIGO        AS   chaErpDevMemUsageBigo
+                        ,CHAERPDEV_DISKUSAGE_CHK        AS   chaErpDevDiskUsageChk
+                        ,CHAERPDEV_DISKUSAGE_BIGO       AS   chaErpDevDiskUsageBigo
+                        ,CHAERPDEV_EVENT_CHK            AS   chaErpDevEventChk
+                        ,CHAERPDEV_EVENT_BIGO           AS   chaErpDevEventBigo
+                        ,DDCETI_CPUUSAGE_CHK            AS   ddcEtiCpuUsageChk
+                        ,DDCETI_CPUUSAGE_BIGO           AS   ddcEtiCpuUsageBigo
+                        ,DDCETI_MEMUSAGE_CHK            AS   ddcEtiMemUsageChk
+                        ,DDCETI_MEMUSAGE_BIGO           AS   ddcEtiMemUsageBigo
+                        ,DDCETI_DISKUSAGE_CHK           AS   ddcEtiDiskUsageChk
+                        ,DDCETI_DISKUSAGE_BIGO          AS   ddcEtiDiskUsageBigo
+                        ,DDCETI_EVENT_CHK               AS   ddcEtiEventChk
+                        ,DDCETI_EVENT_BIGO              AS   ddcEtiEventBigo
+                        ,DDCMISAPP_CPUUSAGE_CHK         AS   ddcMisAppCpuUsageChk
+                        ,DDCMISAPP_CPUUSAGE_BIGO        AS   ddcMisAppCpuUsageBigo
+                        ,DDCMISAPP_MEMUSAGE_CHK         AS   ddcMisAppMemUsageChk
+                        ,DDCMISAPP_MEMUSAGE_BIGO        AS   ddcMisAppMemUsageBigo
+                        ,DDCMISAPP_DISKUSAGE_CHK        AS   ddcMisAppDiskUsageChk
+                        ,DDCMISAPP_DISKUSAGE_BIGO       AS   ddcMisAppDiskUsageBigo
+                        ,DDCMISAPP_EVENT_CHK            AS   ddcMisAppEventChk
+                        ,DDCMISAPP_EVENT_BIGO           AS   ddcMisAppEventBigo
+                        ,DDCERPDB_CPUUSAGE_CHK          AS   ddcErpDbCpuUsageChk
+                        ,DDCERPDB_CPUUSAGE_BIGO         AS   ddcErpDbCpuUsageBigo
+                        ,DDCERPDB_MEMUSAGE_CHK          AS   ddcErpDbMemUsageChk
+                        ,DDCERPDB_MEMUSAGE_BIGO         AS   ddcErpDbMemUsageBigo
+                        ,DDCERPDB_DISKUSAGE_CHK         AS   ddcErpDbDiskUsageChk
+                        ,DDCERPDB_DISKUSAGE_BIGO        AS   ddcErpDbDiskUsageBigo
+                        ,DDCERPDB_EVENT_CHK             AS   ddcErpDbEventChk
+                        ,DDCERPDB_EVNET_BIGO            AS   ddcErpDbEventBigo
+                        ,DKF1_CPUUSAGE_CHK              AS   dkf1CpuUsageChk
+                        ,DKF1_CPUUSAGE_BIGO             AS   dkf1CpuUsageBigo
+                        ,DKF1_MEMUSAGE_CHK              AS   dkf1MemUsageChk
+                        ,DKF1_MEMUSAGE_BIGO             AS   dkf1MemUsageBigo
+                        ,DKF1_DISKUSAGE_CHK             AS   dkf1DiskUsageChk
+                        ,DKF1_DISKUSAGE_BIGO            AS   dkf1DiskUsageBigo
+                        ,DKF1_EVENT_CHK                 AS   dkf1EventChk
+                        ,DKF1_EVENT_BIGO                AS   dkf1EventBigo
+                        ,DKF2_CPUUSAGE_CHK              AS   dkf2CpuUsageChk
+                        ,DKF2_CPUUSAGE_BIGO             AS   dkf2CpuUsageBigo
+                        ,DKF2_MEMUSAGE_CHK              AS   dkf2MemUsageChk
+                        ,DKF2_MEMUSAGE_BIGO             AS   dkf2MemUsageBigo
+                        ,DKF2_DISKUSAGE_CHK             AS   dkf2DiskUsageChk
+                        ,DKF2_DISKUSAGE_BIGO            AS   dkf2DiskUsageBigo
+                        ,DKF2_EVENT_CHK                 AS   dkf2EventChk
+                        ,DKF2_EVENT_BIGO                AS   dkf2EventBigo
+                        ,DONGAB_CPUUSAGE_CHK            AS   dongaBCpuUsageChk
+                        ,DONGAB_CPUUSAGE_BIGO           AS   dongaBCpuUsageBigo
+                        ,DONGAB_MEMUSAGE_CHK            AS   dongaBMemUsageChk
+                        ,DONGAB_MEMUSAGE_BIGO           AS   dongaBMemUsageBigo
+                        ,DONGAB_DISKUSAGE_CHK           AS   dongaBDiskUsageChk
+                        ,DONGAB_DISKUSAGE_BIGO          AS   dongaBDiskUsageBigo
+                        ,DONGAB_EVENT_CHK               AS   dongaBEventChk
+                        ,DONGAB_EVNET_BIGO              AS   dongaBEventBigo
+            FROM
+
+                        ETC_DAILY_SERVER
+            WHERE
+                        ETC_MAIN_ID =   #{etcMainId}
+        </select>
+
+        <update id="updateEtcDailyServiceMain"
+                parameterType="com.damg.upit.monitor.dailyCheck.domain.etcDaily.model.erp.MInsertEtcDailyServiceMain">
+
+            /* updateEtcDailyServiceMain */
+
+            UPDATE ETC_DAILY_SERVICE
+
+            SET
+                         ETC_MAIL_CHK           = #{etcMailServiceChk}
+                        ,ETC_MAIL_BIGO          = #{etcMailServiceBigo}
+                        ,ETC_APPROVE_CHK        = #{etcApproveServiceChk}
+                        ,ETC_APPROVE_BIGO       = #{etcApproveServiceBigo}
+                        ,ETC_BACKUP_CHK         = #{etcBackUpServiceChk}
+                        ,ETC_BACKUP_BIGO        = #{etcBackUpServiceBigo}
+            WHERE
+
+                        ETC_MAIN_ID  = #{etcMainId}
+        </update>
+
+        <update id="updateEtcDailyServerMain"
+                parameterType="com.damg.upit.monitor.dailyCheck.domain.etcDaily.model.erp.MInsertEtcDailyServerMain">
+
+           /* updateEtcDailyServerMain */
+
+           UPDATE ETC_DAILY_SERVER
+
+           SET
+                         CHAERPLINK_CPUUSAGE_CHK        = #{chaErpLinkCpuUsageChk}
+                        ,CHAERPLINK_CPUUSAGE_BIGO       = #{chaErpLinkCpuUsageBigo}
+                        ,CHAERPLINK_MEMUSAGE_CHK        = #{chaErpLinkMemUsageChk}
+                        ,CHAERPLINK_MEMUSAGE_BIGO       = #{chaErpLinkMemUsageBigo}
+                        ,CHAERPLINK_DISKUSAGE_CHK       = #{chaErpLinkDiskUsageChk}
+                        ,CHAERPLINK_DISKUSAGE_BIGO      = #{chaErpLinkDiskUsageBigo}
+                        ,CHAERPLINK_EVENT_CHK           = #{chaErpLinkEventChk}
+                        ,CHAERPLINK_EVENT_BIGO          = #{chaErpLinkEventBigo}
+                        ,CHAERPAPP1_CPUUSAGE_CHK        = #{chaErpApp1CpuUsageChk}
+                        ,CHAERPAPP1_CPUUSAGE_BIGO       = #{chaErpApp1CpuUsageBigo}
+                        ,CHAERPAPP1_MEMUSAGE_CHK        = #{chaErpApp1MemUsageChk}
+                        ,CHAERPAPP1_MEMUSAGE_BIGO       = #{chaErpApp1MemUsageBigo}
+                        ,CHAERPAPP1_DISKUSAGE_CHK       = #{chaErpApp1DiskUsageChk}
+                        ,CHAERPAPP1_DISKUSAGE_BIGO      = #{chaErpApp1DiskUsageBigo}
+                        ,CHAERPAPP1_EVENT_CHK           = #{chaErpApp1EventChk}
+                        ,CHAERPAPP1_EVENT_BIGO          = #{chaErpApp1EventBigo}
+                        ,CHAERPAPP2_CPUUSAGE_CHK        = #{chaErpApp2CpuUsageChk}
+                        ,CHAERPAPP2_CPUUSAGE_BIGO       = #{chaErpApp2CpuUsageBigo}
+                        ,CHAERPAPP2_MEMUSAGE_CHK        = #{chaErpApp2MemUsageChk}
+                        ,CHAERPAPP2_MEMUSAGE_BIGO       = #{chaErpApp2MemUsageBigo}
+                        ,CHAERPAPP2_DISKUSAGE_CHK       = #{chaErpApp2DiskUsageChk}
+                        ,CHAERPAPP2_DISKUSAGE_BIGO      = #{chaErpApp2DiskUsageBigo}
+                        ,CHAERPAPP2_EVENT_CHK           = #{chaErpApp2EventChk}
+                        ,CHAERPAPP2_EVENT_BIGO          = #{chaErpApp2EventBigo}
+                        ,CHAERPDB1_CPUUSAGE_CHK         = #{chaErpDb1CpuUsageChk}
+                        ,CHAERPDB1_CPUUSAGE_BIGO        = #{chaErpDb1CpuUsageBigo}
+                        ,CHAERPDB1_MEMUSAGE_CHK         = #{chaErpDb1MemUsageChk}
+                        ,CHAERPDB1_MEMUSAGE_BIGO        = #{chaErpDb1MemUsageBigo}
+                        ,CHAERPDB1_DISKUSAGE_CHK        = #{chaErpDb1DiskUsageChk}
+                        ,CHAERPDB1_DISKUSAGE_BIGO       = #{chaErpDb1DiskUsageBigo}
+                        ,CHAERPDB1_EVENT_CHK            = #{chaErpDb1EventChk}
+                        ,CHAERPDB1_EVENT_BIGO           = #{chaErpDb1EventBigo}
+                        ,CHAERPDB2_CPUUSAGE_CHK         = #{chaErpDb2CpuUsageChk}
+                        ,CHAERPDB2_CPUUSAGE_BIGO        = #{chaErpDb2CpuUsageBigo}
+                        ,CHAERPDB2_MEMUSAGE_CHK         = #{chaErpDb2MemUsageChk}
+                        ,CHAERPDB2_MEMUSAGE_BIGO        = #{chaErpDb2MemUsageBigo}
+                        ,CHAERPDB2_DISKUSAGE_CHK        = #{chaErpDb2DiskUsageChk}
+                        ,CHAERPDB2_DISKUSAGE_BIGO       = #{chaErpDb2DiskUsageBigo}
+                        ,CHAERPDB2_EVENT_CHK            = #{chaErpDb2EventChk}
+                        ,CHAERPDB2_EVENT_BIGO           = #{chaErpDb2EventBigo}
+                        ,CHAERPDEV_CPUUSAGE_CHK         = #{chaErpDevCpuUsageChk}
+                        ,CHAERPDEV_CPUUSAGE_BIGO        = #{chaErpDevCpuUsageBigo}
+                        ,CHAERPDEV_MEMUSAGE_CHK         = #{chaErpDevMemUsageChk}
+                        ,CHAERPDEV_MEMSUAGE_BIGO        = #{chaErpDevMemUsageBigo}
+                        ,CHAERPDEV_DISKUSAGE_CHK        = #{chaErpDevDiskUsageChk}
+                        ,CHAERPDEV_DISKUSAGE_BIGO       = #{chaErpDevDiskUsageBigo}
+                        ,CHAERPDEV_EVENT_CHK            = #{chaErpDevEventChk}
+                        ,CHAERPDEV_EVENT_BIGO           = #{chaErpDevEventBigo}
+                        ,DDCETI_CPUUSAGE_CHK            = #{ddcEtiCpuUsageChk}
+                        ,DDCETI_CPUUSAGE_BIGO           = #{ddcEtiCpuUsageBigo}
+                        ,DDCETI_MEMUSAGE_CHK            = #{ddcEtiMemUsageChk}
+                        ,DDCETI_MEMUSAGE_BIGO           = #{ddcEtiMemUsageBigo}
+                        ,DDCETI_DISKUSAGE_CHK           = #{ddcEtiDiskUsageChk}
+                        ,DDCETI_DISKUSAGE_BIGO          = #{ddcEtiDiskUsageBigo}
+                        ,DDCETI_EVENT_CHK               = #{ddcEtiEventChk}
+                        ,DDCETI_EVENT_BIGO              = #{ddcEtiEventBigo}
+                        ,DDCMISAPP_CPUUSAGE_CHK         = #{ddcMisAppCpuUsageChk}
+                        ,DDCMISAPP_CPUUSAGE_BIGO        = #{ddcMisAppCpuUsageBigo}
+                        ,DDCMISAPP_MEMUSAGE_CHK         = #{ddcMisAppMemUsageChk}
+                        ,DDCMISAPP_MEMUSAGE_BIGO        = #{ddcMisAppMemUsageBigo}
+                        ,DDCMISAPP_DISKUSAGE_CHK        = #{ddcMisAppDiskUsageChk}
+                        ,DDCMISAPP_DISKUSAGE_BIGO       = #{ddcMisAppDiskUsageBigo}
+                        ,DDCMISAPP_EVENT_CHK            = #{ddcMisAppEventChk}
+                        ,DDCMISAPP_EVENT_BIGO           = #{ddcMisAppEventBigo}
+                        ,DDCERPDB_CPUUSAGE_CHK          = #{ddcErpDbCpuUsageChk}
+                        ,DDCERPDB_CPUUSAGE_BIGO         = #{ddcErpDbCpuUsageBigo}
+                        ,DDCERPDB_MEMUSAGE_CHK          = #{ddcErpDbMemUsageChk}
+                        ,DDCERPDB_MEMUSAGE_BIGO         = #{ddcErpDbMemUsageBigo}
+                        ,DDCERPDB_DISKUSAGE_CHK         = #{ddcErpDbDiskUsageChk}
+                        ,DDCERPDB_DISKUSAGE_BIGO        = #{ddcErpDbDiskUsageBigo}
+                        ,DDCERPDB_EVENT_CHK             = #{ddcErpDbEventChk}
+                        ,DDCERPDB_EVNET_BIGO            = #{ddcErpDbEventBigo}
+                        ,DKF1_CPUUSAGE_CHK              = #{dkf1CpuUsageChk}
+                        ,DKF1_CPUUSAGE_BIGO             = #{dkf1CpuUsageBigo}
+                        ,DKF1_MEMUSAGE_CHK              = #{dkf1MemUsageChk}
+                        ,DKF1_MEMUSAGE_BIGO             = #{dkf1MemUSageBigo}
+                        ,DKF1_DISKUSAGE_CHK             = #{dkf1DiskUsageChk}
+                        ,DKF1_DISKUSAGE_BIGO            = #{dkf1DiskUsageBigo}
+                        ,DKF1_EVENT_CHK                 = #{dkf1EventChk}
+                        ,DKF1_EVENT_BIGO                = #{dkf1EventBigo}
+                        ,DKF2_CPUUSAGE_CHK              = #{dkf2CpuUsageChk}
+                        ,DKF2_CPUUSAGE_BIGO             = #{dkf2CpuUsageBigo}
+                        ,DKF2_MEMUSAGE_CHK              = #{dkf2MemUsageChk}
+                        ,DKF2_MEMUSAGE_BIGO             = #{dkf2MemUsageBigo}
+                        ,DKF2_DISKUSAGE_CHK             = #{dkf2DiskUsageChk}
+                        ,DKF2_DISKUSAGE_BIGO            = #{dkf2DiskUsageBigo}
+                        ,DKF2_EVENT_CHK                 = #{dkf2EventChk}
+                        ,DKF2_EVENT_BIGO                = #{dkf2EventBigo}
+                        ,DONGAB_CPUUSAGE_CHK            = #{dongaBCpuUsageChk}
+                        ,DONGAB_CPUUSAGE_BIGO           = #{dongaBCpuUsageBigo}
+                        ,DONGAB_MEMUSAGE_CHK            = #{dongaBMemUsageChk}
+                        ,DONGAB_MEMUSAGE_BIGO           = #{dongaBMemUsageBigo}
+                        ,DONGAB_EVENT_CHK               = #{dongaBEventChk}
+                        ,DONGAB_EVNET_BIGO              = #{dongaBEventBigo}
+
+           WHERE
+
+                        ETC_MAIN_ID  = #{etcMainId}
+        </update>
+</mapper>

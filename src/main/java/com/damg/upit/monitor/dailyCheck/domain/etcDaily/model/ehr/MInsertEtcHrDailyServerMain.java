@@ -6,10 +6,10 @@ import lombok.ToString;
 
 @Getter @Setter
 @ToString
-public class MInsertEtcHRDailyServerMain {
+public class MInsertEtcHrDailyServerMain {
 
     private long etcHrServerId;
-    private long etcMainId;
+    private long etcHRMainId;
 
 
     /**

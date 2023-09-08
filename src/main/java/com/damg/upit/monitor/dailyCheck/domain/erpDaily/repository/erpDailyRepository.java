@@ -9,66 +9,66 @@ import java.util.List;
 
 public interface erpDailyRepository {
     /**
-     * ERP 일일점검(서버)
+     * INSERT ERP 일일점검(서버)
      * @param minsertErpDailyServerMain
      */
     void insertErpDailyServerMain(MInsertErpDailyServerMain minsertErpDailyServerMain);
     /**
-     * ERP 일일점검(서비스)
+     * INSERT ERP 일일점검(서비스)
      * @param mInsertErpDailyServiceMain
      */
     void insertErpDailyServiceMain(MInsertErpDailyServiceMain mInsertErpDailyServiceMain);
     /**
-     * ERP 일일점검(VM)
+     * INSERT ERP 일일점검(VM)
      * @param mInsertErpDailyVMMain
      */
     void insertErpDailyVMMain(MInsertErpDailyVMMain mInsertErpDailyVMMain);
     /**
-     * ERP 일일점검(스토리지)
+     * INSERT ERP 일일점검(스토리지)
      * @param mInsertErpDailyStorageMain
      */
     void insertErpDailyStorageMain(MInsertErpDailyStorageMain mInsertErpDailyStorageMain);
     /**
-     * ERP 일일점검(서버) 조회
+     * SELECT ERP 일일점검(서버)
      * @param erpMainId
      * @return
      */
     List<MInsertErpDailyServerMain> selectErpDailyServerMain(Long erpMainId);
     /**
-     * ERP 일일점검(서비스) 조회
+     * SELECT ERP 일일점검(서비스)
      * @param erpMainId
      * @return
      */
     List<MInsertErpDailyServiceMain> selectErpDailyServiceMain(Long erpMainId);
     /**
-     * ERP 일일점검(VM) 조회
+     * SELECT ERP 일일점검(VM)
      * @param erpMainId
      * @return
      */
     List<MInsertErpDailyVMMain> selectErpDailyVMMain(Long erpMainId);
     /**
-     * ERP 일일점검(스토리지) 조회
+     * SELECT ERP 일일점검(스토리지)
      * @param erpMainId
      * @return
      */
     List<MInsertErpDailyStorageMain> selectErpDailyStorageMain(Long erpMainId);
     /**
-     * ERP 일일점검(서버) 업데이트
+     * SELECT ERP 일일점검(서버)
      * @param mInsertErpDailyServerMain
      */
     void updateErpDailyServerMain(MInsertErpDailyServerMain mInsertErpDailyServerMain);
     /**
-     * ERP 일일점검(서비스) 업데이트
+     * UPDATE ERP 일일점검(서비스)
      * @param mInsertErpDailyServiceMain
      */
     void updateErpDailyServiceMain(MInsertErpDailyServiceMain mInsertErpDailyServiceMain);
     /**
-     * ERP 일일점검(VM) 업데이트
+     * UPDATE ERP 일일점검(VM)
      * @param mInsertErpDailyVMMain
      */
     void updateErpDailyVMMain(MInsertErpDailyVMMain mInsertErpDailyVMMain);
     /**
-     * ERP 일일점검(스토리지) 업데이트
+     * UPDATE ERP 일일점검(스토리지)
      * @param mInsertErpDailyStorageMain
      */
     void updateErpDailyStorageMain(MInsertErpDailyStorageMain mInsertErpDailyStorageMain);

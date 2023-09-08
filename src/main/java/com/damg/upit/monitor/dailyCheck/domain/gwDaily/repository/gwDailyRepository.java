@@ -8,24 +8,51 @@ import java.util.List;
 
 public interface gwDailyRepository {
     /**
-     * 지니어스 일일점검(서버)
+     * INSERT 지니어스 일일점검(서버)
      * @param mInsertGwDailyServerMain
      */
     void insertGwDailyServerMain(MInsertGwDailyServerMain mInsertGwDailyServerMain);
     /**
-     * 지니어스 일일점검(서비스)
+     * INSERT 지니어스 일일점검(서비스)
      * @param mInsertGwDailyServiceMain
      */
     void insertGwDailyServiceMain(MInsertGwDailyServiceMain mInsertGwDailyServiceMain);
     /**
-     * 지니어스 일일점검(스토리지)
+     * INSERT 지니어스 일일점검(스토리지)
      * @param mInsertGwDailyStorageMain
      */
     void insertGwDailyStorageMain(MInsertGwDailyStorageMain mInsertGwDailyStorageMain);
+    /**
+     * SELECT 지니어스 일일점검(서버)
+     * @param gwMainId
+     * @return
+     */
     List<MInsertGwDailyServerMain> selectGwDailyServerMain(Long gwMainId);
+    /**
+     * SELECT 지니어스 일일점검(서비스)
+     * @param gwMainId
+     * @return
+     */
     List<MInsertGwDailyServiceMain> selectGwDailyServiceMain(Long gwMainId);
+    /**
+     * SELECT 지니어스 일일점검(스토리지)
+     * @param gwMainId
+     * @return
+     */
     List<MInsertGwDailyStorageMain> selectGwDailyStroageMain(Long gwMainId);
+    /**
+     * UPDATE 지니어스 일일점검(서버)
+     * @param mInsertGwDailyServerMain
+     */
     void updateGwDailyServerMain(MInsertGwDailyServerMain mInsertGwDailyServerMain);
+    /**
+     * UPDATE 지니어스 일일점검(서비스)
+     * @param mInsertGwDailyServiceMain
+     */
     void updateGwDailyServiceMain(MInsertGwDailyServiceMain mInsertGwDailyServiceMain);
+    /**
+     * UPDATE 지니어스 일일점검(스토리지)
+     * @param mInsertGwDailyStorageMain
+     */
     void updateGwDailyStorageMain(MInsertGwDailyStorageMain mInsertGwDailyStorageMain);
 }
