@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.damg.upit.monitor.dailyCheck.domain.etcDaily.mapper.etcHrDailyMapper">
+    <insert id="insertEtcHrDailyServiceMain" parameterType="com.damg.upit.monitor.dailyCheck.domain.etcDaily.model.ehr.MInsertEtcHrDailyServiceMain"
+            useGeneratedKeys="true" keyProperty="etcHRMainId">
+
+        /* insertEtcHrDailyServiceMain */
+
+        INSERT INTO ETC_DAILY_HRSERVICE (
+
+                 ETC_HRSERVICE_ID
+                ,ETC_HRMAIN_ID
+                ,ETC_HRMAIL_CHK
+                ,ETC_HRMAIN_BIGO
+                ,ETC_HRAPPROVE_CHK
+                ,ETC_HRAPPROVE_BIGO
+                ,ETC_HRBACKUP_CHK
+                ,ETC_HRBACKUP_BIGO
+
+        ) VALUES (
+
+                 #{etcHrServiceId}
+                ,#{etcHRMainId}
+                ,#{etcHrMailServiceChk}
+                ,#{etcHrMailServiceBigo}
+                ,#{etcHrApproveServiceChk}
+                ,#{etcHrApproveServiceBigo}
+                ,#{etcHrBackUpServiceChk}
+                ,#{etcHrBackUpServiceBigo}
+        )
+    </insert>
+
+    <insert id="insertEtcHrDailyServerMain" parameterType="com.damg.upit.monitor.dailyCheck.domain.etcDaily.model.ehr.MInsertEtcHrDailyServerMain"
+            useGeneratedKeys="true" keyProperty="etcHRMainId">
+
+
+        /* insertEtcHrDailyServerMain */
+
+        INSERT INTO ETC_DAILY_HRSERVER (
+
+                 ETC_HRSERVER_ID
+                ,ETC_HRMAIN_ID
+                ,CHAEHRDB_CPUUSAGE_CHK
+                ,CHAEHRDB_CPUUSAGE_BIGO
+                ,CHAEHRDB_MEMUSAGE_CHK
+                ,CHAEHRDB_MEMUSAGE_BIGO
+                ,CHAEHRDB_DISKUSAGE_CHK
+                ,CHAEHRDB_DISKUSAGE_BIGO
+                ,CHAEHRDB_EVENT_CHK
+                ,CHAEHRDB_EVENT_BIGO
+                ,CHAEHRWEB_CPUUSAGE_CHK
+                ,CHAEHRWEB_CPUUSAGE_BIGO
+                ,CHAEHRWEB_MEMUSAGE_CHK
+                ,CHAEHRWEB_MEMUSAGE_BIGO
+                ,CHAEHRWEB_DISKUSAGE_CHK
+                ,CHAEHRWEB_DISKUSAGE_BIGO
+                ,CHAEHRWEB_EVENT_CHK
+                ,CHAEHRWEB_EVENT_BIGO
+                ,CHAEHRDEV_CPUUSAGE_CHK
+                ,CHAEHRDEV_CPUUSAGE_BIGO
+                ,CHAEHRDEV_MEMUSAGE_CHK
+                ,CHAEHRDEV_MEMUSAGE_BIGO
+                ,CHAEHRDEV_DISKUSAGE_CHK
+                ,CHAEHRDEV_DISKUSAGE_BIGO
+                ,CHAEHRDEV_EVENT_CHK
+                ,CHAEHRDEV_EVENT_BIGO
+                ,DDCEHRWEB_CPUUSAGE_CHK
+                ,DDCEHRWEB_CPUUSAGE_BIGO
+                ,DDCEHRWEB_MEMUSAGE_CHK
+                ,DDCEHRWEB_MEMUSAGE_BIGO
+                ,DDCEHRWEB_DISKUSAGE_CHK
+                ,DDCEHRWEB_DISKUSAGE_BIGO
+                ,DDCEHRWEB_EVENT_CHK
+                ,DDCEHRWEB_EVENT_BIGO
+
+        ) VALUES (
+
+                 #{etcHrServiceId}
+                ,#{etcHRMainId}
+                ,#{chaEhrDbCpuUsageChk}
+                ,#{chaEhrDbCpuUsageBigo}
+                ,#{chaEhrDbMemUsageChk}
+                ,#{chaEhrDbMemUsageBigo}
+                ,#{chaEhrDbDiskUsageChk}
+                ,#{chaEhrDbDiskUsageBigo}
+                ,#{chaEhrDbEventChk}
+                ,#{chaEhrDbEventBigo}
+                ,#{chaEhrWebCpuUsageChk}
+                ,#{chaEhrWebCpuUsageBigo}
+                ,#{chaEhrWebMemUsageChk}
+                ,#{chaEhrWebMemUsageBigo}
+                ,#{chaEhrWebDiskUsageChk}
+                ,#{chaEhrWebDiskUsageBigo}
+                ,#{chaEhrWebEventChk}
+                ,#{chaEhrWebEventBigo}
+                ,#{chaEhrDevCpuUsageChk}
+                ,#{chaEhrDevCpuUsageBigo}
+                ,#{chaEhrDevMemUsageChk}
+                ,#{chaEhrDevMemUsageBigo}
+                ,#{chaEhrDevDiskUsageChk}
+                ,#{chaEhrDevDiskUsageBigo}
+                ,#{chaEhrDevEventChk}
+                ,#{chaEhrDevEventBigo}
+                ,#{ddcEhrWebCpuUsageChk}
+                ,#{ddcEhrWebCpuUsageBigo}
+                ,#{ddcEhrWebMemUsageChk}
+                ,#{ddcEhrWebMemUsageBigo}
+                ,#{ddcEhrWebDiskUsageChk}
+                ,#{ddcEhrWebDiskUsageBigo}
+                ,#{ddcEhrWebEventChk}
+                ,#{ddcEhrWebEventBigo}
+        )
+    </insert>
+
+    <select id="selectEtcHrDailyServiceMain" parameterType="long"
+            resultType="com.damg.upit.monitor.dailyCheck.domain.etcDaily.model.ehr.MInsertEtcHrDailyServiceMain">
+
+        /* selectEtcHrDailyServiceMain */
+
+        SELECT
+                 ETC_HRSERVICE_ID       AS  etcHrServiceId
+                ,ETC_HRMAIN_ID          AS  etcHRMainId
+                ,ETC_HRMAIL_CHK         AS  etcHrMailServiceChk
+                ,ETC_HRMAIN_BIGO        AS  etcHrMailServiceBigo
+                ,ETC_HRAPPROVE_CHK      AS  etcHrApproveServiceChk
+                ,ETC_HRAPPROVE_BIGO     AS  etcHrApproveServiceBigo
+                ,ETC_HRBACKUP_CHK       AS  etcHrBackUpServiceChk
+                ,ETC_HRBACKUP_BIGO      AS  etcHrBackUpServiceBigo
+        FROM
+                ETC_DAILY_HRSERVICE
+        WHERE
+                ETC_HRMAIN_ID       = #{etcHRMainId}
+    </select>
+
+    <select id="selectEtcHrDailyServerMain" parameterType="long"
+            resultType="com.damg.upit.monitor.dailyCheck.domain.etcDaily.model.ehr.MInsertEtcHrDailyServerMain">
+
+        /* selectEtcHrDailyServiceMain */
+
+        SELECT
+                 ETC_HRSERVER_ID            AS  etcHrServerId
+                ,ETC_HRMAIN_ID              AS  etcHrMainId
+                ,CHAEHRDB_CPUUSAGE_CHK      AS  chaEhrDbCpuUsageChk
+                ,CHAEHRDB_CPUUSAGE_BIGO     AS  chaEhrDbCpuUsageBigo
+                ,CHAEHRDB_MEMUSAGE_CHK      AS  chaEhrDbMemUsageChk
+                ,CHAEHRDB_MEMUSAGE_BIGO     AS  chaEhrDbMemUsageBigo
+                ,CHAEHRDB_DISKUSAGE_CHK     AS  chaEhrDbDiskUsageChk
+                ,CHAEHRDB_DISKUSAGE_BIGO    AS  chaEhrDbDiskUsageBigo
+                ,CHAEHRDB_EVENT_CHK         AS  chaEhrDbEventChk
+                ,CHAEHRDB_EVENT_BIGO        AS  chaEhrDbEventBigo
+                ,CHAEHRWEB_CPUUSAGE_CHK     AS  chaEhrWebCpuUsageChk
+                ,CHAEHRWEB_CPUUSAGE_BIGO    AS  chaEhrWebCpuUsageBigo
+                ,CHAEHRWEB_MEMUSAGE_CHK     AS  chaEhrWebMemUsageChk
+                ,CHAEHRWEB_MEMUSAGE_BIGO    AS  chaEhrWebMemUsageBigo
+                ,CHAEHRWEB_DISKUSAGE_CHK    AS  chaEhrWebDiskUsageChk
+                ,CHAEHRWEB_DISKUSAGE_BIGO   AS  chaEhrWebDiskUsageBigo
+                ,CHAEHRWEB_EVENT_CHK        AS  chaEhrWebEventChk
+                ,CHAEHRWEB_EVENT_BIGO       AS  chaEhrWebEventBigo
+                ,CHAEHRDEV_CPUUSAGE_CHK     AS  chaEhrDevCpuUsageChk
+                ,CHAEHRDEV_CPUUSAGE_BIGO    AS  chaEhrDevCpuUsageBigo
+                ,CHAEHRDEV_MEMUSAGE_CHK     AS  chaEhrDevMemUsageChk
+                ,CHAEHRDEV_MEMUSAGE_BIGO    AS  chaEhrDevMemUsageBigo
+                ,CHAEHRDEV_DISKUSAGE_CHK    AS  chaEhrDevDiskUsageChk
+                ,CHAEHRDEV_DISKUSAGE_BIGO   AS  chaEhrDevDiskUsageBigo
+                ,CHAEHRDEV_EVENT_CHK        AS  chaEhrDevEventChk
+                ,CHAEHRDEV_EVENT_BIGO       AS  chaEhrDevEventBigo
+                ,DDCEHRWEB_CPUUSAGE_CHK     AS  ddcEhrWebCpuUsageChk
+                ,DDCEHRWEB_CPUUSAGE_BIGO    AS  ddcEhrWebCpuUsageBigo
+                ,DDCEHRWEB_MEMUSAGE_CHK     AS  ddcEhrWebMemUsageChk
+                ,DDCEHRWEB_MEMUSAGE_BIGO    AS  ddcEhrWebMemUsageBigo
+                ,DDCEHRWEB_DISKUSAGE_CHK    AS  ddcEhrWebDiskUsageChk
+                ,DDCEHRWEB_DISKUSAGE_BIGO   AS  ddcEhrWebDiskUsageBigo
+                ,DDCEHRWEB_EVENT_CHK        AS  ddcEhrWebEventChk
+                ,DDCEHRWEB_EVENT_BIGO       AS  ddcEhrWebEventBigo
+        FROM
+                ETC_DAILY_HRSERVER
+        WHERE
+                ETC_HRMAIN_ID       = #{etcHRMainId}
+    </select>
+
+    <update id="updateEtcHrDailyServiceMain"
+            parameterType="com.damg.upit.monitor.dailyCheck.domain.etcDaily.model.ehr.MInsertEtcHrDailyServiceMain">
+
+        /* updateEtcHrDailyServiceMain */
+
+        UPDATE
+                 ETC_DAILY_HRSERVICE
+
+        SET
+                 ETC_HRMAIL_CHK         = #{etcHrMailServiceChk}
+                ,ETC_HRMAIN_BIGO        = #{etcHrMailServiceBigo}
+                ,ETC_HRAPPROVE_CHK      = #{etcHrApproveServiceChk}
+                ,ETC_HRAPPROVE_BIGO     = #{etcHrApproveServiceBigo}
+                ,ETC_HRBACKUP_CHK       = #{etcHrBackUpServiceChk}
+                ,ETC_HRBACKUP_BIGO      = #{etcHrBackUpServiceBigo}
+        WHERE
+
+                ETC_HRMAIN_ID       = #{etcHRMainId}
+    </update>
+
+    <update id="updateEtcHrDailyServerMain"
+            parameterType="com.damg.upit.monitor.dailyCheck.domain.etcDaily.model.ehr.MInsertEtcHrDailyServiceMain">
+
+        /* updateEtcHrDailyServerMain */
+
+        UPDATE
+                ETC_DAILY_HRSERVER
+        SET
+                 ETC_HRSERVER_ID            = #{etcHrServerId}
+                ,ETC_HRMAIN_ID              = #{etcHRMainId}
+                ,CHAEHRDB_CPUUSAGE_CHK      = #{chaEhrDbCpuUsageChk}
+                ,CHAEHRDB_CPUUSAGE_BIGO     = #{chaEhrDbCpuUsageBigo}
+                ,CHAEHRDB_MEMUSAGE_CHK      = #{chaEhrDbMemUsageChk}
+                ,CHAEHRDB_MEMUSAGE_BIGO     = #{chaEhrDbMemUsageBigo}
+                ,CHAEHRDB_DISKUSAGE_CHK     = #{chaEhrDbDiskUsageChk}
+                ,CHAEHRDB_DISKUSAGE_BIGO    = #{chaEhrDbDiskUsageBigo}
+                ,CHAEHRDB_EVENT_CHK         = #{chaEhrDbEventChk}
+                ,CHAEHRDB_EVENT_BIGO        = #{chaEhrDbEventBigo}
+                ,CHAEHRWEB_CPUUSAGE_CHK     = #{chaEhrWebCpuUsageChk}
+                ,CHAEHRWEB_CPUUSAGE_BIGO    = #{chaEhrWebCpuUsageBigo}
+                ,CHAEHRWEB_MEMUSAGE_CHK     = #{chaEhrWebMemUsageChk}
+                ,CHAEHRWEB_MEMUSAGE_BIGO    = #{chaEhrWebMemUsageBigo}
+                ,CHAEHRWEB_DISKUSAGE_CHK    = #{chaEhrWebDiskUsageChk}
+                ,CHAEHRWEB_DISKUSAGE_BIGO   = #{chaEhrWebDiskUsageBigo}
+                ,CHAEHRWEB_EVENT_CHK        = #{chaEhrWebEventChk}
+                ,CHAEHRWEB_EVENT_BIGO       = #{chaEhrWebEventBigo}
+                ,CHAEHRDEV_CPUUSAGE_CHK     = #{chaEhrDevCpuUsageChk}
+                ,CHAEHRDEV_CPUUSAGE_BIGO    = #{chaEhrDevCpuUsageBigo}
+                ,CHAEHRDEV_MEMUSAGE_CHK     = #{chaEhrDevMemUsageChk}
+                ,CHAEHRDEV_MEMUSAGE_BIGO    = #{chaEhrDevMemUsageBigo}
+                ,CHAEHRDEV_DISKUSAGE_CHK    = #{chaEhrDevDiskUsageChk}
+                ,CHAEHRDEV_DISKUSAGE_BIGO   = #{chaEhrDevDiskUsageBigo}
+                ,CHAEHRDEV_EVENT_CHK        = #{chaEhrDevEventChk}
+                ,CHAEHRDEV_EVENT_BIGO       = #{chaEhrDevEventBigo}
+                ,DDCEHRWEB_CPUUSAGE_CHK     = #{ddcEhrWebCpuUsageChk}
+                ,DDCEHRWEB_CPUUSAGE_BIGO    = #{ddcEhrWebCpuUsageBigo}
+                ,DDCEHRWEB_MEMUSAGE_CHK     = #{ddcEhrWebMemUsageChk}
+                ,DDCEHRWEB_MEMUSAGE_BIGO    = #{ddcEhrWebMemUsageBigo}
+                ,DDCEHRWEB_DISKUSAGE_CHK    = #{ddcEhrWebDiskUsageChk}
+                ,DDCEHRWEB_DISKUSAGE_BIGO   = #{ddcEhrWebDiskUsageBigo}
+                ,DDCEHRWEB_EVENT_CHK        = #{ddcEhrWebEventChk}
+                ,DDCEHRWEB_EVENT_BIGO       = #{ddcEhrWebEventBigo}
+
+        WHERE
+                ETC_HRMAIN_ID       = #{etcHRMainId}
+    </update>
+
+</mapper>

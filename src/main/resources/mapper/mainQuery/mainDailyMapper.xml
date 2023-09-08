@@ -9,18 +9,18 @@
         /*selectDailyCheckBoardList*/
 
         SELECT
-             DAILY_MAIN_ID      AS dailyMainId
-            ,DAILY_MAIN_BOARDID AS dailyMainBoardId
-            ,DAILY_MAIN_CD      AS dailyMainCd
-            ,DAILY_MAIN_CDNM    AS dailyMainCdNm
-            ,DAILY_MAIN_CONTENT AS dailyMainContent
-            ,DAILY_MAIN_WRITER  AS dailyMainWriter
-            ,DAILY_MAIN_WRITERNO AS dailyMainWriterNo
-            ,DAILY_MAIN_VIEWCNT AS dailyMainViewCnt
-            ,DAILY_MAIN_CREATEDATE AS dailyMainCreateDate
-            ,DAILY_MAIN_MODDATE AS dailyMainModDate
+                     DAILY_MAIN_ID      AS dailyMainId
+                    ,DAILY_MAIN_BOARDID AS dailyMainBoardId
+                    ,DAILY_MAIN_CD      AS dailyMainCd
+                    ,DAILY_MAIN_CDNM    AS dailyMainCdNm
+                    ,DAILY_MAIN_CONTENT AS dailyMainContent
+                    ,DAILY_MAIN_WRITER  AS dailyMainWriter
+                    ,DAILY_MAIN_WRITERNO AS dailyMainWriterNo
+                    ,DAILY_MAIN_VIEWCNT AS dailyMainViewCnt
+                    ,DAILY_MAIN_CREATEDATE AS dailyMainCreateDate
+                    ,DAILY_MAIN_MODDATE AS dailyMainModDate
         FROM
-            MAIN_DAILY_BOARD
+                    MAIN_DAILY_BOARD
 
     </select>
 
@@ -30,20 +30,20 @@
         /*selectDailyCheckBoardList*/
 
         SELECT
-             DAILY_MAIN_ID      AS dailyMainId
-            ,DAILY_MAIN_BOARDID AS dailyMainBoardId
-            ,DAILY_MAIN_CD      AS dailyMainCd
-            ,DAILY_MAIN_CDNM    AS dailyMainCdNm
-            ,DAILY_MAIN_CONTENT AS dailyMainContent
-            ,DAILY_MAIN_WRITER  AS dailyMainWriter
-            ,DAILY_MAIN_WRITERNO AS dailyMainWriterNo
-            ,DAILY_MAIN_VIEWCNT AS dailyMainViewCnt
-            ,DAILY_MAIN_CREATEDATE AS dailyMainCreateDate
-            ,DAILY_MAIN_MODDATE AS dailyMainModDate
+                     DAILY_MAIN_ID      AS dailyMainId
+                    ,DAILY_MAIN_BOARDID AS dailyMainBoardId
+                    ,DAILY_MAIN_CD      AS dailyMainCd
+                    ,DAILY_MAIN_CDNM    AS dailyMainCdNm
+                    ,DAILY_MAIN_CONTENT AS dailyMainContent
+                    ,DAILY_MAIN_WRITER  AS dailyMainWriter
+                    ,DAILY_MAIN_WRITERNO AS dailyMainWriterNo
+                    ,DAILY_MAIN_VIEWCNT AS dailyMainViewCnt
+                    ,DAILY_MAIN_CREATEDATE AS dailyMainCreateDate
+                    ,DAILY_MAIN_MODDATE AS dailyMainModDate
         FROM
-            MAIN_DAILY_BOARD
+                    MAIN_DAILY_BOARD
         WHERE
-            DAILY_MAIN_BOARDID = #{mainBoardId}
+                    DAILY_MAIN_BOARDID = #{mainBoardId}
 
     </select>
 
@@ -53,12 +53,12 @@
         /*selectDailyCheckAdminList*/
 
         SELECT
-            ADMIN_NM
-           ,ADMIN_NO
-           ,ADMIN_CELLNO
-           ,ADMIN_MAIL
+                    ADMIN_NM
+                   ,ADMIN_NO
+                   ,ADMIN_CELLNO
+                   ,ADMIN_MAIL
         FROM
-            ADMIN_USER
+                    ADMIN_USER
     </select>
 
     <select id="selectDailyCheckAdmin" parameterType="list"
@@ -67,14 +67,14 @@
         /*selectDailyCheckAdmin*/
 
         SELECT
-              ADMIN_NM
-             ,ADMIN_NO
-             ,ADMIN_CELLNO
-             ,ADMIN_MAIL
+                      ADMIN_NM
+                     ,ADMIN_NO
+                     ,ADMIN_CELLNO
+                     ,ADMIN_MAIL
         FROM
-             ADMIN_USER
+                     ADMIN_USER
         WHERE
-             ADMIN_NM = #{admin_nm}
+                     ADMIN_NM = #{admin_nm}
     </select>
 
     <insert id="insertDailyCheckBoardList" parameterType="com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain"
@@ -85,32 +85,33 @@
         </selectKey>
 
         /* insertDailyCheckBoardList */
+
         INSERT INTO MAIN_DAILY_BOARD (
 
-             DAILY_MAIN_ID
-            ,DAILY_MAIN_BOARDID
-            ,DAILY_MAIN_CD
-            ,DAILY_MAIN_CDNM
-            ,DAILY_MAIN_CONTENT
-            ,DAILY_MAIN_WRITER
-            ,DAILY_MAIN_WRITERNO
-            ,DAILY_MAIN_VIEWCNT
-            ,DAILY_MAIN_CREATEDATE
-            ,DAILY_MAIN_MODDATE
+                     DAILY_MAIN_ID
+                    ,DAILY_MAIN_BOARDID
+                    ,DAILY_MAIN_CD
+                    ,DAILY_MAIN_CDNM
+                    ,DAILY_MAIN_CONTENT
+                    ,DAILY_MAIN_WRITER
+                    ,DAILY_MAIN_WRITERNO
+                    ,DAILY_MAIN_VIEWCNT
+                    ,DAILY_MAIN_CREATEDATE
+                    ,DAILY_MAIN_MODDATE
 
         ) VALUES (
 
-             #{dailyMainId}
-            ,#{dailyMainBoardId}
-            ,#{dailyMainCd}
-            ,#{dailyMainCdNm}
-            ,#{dailyMainContent}
-            ,#{dailyMainWriter}
-            ,#{dailyMainWriterNo}
-            ,0
-            ,#{dailyMainCreateDate}
-            ,NULL
-        )A
+                     #{dailyMainId}
+                    ,#{dailyMainBoardId}
+                    ,#{dailyMainCd}
+                    ,#{dailyMainCdNm}
+                    ,#{dailyMainContent}
+                    ,#{dailyMainWriter}
+                    ,#{dailyMainWriterNo}
+                    ,0
+                    ,#{dailyMainCreateDate}
+                    ,NULL
+        )
     </insert>
 
     <update id="updateDailyCheckBoard" parameterType="com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain">
@@ -118,12 +119,11 @@
         /* updateDailyCheckBoard */
 
         UPDATE
-        MAIN_DAILY_BOARD
+                    MAIN_DAILY_BOARD
         SET
-        DAILY_MAIN_MODDATE =   #{dailyMainModDate}
+                    DAILY_MAIN_MODDATE =   #{dailyMainModDate}
         WHERE
-        DAILY_MAIN_BOARDID = #{mainBoardId}
-
+                    DAILY_MAIN_BOARDID = #{mainBoardId}
     </update>
 
 

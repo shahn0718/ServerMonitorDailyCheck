@@ -7,9 +7,9 @@ import lombok.ToString;
 
 @Getter @Setter
 @ToString
-public class MInsertEtcErpDailyServerMain {
+public class MInsertEtcDailyServerMain {
 
-    private long etcErpServerId;
+    private long etcServerId;
     private long etcMainId;
 
     /**

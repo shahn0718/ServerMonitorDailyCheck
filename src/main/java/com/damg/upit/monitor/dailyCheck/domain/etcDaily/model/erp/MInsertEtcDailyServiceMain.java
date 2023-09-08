@@ -7,9 +7,9 @@ import lombok.ToString;
 
 @Getter @Setter
 @ToString
-public class MInsertEtcErpDailyServiceMain {
+public class MInsertEtcDailyServiceMain {
 
-    private long etcErpServiceId;
+    private long etcServiceId;
     private long etcMainId;
     /**
      *     <td>서비스</td>
@@ -31,14 +31,14 @@ public class MInsertEtcErpDailyServiceMain {
      */
 
     //MailService 메일서비스
-    private String etcErpMailServiceChk;
-    private String etcErpMailServiceBigo;
+    private String etcMailServiceChk;
+    private String etcMailServiceBigo;
 
     //ApproveService 결재서비스
-    private String etcErpApproveServiceChk;
-    private String etcErpApproveServiceBigo;
+    private String etcApproveServiceChk;
+    private String etcApproveServiceBigo;
 
     //BackupService 백업서비스
-    private String etcErpBackUpServiceChk;
-    private String etcErpBackUpServiceBigo;
+    private String etcBackUpServiceChk;
+    private String etcBackUpServiceBigo;
 }

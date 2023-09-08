@@ -133,7 +133,6 @@ public class gwDailyController {
         mainService.updateDailyCheckBoard(LocalDateTime.now(),mainBoardId);
 
 
-
         System.out.println("mainBoardId = " + mainBoardId);
 
 
