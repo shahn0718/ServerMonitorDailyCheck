@@ -46,6 +46,10 @@ public class erpDailyService {
         return erpRepository.selectErpDailyVMMain(erpMainId);
     }
 
+    public List<MInsertErpDailyStorageMain> selectErpDailyStorageMain(Long erpMainId){
+        return erpRepository.selectErpDailyStorageMain(erpMainId);
+    }
+
     public void updateErpDailyServerMain(MInsertErpDailyServerMain mInsertErpDailyServerMain){
         erpRepository.updateErpDailyServerMain(mInsertErpDailyServerMain);
     }
