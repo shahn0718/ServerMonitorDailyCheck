@@ -29,22 +29,19 @@ public class gwDailyController {
         this.gwService = gwService;
         this.mainService = mainService;
     }
+    private MDailyCheckElement mDailyCheckElement;
 
-    private long gwSVMainId;
-
-    public MDailyCheckElement mDailyCheckElement;
-
-    @GetMapping("/geniousDailyCheck")
+    @GetMapping("/genieusDailyCheck")
     public String home(Model model){
 
         model.addAttribute("adminUser", mainService.selectDailyCheckAdminList());
         model.addAttribute("createdTime", LocalDateTime.now());
 
-        return "gwServer/dailyChkGeniousInput";
+        return "gwServer/dailyChkGenieusInput";
     }
 
 
-    @PostMapping ("/geniousDailyCheck")
+    @PostMapping ("/genieusDailyCheck")
     public String writeGeniousDailyCheck(
             @ModelAttribute("gwDailyServiceMain")MInsertGwDailyServiceMain mInsertGwDailyServiceMain,
             @ModelAttribute("gwDailyServerMain")MInsertGwDailyServerMain mInsertGwDailyServerMain,
@@ -53,6 +50,7 @@ public class gwDailyController {
             Model model){
 
         Model gwDailyCheckSubmit = model.addAttribute("gwDailyCheck");
+        log.info("gwDailyCheckSubmit={}",gwDailyCheckSubmit);
 
         String contentDate = DateTimeFormatter.ofPattern("yyyy.MM.dd").format(LocalDateTime.now());
 
@@ -105,7 +103,7 @@ public class gwDailyController {
         log.info("gwService={}",mInsertGwDailyServiceMain);
         log.info("mainBoardInfo={}",msvDailyCheckBoardMain);
 
-        return "gwServer/dailyChkGeniousOutput";
+        return "gwServer/dailyChkGenieusOutput";
     }
     @GetMapping("/GW/{boardId}/Update")
     public String getUpdateGwDailyCheck(@PathVariable("boardId")Long gwMainId, Model model){
@@ -118,7 +116,7 @@ public class gwDailyController {
         model.addAttribute("gwServer", mInsertGwDailyServerMain);
         model.addAttribute("gwStorage", mInsertGwDailyStorageMain);
 
-        return "gwServer/dailyChkGeniousUpdate";
+        return "gwServer/dailyChkGenieusUpdate";
     }
 
     @PostMapping("/GW/{boardId}/Update")
