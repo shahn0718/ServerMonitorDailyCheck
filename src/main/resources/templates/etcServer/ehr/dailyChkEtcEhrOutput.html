@@ -82,8 +82,8 @@
       <div class="col border mt-3">
         작성/수정 시간:&nbsp;
         <span>
-          <th:block th:if="${#strings.isEmpty(mainBoardInfo.dailyMainModDate)}" th:text="${#temporals.format(mainBoardInfo.dailyMainCreateDate,'yyyy-MM-dd HH:mm:ss')}"></th:block>
-          <th:block th:unless="${#strings.isEmpty(mainBoardInfo.dailyMainModDate)}" th:text="${#temporals.format(mainBoardInfo.dailyMainModDate,'yyyy-MM-dd HH:mm:ss')}"></th:block>
+          <th:block th:if="${#strings.isEmpty(mainBoardInfo?.dailyMainModDate)}" th:text="${#temporals.format(mainBoardInfo?.dailyMainCreateDate,'yyyy-MM-dd HH:mm:ss')}"></th:block>
+          <th:block th:unless="${#strings.isEmpty(mainBoardInfo?.dailyMainModDate)}" th:text="${#temporals.format(mainBoardInfo?.dailyMainModDate,'yyyy-MM-dd HH:mm:ss')}"></th:block>
         </span>
       </div>
     </div>
@@ -158,7 +158,7 @@
                    th:value="${etcHrService.etcHrBackUpServiceBigo}" readonly>>
           </td>
         </tr>
-        <tr align="center" th:each="etcHrServer: ${etcHrServer">
+        <tr align="center" th:each="etcHrServer: ${etcHrServer}">
           <td rowspan="4"  style="background-color: #81BEF7;">서버</td>
           <td>CHA-EHR-DB</td>
           <td>윈도우</td>
@@ -314,11 +314,11 @@
               <input type="text" class="form-control" name="chaEhrDevCpuUsageBigo" id="chaEhrDevCpuUsageBigoInput"
                      th:value="${etcHrServer.chaEhrDevCpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
               <input type="text" class="form-control" name="chaEhrDevMemUsageBigo" id="chaEhrDevMemUsageBigoInput"
-                     th:value="${etcHrServer.chaEhrDevMemUsageBigo" readonly>
+                     th:value="${etcHrServer.chaEhrDevMemUsageBigo}" readonly>
               <input type="text" class="form-control" name="chaEhrDevDiskUsageBigo" id="chaEhrDevDiskUsageBigoInput"
-                     th:value="${etcHrServer.chaEhrDevDiskUsageBigo" readonly>
+                     th:value="${etcHrServer.chaEhrDevDiskUsageBigo}" readonly>
               <input type="text" class="form-control" name="chaEhrDevEventBigo" id="chaEhrDevEventBigoInput"
-                     th:value="${etcHrServer.chaEhrDevEventBigo" readonly>
+                     th:value="${etcHrServer.chaEhrDevEventBigo}" readonly>
             </td>
           </tr>
           <tr align="center" th:each="etcHrServer:${etcHrServer}">

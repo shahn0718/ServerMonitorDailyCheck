@@ -25,8 +25,8 @@
     <div class="col border mt-3">
       작성/수정 시간:&nbsp;
       <span>
-        <th:block th:if="${#strings.isEmpty(mainBoardInfo.dailyMainModDate)}" th:text="${#temporals.format(mainBoardInfo.dailyMainCreateDate,'yyyy-MM-dd HH:mm:ss')}"></th:block>
-        <th:block th:unless="${#strings.isEmpty(mainBoardInfo.dailyMainModDate)}" th:text="${#temporals.format(mainBoardInfo.dailyMainModDate,'yyyy-MM-dd HH:mm:ss')}"></th:block>
+        <th:block th:if="${#strings.isEmpty(mainBoardInfo?.dailyMainModDate)}" th:text="${#temporals.format(mainBoardInfo?.dailyMainCreateDate,'yyyy-MM-dd HH:mm:ss')}"></th:block>
+        <th:block th:unless="${#strings.isEmpty(mainBoardInfo?.dailyMainModDate)}" th:text="${#temporals.format(mainBoardInfo?.dailyMainModDate,'yyyy-MM-dd HH:mm:ss')}"></th:block>
       </span>
     </div>
   </div>

@@ -82,8 +82,8 @@
       <div class="col border mt-3">
         작성/수정 시간:&nbsp;
         <span>
-        <th:block th:if="${#strings.isEmpty(mainBoardInfo.dailyMainModDate)}" th:text="${#temporals.format(mainBoardInfo.dailyMainCreateDate,'yyyy-MM-dd HH:mm:ss')}"></th:block>
-        <th:block th:unless="${#strings.isEmpty(mainBoardInfo.dailyMainModDate)}" th:text="${#temporals.format(mainBoardInfo.dailyMainModDate,'yyyy-MM-dd HH:mm:ss')}"></th:block>
+        <th:block th:if="${#strings.isEmpty(mainBoardInfo?.dailyMainModDate)}" th:text="${#temporals.format(mainBoardInfo?.dailyMainCreateDate,'yyyy-MM-dd HH:mm:ss')}"></th:block>
+        <th:block th:unless="${#strings.isEmpty(mainBoardInfo?.dailyMainModDate)}" th:text="${#temporals.format(mainBoardInfo?.dailyMainModDate,'yyyy-MM-dd HH:mm:ss')}"></th:block>
       </span>
       </div>
     </div>
@@ -945,7 +945,7 @@
               <input type="text" class="form-control" name="spam1ClustBigo" id="spam1ClustBigoInput"
                      th:value="${infraEtc.spam1ClustBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
               <input type="text" class="form-control" name="spam1EventBigo" id="spam1EventBigoInput"
-                     th:value="${infraEtc.spm1EventBigo" readonly>
+                     th:value="${infraEtc.spam1EventBigo}" readonly>
             </td>
           </tr>
           <tr align="center" th:each="infraEtc:${infraEtc}">

@@ -21,6 +21,7 @@ public class erpDailyService {
         this.erpRepository = erpRepository;
     }
 
+
     public void insertErpDailyServerMain(MInsertErpDailyServerMain miNsertErpDailyServerMain){
         erpRepository.insertErpDailyServerMain(miNsertErpDailyServerMain);
     }
