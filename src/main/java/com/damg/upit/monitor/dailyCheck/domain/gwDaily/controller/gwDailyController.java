@@ -9,7 +9,6 @@ import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckAdmi
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain;
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.service.mainDailyService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +31,7 @@ public class gwDailyController {
     private MDailyCheckElement mDailyCheckElement;
 
     @GetMapping("/genieusDailyCheck")
-    public String home(Model model){
+    public String homeGenieusDailyCheck(Model model){
 
         model.addAttribute("adminUser", mainService.selectDailyCheckAdminList());
         model.addAttribute("createdTime", LocalDateTime.now());
@@ -40,9 +39,8 @@ public class gwDailyController {
         return "gwServer/dailyChkGenieusInput";
     }
 
-
     @PostMapping ("/genieusDailyCheck")
-    public String writeGeniousDailyCheck(
+    public String doInsertGenieusDailyCheck(
             @ModelAttribute("gwDailyServiceMain")MInsertGwDailyServiceMain mInsertGwDailyServiceMain,
             @ModelAttribute("gwDailyServerMain")MInsertGwDailyServerMain mInsertGwDailyServerMain,
             @ModelAttribute("gwDailyStorageMain")MInsertGwDailyStorageMain mInsertGwDailyStorageMain,
@@ -53,7 +51,6 @@ public class gwDailyController {
         log.info("gwDailyCheckSubmit={}",gwDailyCheckSubmit);
 
         String contentDate = DateTimeFormatter.ofPattern("yyyy.MM.dd").format(LocalDateTime.now());
-
         MSVDailyCheckAdminMain msvDailyCheckAdminMain = mainService.selectDailyCheckAdmin(admin_nm);
 
         MSVDailyCheckBoardMain msvDailyCheckBoardMain = new MSVDailyCheckBoardMain();
@@ -64,16 +61,8 @@ public class gwDailyController {
         msvDailyCheckBoardMain.setDailyMainWriterNo(msvDailyCheckAdminMain.getAdmin_no());
         msvDailyCheckBoardMain.setDailyMainCreateDate(LocalDateTime.now());
 
-        mainService.insertDailyCheckBoardList(msvDailyCheckBoardMain);
-        Long mainBoardId = msvDailyCheckBoardMain.getDailyMainBoardId();
-
-        mInsertGwDailyServerMain.setGwMainId(mainBoardId);
-        mInsertGwDailyServiceMain.setGwMainId(mainBoardId);
-        mInsertGwDailyStorageMain.setGwMainId(mainBoardId);
-
-        gwService.insertGwDailyServerMain(mInsertGwDailyServerMain);
-        gwService.insertGwDailyStorageMain(mInsertGwDailyStorageMain);
-        gwService.insertGwDailyServiceMain(mInsertGwDailyServiceMain);
+        gwService.insertGwDailyCheckMain(mInsertGwDailyServiceMain,mInsertGwDailyServerMain,
+                mInsertGwDailyStorageMain,msvDailyCheckBoardMain);
 
         return "redirect:/";
     }
@@ -85,7 +74,7 @@ public class gwDailyController {
      * @return
      */
     @GetMapping("/GW/{boardId}")
-    public String getGwDailyCheck(@PathVariable("boardId")Long gwMainId, Model model){
+    public String doSelectGenieusDailyCheck(@PathVariable("boardId")Long gwMainId, Model model){
 
         log.info("gwMainId={}",gwMainId);
 
@@ -120,31 +109,17 @@ public class gwDailyController {
     }
 
     @PostMapping("/GW/{boardId}/Update")
-    public String completeUpdateGwDailyCheck(@PathVariable("boardId")Long mainBoardId,
-                                             @ModelAttribute("gwDailyServiceMain")MInsertGwDailyServiceMain mInsertGwDailyServiceMain,
-                                             @ModelAttribute("gwDailyServerMain")MInsertGwDailyServerMain mInsertGwDailyServerMain,
-                                             @ModelAttribute("gwDailyStorageMain")MInsertGwDailyStorageMain mInsertGwDailyStorageMain,
-                                             Model model){
+    public String doUpdateGwDailyCheck (@PathVariable("boardId")Long mainBoardId,
+                                        @ModelAttribute("gwDailyServiceMain")MInsertGwDailyServiceMain mInsertGwDailyServiceMain,
+                                        @ModelAttribute("gwDailyServerMain")MInsertGwDailyServerMain mInsertGwDailyServerMain,
+                                        @ModelAttribute("gwDailyStorageMain")MInsertGwDailyStorageMain mInsertGwDailyStorageMain){
 
-
-        //메인 게시판 수정일자 업데이트
-        mainService.updateDailyCheckBoard(LocalDateTime.now(),mainBoardId);
-
-
-        System.out.println("mainBoardId = " + mainBoardId);
-
-
-        mInsertGwDailyServerMain.setGwMainId(mainBoardId);
-        mInsertGwDailyServiceMain.setGwMainId(mainBoardId);
-        mInsertGwDailyStorageMain.setGwMainId(mainBoardId);
+        gwService.updateErpDailyCheckMain(mainBoardId,mInsertGwDailyServiceMain
+                ,mInsertGwDailyServerMain,mInsertGwDailyStorageMain);
 
         log.info("gwDailyUpdateCheck={}", mInsertGwDailyServerMain);
         log.info("gwDailyUpdateCheck={}", mInsertGwDailyServiceMain);
         log.info("gwDailyUpdateCheck={}", mInsertGwDailyStorageMain);
-
-        gwService.updateGwDailyServiceMain(mInsertGwDailyServiceMain);
-        gwService.updateGwDailyServerMain(mInsertGwDailyServerMain);
-        gwService.updateGwDailyStorageMain(mInsertGwDailyStorageMain);
 
         return "redirect:/";
     }

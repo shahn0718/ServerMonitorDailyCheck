@@ -885,7 +885,7 @@
                 ,MAIN2_EVENT_CHK            = #{main2EventChk}
                 ,MAIN2_EVENT_BIGO           = #{main2EventBigo}
                 ,MAIN3_CPUUSAGE_CHK         = #{main3CpuUsageChk}
-                ,MAIN3_CPUUSAGE_BIGO        = #{main#CpuUsageBigo}
+                ,MAIN3_CPUUSAGE_BIGO        = #{main3CpuUsageBigo}
                 ,MAIN3_MEMUSAGE_CHK         = #{main3MemUsageChk}
                 ,MAIN3_MEMUSAGE_BIGO        = #{main3MemUsageBigo}
                 ,MAIN3_DISKUSAGE_CHK        = #{main3DiskUsageChk}
