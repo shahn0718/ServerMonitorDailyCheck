@@ -48,7 +48,7 @@ public class erpDailyService {
     }
 
     @Transactional(rollbackFor= Exception.class)
-    public void insertDailyErpCheckMain(MInsertErpDailyServiceMain mInsertErpDailyServiceMain,
+    public void insertErpDailyCheckMain(MInsertErpDailyServiceMain mInsertErpDailyServiceMain,
                                      MInsertErpDailyServerMain mInsertErpDailyServerMain,
                                      MInsertErpDailyVMMain mInsertErpDailyVMMain,
                                      MInsertErpDailyStorageMain mInsertErpDailyStorageMain,
@@ -68,7 +68,7 @@ public class erpDailyService {
     }
 
     @Transactional(rollbackFor=Exception.class)
-    public void updateDailyErpCheckMain(Long mainBoardId,
+    public void updateErpDailyCheckMain(Long mainBoardId,
                                         MInsertErpDailyServiceMain mInsertErpDailyServiceMain, MInsertErpDailyServerMain mInsertErpDailyServerMain,
                                         MInsertErpDailyVMMain mInsertErpDailyVMMain, MInsertErpDailyStorageMain mInsertErpDailyStorageMain){
 

@@ -31,7 +31,7 @@ public class erpDailyController {
         this.erpService = erpService;
         this.mainService = mainService;
     }
-//    private Long erpMainId;
+
     private MDailyCheckElement mDailyCheckElement;
 
     @GetMapping("/erpDailyCheck")
@@ -66,7 +66,7 @@ public class erpDailyController {
         msvDailyCheckBoardMain.setDailyMainWriterNo(msvDailyCheckAdminMain.getAdmin_no());
         msvDailyCheckBoardMain.setDailyMainCreateDate(LocalDateTime.now());
 
-        erpService.insertDailyErpCheckMain(mInsertErpDailyServiceMain,mInsertErpDailyServerMain,
+        erpService.insertErpDailyCheckMain(mInsertErpDailyServiceMain,mInsertErpDailyServerMain,
                 mInsertErpDailyVMMain,mInsertErpDailyStorageMain,msvDailyCheckBoardMain);
 
         return "redirect:/";
@@ -112,10 +112,9 @@ public class erpDailyController {
                                         @ModelAttribute("erpDailyServiceMain")MInsertErpDailyServiceMain mInsertErpDailyServiceMain,
                                         @ModelAttribute("erpDailyServerMain")MInsertErpDailyServerMain mInsertErpDailyServerMain,
                                         @ModelAttribute("erpDailyVMMain")MInsertErpDailyVMMain mInsertErpDailyVMMain,
-                                        @ModelAttribute("erpDailyStorageMain")MInsertErpDailyStorageMain mInsertErpDailyStorageMain,
-                                        Model model){
+                                        @ModelAttribute("erpDailyStorageMain")MInsertErpDailyStorageMain mInsertErpDailyStorageMain,){
 
-        erpService.updateDailyErpCheckMain(erpMainId,mInsertErpDailyServiceMain,
+        erpService.updateErpDailyCheckMain(erpMainId,mInsertErpDailyServiceMain,
                 mInsertErpDailyServerMain,mInsertErpDailyVMMain,mInsertErpDailyStorageMain);
 
         log.info("erpDailyServiceMain={}",mInsertErpDailyServiceMain);
