@@ -86,8 +86,8 @@ public class MInsertEtcDailyServerMain {
     private String chaErpDb1MemUsageBigo;
     private String chaErpDb1DiskUsageChk;
     private String chaErpDb1DiskUsageBigo;
-    private String chaErpDb1DiskEventChk;
-    private String chaErpDb1DiskEventBigo;
+    private String chaErpDb1EventChk;
+    private String chaErpDb1EventBigo;
 
     /**
      *    <td>CHA-ERP-DB-2</td>
@@ -104,8 +104,8 @@ public class MInsertEtcDailyServerMain {
     private String chaErpDb2MemUsageBigo;
     private String chaErpDb2DiskUsageChk;
     private String chaErpDb2DiskUsageBigo;
-    private String chaErpDb2DiskEventChk;
-    private String chaErpDb2DiskEventBigo;
+    private String chaErpDb2EventChk;
+    private String chaErpDb2EventBigo;
 
     /**
      *             <td>CHA-ERP-DEV</td>

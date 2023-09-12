@@ -31,14 +31,14 @@ public class MInsertEtcDailyServiceMain {
      */
 
     //MailService 메일서비스
-    private String etcMailServiceChk;
-    private String etcMailServiceBigo;
+    private String etcErpMailServiceChk;
+    private String etcErpMailServiceBigo;
 
     //ApproveService 결재서비스
-    private String etcApproveServiceChk;
-    private String etcApproveServiceBigo;
+    private String etcErpApproveServiceChk;
+    private String etcErpApproveServiceBigo;
 
     //BackupService 백업서비스
-    private String etcBackUpServiceChk;
-    private String etcBackUpServiceBigo;
+    private String etcErpBackUpServiceChk;
+    private String etcErpBackUpServiceBigo;
 }

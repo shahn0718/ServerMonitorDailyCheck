@@ -23,7 +23,6 @@ import java.util.List;
 @Controller
 public class erpDailyController {
 
-
     private final erpDailyService erpService;
     private final mainDailyService mainService;
 
@@ -87,7 +86,6 @@ public class erpDailyController {
         model.addAttribute("erpStorage",mInsertErpDailyStorageMain);
         model.addAttribute("mainBoardInfo",msvDailyCheckBoardMain);
 
-
         return "erpServer/dailyChkErpOutput";
     }
 
@@ -112,7 +110,7 @@ public class erpDailyController {
                                         @ModelAttribute("erpDailyServiceMain")MInsertErpDailyServiceMain mInsertErpDailyServiceMain,
                                         @ModelAttribute("erpDailyServerMain")MInsertErpDailyServerMain mInsertErpDailyServerMain,
                                         @ModelAttribute("erpDailyVMMain")MInsertErpDailyVMMain mInsertErpDailyVMMain,
-                                        @ModelAttribute("erpDailyStorageMain")MInsertErpDailyStorageMain mInsertErpDailyStorageMain,){
+                                        @ModelAttribute("erpDailyStorageMain")MInsertErpDailyStorageMain mInsertErpDailyStorageMain){
 
         erpService.updateErpDailyCheckMain(erpMainId,mInsertErpDailyServiceMain,
                 mInsertErpDailyServerMain,mInsertErpDailyVMMain,mInsertErpDailyStorageMain);
