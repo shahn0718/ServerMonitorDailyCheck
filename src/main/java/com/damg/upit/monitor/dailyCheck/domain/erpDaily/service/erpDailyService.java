@@ -6,9 +6,17 @@ import com.damg.upit.monitor.dailyCheck.domain.erpDaily.model.MInsertErpDailySer
 import com.damg.upit.monitor.dailyCheck.domain.erpDaily.model.MInsertErpDailyStorageMain;
 import com.damg.upit.monitor.dailyCheck.domain.erpDaily.model.MInsertErpDailyVMMain;
 import com.damg.upit.monitor.dailyCheck.domain.erpDaily.repository.erpDailyRepository;
+import com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyServerMain;
+import com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyServiceMain;
+import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain;
+import com.damg.upit.monitor.dailyCheck.domain.mainDaily.repository.mainDailyRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j
@@ -16,23 +24,11 @@ import java.util.List;
 public class erpDailyService {
 
     private final erpDailyRepository erpRepository;
+    private final mainDailyRepository mainRepository;
 
-    public erpDailyService(erpDailyRepository erpRepository){
+    public erpDailyService(erpDailyRepository erpRepository, mainDailyRepository mainRepository){
         this.erpRepository = erpRepository;
-    }
-
-
-    public void insertErpDailyServerMain(MInsertErpDailyServerMain miNsertErpDailyServerMain){
-        erpRepository.insertErpDailyServerMain(miNsertErpDailyServerMain);
-    }
-    public void insertErpDailyServiceMain(MInsertErpDailyServiceMain mInsertErpDailyServiceMain){
-        erpRepository.insertErpDailyServiceMain(mInsertErpDailyServiceMain);
-    }
-    public void insertErpDailyVMMain(MInsertErpDailyVMMain mInsertErpDailyVMMain){
-        erpRepository.insertErpDailyVMMain(mInsertErpDailyVMMain);
-    }
-    public void insertErpDailyStorageMain(MInsertErpDailyStorageMain mInsertErpDailyStorageMain){
-        erpRepository.insertErpDailyStorageMain(mInsertErpDailyStorageMain);
+        this.mainRepository =mainRepository;
     }
 
     public List<MInsertErpDailyServerMain> selectErpDailyServerMain(Long erpMainId){
@@ -51,21 +47,43 @@ public class erpDailyService {
         return erpRepository.selectErpDailyStorageMain(erpMainId);
     }
 
-    public void updateErpDailyServerMain(MInsertErpDailyServerMain mInsertErpDailyServerMain){
-        erpRepository.updateErpDailyServerMain(mInsertErpDailyServerMain);
+    @Transactional(rollbackFor= Exception.class)
+    public void insertDailyErpCheckMain(MInsertErpDailyServiceMain mInsertErpDailyServiceMain,
+                                     MInsertErpDailyServerMain mInsertErpDailyServerMain,
+                                     MInsertErpDailyVMMain mInsertErpDailyVMMain,
+                                     MInsertErpDailyStorageMain mInsertErpDailyStorageMain,
+                                     MSVDailyCheckBoardMain msvDailyCheckBoardMain){
+
+        mainRepository.insertDailyCheckBoardList(msvDailyCheckBoardMain);
+
+        mInsertErpDailyServiceMain.setErpMainId(msvDailyCheckBoardMain.getDailyMainBoardId());
+        mInsertErpDailyServerMain.setErpMainId(msvDailyCheckBoardMain.getDailyMainBoardId());
+        mInsertErpDailyVMMain.setErpMainId(msvDailyCheckBoardMain.getDailyMainBoardId());
+        mInsertErpDailyStorageMain.setErpMainId(msvDailyCheckBoardMain.getDailyMainBoardId());
+
+        erpRepository.insertErpDailyServiceMain(mInsertErpDailyServiceMain);
+        erpRepository.insertErpDailyServerMain(mInsertErpDailyServerMain);
+        erpRepository.insertErpDailyStorageMain(mInsertErpDailyStorageMain);
+        erpRepository.insertErpDailyVMMain(mInsertErpDailyVMMain);
     }
 
-    public void updateErpDailyServiceMain(MInsertErpDailyServiceMain mInsertErpDailyServiceMain){
+    @Transactional(rollbackFor=Exception.class)
+    public void updateDailyErpCheckMain(Long mainBoardId,
+                                        MInsertErpDailyServiceMain mInsertErpDailyServiceMain, MInsertErpDailyServerMain mInsertErpDailyServerMain,
+                                        MInsertErpDailyVMMain mInsertErpDailyVMMain, MInsertErpDailyStorageMain mInsertErpDailyStorageMain){
+
+        mainRepository.updateDailyCheckBoard(LocalDateTime.now(),mainBoardId);
+
+        mInsertErpDailyServiceMain.setErpMainId(mainBoardId);
+        mInsertErpDailyServerMain.setErpMainId(mainBoardId);
+        mInsertErpDailyVMMain.setErpMainId(mainBoardId);
+        mInsertErpDailyStorageMain.setErpMainId(mainBoardId);
+
         erpRepository.updateErpDailyServiceMain(mInsertErpDailyServiceMain);
-    }
-
-    public void updateErpDailyVMMain(MInsertErpDailyVMMain mInsertErpDailyVMMain){
+        erpRepository.updateErpDailyServerMain(mInsertErpDailyServerMain);
         erpRepository.updateErpDailyVMMain(mInsertErpDailyVMMain);
-    }
-
-    public void updateErpDailyStorageMain(MInsertErpDailyStorageMain mInsertErpDailyStorageMain){
         erpRepository.updateErpDailyStorageMain(mInsertErpDailyStorageMain);
+
+
     }
-
-
 }

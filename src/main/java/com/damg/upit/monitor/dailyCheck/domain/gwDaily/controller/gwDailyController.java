@@ -32,7 +32,7 @@ public class gwDailyController {
     private MDailyCheckElement mDailyCheckElement;
 
     @GetMapping("/genieusDailyCheck")
-    public String home(Model model){
+    public String homeGenieusDailyCheck(Model model){
 
         model.addAttribute("adminUser", mainService.selectDailyCheckAdminList());
         model.addAttribute("createdTime", LocalDateTime.now());
@@ -42,7 +42,7 @@ public class gwDailyController {
 
 
     @PostMapping ("/genieusDailyCheck")
-    public String writeGeniousDailyCheck(
+    public String doInsertGenieusDailyCheck(
             @ModelAttribute("gwDailyServiceMain")MInsertGwDailyServiceMain mInsertGwDailyServiceMain,
             @ModelAttribute("gwDailyServerMain")MInsertGwDailyServerMain mInsertGwDailyServerMain,
             @ModelAttribute("gwDailyStorageMain")MInsertGwDailyStorageMain mInsertGwDailyStorageMain,
@@ -85,7 +85,7 @@ public class gwDailyController {
      * @return
      */
     @GetMapping("/GW/{boardId}")
-    public String getGwDailyCheck(@PathVariable("boardId")Long gwMainId, Model model){
+    public String doSelectGenieusDailyCheck(@PathVariable("boardId")Long gwMainId, Model model){
 
         log.info("gwMainId={}",gwMainId);
 
@@ -120,12 +120,11 @@ public class gwDailyController {
     }
 
     @PostMapping("/GW/{boardId}/Update")
-    public String completeUpdateGwDailyCheck(@PathVariable("boardId")Long mainBoardId,
-                                             @ModelAttribute("gwDailyServiceMain")MInsertGwDailyServiceMain mInsertGwDailyServiceMain,
-                                             @ModelAttribute("gwDailyServerMain")MInsertGwDailyServerMain mInsertGwDailyServerMain,
-                                             @ModelAttribute("gwDailyStorageMain")MInsertGwDailyStorageMain mInsertGwDailyStorageMain,
-                                             Model model){
-
+    public String doUpdateGwDailyCheck (@PathVariable("boardId")Long mainBoardId,
+                                        @ModelAttribute("gwDailyServiceMain")MInsertGwDailyServiceMain mInsertGwDailyServiceMain,
+                                        @ModelAttribute("gwDailyServerMain")MInsertGwDailyServerMain mInsertGwDailyServerMain,
+                                        @ModelAttribute("gwDailyStorageMain")MInsertGwDailyStorageMain mInsertGwDailyStorageMain,
+                                        Model model){
 
         //메인 게시판 수정일자 업데이트
         mainService.updateDailyCheckBoard(LocalDateTime.now(),mainBoardId);

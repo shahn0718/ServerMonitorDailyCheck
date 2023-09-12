@@ -8,62 +8,6 @@
 </head>
 
 <script>
-
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-      if(this.readyState == 4 && this.status == 200){
-
-        getXmlData(this);
-      }
-    }
-    xhr.open("GET" ,"donga-devwas.xml",true);
-    xhr.send();
-
-  function getXmlData(xml) {
-    var num, name;
-    var num, name;
-    var txt, ntxt, xmlDoc;
-
-    //this.reponseText와 비슷.
-    xmlData = xml.responseXML;
-
-    console.log(xmlData);
-
-    const hostname = xmlData.getElementsByTagName("hostname");
-    const hostnameValue =  hostname[0].childNodes[0].nodeValue;
-
-    console.log("hostname: " + hostnameValue);
-
-
-    const date = xmlData.getElementsByTagName("date");
-    const dateValue = date[0].childNodes[0].nodeValue;
-
-    console.log("date: " + dateValue);
-
-    const time = xmlData.getElementsByTagName("time");
-    const timeValue = time[0].childNodes[0].nodeValue
-
-    console.log("time: " + timeValue);
-
-    const osver = xmlData.getElementsByTagName("osver");
-    const osverValue = osver[0].childNodes[0].nodeValue;
-
-    console.log("osver: " + osverValue);
-
-    const ipAddr = xmlData.getElementsByTagName("ipaddr");
-    const ipAddrValue = ipAddr[0].childNodes[0].nodeValue;
-
-    console.log("ipAddress: " + ipAddrValue);
-    
-    console.log(" ");
-    let getXmlAttribute= xmlData.documentElement.childNodes[1].childNodes;
-    console.log(getXmlAttribute);
-
-    for(i=1; i<getXmlAttribute.length; i+=2){
-      console.log(xmlData.documentElement.childNodes[1].childNodes[i].firstChild.nodeValue);
-    }
-};
-
 </script>
 
 
@@ -109,22 +53,22 @@
     <tbody>
       <tr th:each="erpService:${erpService}" align="center">
         <td style="background-color: #81BEF7;">서비스</td>
-        <td>  
+        <td>
           <p></p>
           <p></p>
           <p>백업</p>
         </td>
-        <td> 
-          <p>-</p> 
+        <td>
+          <p>-</p>
           <p>-</p>
           <p> </p>
         </td>
-        <td> 
-          <p></p> 
+        <td>
+          <p></p>
           <p></p>
           <p>백업스케쥴</p>
         </td>
-        <td> 
+        <td>
           <p><!--추후 수정 필요 현재는 백업 서비스만 체크 진행-->
             <input class="form-check-input" type="radio" value="Y" name="erpMailServiceChk" id="erpMailServiceChkY"
                     th:checked="${erpService.erpMailServiceChk eq 'Y'}" disabled>
@@ -132,14 +76,14 @@
             <input class="form-check-input" type="radio" value="N" name="erpMailServiceChk" id="erpMailServiceChkN"
                    th:checked="${erpService.erpMailServiceChk eq 'N'}" disabled>
             무
-          </p> 
+          </p>
           <p><!--추후 수정 필요 현재는 백업 서비스만 체크 진행-->
             <input class="form-check-input" type="radio" value="Y" name="erpApproveServiceChk" id="erpApproveServiceChkY"
                     th:checked="${erpService.erpApproveServiceChk eq 'Y'}" disabled>
             유
             <input class="form-check-input" type="radio" value="N" name="erpApproveServiceChk" id="erpApproveServiceChkN"
                     th:checked="${erpService.erpApproveServiceChk eq 'N'}" disabled>
-            무  
+            무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="erpBackUpServiceChk" id="erpBackUpServiceChkY"
@@ -147,7 +91,7 @@
             유
             <input class="form-check-input" type="radio" value="N" name="erpBackUpServiceChk" id="erpBackUpServiceChkN"
                     th:checked="${erpService.erpBackUpServiceChk eq 'N'}" disabled>
-            무  
+            무
           </p>
         </td>
         <td>
@@ -392,10 +336,10 @@
             무  
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="db1OverloadChk" id="db1OverloadChkY"
+            <input class="form-check-input" type="radio" value="Y" name="db1OverLoadChk" id="db1OverloadChkY"
                    th:checked="${erpServer.db1OverLoadChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="db1OverloadChk" id="db1OverloadChkN"
+            <input class="form-check-input" type="radio" value="N" name="db1OverLoadChk" id="db1OverloadChkN"
                    th:checked="${erpServer.db1OverLoadChk eq 'N'}" disabled>
             무  
           </p>
@@ -489,7 +433,7 @@
                    th:checked="${erpServer.db2ProcessChk eq 'Y'}" disabled>
             유
             <input class="form-check-input" type="radio" value="N" name="db2ProcessChk" id="db2ProcessChkN"
-                   th:checked="${erpServer.db2ProcessChk eq 'Y'}" disabled>
+                   th:checked="${erpServer.db2ProcessChk eq 'N'}" disabled>
             무  
           </p>
         </td>
@@ -625,7 +569,7 @@
                    th:checked="${erpServer.backUpOverLoadChk eq 'Y'}" disabled>
             유
             <input class="form-check-input" type="radio" value="N" name="backUpOverLoadChk" id="backUpOverLoadChkN"
-                   th:checked="${erpServer.backUpOverLoadChk eq 'Y'}" disabled>
+                   th:checked="${erpServer.backUpOverLoadChk eq 'N'}" disabled>
             무  
           </p>
           <p>
@@ -641,7 +585,7 @@
                    th:checked="${erpServer.backUpProcessChk eq 'Y'}" disabled>
             유
             <input class="form-check-input" type="radio" value="N" name="backUpProcessChk" id="backUpProcessChkN"
-                   th:checked="${erpServer.backUpProcessChk eq 'Y'}" disabled>
+                   th:checked="${erpServer.backUpProcessChk eq 'N'}" disabled>
             무  
           </p>
         </td>
@@ -861,9 +805,8 @@
             <input class="form-check-input" type="radio" value="Y" name="tax2EventChk" id="tax2EventChkY"
                    th:checked="${erpVM.tax2EventChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="tax2EventBigo" id="tax2EventChkN"
+            <input class="form-check-input" type="radio" value="N" name="tax2EventChk" id="tax2EventChkN"
                    th:checked="${erpVM.tax2EventChk eq 'N'}" disabled>
-            유>
             무
           </p>  
         </td>
@@ -1379,10 +1322,10 @@
             무
           </p>  
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="erpMgntDiskUsage" id="erpMgntDiskUsageY"
+            <input class="form-check-input" type="radio" value="Y" name="erpMgntDiskUsageChk" id="erpMgntDiskUsageChkY"
                    th:checked="${erpVM.erpMgntDiskUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="erpMgntDiskUsage" id="erpMgntDiskUsageN"
+            <input class="form-check-input" type="radio" value="N" name="erpMgntDiskUsageChk" id="erpMgntDiskUsageChkN"
                    th:checked="${erpVM.erpMgntDiskUsageChk eq 'N'}" disabled>
             무
           </p> 
@@ -1467,7 +1410,7 @@
                    th:checked="${erpVM.devWebProcessChk eq 'Y'}" disabled>
             유
             <input class="form-check-input" type="radio" value="N" name="devWebProcessChk" id="devWebProcessChkN"
-                   th:checked="${erpVM.devWebProcessChk eq 'Y'}" disabled>
+                   th:checked="${erpVM.devWebProcessChk eq 'N'}" disabled>
             무
           </p>  
         </td>
@@ -1583,10 +1526,10 @@
             무
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="jeniusWasMemUsageChk" id="jeniusWasMemUsageChkY"
+            <input class="form-check-input" type="radio" value="Y" name="jeniusMemUsageChk" id="jeniusMemUsageChkY"
                    th:checked="${erpVM.jeniusMemUsageChk eq 'Y'}" disabled>
             유
-            <input class="form-check-input" type="radio" value="N" name="jeniusWasMemUsageChk" id="jeniusWasMemUsageChkN"
+            <input class="form-check-input" type="radio" value="N" name="jeniusMemUsageChk" id="jeniusMemUsageChkN"
                    th:checked="${erpVM.jeniusMemUsageChk eq 'N'}" disabled>
             무
           </p>
