@@ -9,7 +9,6 @@ import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckAdmi
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain;
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.service.mainDailyService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +38,6 @@ public class gwDailyController {
 
         return "gwServer/dailyChkGenieusInput";
     }
-
 
     @PostMapping ("/genieusDailyCheck")
     public String doInsertGenieusDailyCheck(
@@ -114,7 +112,7 @@ public class gwDailyController {
     public String doUpdateGwDailyCheck (@PathVariable("boardId")Long mainBoardId,
                                         @ModelAttribute("gwDailyServiceMain")MInsertGwDailyServiceMain mInsertGwDailyServiceMain,
                                         @ModelAttribute("gwDailyServerMain")MInsertGwDailyServerMain mInsertGwDailyServerMain,
-                                        @ModelAttribute("gwDailyStorageMain")MInsertGwDailyStorageMain mInsertGwDailyStorageMain,){
+                                        @ModelAttribute("gwDailyStorageMain")MInsertGwDailyStorageMain mInsertGwDailyStorageMain){
 
         gwService.updateErpDailyCheckMain(mainBoardId,mInsertGwDailyServiceMain
                 ,mInsertGwDailyServerMain,mInsertGwDailyStorageMain);
