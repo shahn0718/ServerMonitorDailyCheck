@@ -22,12 +22,12 @@
 
                          #{etcServiceId}
                         ,#{etcMainId}
-                        ,#{etcMailServiceChk}
-                        ,#{etcMailServiceBigo}
-                        ,#{etcApproveServiceChk}
-                        ,#{etcApproveServiceBigo}
-                        ,#{etcBackUpServiceChk}
-                        ,#{etcBackUpServiceBigo}
+                        ,#{etcErpMailServiceChk}
+                        ,#{etcErpMailServiceBigo}
+                        ,#{etcErpApproveServiceChk}
+                        ,#{etcErpApproveServiceBigo}
+                        ,#{etcErpBackUpServiceChk}
+                        ,#{etcErpBackUpServiceBigo}
 
         )
     </insert>
@@ -84,7 +84,7 @@
                         ,CHAERPDEV_CPUUSAGE_CHK
                         ,CHAERPDEV_CPUUSAGE_BIGO
                         ,CHAERPDEV_MEMUSAGE_CHK
-                        ,CHAERPDEV_MEMSUAGE_BIGO
+                        ,CHAERPDEV_MEMUSAGE_BIGO
                         ,CHAERPDEV_DISKUSAGE_CHK
                         ,CHAERPDEV_DISKUSAGE_BIGO
                         ,CHAERPDEV_EVENT_CHK
@@ -112,7 +112,7 @@
                         ,DDCERPDB_DISKUSAGE_CHK
                         ,DDCERPDB_DISKUSAGE_BIGO
                         ,DDCERPDB_EVENT_CHK
-                        ,DDCERPDB_EVNET_BIGO
+                        ,DDCERPDB_EVENT_BIGO
                         ,DKF1_CPUUSAGE_CHK
                         ,DKF1_CPUUSAGE_BIGO
                         ,DKF1_MEMUSAGE_CHK
@@ -133,11 +133,11 @@
                         ,DONGAB_CPUUSAGE_BIGO
                         ,DONGAB_MEMUSAGE_CHK
                         ,DONGAB_MEMUSAGE_BIGO
+                        ,DONGAB_DISKUSAGE_CHK
+                        ,DONGAB_DISKUSAGE_BIGO
                         ,DONGAB_EVENT_CHK
-                        ,DONGAB_EVNET_BIGO
-
+                        ,DONGAB_EVENT_BIGO
         ) VALUES (
-
                          #{etcServerId}
                         ,#{etcMainId}
                         ,#{chaErpLinkCpuUsageChk}
@@ -178,8 +178,8 @@
                         ,#{chaErpDb2MemUsageBigo}
                         ,#{chaErpDb2DiskUsageChk}
                         ,#{chaErpDb2DiskUsageBigo}
-                        ,#{chaErpDb2DiskEventChk}
-                        ,#{chaErpDb2DiskEventBigo}
+                        ,#{chaErpDb2EventChk}
+                        ,#{chaErpDb2EventBigo}
                         ,#{chaErpDevCpuUsageChk}
                         ,#{chaErpDevCpuUsageBigo}
                         ,#{chaErpDevMemUsageChk}
@@ -237,31 +237,30 @@
                         ,#{dongaBEventChk}
                         ,#{dongaBEventBigo}
         )
-
         </insert>
 
-        <select id="selectEtcDailyServiceMain"
-                parameterType="com.damg.upit.monitor.dailyCheck.domain.etcDaily.model.erp.MInsertEtcDailyServiceMain">
+        <select id="selectEtcDailyServiceMain" parameterType="long"
+                resultType="com.damg.upit.monitor.dailyCheck.domain.etcDaily.model.erp.MInsertEtcDailyServiceMain">
 
             /* selectEtcDailyServiceMain */
 
            SELECT
                          ETC_SERVICE_ID         AS  etcServiceId
                         ,ETC_MAIN_ID            AS  etcMainId
-                        ,ETC_MAIL_CHK           AS  etcMailServiceChk
-                        ,ETC_MAIL_BIGO          AS  etcMailServiceBigo
-                        ,ETC_APPROVE_CHK        AS  etcApproveServiceChk
-                        ,ETC_APPROVE_BIGO       AS  etcApproveServiceBigo
-                        ,ETC_BACKUP_CHK         AS  etcBackUpServiceChk
-                        ,ETC_BACKUP_BIGO        AS  etcBackUpServiceBigo
+                        ,ETC_MAIL_CHK           AS  etcErpMailServiceChk
+                        ,ETC_MAIL_BIGO          AS  etcErpMailServiceBigo
+                        ,ETC_APPROVE_CHK        AS  etcErpApproveServiceChk
+                        ,ETC_APPROVE_BIGO       AS  etcErpApproveServiceBigo
+                        ,ETC_BACKUP_CHK         AS  etcErpBackUpServiceChk
+                        ,ETC_BACKUP_BIGO        AS  etcErpBackUpServiceBigo
            FROM
                         ETC_DAILY_SERVICE
-           WEHRE
+           WHERE
                         ETC_MAIN_ID = #{etcMainId}
         </select>
 
-        <select id="selectEtcDailyServerMain"
-                parameterType="com.damg.upit.monitor.dailyCheck.domain.etcDaily.model.erp.MInsertEtcDailyServerMain">
+        <select id="selectEtcDailyServerMain" parameterType="long"
+                resultType="com.damg.upit.monitor.dailyCheck.domain.etcDaily.model.erp.MInsertEtcDailyServerMain">
 
             /* selectEtcDailyServerMain */
 
@@ -298,20 +297,20 @@
                         ,CHAERPDB1_MEMUSAGE_BIGO        AS   chaErpDb1MemUsageBigo
                         ,CHAERPDB1_DISKUSAGE_CHK        AS   chaErpDb1DiskUsageChk
                         ,CHAERPDB1_DISKUSAGE_BIGO       AS   chaErpDb1DiskUsageBigo
-                        ,CHAERPDB1_EVENT_CHK            AS   chaErpDb1DiskEventChk
-                        ,CHAERPDB1_EVENT_BIGO           AS   chaErpDb1DiskEventBigo
+                        ,CHAERPDB1_EVENT_CHK            AS   chaErpDb1EventChk
+                        ,CHAERPDB1_EVENT_BIGO           AS   chaErpDb1EventBigo
                         ,CHAERPDB2_CPUUSAGE_CHK         AS   chaErpDb2CpuUsageChk
                         ,CHAERPDB2_CPUUSAGE_BIGO        AS   chaErpDb2CpuUsageBigo
                         ,CHAERPDB2_MEMUSAGE_CHK         AS   chaErpDb2MemUsageChk
                         ,CHAERPDB2_MEMUSAGE_BIGO        AS   chaErpDb2MemUsageBigo
                         ,CHAERPDB2_DISKUSAGE_CHK        AS   chaErpDb2DiskUsageChk
                         ,CHAERPDB2_DISKUSAGE_BIGO       AS   chaErpDb2DiskUsageBigo
-                        ,CHAERPDB2_EVENT_CHK            AS   chaErpDb2DiskEventChk
-                        ,CHAERPDB2_EVENT_BIGO           AS   chaErpDb2DiskEventBigo
+                        ,CHAERPDB2_EVENT_CHK            AS   chaErpDb2EventChk
+                        ,CHAERPDB2_EVENT_BIGO           AS   chaErpDb2EventBigo
                         ,CHAERPDEV_CPUUSAGE_CHK         AS   chaErpDevCpuUsageChk
                         ,CHAERPDEV_CPUUSAGE_BIGO        AS   chaErpDevCpuUsageBigo
                         ,CHAERPDEV_MEMUSAGE_CHK         AS   chaErpDevMemUsageChk
-                        ,CHAERPDEV_MEMSUAGE_BIGO        AS   chaErpDevMemUsageBigo
+                        ,CHAERPDEV_MEMUSAGE_BIGO        AS   chaErpDevMemUsageBigo
                         ,CHAERPDEV_DISKUSAGE_CHK        AS   chaErpDevDiskUsageChk
                         ,CHAERPDEV_DISKUSAGE_BIGO       AS   chaErpDevDiskUsageBigo
                         ,CHAERPDEV_EVENT_CHK            AS   chaErpDevEventChk
@@ -339,7 +338,7 @@
                         ,DDCERPDB_DISKUSAGE_CHK         AS   ddcErpDbDiskUsageChk
                         ,DDCERPDB_DISKUSAGE_BIGO        AS   ddcErpDbDiskUsageBigo
                         ,DDCERPDB_EVENT_CHK             AS   ddcErpDbEventChk
-                        ,DDCERPDB_EVNET_BIGO            AS   ddcErpDbEventBigo
+                        ,DDCERPDB_EVENT_BIGO            AS   ddcErpDbEventBigo
                         ,DKF1_CPUUSAGE_CHK              AS   dkf1CpuUsageChk
                         ,DKF1_CPUUSAGE_BIGO             AS   dkf1CpuUsageBigo
                         ,DKF1_MEMUSAGE_CHK              AS   dkf1MemUsageChk
@@ -363,7 +362,7 @@
                         ,DONGAB_DISKUSAGE_CHK           AS   dongaBDiskUsageChk
                         ,DONGAB_DISKUSAGE_BIGO          AS   dongaBDiskUsageBigo
                         ,DONGAB_EVENT_CHK               AS   dongaBEventChk
-                        ,DONGAB_EVNET_BIGO              AS   dongaBEventBigo
+                        ,DONGAB_EVENT_BIGO              AS   dongaBEventBigo
             FROM
 
                         ETC_DAILY_SERVER
@@ -441,7 +440,7 @@
                         ,CHAERPDEV_CPUUSAGE_CHK         = #{chaErpDevCpuUsageChk}
                         ,CHAERPDEV_CPUUSAGE_BIGO        = #{chaErpDevCpuUsageBigo}
                         ,CHAERPDEV_MEMUSAGE_CHK         = #{chaErpDevMemUsageChk}
-                        ,CHAERPDEV_MEMSUAGE_BIGO        = #{chaErpDevMemUsageBigo}
+                        ,CHAERPDEV_MEMUSAGE_BIGO        = #{chaErpDevMemUsageBigo}
                         ,CHAERPDEV_DISKUSAGE_CHK        = #{chaErpDevDiskUsageChk}
                         ,CHAERPDEV_DISKUSAGE_BIGO       = #{chaErpDevDiskUsageBigo}
                         ,CHAERPDEV_EVENT_CHK            = #{chaErpDevEventChk}
@@ -469,7 +468,7 @@
                         ,DDCERPDB_DISKUSAGE_CHK         = #{ddcErpDbDiskUsageChk}
                         ,DDCERPDB_DISKUSAGE_BIGO        = #{ddcErpDbDiskUsageBigo}
                         ,DDCERPDB_EVENT_CHK             = #{ddcErpDbEventChk}
-                        ,DDCERPDB_EVNET_BIGO            = #{ddcErpDbEventBigo}
+                        ,DDCERPDB_EVENT_BIGO            = #{ddcErpDbEventBigo}
                         ,DKF1_CPUUSAGE_CHK              = #{dkf1CpuUsageChk}
                         ,DKF1_CPUUSAGE_BIGO             = #{dkf1CpuUsageBigo}
                         ,DKF1_MEMUSAGE_CHK              = #{dkf1MemUsageChk}
@@ -490,8 +489,10 @@
                         ,DONGAB_CPUUSAGE_BIGO           = #{dongaBCpuUsageBigo}
                         ,DONGAB_MEMUSAGE_CHK            = #{dongaBMemUsageChk}
                         ,DONGAB_MEMUSAGE_BIGO           = #{dongaBMemUsageBigo}
+                        ,DONGAB_DISKUSAGE_CHK           = #{dongaBDiskUsageChk}
+                        ,DONGAB_DISKUSAGE_BIGO          = #{dongaBDiskUsageBigo}
                         ,DONGAB_EVENT_CHK               = #{dongaBEventChk}
-                        ,DONGAB_EVNET_BIGO              = #{dongaBEventBigo}
+                        ,DONGAB_EVENT_BIGO              = #{dongaBEventBigo}
 
            WHERE
 
