@@ -93,7 +93,7 @@ public class etcDailyController {
         return "etcServer/erp/dailyChkEtcErpUpdate";
     }
 
-    @PostMapping("ERP_ETC/{boardId}/Update")
+    @PostMapping("/ERP_ETC/{boardId}/Update")
     public String doUpdateEtcDailyCheck(@PathVariable("boardId")Long etcMainId,
                                         @ModelAttribute("etcDailyServiceMain") MInsertEtcDailyServiceMain mInsertEtcDailyServiceMain,
                                         @ModelAttribute("etcDailyServerMain")MInsertEtcDailyServerMain mInsertEtcDailyServerMain){

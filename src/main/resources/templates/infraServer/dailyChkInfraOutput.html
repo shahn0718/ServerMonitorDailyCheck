@@ -168,7 +168,7 @@
             <input type="text" class="form-control" name="infraMailServiceBigo" id="infraMailServiceBigoInput"
                    th:value="${infraService.infraMailServiceBigo}" readonly>
             <input type="text" class="form-control" name="infraDNSServiceBigo" id="infraDNSServiceBigoInput"
-                   th:value="${infraService.infraDNSServiceBigo}" readonly>>
+                   th:value="${infraService.infraDNSServiceBigo}" readonly>
           </td>
         </tr>
         <tr align="center" th:each="infraServer:${infraServer}">
@@ -292,18 +292,18 @@
             <td> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ddcBackUpCpuUsageChk" id="ddcBackUpCpuUsageChkY"
-                       th:checked="${infraServer.ddcBackUpCpuUsageChk eq 'Y'}" readonly>
+                       th:checked="${infraServer.ddcBackUpCpuUsageChk eq 'Y'}" disabled>
                 유
                 <input class="form-check-input" type="radio" value="N" name="ddcBackUpCpuUsageChk" id="ddcBackUpCpuUsageChkN"
-                       th:checked="${infraServer.ddcBackUpCpuUsageChk eq 'N'}" readonly>
+                       th:checked="${infraServer.ddcBackUpCpuUsageChk eq 'N'}" disabled>
                 무
               </p> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ddcBackUpMemUsageChk" id="ddcBackUpMemUsageChkY"
-                       th:checked="${infraServer.ddcBackUpMemUsageChk eq 'Y'}" readonly>
+                       th:checked="${infraServer.ddcBackUpMemUsageChk eq 'Y'}" disabled>
                 유
                 <input class="form-check-input" type="radio" value="N" name="ddcBackUpMemUsageChk" id="ddcBackUpMemUsageChkN"
-                       th:checked="${infraServer.ddcBackUpMemUsageChk eq 'N'}" readonly>
+                       th:checked="${infraServer.ddcBackUpMemUsageChk eq 'N'}" disabled>
                 무  
               </p>
               <p>
@@ -311,15 +311,15 @@
                        th:checked="${infraServer.ddcBackUpDiskUsageChk eq 'Y'}" disabled>
                 유
                 <input class="form-check-input" type="radio" value="N" name="ddcBackUpDiskUsageChk" id="ddcBackUpDiskUsageChkN"
-                       th:checked="${infraServer.ddcBackUpDiskUsageChk eq 'N'}" readonly>
+                       th:checked="${infraServer.ddcBackUpDiskUsageChk eq 'N'}" disabled>
                 무  
               </p>
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="ddcBackUpEventChk" id="ddcBackUpEventLogY"
+                <input class="form-check-input" type="radio" value="Y" name="ddcBackUpEventChk" id="ddcBackUpEventChkY"
                        th:checked="${infraServer.ddcBackUpEventChk eq 'Y'}" disabled>
                 유
-                <input class="form-check-input" type="radio" value="N" name="ddcBackUpEventLog" id="ddcBackUpEventLogN"
-                       th:checked="${infraServer.ddcBackUpEventLog eq 'N'}" readonly>
+                <input class="form-check-input" type="radio" value="N" name="ddcBackUpEventChk" id="ddcBackUpEventChkN"
+                       th:checked="${infraServer.ddcBackUpEventChk eq 'N'}" disabled>
                 무  
               </p>
             </td>
@@ -508,34 +508,34 @@
             <td> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ad2CpuUsageChk" id="ad2CpuUsageChkY"
-                       th:checked="${infraServer.ad2CpuUsageChk eq 'Y'}" readonly>
+                       th:checked="${infraServer.ad2CpuUsageChk eq 'Y'}" disabled>
                 유
                 <input class="form-check-input" type="radio" value="N" name="ad2CpuUsageChk" id="ad2CpuUsageChkN"
-                       th:checked="${infraServer.ad2CpuUsageChk eq 'N'}" readonly>
+                       th:checked="${infraServer.ad2CpuUsageChk eq 'N'}" disabled>
                 무
               </p> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ad2MemUsageChk" id="ad2MemUsageChkY"
-                       th:checked="${infraServer.ad2MemUsageChk eq 'Y'}" readonly>
+                       th:checked="${infraServer.ad2MemUsageChk eq 'Y'}" disabled>
                 유
                 <input class="form-check-input" type="radio" value="N" name="ad2MemUsageChk" id="ad2MemUsageChkN"
-                       th:checked="${infraServer.ad2MemUsageChk eq 'N'}" readonly>
+                       th:checked="${infraServer.ad2MemUsageChk eq 'N'}" disabled>
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ad2DiskUsageChk" id="ad2DiskUsageChkY"
-                       th:checked="${infraServer.ad2DiskUsageChk eq 'Y'}" readonly>
+                       th:checked="${infraServer.ad2DiskUsageChk eq 'Y'}" disabled>
                 유
                 <input class="form-check-input" type="radio" value="N" name="ad2DiskUsageChk" id="ad2DiskUsageChkN"
-                       th:checked="${infraServer.ad2DiskUsageChk eq 'N'}" readonly>
+                       th:checked="${infraServer.ad2DiskUsageChk eq 'N'}" disabled>
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ad2EventChk" id="ad2EventChkY"
-                       th:checked="${infraServer.ad2EventChk eq 'Y'}" readonly>
+                       th:checked="${infraServer.ad2EventChk eq 'Y'}" disabled>
                 유
                 <input class="form-check-input" type="radio" value="N" name="ad2EventChk" id="ad2EventChkN"
-                       th:checked="${infraServer.ad2EventChk eq 'N'}" readonly>
+                       th:checked="${infraServer.ad2EventChk eq 'N'}" disabled>
                 무  
               </p>
             </td>
@@ -785,7 +785,7 @@
               <input type="text" class="form-control" name="sso2ClustBigo" id="sso2ClustBigoInput"
                      th:value="${infraEtc.sso2ClustBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
               <input type="text" class="form-control" name="sso2EventBigo" id="sso2EventBigoInput"
-                     th:value="${infraEtc.sso2EvnetBigo}" readonly>
+                     th:value="${infraEtc.sso2EventBigo}" readonly>
             </td>
           </tr>
           <tr align="center" th:each="infraEtc:${infraEtc}">

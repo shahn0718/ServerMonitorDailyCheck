@@ -1,15 +1,23 @@
 package com.damg.upit.monitor.dailyCheck.domain.infraDaily.controller;
 
 
+import com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyEtcMain;
+import com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyServerMain;
+import com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyServiceMain;
+import com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyVMMain;
 import com.damg.upit.monitor.dailyCheck.domain.infraDaily.service.infraDailyService;
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MDailyCheckElement;
+import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckAdminMain;
+import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain;
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.service.mainDailyService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -25,7 +33,7 @@ public class infraDailyController {
     private MDailyCheckElement mDailyCheckElement;
 
     @GetMapping("/infraDailyCheck")
-    public String home(Model model){
+    public String homeInfraDailyCheck(Model model){
 
         model.addAttribute("adminUser", mainService.selectDailyCheckAdminList());
         model.addAttribute("createdTime", LocalDateTime.now());
@@ -33,4 +41,86 @@ public class infraDailyController {
         return "infraServer/dailyChkInfraInput";
     }
 
+    @PostMapping("/infraDailyCheck")
+    public String doInsertInfraDailyCheck(
+            @ModelAttribute("infraDailyServiceMain")MInsertInfraDailyServiceMain mInsertInfraDailyServiceMain,
+            @ModelAttribute("infraDailyServerMain") MInsertInfraDailyServerMain mInsertInfraDailyServerMain,
+            @ModelAttribute("infraDailyVMMain")MInsertInfraDailyVMMain mInsertInfraDailyVMMain,
+            @ModelAttribute("infraDailyEtcMain")MInsertInfraDailyEtcMain mInsertInfraDailyEtcMain,
+            @RequestParam String admin_nm,
+            Model model
+            ){
+
+        Model infraDailyCheck = model.addAttribute("infraDailyCheck");
+        log.info("infraDailyCheck={}", infraDailyCheck);
+
+        String contentDate = DateTimeFormatter.ofPattern("yyyy.MM.dd").format(LocalDateTime.now());
+        MSVDailyCheckAdminMain msvDailyCheckAdminMain = mainService.selectDailyCheckAdmin(admin_nm);
+
+        MSVDailyCheckBoardMain msvDailyCheckBoardMain = new MSVDailyCheckBoardMain();
+
+        msvDailyCheckBoardMain.setDailyMainCd(mDailyCheckElement.INFRA);
+        msvDailyCheckBoardMain.setDailyMainCdNm(mDailyCheckElement.INFRA_KOR);
+        msvDailyCheckBoardMain.setDailyMainContent(mDailyCheckElement.INFRA_KOR+" 서버 일일점검 "+"("+contentDate+")");
+        msvDailyCheckBoardMain.setDailyMainWriter(msvDailyCheckAdminMain.getAdmin_nm());
+        msvDailyCheckBoardMain.setDailyMainWriterNo(msvDailyCheckAdminMain.getAdmin_no());
+        msvDailyCheckBoardMain.setDailyMainCreateDate(LocalDateTime.now());
+
+        infraService.insertInfraDailyCheckMain(mInsertInfraDailyServiceMain,mInsertInfraDailyServerMain,
+                mInsertInfraDailyVMMain,mInsertInfraDailyEtcMain,msvDailyCheckBoardMain);
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/INFRA/{boardId}")
+    public String doSelectInfraDailyCheck(@PathVariable("boardId")Long infraMainId, Model model){
+
+        List<MInsertInfraDailyServiceMain> mInsertInfraDailyServiceMain = infraService.selectInfraDailyServiceMain(infraMainId);
+        List<MInsertInfraDailyServerMain> mInsertInfraDailyServerMain = infraService.selectInfraDailyServerMain(infraMainId);
+        List<MInsertInfraDailyVMMain> mInsertInfraDailyVMMain = infraService.selectInfraDailyVMMain(infraMainId);
+        List<MInsertInfraDailyEtcMain> mInsertInfraDailyEtcMain = infraService.selectInfraDailyEtcMain(infraMainId);
+        MSVDailyCheckBoardMain msvDailyCheckBoardMain= mainService.selectDailyCheckBoard(infraMainId);
+
+        model.addAttribute("infraService", mInsertInfraDailyServiceMain);
+        model.addAttribute("infraServer", mInsertInfraDailyServerMain);
+        model.addAttribute("infraVM", mInsertInfraDailyVMMain);
+        model.addAttribute("infraEtc", mInsertInfraDailyEtcMain);
+        model.addAttribute("mainBoardInfo",msvDailyCheckBoardMain);
+
+        return "infraServer/dailyChkInfraOutput";
+    }
+
+    @GetMapping("/INFRA/{boardId}/Update")
+    public String getUpdateInfraDailyCheck(@PathVariable("boardId")Long infraMainId, Model model){
+
+        List<MInsertInfraDailyServiceMain> mInsertInfraDailyServiceMain = infraService.selectInfraDailyServiceMain(infraMainId);
+        List<MInsertInfraDailyServerMain> mInsertInfraDailyServerMain = infraService.selectInfraDailyServerMain(infraMainId);
+        List<MInsertInfraDailyVMMain> mInsertInfraDailyVMMain = infraService.selectInfraDailyVMMain(infraMainId);
+        List<MInsertInfraDailyEtcMain> mInsertInfraDailyEtcMain = infraService.selectInfraDailyEtcMain(infraMainId);
+
+        model.addAttribute("infraService",mInsertInfraDailyServiceMain);
+        model.addAttribute("infraServer",mInsertInfraDailyServerMain);
+        model.addAttribute("infraVM",mInsertInfraDailyVMMain);
+        model.addAttribute("infraEtc",mInsertInfraDailyEtcMain);
+
+        return "infraServer/dailyChkInfraUpdate";
+    }
+
+    @PostMapping("/INFRA/{boardId}/Update")
+    public String doUpdateInfraDailyCheck(@PathVariable("boardId")Long infraMainId,
+                                          @ModelAttribute("infraDailyServiceMain") MInsertInfraDailyServiceMain mInsertInfraDailyServiceMain,
+                                          @ModelAttribute("infraDailyServerMain") MInsertInfraDailyServerMain mInsertInfraDailyServerMain,
+                                          @ModelAttribute("infraDailyVMMain") MInsertInfraDailyVMMain mInsertInfraDailyVMMain,
+                                          @ModelAttribute("infraDailyEtcMain")MInsertInfraDailyEtcMain mInsertInfraDailyEtcMain){
+
+        infraService.updateInfraDailyCheckBoard(infraMainId,mInsertInfraDailyServiceMain,
+                mInsertInfraDailyServerMain,mInsertInfraDailyVMMain,mInsertInfraDailyEtcMain);
+
+        log.info("infraDailyServiceMain={}",mInsertInfraDailyServiceMain);
+        log.info("infraDailyServerMain={}",mInsertInfraDailyServerMain);
+        log.info("infraDailyVMMain={}",mInsertInfraDailyVMMain);
+        log.info("infraDailyEtcMain={}",mInsertInfraDailyEtcMain);
+
+        return "redirect:/";
+    }
 }

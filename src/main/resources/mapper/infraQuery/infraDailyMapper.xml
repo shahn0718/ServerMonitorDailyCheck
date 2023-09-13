@@ -2,509 +2,712 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.damg.upit.monitor.dailyCheck.domain.infraDaily.mapper.infraDailyMapper">
 
-    <insert id="insertInfraDailyServiceMain" parameterType="com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyServiceMain"
-            useGeneratedKeys="true" keyProperty="infraMainId">
+            <insert id="insertInfraDailyServiceMain" parameterType="com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyServiceMain"
+                    useGeneratedKeys="true" keyProperty="infraMainId">
 
-       /* insertInfraDailyServiceMain */
+               /* insertInfraDailyServiceMain */
 
-        INSERT INTO INFRA_DAILY_SERVICE (
+                INSERT INTO INFRA_DAILY_SERVICE (
 
-                 INFRA_SERVICE_ID
-                ,INFRA_MAIN_ID
-                ,INFRA_BACKUP_CHK
-                ,INFRA_BACKUP_BIGO
-                ,INFRA_SPAM_CHK
-                ,INFRA_SPAM_BIGO
-                ,INFRA_MAIL_CHK
-                ,INFRA_MAIL_BIGO
-                ,INFRA_DNS_CHK
-                ,INFRA_DNS_BIGO
+                         INFRA_SERVICE_ID
+                        ,INFRA_MAIN_ID
+                        ,INFRA_BACKUP_CHK
+                        ,INFRA_BACKUP_BIGO
+                        ,INFRA_SPAM_CHK
+                        ,INFRA_SPAM_BIGO
+                        ,INFRA_MAIL_CHK
+                        ,INFRA_MAIL_BIGO
+                        ,INFRA_DNS_CHK
+                        ,INFRA_DNS_BIGO
 
-        ) VALUES (
+                ) VALUES (
 
+                         #{infraServiceId}
+                        ,#{infraMainId}
+                        ,#{infraBackUpServiceChk}
+                        ,#{infraBackUpServiceBigo}
+                        ,#{infraSpamServiceChk}
+                        ,#{infraSpamServiceBigo}
+                        ,#{infraMailServiceChk}
+                        ,#{infraMailServiceBigo}
+                        ,#{infraDNSServiceChk}
+                        ,#{infraDNSServiceBigo}
+                )
+            </insert>
 
-                 #{infraServiceId}
-                ,#{infraMainId}
-                ,#{infraBackUpServiceChk}
-                ,#{infraBackUpServiceBigo}
-                ,#{infraSpamServiceChk}
-                ,#{infraSpamServiceBigo}
-                ,#{infraMailServiceChk}
-                ,#{infraMailServiceBigo}
-                ,#{infraDNSServiceChk}
-                ,#{infraDNSServiceBigo}
-        )
-    </insert>
-
-    <insert id="insertInfraDailyServerMain" parameterType="com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyServerMain"
-            useGeneratedKeys="true" keyProperty="infraMainId">
-
-
-        /* insertInfraDailyServerMain */
-
-        INSERT INTO INFRA_DAILY_SERVER (
-
-                 INFRA_SERVER_ID
-                ,INFRA_MAIN_ID
-                ,NEWBLOCK1_CPUUSAGE_CHK
-                ,NEWBLOCK1_CPUUSAGE_BIGO
-                ,NEWBLOCK1_MEMUSAGE_CHK
-                ,NEWBLOCK1_MEMUSAGE_BIGO
-                ,NEWBLOCK1_DISKUSAGE_CHK
-                ,NEWBLOCK1_DISKUSAGE_BIGO
-                ,NEWBLOCK1_EVENT_CHK
-                ,NEWBLOCK1_EVENT_BIGO
-                ,NEWBLOCK2_CPUUSAGE_CHK
-                ,NEWBLOCK2_CPUUSAGE_BIGO
-                ,NEWBLOCK2_MEMUSAGE_CHK
-                ,NEWBLOCK2_MEMUSAGE_BIGO
-                ,NEWBLOCK2_DISKUSAGE_CHK
-                ,NEWBLOCK2_DISKUSAGE_BIGO
-                ,NEWBLOCK2_EVENT_CHK
-                ,NEWBLOCK2_EVENT_BIGO
-                ,DDCBACKUP_CPUUSAGE_CHK
-                ,DDCBACKUP_CPUUSAGE_BIGO
-                ,DDCBACKUP_MEMUSAGE_CHK
-                ,DDCBACKUP_MEMUSAGE_BIGO
-                ,DDCBACKUP_DISKUSAGE_CHK
-                ,DDCBACKUP_DISKUSAGE_BIGO
-                ,DDCBACKUP_EVENT_CHK
-                ,DDCBACKUP_EVENT_BIGO
-                ,CHABACKUP_CPUUSAGE_CHK
-                ,CHABACKUP_CPUUSAGE_BIGO
-                ,CHABACKUP_MEMUSAGE_CHK
-                ,CHABACKUP_MEMUSAGE_BIGO
-                ,CHABACKUP_DISKUSAGE_CHK
-                ,CHABACKUP_DISKUSAGE_BIGO
-                ,CHABACKUP_EVENT_CHK
-                ,CHABACKUP_EVENT_BIGO
-                ,NEWFILE_CPUUSAGE_CHK
-                ,NEWFILE_CPUUSAGE_BIGO
-                ,NEWFILE_MEMUSAGE_CHK
-                ,NEWFILE_MEMUSAGE_BIGO
-                ,NEWFILE_DISKUSAGE_CHK
-                ,NEWFILE_DISKUSAGE_BIGO
-                ,NEWFILE_EVENT_CHK
-                ,NEWFILE_EVENT_BIGO
-                ,AD1_CPUUSAGE_CHK
-                ,AD1_CPUUSAGE_BIGO
-                ,AD1_MEMUSAGE_CHK
-                ,AD1_MEMUSAGE_BIGO
-                ,AD1_DISKUSAGE_CHK
-                ,AD1_DISKUSAGE_BIGO
-                ,AD1_EVENT_CHK
-                ,AD1_EVENT_BIGO
-                ,AD2_CPUUSAGE_CHK
-                ,AD2_CPUUSAGE_BIGO
-                ,AD2_MEMUSAGE_CHK
-                ,AD2_MEMUSAGE_BIGO
-                ,AD2_DISKUSAGE_CHK
-                ,AD2_DISKUSAGE_BIGO
-                ,AD2_EVENT_CHK
-                ,AD2_EVENT_BIGO
-
-        ) VALUES (
-
-                #{infraServerId}
-                ,#{infraMainId}
-                ,#{nwblock1CpuUsageChk}
-                ,#{nwblock1CpuUsageBigo}
-                ,#{nwblock1MemUsageChk}
-                ,#{nwblock1MemUsageBigo}
-                ,#{nwblock1DiskUsageChk}
-                ,#{nwblock1DiskUsageBigo}
-                ,#{nwblock1EventChk}
-                ,#{nwblock1EventBigo}
-                ,#{nwblock2CpuUsageChk}
-                ,#{nwblock2CpuUsageBigo}
-                ,#{nwblock2MemUsageChk}
-                ,#{nwblock2MemUsageBigo}
-                ,#{nwblock2DiskUsageChk}
-                ,#{nwblock2DiskUsageBigo}
-                ,#{nwblock2EventChk}
-                ,#{nwblock2EventBigo}
-                ,#{ddcBackUpCpuUsageChk}
-                ,#{ddcBackUpCpuUsageBigo}
-                ,#{ddcBackUpMemUsageChk}
-                ,#{ddcBackUpMemUsageBigo}
-                ,#{ddcBackUpDiskUsageChk}
-                ,#{ddcBackUpDiskUsageBigo}
-                ,#{ddcBackUpEventChk}
-                ,#{ddcBackUpEventBigo}
-                ,#{chaBackUpCpuUsageChk}
-                ,#{chaBackUpCpuUsageBigo}
-                ,#{chaBackUpMemUsageChk}
-                ,#{chaBackUpMemUsageBigo}
-                ,#{chaBackUpDiskUsageChk}
-                ,#{chaBackUpDiskUsageBigo}
-                ,#{chaBackUpEventChk}
-                ,#{chaBackUpEventBigo}
-                ,#{nwFileCpuUsageChk}
-                ,#{nwFileCpuUsageBigo}
-                ,#{nwFileMemUsageChk}
-                ,#{nwFileMemUsageBigo}
-                ,#{nwFileDiskUsageChk}
-                ,#{nwFileDiskUsageBigo}
-                ,#{nwFileEventChk}
-                ,#{nwFileEventBigo}
-                ,#{ad1CpuUsageChk}
-                ,#{ad1CpuUsageBigo}
-                ,#{ad1MemUsageChk}
-                ,#{ad1MemUsageBigo}
-                ,#{ad1DiskUsageChk}
-                ,#{ad1DiskUsageBigo}
-                ,#{ad1EventChk}
-                ,#{ad1EventBigo}
-                ,#{ad2CpuUsageChk}
-                ,#{ad2CpuUsageBigo}
-                ,#{ad2MemUsageChk}
-                ,#{ad2MemUsageBigo}
-                ,#{ad2DiskUsageChk}
-                ,#{ad2DiskUsageBigo}
-                ,#{ad2EventChk}
-                ,#{ad2EventBigo}
-        )
-    </insert>
-
-    <insert id="insertInfraDailyVMMain" parameterType="com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyVMMain"
-            useGeneratedKeys="true" keyProperty="infraMainId">
-
-        INSERT INTO INFRA_DAILY_VM (
-
-                 INFRA_VM_ID
-                ,INFRA_MAIN_ID
-                ,ERPHVDC1_CPUUSAGE_CHK
-                ,ERPHVDC1_CPUUSAGE_BIGO
-                ,ERPHVDC1_MEMUSAGE_CHK
-                ,ERPHVDC1_MEMUSAGE_BIGO
-                ,ERPHVDC1_DISKUSAGE_CHK
-                ,ERPHVDC1_DISKUSAGE_BIGO
-                ,ERPHVDC1_EVENT_CHK
-                ,ERPHVDC1_EVENT_BIGO
-                ,ERPHVDC2_CPUUSAGE_CHK
-                ,ERPHVDC2_CPUUSAGE_BIGO
-                ,ERPHVDC2_MEMUSAGE_CHK
-                ,ERPHVDC2_MEMUSAGE_BIGO
-                ,ERPHVDC2_DISKUSAGE_CHK
-                ,ERPHVDC2_DISKUSAGE_BIGO
-                ,ERPHVDC2_EVENT_CHK
-                ,ERPHVDC2_EVENT_BIGO
-
-        ) VALUES (
-
-                #{infrVMId}
-                ,#{infraMainId}
-                ,#{erpHvdc1CpuUsageChk}
-                ,#{erpHvdc1CpuUsageBigo}
-                ,#{erpHvdc1MemUsageChk}
-                ,#{erpHvdc1MemUsageBigo}
-                ,#{erpHvdc1DiskUsageChk}
-                ,#{erpHvdc1DiskUsageBigo}
-                ,#{erpHvdc1EventChk}
-                ,#{erpHvdc1EventBigo}
-                ,#{erpHvdc2CpuUsageChk}
-                ,#{erpHvdc2CpuUsageBigo}
-                ,#{erpHvdc2MemUsageChk}
-                ,#{erpHvdc2MemUsageBigo}
-                ,#{erpHvdc2DiskUsageChk}
-                ,#{erpHvdc2DiskUsageBigo}
-                ,#{erpHvdc2EventChk}
-                ,#{erpHvdc2EventBigo}
-        )
-    </insert>
-
-    <insert id="insertInfraDailyEtcMain" parameterType="com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyEtcMain"
-            useGeneratedKeys="true" keyProperty="infraMainId">
-
-        /* insertInfraDailyEtcMain */
-
-        INSERT INTO INFRA_DAILY_ETC (
-
-                 INFRA_ETC_ID
-                ,INFRA_MAIN_ID
-                ,VPN1_CLUST_CHK
-                ,VPN1_CLUST_BIGO
-                ,VPN1_EVENT_CHK
-                ,VPN1_EVENT_BIGO
-                ,VPN2_CLUST_CHK
-                ,VPN2_CLUST_BIGO
-                ,VPN2_EVENT_CHK
-                ,VPN2_EVENT_BIGO
-                ,SSO1_CLUST_CHK
-                ,SSO1_CLUST_BIGO
-                ,SSO1_EVENT_CHK
-                ,SSO1_EVENT_BIGO
-                ,SSO2_CLUST_CHK
-                ,SSO2_CLUST_BIGO
-                ,SSO2_EVENT_CHK
-                ,SSO2_EVENT_BIGO
-                ,DDOS1_CLUST_CHK
-                ,DDOS1_CLUST_BIGO
-                ,DDOS1_EVENT_CHK
-                ,DDOS1_EVENT_BIGO
-                ,DDOS2_CLUST_CHK
-                ,DDOS2_CLUST_BIGO
-                ,DDOS2_EVENT_CHK
-                ,DDOS2_EVENT_BIGO
-                ,FW1_CLUST_CHK
-                ,FW1_CLUST_BIGO
-                ,FW1_EVENT_CHK
-                ,FW1_EVENT_BIGO
-                ,FW2_CLUST_CHK
-                ,FW2_CLUST_BIGO
-                ,FW2_EVENT_CHK
-                ,FW2_EVENT_BIGO
-                ,SPAM1_CLUST_CHK
-                ,SPAM1_CLUST_BIGO
-                ,SPAM1_EVENT_CHK
-                ,SPAM1_EVENT_BIGO
-                ,SPAM2_CLUST_CHK
-                ,SPAM2_CLUST_BIGO
-                ,SPAM2_EVENT_CHK
-                ,SPAM2_EVENT_BIGO
-                ,GMONITOR_CLUST_CHK
-                ,GMONITOR_CLUST_BIGO
-                ,GMONITOR_EVENT_CHK
-                ,GMONITOR_EVENT_BIGO
-                ,EMONITOR_CLUST_CHK
-                ,EMONITOR_CLUST_BIGO
-                ,EMONITOR_EVENT_CHK
-                ,EMONITOR_EVENT_BIGO
-
-        ) VALUES (
+            <insert id="insertInfraDailyServerMain" parameterType="com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyServerMain"
+                    useGeneratedKeys="true" keyProperty="infraMainId">
 
 
-                #{infraEtcId}
-                ,#{infraMainId}
-                ,#{vpn1ClustChk}
-                ,#{vpn1ClustBigo}
-                ,#{vpn1EventChk}
-                ,#{vpn1EventBigo}
-                ,#{vpn2ClustChk}
-                ,#{vpn2ClustBigo}
-                ,#{vpn2EventChk}
-                ,#{vpn2EventBigo}
-                ,#{sso1ClustChk}
-                ,#{sso1ClustBigo}
-                ,#{sso1EventChk}
-                ,#{sso1EventBigo}
-                ,#{sso2ClustChk}
-                ,#{sso2ClustBigo}
-                ,#{sso2EventChk}
-                ,#{sso2EventBigo}
-                ,#{ddos1ClustChk}
-                ,#{ddos1ClustBigo}
-                ,#{ddos1EventChk}
-                ,#{ddos1EventBigo}
-                ,#{ddos2ClustChk}
-                ,#{ddos2ClustBigo}
-                ,#{ddos2EventChk}
-                ,#{ddos2EventBigo}
-                ,#{fw1ClustChk}
-                ,#{fw1ClustBigo}
-                ,#{fw1EventChk}
-                ,#{fw1EventBigo}
-                ,#{fw2ClustChk}
-                ,#{fw2ClustBigo}
-                ,#{fw2EventChk}
-                ,#{fw2EventBigo}
-                ,#{spam1ClustChk}
-                ,#{spam1ClustBigo}
-                ,#{spam1EventChk}
-                ,#{spam1EventBigo}
-                ,#{spam2ClustChk}
-                ,#{spam2ClustBigo}
-                ,#{spam2EventChk}
-                ,#{spam2EventBigo}
-                ,#{gMonitorClustChk}
-                ,#{gMonitorClustBigo}
-                ,#{gMonitorEventChk}
-                ,#{gMonitorEventBigo}
-                ,#{eMonitorClustChk}
-                ,#{eMonitorClustBigo}
-                ,#{eMonitorEventChk}
-                ,#{eMonitorEventBigo}
-        )
-    </insert>
+                        /* insertInfraDailyServerMain */
+
+                        INSERT INTO INFRA_DAILY_SERVER (
+
+                                 INFRA_SERVER_ID
+                                ,INFRA_MAIN_ID
+                                ,NWBLOCK1_CPUUSAGE_CHK
+                                ,NWBLOCK1_CPUUSAGE_BIGO
+                                ,NWBLOCK1_MEMUSAGE_CHK
+                                ,NWBLOCK1_MEMUSAGE_BIGO
+                                ,NWBLOCK1_DISKUSAGE_CHK
+                                ,NWBLOCK1_DISKUSAGE_BIGO
+                                ,NWBLOCK1_EVENT_CHK
+                                ,NWBLOCK1_EVENT_BIGO
+                                ,NWBLOCK2_CPUUSAGE_CHK
+                                ,NWBLOCK2_CPUUSAGE_BIGO
+                                ,NWBLOCK2_MEMUSAGE_CHK
+                                ,NWBLOCK2_MEMUSAGE_BIGO
+                                ,NWBLOCK2_DISKUSAGE_CHK
+                                ,NWBLOCK2_DISKUSAGE_BIGO
+                                ,NWBLOCK2_EVENT_CHK
+                                ,NWBLOCK2_EVENT_BIGO
+                                ,DDCBACKUP_CPUUSAGE_CHK
+                                ,DDCBACKUP_CPUUSAGE_BIGO
+                                ,DDCBACKUP_MEMUSAGE_CHK
+                                ,DDCBACKUP_MEMUSAGE_BIGO
+                                ,DDCBACKUP_DISKUSAGE_CHK
+                                ,DDCBACKUP_DISKUSAGE_BIGO
+                                ,DDCBACKUP_EVENT_CHK
+                                ,DDCBACKUP_EVENT_BIGO
+                                ,CHABACKUP_CPUUSAGE_CHK
+                                ,CHABACKUP_CPUUSAGE_BIGO
+                                ,CHABACKUP_MEMUSAGE_CHK
+                                ,CHABACKUP_MEMUSAGE_BIGO
+                                ,CHABACKUP_DISKUSAGE_CHK
+                                ,CHABACKUP_DISKUSAGE_BIGO
+                                ,CHABACKUP_EVENT_CHK
+                                ,CHABACKUP_EVENT_BIGO
+                                ,NEWFILE_CPUUSAGE_CHK
+                                ,NEWFILE_CPUUSAGE_BIGO
+                                ,NEWFILE_MEMUSAGE_CHK
+                                ,NEWFILE_MEMUSAGE_BIGO
+                                ,NEWFILE_DISKUSAGE_CHK
+                                ,NEWFILE_DISKUSAGE_BIGO
+                                ,NEWFILE_EVENT_CHK
+                                ,NEWFILE_EVENT_BIGO
+                                ,AD1_CPUUSAGE_CHK
+                                ,AD1_CPUUSAGE_BIGO
+                                ,AD1_MEMUSAGE_CHK
+                                ,AD1_MEMUSAGE_BIGO
+                                ,AD1_DISKUSAGE_CHK
+                                ,AD1_DISKUSAGE_BIGO
+                                ,AD1_EVENT_CHK
+                                ,AD1_EVENT_BIGO
+                                ,AD2_CPUUSAGE_CHK
+                                ,AD2_CPUUSAGE_BIGO
+                                ,AD2_MEMUSAGE_CHK
+                                ,AD2_MEMUSAGE_BIGO
+                                ,AD2_DISKUSAGE_CHK
+                                ,AD2_DISKUSAGE_BIGO
+                                ,AD2_EVENT_CHK
+                                ,AD2_EVENT_BIGO
+
+                        ) VALUES (
+
+                                #{infraServerId}
+                                ,#{infraMainId}
+                                ,#{nwblock1CpuUsageChk}
+                                ,#{nwblock1CpuUsageBigo}
+                                ,#{nwblock1MemUsageChk}
+                                ,#{nwblock1MemUsageBigo}
+                                ,#{nwblock1DiskUsageChk}
+                                ,#{nwblock1DiskUsageBigo}
+                                ,#{nwblock1EventChk}
+                                ,#{nwblock1EventBigo}
+                                ,#{nwblock2CpuUsageChk}
+                                ,#{nwblock2CpuUsageBigo}
+                                ,#{nwblock2MemUsageChk}
+                                ,#{nwblock2MemUsageBigo}
+                                ,#{nwblock2DiskUsageChk}
+                                ,#{nwblock2DiskUsageBigo}
+                                ,#{nwblock2EventChk}
+                                ,#{nwblock2EventBigo}
+                                ,#{ddcBackUpCpuUsageChk}
+                                ,#{ddcBackUpCpuUsageBigo}
+                                ,#{ddcBackUpMemUsageChk}
+                                ,#{ddcBackUpMemUsageBigo}
+                                ,#{ddcBackUpDiskUsageChk}
+                                ,#{ddcBackUpDiskUsageBigo}
+                                ,#{ddcBackUpEventChk}
+                                ,#{ddcBackUpEventBigo}
+                                ,#{chaBackUpCpuUsageChk}
+                                ,#{chaBackUpCpuUsageBigo}
+                                ,#{chaBackUpMemUsageChk}
+                                ,#{chaBackUpMemUsageBigo}
+                                ,#{chaBackUpDiskUsageChk}
+                                ,#{chaBackUpDiskUsageBigo}
+                                ,#{chaBackUpEventChk}
+                                ,#{chaBackUpEventBigo}
+                                ,#{newFileCpuUsageChk}
+                                ,#{newFileCpuUsageBigo}
+                                ,#{newFileMemUsageChk}
+                                ,#{newFileMemUsageBigo}
+                                ,#{newFileDiskUsageChk}
+                                ,#{newFileDiskUsageBigo}
+                                ,#{newFileEventChk}
+                                ,#{newFileEventBigo}
+                                ,#{ad1CpuUsageChk}
+                                ,#{ad1CpuUsageBigo}
+                                ,#{ad1MemUsageChk}
+                                ,#{ad1MemUsageBigo}
+                                ,#{ad1DiskUsageChk}
+                                ,#{ad1DiskUsageBigo}
+                                ,#{ad1EventChk}
+                                ,#{ad1EventBigo}
+                                ,#{ad2CpuUsageChk}
+                                ,#{ad2CpuUsageBigo}
+                                ,#{ad2MemUsageChk}
+                                ,#{ad2MemUsageBigo}
+                                ,#{ad2DiskUsageChk}
+                                ,#{ad2DiskUsageBigo}
+                                ,#{ad2EventChk}
+                                ,#{ad2EventBigo}
+                        )
+            </insert>
+
+            <insert id="insertInfraDailyVMMain" parameterType="com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyVMMain"
+                    useGeneratedKeys="true" keyProperty="infraMainId">
+
+                        INSERT INTO INFRA_DAILY_VM (
+
+                                 INFRA_VM_ID
+                                ,INFRA_MAIN_ID
+                                ,ERPHVDC1_CPUUSAGE_CHK
+                                ,ERPHVDC1_CPUUSAGE_BIGO
+                                ,ERPHVDC1_MEMUSAGE_CHK
+                                ,ERPHVDC1_MEMUSAGE_BIGO
+                                ,ERPHVDC1_DISKUSAGE_CHK
+                                ,ERPHVDC1_DISKUSAGE_BIGO
+                                ,ERPHVDC1_EVENT_CHK
+                                ,ERPHVDC1_EVENT_BIGO
+                                ,ERPHVDC2_CPUUSAGE_CHK
+                                ,ERPHVDC2_CPUUSAGE_BIGO
+                                ,ERPHVDC2_MEMUSAGE_CHK
+                                ,ERPHVDC2_MEMUSAGE_BIGO
+                                ,ERPHVDC2_DISKUSAGE_CHK
+                                ,ERPHVDC2_DISKUSAGE_BIGO
+                                ,ERPHVDC2_EVENT_CHK
+                                ,ERPHVDC2_EVENT_BIGO
+
+                        ) VALUES (
+
+                                 #{infraVMId}
+                                ,#{infraMainId}
+                                ,#{erpHvdc1CpuUsageChk}
+                                ,#{erpHvdc1CpuUsageBigo}
+                                ,#{erpHvdc1MemUsageChk}
+                                ,#{erpHvdc1MemUsageBigo}
+                                ,#{erpHvdc1DiskUsageChk}
+                                ,#{erpHvdc1DiskUsageBigo}
+                                ,#{erpHvdc1EventChk}
+                                ,#{erpHvdc1EventBigo}
+                                ,#{erpHvdc2CpuUsageChk}
+                                ,#{erpHvdc2CpuUsageBigo}
+                                ,#{erpHvdc2MemUsageChk}
+                                ,#{erpHvdc2MemUsageBigo}
+                                ,#{erpHvdc2DiskUsageChk}
+                                ,#{erpHvdc2DiskUsageBigo}
+                                ,#{erpHvdc2EventChk}
+                                ,#{erpHvdc2EventBigo}
+                )
+            </insert>
+
+            <insert id="insertInfraDailyEtcMain" parameterType="com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyEtcMain"
+                    useGeneratedKeys="true" keyProperty="infraMainId">
+
+                /* insertInfraDailyEtcMain */
+
+                        INSERT INTO INFRA_DAILY_ETC (
+
+                                 INFRA_ETC_ID
+                                ,INFRA_MAIN_ID
+                                ,VPN1_CLUST_CHK
+                                ,VPN1_CLUST_BIGO
+                                ,VPN1_EVENT_CHK
+                                ,VPN1_EVENT_BIGO
+                                ,VPN2_CLUST_CHK
+                                ,VPN2_CLUST_BIGO
+                                ,VPN2_EVENT_CHK
+                                ,VPN2_EVENT_BIGO
+                                ,SSO1_CLUST_CHK
+                                ,SSO1_CLUST_BIGO
+                                ,SSO1_EVENT_CHK
+                                ,SSO1_EVENT_BIGO
+                                ,SSO2_CLUST_CHK
+                                ,SSO2_CLUST_BIGO
+                                ,SSO2_EVENT_CHK
+                                ,SSO2_EVENT_BIGO
+                                ,DDOS1_CLUST_CHK
+                                ,DDOS1_CLUST_BIGO
+                                ,DDOS1_EVENT_CHK
+                                ,DDOS1_EVENT_BIGO
+                                ,DDOS2_CLUST_CHK
+                                ,DDOS2_CLUST_BIGO
+                                ,DDOS2_EVENT_CHK
+                                ,DDOS2_EVENT_BIGO
+                                ,FW1_CLUST_CHK
+                                ,FW1_CLUST_BIGO
+                                ,FW1_EVENT_CHK
+                                ,FW1_EVENT_BIGO
+                                ,FW2_CLUST_CHK
+                                ,FW2_CLUST_BIGO
+                                ,FW2_EVENT_CHK
+                                ,FW2_EVENT_BIGO
+                                ,SPAM1_CLUST_CHK
+                                ,SPAM1_CLUST_BIGO
+                                ,SPAM1_EVENT_CHK
+                                ,SPAM1_EVENT_BIGO
+                                ,SPAM2_CLUST_CHK
+                                ,SPAM2_CLUST_BIGO
+                                ,SPAM2_EVENT_CHK
+                                ,SPAM2_EVENT_BIGO
+                                ,GMONITOR_CLUST_CHK
+                                ,GMONITOR_CLUST_BIGO
+                                ,GMONITOR_EVENT_CHK
+                                ,GMONITOR_EVENT_BIGO
+                                ,EMONITOR_CLUST_CHK
+                                ,EMONITOR_CLUST_BIGO
+                                ,EMONITOR_EVENT_CHK
+                                ,EMONITOR_EVENT_BIGO
+
+                ) VALUES (
 
 
-    <select id="selectInfraDailyServiceMain" parameterType="long"
-            resultType="com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyServerMain">
+                                 #{infraEtcId}
+                                ,#{infraMainId}
+                                ,#{vpn1ClustChk}
+                                ,#{vpn1ClustBigo}
+                                ,#{vpn1EventChk}
+                                ,#{vpn1EventBigo}
+                                ,#{vpn2ClustChk}
+                                ,#{vpn2ClustBigo}
+                                ,#{vpn2EventChk}
+                                ,#{vpn2EventBigo}
+                                ,#{sso1ClustChk}
+                                ,#{sso1ClustBigo}
+                                ,#{sso1EventChk}
+                                ,#{sso1EventBigo}
+                                ,#{sso2ClustChk}
+                                ,#{sso2ClustBigo}
+                                ,#{sso2EventChk}
+                                ,#{sso2EventBigo}
+                                ,#{ddos1ClustChk}
+                                ,#{ddos1ClustBigo}
+                                ,#{ddos1EventChk}
+                                ,#{ddos1EventBigo}
+                                ,#{ddos2ClustChk}
+                                ,#{ddos2ClustBigo}
+                                ,#{ddos2EventChk}
+                                ,#{ddos2EventBigo}
+                                ,#{fw1ClustChk}
+                                ,#{fw1ClustBigo}
+                                ,#{fw1EventChk}
+                                ,#{fw1EventBigo}
+                                ,#{fw2ClustChk}
+                                ,#{fw2ClustBigo}
+                                ,#{fw2EventChk}
+                                ,#{fw2EventBigo}
+                                ,#{spam1ClustChk}
+                                ,#{spam1ClustBigo}
+                                ,#{spam1EventChk}
+                                ,#{spam1EventBigo}
+                                ,#{spam2ClustChk}
+                                ,#{spam2ClustBigo}
+                                ,#{spam2EventChk}
+                                ,#{spam2EventBigo}
+                                ,#{gMonitorClustChk}
+                                ,#{gMonitorClustBigo}
+                                ,#{gMonitorEventChk}
+                                ,#{gMonitorEventBigo}
+                                ,#{eMonitorClustChk}
+                                ,#{eMonitorClustBigo}
+                                ,#{eMonitorEventChk}
+                                ,#{eMonitorEventBigo}
+                        )
+            </insert>
 
-        /* selectInfraDailyServiceMain */
 
-        SELECT
-                 INFRA_SERVICE_ID       AS infraServiceId
-                ,INFRA_MAIN_ID          AS infraMainId
-                ,INFRA_BACKUP_CHK       AS infraBackUpServiceChk
-                ,INFRA_BACKUP_BIGO      AS infraBackUpServiceBigo
-                ,INFRA_SPAM_CHK         AS infraSpamServiceChk
-                ,INFRA_SPAM_BIGO        AS infraSpamServiceBigo
-                ,INFRA_MAIL_CHK         AS infraMailServiceChk
-                ,INFRA_MAIL_BIGO        AS infraMailServiceBigo
-                ,INFRA_DNS_CHK          AS infraDNSServiceChk
-                ,INFRA_DNS_BIGO         AS infraDNSServiceBigo
-        FROM
-                INFRA_DAILY_SERVICE
-        WHERE
-                INFRA_MAIN_ID   = #{infraMainId}
-    </select>
+            <select id="selectInfraDailyServiceMain" parameterType="long"
+                    resultType="com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyServiceMain">
 
-    <select id="selectInfraDailyServerMain" parameterType="long"
-            resultType="com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyServerMain">
+                        /* selectInfraDailyServiceMain */
 
-        /* selectInfraDailyServerMain */
+                        SELECT
+                                 INFRA_SERVICE_ID       AS infraServiceId
+                                ,INFRA_MAIN_ID          AS infraMainId
+                                ,INFRA_BACKUP_CHK       AS infraBackUpServiceChk
+                                ,INFRA_BACKUP_BIGO      AS infraBackUpServiceBigo
+                                ,INFRA_SPAM_CHK         AS infraSpamServiceChk
+                                ,INFRA_SPAM_BIGO        AS infraSpamServiceBigo
+                                ,INFRA_MAIL_CHK         AS infraMailServiceChk
+                                ,INFRA_MAIL_BIGO        AS infraMailServiceBigo
+                                ,INFRA_DNS_CHK          AS infraDNSServiceChk
+                                ,INFRA_DNS_BIGO         AS infraDNSServiceBigo
+                        FROM
+                                INFRA_DAILY_SERVICE
+                        WHERE
+                                INFRA_MAIN_ID   = #{infraMainId}
+            </select>
 
-        SELECT
+            <select id="selectInfraDailyServerMain" parameterType="long"
+                    resultType="com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyServerMain">
 
-                 INFRA_SERVER_ID                AS infraServerId
-                ,INFRA_MAIN_ID                  AS infraMainId
-                ,NEWBLOCK1_CPUUSAGE_CHK         AS nwblock1CpuUsageChk
-                ,NEWBLOCK1_CPUUSAGE_BIGO        AS nwblock1CpuUsageBigo
-                ,NEWBLOCK1_MEMUSAGE_CHK         AS nwblock1MemUsageChk
-                ,NEWBLOCK1_MEMUSAGE_BIGO        AS nwblock1MemUsageBigo
-                ,NEWBLOCK1_DISKUSAGE_CHK        AS nwblock1DiskUsageChk
-                ,NEWBLOCK1_DISKUSAGE_BIGO       AS nwblock1DiskUsageBigo
-                ,NEWBLOCK1_EVENT_CHK            AS nwblock1EventChk
-                ,NEWBLOCK1_EVENT_BIGO           AS nwblock1EventBigo
-                ,NEWBLOCK2_CPUUSAGE_CHK         AS nwblock2CpuUsageChk
-                ,NEWBLOCK2_CPUUSAGE_BIGO        AS nwblock2CpuUsageBigo
-                ,NEWBLOCK2_MEMUSAGE_CHK         AS nwblock2MemUsageChk
-                ,NEWBLOCK2_MEMUSAGE_BIGO        AS nwblock2MemUsageBigo
-                ,NEWBLOCK2_DISKUSAGE_CHK        AS nwblock2DiskUsageChk
-                ,NEWBLOCK2_DISKUSAGE_BIGO       AS nwblock2DiskUsageBigo
-                ,NEWBLOCK2_EVENT_CHK            AS nwblock2EventChk
-                ,NEWBLOCK2_EVENT_BIGO           AS nwblock2EventBigo
-                ,DDCBACKUP_CPUUSAGE_CHK         AS ddcBackUpCpuUsageChk
-                ,DDCBACKUP_CPUUSAGE_BIGO        AS ddcBackUpCpuUsageBigo
-                ,DDCBACKUP_MEMUSAGE_CHK         AS ddcBackUpMemUsageChk
-                ,DDCBACKUP_MEMUSAGE_BIGO        AS ddcBackUpMemUsageBigo
-                ,DDCBACKUP_DISKUSAGE_CHK        AS ddcBackUpDiskUsageChk
-                ,DDCBACKUP_DISKUSAGE_BIGO       AS ddcBackUpDiskUsageBigo
-                ,DDCBACKUP_EVENT_CHK            AS ddcBackUpEventChk
-                ,DDCBACKUP_EVENT_BIGO           AS ddcBackUpEventBigo
-                ,CHABACKUP_CPUUSAGE_CHK         AS chaBackUpCpuUsageChk
-                ,CHABACKUP_CPUUSAGE_BIGO        AS chaBackUpCpUUsageBigo
-                ,CHABACKUP_MEMUSAGE_CHK         AS chaBackUpMemUsageChk
-                ,CHABACKUP_MEMUSAGE_BIGO        AS chaBackUpMemUsageBigo
-                ,CHABACKUP_DISKUSAGE_CHK        AS chaBackUpDiskUsageChk
-                ,CHABACKUP_DISKUSAGE_BIGO       AS chaBackUpDiskUsageBigo
-                ,CHABACKUP_EVENT_CHK            AS chaBackUpEventChk
-                ,CHABACKUP_EVENT_BIGO           AS chaBackUpEventBigo
-                ,NEWFILE_CPUUSAGE_CHK           AS newFileCpuUsageChk
-                ,NEWFILE_CPUUSAGE_BIGO          AS newFileCpuUsageBigo
-                ,NEWFILE_MEMUSAGE_CHK           AS newFileMemUsageChk
-                ,NEWFILE_MEMUSAGE_BIGO          AS newFileMemUsageBigo
-                ,NEWFILE_DISKUSAGE_CHK          AS newFileDiskUsageChk
-                ,NEWFILE_DISKUSAGE_BIGO         AS newFileDiskUsageBigo
-                ,NEWFILE_EVENT_CHK              AS newFileEventChk
-                ,NEWFILE_EVENT_BIGO             AS newFileEventBigo
-                ,AD1_CPUUSAGE_CHK               AS ad1CpuUsageChk
-                ,AD1_CPUUSAGE_BIGO              AS ad1CpuUsageBigo
-                ,AD1_MEMUSAGE_CHK               AS ad1MemUsageChk
-                ,AD1_MEMUSAGE_BIGO              AS ad1MemUsageBigo
-                ,AD1_DISKUSAGE_CHK              AS ad1DiskUsageChk
-                ,AD1_DISKUSAGE_BIGO             AS ad1DiskUsageBigo
-                ,AD1_EVENT_CHK                  AS ad1EventChk
-                ,AD1_EVENT_BIGO                 AS ad1EventBigo
-                ,AD2_CPUUSAGE_CHK               AS ad2CpuUsageChk
-                ,AD2_CPUUSAGE_BIGO              AS ad2CpuUsageBigo
-                ,AD2_MEMUSAGE_CHK               AS ad2MemUsageChk
-                ,AD2_MEMUSAGE_BIGO              AS ad2MemUsageBigo
-                ,AD2_DISKUSAGE_CHK              AS ad2DiskUsageChk
-                ,AD2_DISKUSAGE_BIGO             AS ad2DiskUsageBigo
-                ,AD2_EVENT_CHK                  AS ad2EventChk
-                ,AD2_EVENT_BIGO                 AS ad2EventBigo
+                        /* selectInfraDailyServerMain */
 
-        WHERE
-                INFRA_MAIN_ID   = #{infraMainId}
-    </select>
+                        SELECT
 
-    <select id="selectInfraDailyVMMain"
-            resultType="com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyVMMain">
+                                 INFRA_SERVER_ID                AS infraServerId
+                                ,INFRA_MAIN_ID                  AS infraMainId
+                                ,NWBLOCK1_CPUUSAGE_CHK          AS nwblock1CpuUsageChk
+                                ,NWBLOCK1_CPUUSAGE_BIGO         AS nwblock1CpuUsageBigo
+                                ,NWBLOCK1_MEMUSAGE_CHK          AS nwblock1MemUsageChk
+                                ,NWBLOCK1_MEMUSAGE_BIGO         AS nwblock1MemUsageBigo
+                                ,NWBLOCK1_DISKUSAGE_CHK         AS nwblock1DiskUsageChk
+                                ,NWBLOCK1_DISKUSAGE_BIGO        AS nwblock1DiskUsageBigo
+                                ,NWBLOCK1_EVENT_CHK             AS nwblock1EventChk
+                                ,NWBLOCK1_EVENT_BIGO            AS nwblock1EventBigo
+                                ,NWBLOCK2_CPUUSAGE_CHK          AS nwblock2CpuUsageChk
+                                ,NWBLOCK2_CPUUSAGE_BIGO         AS nwblock2CpuUsageBigo
+                                ,NWBLOCK2_MEMUSAGE_CHK          AS nwblock2MemUsageChk
+                                ,NWBLOCK2_MEMUSAGE_BIGO         AS nwblock2MemUsageBigo
+                                ,NWBLOCK2_DISKUSAGE_CHK         AS nwblock2DiskUsageChk
+                                ,NWBLOCK2_DISKUSAGE_BIGO        AS nwblock2DiskUsageBigo
+                                ,NWBLOCK2_EVENT_CHK             AS nwblock2EventChk
+                                ,NWBLOCK2_EVENT_BIGO            AS nwblock2EventBigo
+                                ,DDCBACKUP_CPUUSAGE_CHK         AS ddcBackUpCpuUsageChk
+                                ,DDCBACKUP_CPUUSAGE_BIGO        AS ddcBackUpCpuUsageBigo
+                                ,DDCBACKUP_MEMUSAGE_CHK         AS ddcBackUpMemUsageChk
+                                ,DDCBACKUP_MEMUSAGE_BIGO        AS ddcBackUpMemUsageBigo
+                                ,DDCBACKUP_DISKUSAGE_CHK        AS ddcBackUpDiskUsageChk
+                                ,DDCBACKUP_DISKUSAGE_BIGO       AS ddcBackUpDiskUsageBigo
+                                ,DDCBACKUP_EVENT_CHK            AS ddcBackUpEventChk
+                                ,DDCBACKUP_EVENT_BIGO           AS ddcBackUpEventBigo
+                                ,CHABACKUP_CPUUSAGE_CHK         AS chaBackUpCpuUsageChk
+                                ,CHABACKUP_CPUUSAGE_BIGO        AS chaBackUpCpuUsageBigo
+                                ,CHABACKUP_MEMUSAGE_CHK         AS chaBackUpMemUsageChk
+                                ,CHABACKUP_MEMUSAGE_BIGO        AS chaBackUpMemUsageBigo
+                                ,CHABACKUP_DISKUSAGE_CHK        AS chaBackUpDiskUsageChk
+                                ,CHABACKUP_DISKUSAGE_BIGO       AS chaBackUpDiskUsageBigo
+                                ,CHABACKUP_EVENT_CHK            AS chaBackUpEventChk
+                                ,CHABACKUP_EVENT_BIGO           AS chaBackUpEventBigo
+                                ,NEWFILE_CPUUSAGE_CHK           AS newFileCpuUsageChk
+                                ,NEWFILE_CPUUSAGE_BIGO          AS newFileCpuUsageBigo
+                                ,NEWFILE_MEMUSAGE_CHK           AS newFileMemUsageChk
+                                ,NEWFILE_MEMUSAGE_BIGO          AS newFileMemUsageBigo
+                                ,NEWFILE_DISKUSAGE_CHK          AS newFileDiskUsageChk
+                                ,NEWFILE_DISKUSAGE_BIGO         AS newFileDiskUsageBigo
+                                ,NEWFILE_EVENT_CHK              AS newFileEventChk
+                                ,NEWFILE_EVENT_BIGO             AS newFileEventBigo
+                                ,AD1_CPUUSAGE_CHK               AS ad1CpuUsageChk
+                                ,AD1_CPUUSAGE_BIGO              AS ad1CpuUsageBigo
+                                ,AD1_MEMUSAGE_CHK               AS ad1MemUsageChk
+                                ,AD1_MEMUSAGE_BIGO              AS ad1MemUsageBigo
+                                ,AD1_DISKUSAGE_CHK              AS ad1DiskUsageChk
+                                ,AD1_DISKUSAGE_BIGO             AS ad1DiskUsageBigo
+                                ,AD1_EVENT_CHK                  AS ad1EventChk
+                                ,AD1_EVENT_BIGO                 AS ad1EventBigo
+                                ,AD2_CPUUSAGE_CHK               AS ad2CpuUsageChk
+                                ,AD2_CPUUSAGE_BIGO              AS ad2CpuUsageBigo
+                                ,AD2_MEMUSAGE_CHK               AS ad2MemUsageChk
+                                ,AD2_MEMUSAGE_BIGO              AS ad2MemUsageBigo
+                                ,AD2_DISKUSAGE_CHK              AS ad2DiskUsageChk
+                                ,AD2_DISKUSAGE_BIGO             AS ad2DiskUsageBigo
+                                ,AD2_EVENT_CHK                  AS ad2EventChk
+                                ,AD2_EVENT_BIGO                 AS ad2EventBigo
 
-        /* selectInfraDailyVMMain */
+                        FROM
+                                INFRA_DAILY_SERVER
 
-        SELECT
+                        WHERE
+                                INFRA_MAIN_ID   = #{infraMainId}
+        </select>
 
-                 INFRA_VM_ID                    AS infraVMId
-                ,INFRA_MAIN_ID                  AS infraMainId
-                ,ERPHVDC1_CPUUSAGE_CHK          AS erpHvdc1CpuUsageChk
-                ,ERPHVDC1_CPUUSAGE_BIGO         AS erpHvdc1CpuUsageBigo
-                ,ERPHVDC1_MEMUSAGE_CHK          AS erpHvdc1MemUsageChk
-                ,ERPHVDC1_MEMUSAGE_BIGO         AS erpHvdc1MemUsageBigo
-                ,ERPHVDC1_DISKUSAGE_CHK         AS erpHvdc1DiskUsageChk
-                ,ERPHVDC1_DISKUSAGE_BIGO        AS erpHvdc1DiskUsageBigo
-                ,ERPHVDC1_EVENT_CHK             AS erpHvdc1EventChk
-                ,ERPHVDC1_EVENT_BIGO            AS erpHvdc1EventBigo
-                ,ERPHVDC2_CPUUSAGE_CHK          AS erpHvdc2CpuUsageChk
-                ,ERPHVDC2_CPUUSAGE_BIGO         AS erpHvdc2CpuUsageBigo
-                ,ERPHVDC2_MEMUSAGE_CHK          AS erpHvdc2MemUsageChk
-                ,ERPHVDC2_MEMUSAGE_BIGO         AS erpHvdc2MemUsageBigo
-                ,ERPHVDC2_DISKUSAGE_CHK         AS erpHvdc2DiskUsageChk
-                ,ERPHVDC2_DISKUSAGE_BIGO        AS erpHvdc2DiskusageBigo
-                ,ERPHVDC2_EVENT_CHK             AS erpHvdc2EventChk
-                ,ERPHVDC2_EVENT_BIGO            AS erpHvdc2EventBigo
+        <select id="selectInfraDailyVMMain"
+                resultType="com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyVMMain">
 
-        WHERE
-                INFRA_MAIN_ID   = #{infraMainId}
-    </select>
-    <select id="selectInfraDailyEtcMain"
-            resultType="com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyEtcMain">
+                        /* selectInfraDailyVMMain */
 
-        SELECT
-                 INFRA_ETC_ID           AS infraEtcId
-                ,INFRA_MAIN_ID          AS infraMainId
-                ,VPN1_CLUST_CHK         AS vpn1ClustChk
-                ,VPN1_CLUST_BIGO        AS vpn1ClustBigo
-                ,VPN1_EVENT_CHK         AS vpn1EventChk
-                ,VPN1_EVENT_BIGO        AS vpn1EventBigo
-                ,VPN2_CLUST_CHK         AS vpn2ClustChk
-                ,VPN2_CLUST_BIGO        AS vpn2ClustBigo
-                ,VPN2_EVENT_CHK         AS vpn2EventChk
-                ,VPN2_EVENT_BIGO        AS vpn2EventBigo
-                ,SSO1_CLUST_CHK         AS sso1ClustChk
-                ,SSO1_CLUST_BIGO        AS sso1ClustBigo
-                ,SSO1_EVENT_CHK         AS sso1EventChk
-                ,SSO1_EVENT_BIGO        AS sso1EventBigo
-                ,SSO2_CLUST_CHK         AS sso2ClustChk
-                ,SSO2_CLUST_BIGO        AS sso2ClustBigo
-                ,SSO2_EVENT_CHK         AS sso2EventChk
-                ,SSO2_EVENT_BIGO        AS sso2EventBigo
-                ,DDOS1_CLUST_CHK        AS ddos1ClustChk
-                ,DDOS1_CLUST_BIGO       AS ddos1ClustBigo
-                ,DDOS1_EVENT_CHK        AS ddos1EventChk
-                ,DDOS1_EVENT_BIGO       AS ddos1EventBigo
-                ,DDOS2_CLUST_CHK        AS ddos2ClustChk
-                ,DDOS2_CLUST_BIGO       AS ddos2ClustBigo
-                ,DDOS2_EVENT_CHK        AS ddos2EventChk
-                ,DDOS2_EVENT_BIGO       AS ddos2EventBigo
-                ,FW1_CLUST_CHK          AS fw1ClustChk
-                ,FW1_CLUST_BIGO         AS fw1ClustBigo
-                ,FW1_EVENT_CHK          AS fw1EventChk
-                ,FW1_EVENT_BIGO         AS fw1EventBigo
-                ,FW2_CLUST_CHK          AS fw2ClustChk
-                ,FW2_CLUST_BIGO         AS fw2ClustBigo
-                ,FW2_EVENT_CHK          AS fw2EventChk
-                ,FW2_EVENT_BIGO         AS fw2EventBigo
-                ,SPAM1_CLUST_CHK        AS spam1ClustChk
-                ,SPAM1_CLUST_BIGO       AS spam1ClustBigo
-                ,SPAM1_EVENT_CHK        AS spam1EventChk
-                ,SPAM1_EVENT_BIGO       AS spam1EventBigo
-                ,SPAM2_CLUST_CHK        AS spam2ClustChk
-                ,SPAM2_CLUST_BIGO       AS spam2ClustBigo
-                ,SPAM2_EVENT_CHK        AS spam2EventChk
-                ,SPAM2_EVENT_BIGO       AS spam2EventBigo
-                ,GMONITOR_CLUST_CHK     AS gMonitorClustChk
-                ,GMONITOR_CLUST_BIGO    AS gMonitorClustBigo
-                ,GMONITOR_EVENT_CHK     AS gMonitorEventChk
-                ,GMONITOR_EVENT_BIGO    AS gMonitorEventBigo
-                ,EMONITOR_CLUST_CHK     AS eMonitorClustChk
-                ,EMONITOR_CLUST_BIGO    AS eMonitorClustBigo
-                ,EMONITOR_EVENT_CHK     AS eMonitorEventChk
-                ,EMONITOR_EVENT_BIGO    AS eMonitorEventBigo
+                        SELECT
+                                 INFRA_VM_ID                    AS infraVMId
+                                ,INFRA_MAIN_ID                  AS infraMainId
+                                ,ERPHVDC1_CPUUSAGE_CHK          AS erpHvdc1CpuUsageChk
+                                ,ERPHVDC1_CPUUSAGE_BIGO         AS erpHvdc1CpuUsageBigo
+                                ,ERPHVDC1_MEMUSAGE_CHK          AS erpHvdc1MemUsageChk
+                                ,ERPHVDC1_MEMUSAGE_BIGO         AS erpHvdc1MemUsageBigo
+                                ,ERPHVDC1_DISKUSAGE_CHK         AS erpHvdc1DiskUsageChk
+                                ,ERPHVDC1_DISKUSAGE_BIGO        AS erpHvdc1DiskUsageBigo
+                                ,ERPHVDC1_EVENT_CHK             AS erpHvdc1EventChk
+                                ,ERPHVDC1_EVENT_BIGO            AS erpHvdc1EventBigo
+                                ,ERPHVDC2_CPUUSAGE_CHK          AS erpHvdc2CpuUsageChk
+                                ,ERPHVDC2_CPUUSAGE_BIGO         AS erpHvdc2CpuUsageBigo
+                                ,ERPHVDC2_MEMUSAGE_CHK          AS erpHvdc2MemUsageChk
+                                ,ERPHVDC2_MEMUSAGE_BIGO         AS erpHvdc2MemUsageBigo
+                                ,ERPHVDC2_DISKUSAGE_CHK         AS erpHvdc2DiskUsageChk
+                                ,ERPHVDC2_DISKUSAGE_BIGO        AS erpHvdc2DiskUsageBigo
+                                ,ERPHVDC2_EVENT_CHK             AS erpHvdc2EventChk
+                                ,ERPHVDC2_EVENT_BIGO            AS erpHvdc2EventBigo
 
-        WHERE
-                INFRA_MAIN_ID   = #{infraMainId}
-    </select>
+
+                        FROM
+
+                                INFRA_DAILY_VM
+
+                        WHERE
+                                INFRA_MAIN_ID   = #{infraMainId}
+        </select>
+        <select id="selectInfraDailyEtcMain"
+                resultType="com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyEtcMain">
+
+                        SELECT
+                                 INFRA_ETC_ID           AS infraEtcId
+                                ,INFRA_MAIN_ID          AS infraMainId
+                                ,VPN1_CLUST_CHK         AS vpn1ClustChk
+                                ,VPN1_CLUST_BIGO        AS vpn1ClustBigo
+                                ,VPN1_EVENT_CHK         AS vpn1EventChk
+                                ,VPN1_EVENT_BIGO        AS vpn1EventBigo
+                                ,VPN2_CLUST_CHK         AS vpn2ClustChk
+                                ,VPN2_CLUST_BIGO        AS vpn2ClustBigo
+                                ,VPN2_EVENT_CHK         AS vpn2EventChk
+                                ,VPN2_EVENT_BIGO        AS vpn2EventBigo
+                                ,SSO1_CLUST_CHK         AS sso1ClustChk
+                                ,SSO1_CLUST_BIGO        AS sso1ClustBigo
+                                ,SSO1_EVENT_CHK         AS sso1EventChk
+                                ,SSO1_EVENT_BIGO        AS sso1EventBigo
+                                ,SSO2_CLUST_CHK         AS sso2ClustChk
+                                ,SSO2_CLUST_BIGO        AS sso2ClustBigo
+                                ,SSO2_EVENT_CHK         AS sso2EventChk
+                                ,SSO2_EVENT_BIGO        AS sso2EventBigo
+                                ,DDOS1_CLUST_CHK        AS ddos1ClustChk
+                                ,DDOS1_CLUST_BIGO       AS ddos1ClustBigo
+                                ,DDOS1_EVENT_CHK        AS ddos1EventChk
+                                ,DDOS1_EVENT_BIGO       AS ddos1EventBigo
+                                ,DDOS2_CLUST_CHK        AS ddos2ClustChk
+                                ,DDOS2_CLUST_BIGO       AS ddos2ClustBigo
+                                ,DDOS2_EVENT_CHK        AS ddos2EventChk
+                                ,DDOS2_EVENT_BIGO       AS ddos2EventBigo
+                                ,FW1_CLUST_CHK          AS fw1ClustChk
+                                ,FW1_CLUST_BIGO         AS fw1ClustBigo
+                                ,FW1_EVENT_CHK          AS fw1EventChk
+                                ,FW1_EVENT_BIGO         AS fw1EventBigo
+                                ,FW2_CLUST_CHK          AS fw2ClustChk
+                                ,FW2_CLUST_BIGO         AS fw2ClustBigo
+                                ,FW2_EVENT_CHK          AS fw2EventChk
+                                ,FW2_EVENT_BIGO         AS fw2EventBigo
+                                ,SPAM1_CLUST_CHK        AS spam1ClustChk
+                                ,SPAM1_CLUST_BIGO       AS spam1ClustBigo
+                                ,SPAM1_EVENT_CHK        AS spam1EventChk
+                                ,SPAM1_EVENT_BIGO       AS spam1EventBigo
+                                ,SPAM2_CLUST_CHK        AS spam2ClustChk
+                                ,SPAM2_CLUST_BIGO       AS spam2ClustBigo
+                                ,SPAM2_EVENT_CHK        AS spam2EventChk
+                                ,SPAM2_EVENT_BIGO       AS spam2EventBigo
+                                ,GMONITOR_CLUST_CHK     AS gMonitorClustChk
+                                ,GMONITOR_CLUST_BIGO    AS gMonitorClustBigo
+                                ,GMONITOR_EVENT_CHK     AS gMonitorEventChk
+                                ,GMONITOR_EVENT_BIGO    AS gMonitorEventBigo
+                                ,EMONITOR_CLUST_CHK     AS eMonitorClustChk
+                                ,EMONITOR_CLUST_BIGO    AS eMonitorClustBigo
+                                ,EMONITOR_EVENT_CHK     AS eMonitorEventChk
+                                ,EMONITOR_EVENT_BIGO    AS eMonitorEventBigo
+
+                        FROM
+                                INFRA_DAILY_ETC
+
+                        WHERE
+                                INFRA_MAIN_ID   = #{infraMainId}
+        </select>
+
+        <update id="updateInfraDailyServiceMain"
+                parameterType="com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyServiceMain">
+
+                /* updateInfraDailyServiceMain */
+
+                UPDATE INFRA_DAILY_SERVICE
+
+                SET
+                         INFRA_BACKUP_CHK       = #{infraBackUpServiceChk}
+                        ,INFRA_BACKUP_BIGO      = #{infraBackUpServiceBigo}
+                        ,INFRA_SPAM_CHK         = #{infraSpamServiceChk}
+                        ,INFRA_SPAM_BIGO        = #{infraSpamServiceBigo}
+                        ,INFRA_MAIL_CHK         = #{infraMailServiceChk}
+                        ,INFRA_MAIL_BIGO        = #{infraMailServiceBigo}
+                        ,INFRA_DNS_CHK          = #{infraDNSServiceChk}
+                        ,INFRA_DNS_BIGO         = #{infraDNSServiceBigo}
+
+                WHERE
+
+                INFRA_MAIN_ID  = #{infraMainId}
+
+
+        </update>
+
+        <update id="updateInfraDailyServerMain"
+                parameterType="com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyServerMain">
+
+                /* updateInfraDailyServerMain */
+
+                UPDATE INFRA_DAILY_SERVER
+
+                SET
+                         NWBLOCK1_CPUUSAGE_CHK      = #{nwblock1CpuUsageChk}
+                        ,NWBLOCK1_CPUUSAGE_BIGO     = #{nwblock1CpuUsageBigo}
+                        ,NWBLOCK1_MEMUSAGE_CHK      = #{nwblock1MemUsageChk}
+                        ,NWBLOCK1_MEMUSAGE_BIGO     = #{nwblock1MemUsageBigo}
+                        ,NWBLOCK1_DISKUSAGE_CHK     = #{nwblock1DiskUsageChk}
+                        ,NWBLOCK1_DISKUSAGE_BIGO    = #{nwblock1DiskUsageBigo}
+                        ,NWBLOCK1_EVENT_CHK         = #{nwblock1EventChk}
+                        ,NWBLOCK1_EVENT_BIGO        = #{nwblock1EventBigo}
+                        ,NWBLOCK2_CPUUSAGE_CHK      = #{nwblock2CpuUsageChk}
+                        ,NWBLOCK2_CPUUSAGE_BIGO     = #{nwblock2CpuUsageBigo}
+                        ,NWBLOCK2_MEMUSAGE_CHK      = #{nwblock2MemUsageChk}
+                        ,NWBLOCK2_MEMUSAGE_BIGO     = #{nwblock2MemUsageBigo}
+                        ,NWBLOCK2_DISKUSAGE_CHK     = #{nwblock2DiskUsageChk}
+                        ,NWBLOCK2_DISKUSAGE_BIGO    = #{nwblock2DiskUsageBigo}
+                        ,NWBLOCK2_EVENT_CHK         = #{nwblock2EventChk}
+                        ,NWBLOCK2_EVENT_BIGO        = #{nwblock2EventBigo}
+                        ,DDCBACKUP_CPUUSAGE_CHK     = #{ddcBackUpCpuUsageChk}
+                        ,DDCBACKUP_CPUUSAGE_BIGO    = #{ddcBackUpCpuUsageBigo}
+                        ,DDCBACKUP_MEMUSAGE_CHK     = #{ddcBackUpMemUsageChk}
+                        ,DDCBACKUP_MEMUSAGE_BIGO    = #{ddcBackUpMemUsageBigo}
+                        ,DDCBACKUP_DISKUSAGE_CHK    = #{ddcBackUpDiskUsageChk}
+                        ,DDCBACKUP_DISKUSAGE_BIGO   = #{ddcBackUpDiskUsageBigo}
+                        ,DDCBACKUP_EVENT_CHK        = #{ddcBackUpEventChk}
+                        ,DDCBACKUP_EVENT_BIGO       = #{ddcBackUpEventBigo}
+                        ,CHABACKUP_CPUUSAGE_CHK     = #{chaBackUpCpuUsageChk}
+                        ,CHABACKUP_CPUUSAGE_BIGO    = #{chaBackUpCpuUsageBigo}
+                        ,CHABACKUP_MEMUSAGE_CHK     = #{chaBackUpMemUsageChk}
+                        ,CHABACKUP_MEMUSAGE_BIGO    = #{chaBackUpMemUsageBigo}
+                        ,CHABACKUP_DISKUSAGE_CHK    = #{chaBackUpDiskUsageChk}
+                        ,CHABACKUP_DISKUSAGE_BIGO   = #{chaBackUpDiskUsageBigo}
+                        ,CHABACKUP_EVENT_CHK        = #{chaBackUpEventChk}
+                        ,CHABACKUP_EVENT_BIGO       = #{chaBackUpEventBigo}
+                        ,NEWFILE_CPUUSAGE_CHK       = #{newFileCpuUsageChk}
+                        ,NEWFILE_CPUUSAGE_BIGO      = #{newFileCpuUsageBigo}
+                        ,NEWFILE_MEMUSAGE_CHK       = #{newFileMemUsageChk}
+                        ,NEWFILE_MEMUSAGE_BIGO      = #{newFileMemUsageBigo}
+                        ,NEWFILE_DISKUSAGE_CHK      = #{newFileDiskUsageChk}
+                        ,NEWFILE_DISKUSAGE_BIGO     = #{newFileDiskUsageBigo}
+                        ,NEWFILE_EVENT_CHK          = #{newFileEventChk}
+                        ,NEWFILE_EVENT_BIGO         = #{newFileEventBigo}
+                        ,AD1_CPUUSAGE_CHK           = #{ad1CpuUsageChk}
+                        ,AD1_CPUUSAGE_BIGO          = #{ad1CpuUsageBigo}
+                        ,AD1_MEMUSAGE_CHK           = #{ad1MemUsageChk}
+                        ,AD1_MEMUSAGE_BIGO          = #{ad1MemUsageBigo}
+                        ,AD1_DISKUSAGE_CHK          = #{ad1DiskUsageChk}
+                        ,AD1_DISKUSAGE_BIGO         = #{ad1DiskUsageBigo}
+                        ,AD1_EVENT_CHK              = #{ad1EventChk}
+                        ,AD1_EVENT_BIGO             = #{ad1EventBigo}
+                        ,AD2_CPUUSAGE_CHK           = #{ad2CpuUsageChk}
+                        ,AD2_CPUUSAGE_BIGO          = #{ad2CpuUsageBigo}
+                        ,AD2_MEMUSAGE_CHK           = #{ad2MemUsageChk}
+                        ,AD2_MEMUSAGE_BIGO          = #{ad2MemUsageBigo}
+                        ,AD2_DISKUSAGE_CHK          = #{ad2DiskUsageChk}
+                        ,AD2_DISKUSAGE_BIGO         = #{ad2DiskUsageBigo}
+                        ,AD2_EVENT_CHK              = #{ad2EventChk}
+                        ,AD2_EVENT_BIGO             = #{ad2EventBigo}
+
+                WHERE
+
+                        INFRA_MAIN_ID  = #{infraMainId}
+
+        </update>
+
+        <update id="updateInfraDailyVMMain"
+                parameterType="com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyVMMain">
+
+                /* updateInfraDailyVMMain */
+
+                UPDATE INFRA_DAILY_VM
+
+                SET
+
+                         ERPHVDC1_CPUUSAGE_CHK          = #{erpHvdc1CpuUsageChk}
+                        ,ERPHVDC1_CPUUSAGE_BIGO         = #{erpHvdc1CpuUsageBigo}
+                        ,ERPHVDC1_MEMUSAGE_CHK          = #{erpHvdc1MemUsageChk}
+                        ,ERPHVDC1_MEMUSAGE_BIGO         = #{erpHvdc1MemUsageBigo}
+                        ,ERPHVDC1_DISKUSAGE_CHK         = #{erpHvdc1DiskUsageChk}
+                        ,ERPHVDC1_DISKUSAGE_BIGO        = #{erpHvdc1DiskUsageBigo}
+                        ,ERPHVDC1_EVENT_CHK             = #{erpHvdc1EventChk}
+                        ,ERPHVDC1_EVENT_BIGO            = #{erpHvdc1EventBigo}
+                        ,ERPHVDC2_CPUUSAGE_CHK          = #{erpHvdc2CpuUsageChk}
+                        ,ERPHVDC2_CPUUSAGE_BIGO         = #{erpHvdc2CpuUsageBigo}
+                        ,ERPHVDC2_MEMUSAGE_CHK          = #{erpHvdc2MemUsageChk}
+                        ,ERPHVDC2_MEMUSAGE_BIGO         = #{erpHvdc2MemUsageBigo}
+                        ,ERPHVDC2_DISKUSAGE_CHK         = #{erpHvdc2DiskUsageChk}
+                        ,ERPHVDC2_DISKUSAGE_BIGO        = #{erpHvdc2DiskUsageBigo}
+                        ,ERPHVDC2_EVENT_CHK             = #{erpHvdc2EventChk}
+                        ,ERPHVDC2_EVENT_BIGO            = #{erpHvdc2EventBigo}
+
+                WHERE
+
+
+                         INFRA_MAIN_ID  = #{infraMainId}
+
+        </update>
+
+        <update id="updateInfraDailyEtcMain"
+                parameterType="com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyEtcMain">
+
+                /* updateInfraDailyEtcMain */
+
+
+
+                UPDATE INFRA_DAILY_ETC
+
+
+                SET
+
+                         VPN1_CLUST_CHK         = #{vpn1ClustChk}
+                        ,VPN1_CLUST_BIGO        = #{vpn1ClustBigo}
+                        ,VPN1_EVENT_CHK         = #{vpn1EventChk}
+                        ,VPN1_EVENT_BIGO        = #{vpn1EventBigo}
+                        ,VPN2_CLUST_CHK         = #{vpn2ClustChk}
+                        ,VPN2_CLUST_BIGO        = #{vpn2ClustBigo}
+                        ,VPN2_EVENT_CHK         = #{vpn2EventChk}
+                        ,VPN2_EVENT_BIGO        = #{vpn2EventBigo}
+                        ,SSO1_CLUST_CHK         = #{sso1ClustChk}
+                        ,SSO1_CLUST_BIGO        = #{sso1ClustBigo}
+                        ,SSO1_EVENT_CHK         = #{sso1EventChk}
+                        ,SSO1_EVENT_BIGO        = #{sso1EventBigo}
+                        ,SSO2_CLUST_CHK         = #{sso2ClustChk}
+                        ,SSO2_CLUST_BIGO        = #{sso2ClustBigo}
+                        ,SSO2_EVENT_CHK         = #{sso2EventChk}
+                        ,SSO2_EVENT_BIGO        = #{sso2EventBigo}
+                        ,DDOS1_CLUST_CHK        = #{ddos1ClustChk}
+                        ,DDOS1_CLUST_BIGO       = #{ddos1ClustBigo}
+                        ,DDOS1_EVENT_CHK        = #{ddos1EventChk}
+                        ,DDOS1_EVENT_BIGO       = #{ddos1EventBigo}
+                        ,DDOS2_CLUST_CHK        = #{ddos2ClustChk}
+                        ,DDOS2_CLUST_BIGO       = #{ddos2ClustBigo}
+                        ,DDOS2_EVENT_CHK        = #{ddos2EventChk}
+                        ,DDOS2_EVENT_BIGO       = #{ddos2EventBigo}
+                        ,FW1_CLUST_CHK          = #{fw1ClustChk}
+                        ,FW1_CLUST_BIGO         = #{fw1ClustBigo}
+                        ,FW1_EVENT_CHK          = #{fw1EventChk}
+                        ,FW1_EVENT_BIGO         = #{fw1EventBigo}
+                        ,FW2_CLUST_CHK          = #{fw2ClustChk}
+                        ,FW2_CLUST_BIGO         = #{fw2ClustBigo}
+                        ,FW2_EVENT_CHK          = #{fw2EventChk}
+                        ,FW2_EVENT_BIGO         = #{fw2EventBigo}
+                        ,SPAM1_CLUST_CHK        = #{spam1ClustChk}
+                        ,SPAM1_CLUST_BIGO       = #{spam1ClustBigo}
+                        ,SPAM1_EVENT_CHK        = #{spam1EventChk}
+                        ,SPAM1_EVENT_BIGO       = #{spam1EventBigo}
+                        ,SPAM2_CLUST_CHK        = #{spam2ClustChk}
+                        ,SPAM2_CLUST_BIGO       = #{spam2ClustBigo}
+                        ,SPAM2_EVENT_CHK        = #{spam2EventChk}
+                        ,SPAM2_EVENT_BIGO       = #{spam2EventBigo}
+                        ,GMONITOR_CLUST_CHK     = #{gMonitorClustChk}
+                        ,GMONITOR_CLUST_BIGO    = #{gMonitorClustBigo}
+                        ,GMONITOR_EVENT_CHK     = #{gMonitorEventChk}
+                        ,GMONITOR_EVENT_BIGO    = #{gMonitorEventBigo}
+                        ,EMONITOR_CLUST_CHK     = #{eMonitorClustChk}
+                        ,EMONITOR_CLUST_BIGO    = #{eMonitorClustBigo}
+                        ,EMONITOR_EVENT_CHK     = #{eMonitorEventChk}
+                        ,EMONITOR_EVENT_BIGO    = #{eMonitorEventBigo}
+            WHERE
+
+                        INFRA_MAIN_ID  = #{infraMainId}
+        </update>
+
 </mapper>
