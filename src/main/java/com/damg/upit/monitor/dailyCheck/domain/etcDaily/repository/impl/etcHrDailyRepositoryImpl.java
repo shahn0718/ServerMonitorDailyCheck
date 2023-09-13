@@ -23,11 +23,11 @@ public class etcHrDailyRepositoryImpl implements etcHrDailyRepository {
     }
     @Override
     public void insertEtcHrDailyServiceMain(MInsertEtcHrDailyServiceMain mInsertEtcHrDailyServiceMain) {
-        hrDailyMapper.insertEtcDailyServiceMain(mInsertEtcHrDailyServiceMain);
+        hrDailyMapper.insertEtcHrDailyServiceMain(mInsertEtcHrDailyServiceMain);
     }
     @Override
     public void insertEtcHrDailyServerMain(MInsertEtcHrDailyServerMain mInsertEtcHrDailyServerMain) {
-        hrDailyMapper.insertEtcDailyServerMain(mInsertEtcHrDailyServerMain);
+        hrDailyMapper.insertEtcHrDailyServerMain(mInsertEtcHrDailyServerMain);
     }
     @Override
     public List<MInsertEtcHrDailyServiceMain> selectEtcHrDailyServiceMain(Long etcHRMainId) {

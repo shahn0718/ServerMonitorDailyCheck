@@ -110,36 +110,36 @@
           <td> 
             <p><!--추후 수정 필요 현재는 백업 서비스만 체크 진행-->
               <input class="form-check-input" type="radio" value="Y" name="etcHrMailServiceChk" id="etcHrMailServiceChkY"
-                      th:checked="${etcHrService.etcHrMailServiceChk eq 'Y'}" disabled>
+                      th:checked="${etcHrService.etcHrMailServiceChk eq 'Y'}" >
               유
               <input class="form-check-input" type="radio" value="N" name="etcHrMailServiceChk" id="etcHrMailServiceChkN"
-                     th:checked="${etcHrService.etcHrMailServiceChk eq 'N'}" disabled>
+                     th:checked="${etcHrService.etcHrMailServiceChk eq 'N'}" >
               무
             </p> 
-            <p><<!--추후 수정 필요 현재는 백업 서비스만 체크 진행-->
+            <p><!--추후 수정 필요 현재는 백업 서비스만 체크 진행-->
               <input class="form-check-input" type="radio" value="Y" name="etcHrApproveServiceChk" id="etcHrApproveServiceChkY"
-                     th:checked="${etcHrService.etcHrApproveServiceChk eq 'Y'}" disabled>
+                     th:checked="${etcHrService.etcHrApproveServiceChk eq 'Y'}" >
               유
               <input class="form-check-input" type="radio" value="N" name="etcHrApproveServiceChk" id="etcHrApproveServiceChkN"
-                     th:checked="${etcHrService.etcHrApproveServiceChk eq 'N'}" disabled>
+                     th:checked="${etcHrService.etcHrApproveServiceChk eq 'N'}" >
               무  
             </p>
             <p>
               <input class="form-check-input" type="radio" value="Y" name="etcHrBackUpServiceChk" id="etcHrBackUpServiceChkY"
-                      th:checked="${etcHrService.etcHrBackUpServiceChk eq 'Y'}" disabled>
+                      th:checked="${etcHrService.etcHrBackUpServiceChk eq 'Y'}" >
               유
               <input class="form-check-input" type="radio" value="N" name="etcHrBackUpServiceChk" id="etcHrBackUpServiceChkN"
-                     th:checked="${etcHrService.etcHrBackUpServiceChk eq 'N'}" disabled>
+                     th:checked="${etcHrService.etcHrBackUpServiceChk eq 'N'}" >
               무  
             </p>
           </td>
           <td>
             <input type="text" class="form-control" name="etcHrMailServiceBigo" id="etcHrMailServiceBigoInput"
-                   th:value="${etcHrService.etcHrMailServiceBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+                   th:value="${etcHrService.etcHrMailServiceBigo}" placeholder="이상유무 유 체크시 내역기재" >
             <input type="text" class="form-control" name="etcHrApproveServiceBigo" id="etcHrApproveServiceBigo"
-                   th:value="${etcHrService.etcHrApproveServiceBigo}" readonly>
+                   th:value="${etcHrService.etcHrApproveServiceBigo}" >
             <input type="text" class="form-control" name="etcHrBackUpServiceBigo" id="etcHrBackUpServiceBigoInput"
-                   th:value="${etcHrService.etcHrBackUpServiceBigo}" readonly>>
+                   th:value="${etcHrService.etcHrBackUpServiceBigo}" >
           </td>
         </tr>
         <tr align="center" th:each="etcHrServer: ${etcHrServer}">
@@ -155,46 +155,46 @@
           <td> 
             <p>
               <input class="form-check-input" type="radio" value="Y" name="chaEhrDbCpuUsageChk" id="chaEhrDbCpuUsageChkY"
-                     th:checked="${etcHrServer.chaEhrDbCpuUsageChk eq 'Y'}" disabled>
+                     th:checked="${etcHrServer.chaEhrDbCpuUsageChk eq 'Y'}" >
               유
               <input class="form-check-input" type="radio" value="N" name="chaEhrDbCpuUsageChk" id="chaEhrDbCpuUsageChkN"
-                     th:checked="${etcHrServer.chaEhrDbCpuUsageChk eq 'N'}" disabled>
+                     th:checked="${etcHrServer.chaEhrDbCpuUsageChk eq 'N'}" >
               무
             </p> 
             <p>
               <input class="form-check-input" type="radio" value="Y" name="chaEhrDbMemUsageChk" id="chaEhrDbMemUsageChkY"
-                     th:checked="${etcHrServer.chaEhrDbMemUsageChk eq 'Y'}" disabled>
+                     th:checked="${etcHrServer.chaEhrDbMemUsageChk eq 'Y'}" >
               유
               <input class="form-check-input" type="radio" value="N" name="chaEhrDbMemUsageChk" id="chaEhrDbMemUsageChkN"
-                     th:checked="${etcHrServer.chaEhrDbMemUsageChk eq 'N'}" disabled>
+                     th:checked="${etcHrServer.chaEhrDbMemUsageChk eq 'N'}" >
               무  
             </p>
             <p>
               <input class="form-check-input" type="radio" value="Y" name="chaEhrDbDiskUsageChk" id="chaEhrDbDiskUsageChkY"
-                     th:checked="${etcHrServer.chaEhrDbDiskUsageChk eq 'Y'}" disabled>
+                     th:checked="${etcHrServer.chaEhrDbDiskUsageChk eq 'Y'}" >
               유
               <input class="form-check-input" type="radio" value="N" name="chaEhrDbDiskUsageChk" id="chaEhrDbDiskUsageChkN"
-                     th:checked="${etcHrServer.chaEhrDbDiskUsageChk eq 'N'}" disabled>
+                     th:checked="${etcHrServer.chaEhrDbDiskUsageChk eq 'N'}" >
               무  
             </p>
             <p>
               <input class="form-check-input" type="radio" value="Y" name="chaEhrDbEventChk" id="chaEhrDbEventChkY"
-                     th:checked="${etcHrServer.chaEhrDbEventChk eq 'Y'}" disabled>
+                     th:checked="${etcHrServer.chaEhrDbEventChk eq 'Y'}" >
               유
               <input class="form-check-input" type="radio" value="N" name="chaEhrDbEventChk" id="chaEhrDbEventChkN"
-                     th:checked="${etcHrServer.chaEhrDbEventChk eq 'N'}" disabled>
+                     th:checked="${etcHrServer.chaEhrDbEventChk eq 'N'}" >
               무  
             </p>
           </td>
           <td>
             <input type="text" class="form-control" name="chaEhrDbCpuUsageBigo" id="chaEhrDbCpuUsageBigoInput"
-                   th:value="${etcHrServer.chaEhrDbCpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+                   th:value="${etcHrServer.chaEhrDbCpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" >
             <input type="text" class="form-control" name="chaEhrDbMemUsageBigo" id="chaEhrDbMemUsageBigoInput"
-                   th:value="${etcHrServer.chaEhrDbMemUsageBigo}" readonly>
+                   th:value="${etcHrServer.chaEhrDbMemUsageBigo}" >
             <input type="text" class="form-control" name="chaEhrDbDiskUsageBigo" id="chaEhrDbDiskUsageBigoInput"
-                   th:value="${etcHrServer.chaEhrDbDiskUsageBigo}" readonly>
+                   th:value="${etcHrServer.chaEhrDbDiskUsageBigo}" >
             <input type="text" class="form-control" name="chaEhrDbEventBigo" id="chaEhrDbEventBigoInput"
-                   th:value="${etcHrServer.chaEhrDbEventBigo}" readonly>
+                   th:value="${etcHrServer.chaEhrDbEventBigo}" >
           </td>
         </tr>
         <tr align="center" th:each="etcHrServer : ${etcHrServer}">
@@ -209,46 +209,46 @@
             <td> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="chaEhrWebCpuUsageChk" id="chaEhrWebCpuUsageChkY"
-                       th:checked="${etcHrServer.chaEhrWebCpuUsageChk eq 'Y'}" disabled>
+                       th:checked="${etcHrServer.chaEhrWebCpuUsageChk eq 'Y'}" >
                 유
                 <input class="form-check-input" type="radio" value="N" name="chaEhrWebCpuUsageChk" id="chaEhrWebCpuUsageChkN"
-                       th:checked="${etcHrServer.chaEhrWebCpuUsageChk eq 'N'}" disabled>
+                       th:checked="${etcHrServer.chaEhrWebCpuUsageChk eq 'N'}" >
                 무
               </p> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="chaEhrWebMemUsageChk" id="chaEhrWebMemUsageChkY"
-                       th:checked="${etcHrServer.chaEhrWebMemUsageChk eq 'Y'}" disabled>
+                       th:checked="${etcHrServer.chaEhrWebMemUsageChk eq 'Y'}" >
                 유
                 <input class="form-check-input" type="radio" value="N" name="chaEhrWebMemUsageChk" id="chaEhrWebMemUsageChkN"
-                       th:checked="${etcHrServer.chaEhrWebMemUsageChk eq 'N'}" disabled>
+                       th:checked="${etcHrServer.chaEhrWebMemUsageChk eq 'N'}" >
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="chaEhrWebDiskUsageChk" id="chaEhrWebDiskUsageChkY"
-                       th:checked="${etcHrServer.chaEhrWebDiskUsageChk eq 'Y'}" disabled>
+                       th:checked="${etcHrServer.chaEhrWebDiskUsageChk eq 'Y'}" >
                 유
                 <input class="form-check-input" type="radio" value="N" name="chaEhrWebDiskUsageChk" id="chaEhrWebDiskUsageChkN"
-                       th:checked="${etcHrServer.chaEhrWebDiskUsageChk eq 'N'}" disabled>
+                       th:checked="${etcHrServer.chaEhrWebDiskUsageChk eq 'N'}" >
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="chaEhrWebEventChk" id="chaEhrWebEventChkY"
-                       th:checked="${etcHrServer.chaEhrWebEventChk eq 'Y'}" disabled>
+                       th:checked="${etcHrServer.chaEhrWebEventChk eq 'Y'}" >
                 유
                 <input class="form-check-input" type="radio" value="N" name="chaEhrWebEventChk" id="chaEhrWebEventChkN"
-                       th:checked="${etcHrServer.chaEhrWebEventChk eq 'N'}" disabled>
+                       th:checked="${etcHrServer.chaEhrWebEventChk eq 'N'}" >
                 무  
               </p>
             </td>
             <td>
               <input type="text" class="form-control" name="chaEhrWebCpuUsageBigo" id="chaEhrWebCpuUsageBigoInput"
-                     th:value="${etcHrServer.chaEhrWebCpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+                     th:value="${etcHrServer.chaEhrWebCpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" >
               <input type="text" class="form-control" name="chaEhrWebMemUsageBigo" id="chaEhrWebMemUsageBigoInput"
-                     th:value="${etcHrServer.chaEhrWebMemUsageBigo}" readonly>
+                     th:value="${etcHrServer.chaEhrWebMemUsageBigo}" >
               <input type="text" class="form-control" name="chaEhrWebDiskUsageBigo" id="chaEhrWebDiskUsageBigoInput"
-                     th:value="${etcHrServer.chaEhrWebDiskUsageBigo}" readonly>
+                     th:value="${etcHrServer.chaEhrWebDiskUsageBigo}" >
               <input type="text" class="form-control" name="chaEhrWebEventBigo" id="chaEhrWebEventBigoInput"
-                     th:value="${etcHrServer.chaEhrWebEventBigo}" readonly>
+                     th:value="${etcHrServer.chaEhrWebEventBigo}" >
             </td>
           </tr>
           <tr align="center" th:each="etcHrServer:${etcHrServer}">
@@ -263,46 +263,46 @@
             <td> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="chaEhrDevCpuUsageChk" id="chaEhrDevCpuUsageChkY"
-                        th:checked="${etcHrServer.chaEhrDevCpuUsageChk eq 'Y'}" disabled>
+                        th:checked="${etcHrServer.chaEhrDevCpuUsageChk eq 'Y'}" >
                 유
                 <input class="form-check-input" type="radio" value="N" name="chaEhrDevCpuUsageChk" id="chaEhrDevCpuUsageChkN"
-                       th:checked="${etcHrServer.chaEhrDevCpuUsageChk eq 'N'}" disabled>
+                       th:checked="${etcHrServer.chaEhrDevCpuUsageChk eq 'N'}" >
                 무
               </p> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="chaEhrDevMemUsageChk" id="chaEhrDevMemUsageChkY"
-                       th:checked="${etcHrServer.chaEhrDevMemUsageChk eq 'Y'}" disabled>
+                       th:checked="${etcHrServer.chaEhrDevMemUsageChk eq 'Y'}" >
                 유
                 <input class="form-check-input" type="radio" value="N" name="chaEhrDevMemUsageChk" id="chaEhrDevMemUsageChkN"
-                       th:checked="${etcHrServer.chaEhrDevMemUsageChk eq 'N'}" disabled>
+                       th:checked="${etcHrServer.chaEhrDevMemUsageChk eq 'N'}" >
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="chaEhrDevDiskUsageChk" id="chaEhrDevDiskUsageChkY"
-                       th:checked="${etcHrServer.chaEhrDevDiskUsageChk eq 'Y'}" disabled>
+                       th:checked="${etcHrServer.chaEhrDevDiskUsageChk eq 'Y'}" >
                 유
                 <input class="form-check-input" type="radio" value="N" name="chaEhrDevDiskUsageChk" id="chaEhrDevDiskUsageChkN"
-                       th:checked="${etcHrServer.chaEhrDevDiskUsageChk eq 'N'}" disabled>
+                       th:checked="${etcHrServer.chaEhrDevDiskUsageChk eq 'N'}" >
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="chaEhrDevEventChk" id="chaEhrDevEventChkY"
-                       th:checked="${etcHrServer.chaEhrDevEventChk eq 'Y'}" disabled>
+                       th:checked="${etcHrServer.chaEhrDevEventChk eq 'Y'}" >
                 유
                 <input class="form-check-input" type="radio" value="N" name="chaEhrDevEventChk" id="chaEhrDevEventChkN"
-                       th:checked="${etcHrServer.chaEhrDevEventChk eq 'N'}" disabled>
+                       th:checked="${etcHrServer.chaEhrDevEventChk eq 'N'}" >
                 무  
               </p>
             </td>
             <td>
               <input type="text" class="form-control" name="chaEhrDevCpuUsageBigo" id="chaEhrDevCpuUsageBigoInput"
-                     th:value="${etcHrServer.chaEhrDevCpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+                     th:value="${etcHrServer.chaEhrDevCpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" >
               <input type="text" class="form-control" name="chaEhrDevMemUsageBigo" id="chaEhrDevMemUsageBigoInput"
-                     th:value="${etcHrServer.chaEhrDevMemUsageBigo" readonly>
+                     th:value="${etcHrServer.chaEhrDevMemUsageBigo}">
               <input type="text" class="form-control" name="chaEhrDevDiskUsageBigo" id="chaEhrDevDiskUsageBigoInput"
-                     th:value="${etcHrServer.chaEhrDevDiskUsageBigo" readonly>
+                     th:value="${etcHrServer.chaEhrDevDiskUsageBigo}">
               <input type="text" class="form-control" name="chaEhrDevEventBigo" id="chaEhrDevEventBigoInput"
-                     th:value="${etcHrServer.chaEhrDevEventBigo" readonly>
+                     th:value="${etcHrServer.chaEhrDevEventBigo}">
             </td>
           </tr>
           <tr align="center" th:each="etcHrServer:${etcHrServer}">
@@ -317,46 +317,46 @@
             <td> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ddcEhrWebCpuUsageChk" id="ddcEhrWebCpuUsageChkY"
-                       th:checked="${etcHrServer.ddcEhrWebCpuUsageChk eq 'Y'}" disabled>
+                       th:checked="${etcHrServer.ddcEhrWebCpuUsageChk eq 'Y'}" >
                 유
                 <input class="form-check-input" type="radio" value="N" name="ddcEhrWebCpuUsageChk" id="ddcEhrWebCpuUsageChkN"
-                       th:checked="${etcHrServer.ddcEhrWebCpuUsageChk eq 'N'}" disabled>
+                       th:checked="${etcHrServer.ddcEhrWebCpuUsageChk eq 'N'}" >
                 무
               </p> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ddcEhrWebMemUsageChk" id="ddcEhrWebMemUsageChkY"
-                       th:checked="${etcHrServer.ddcEhrWebMemUsageChk eq 'Y'}" disabled>
+                       th:checked="${etcHrServer.ddcEhrWebMemUsageChk eq 'Y'}" >
                 유
                 <input class="form-check-input" type="radio" value="N" name="ddcEhrWebMemUsageChk" id="ddcEhrWebMemUsageChkN"
-                       th:checked="${etcHrServer.ddcEhrWebMemUsageChk eq 'N'}" disabled>
+                       th:checked="${etcHrServer.ddcEhrWebMemUsageChk eq 'N'}" >
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ddcEhrWebDiskUsageChk" id="ddcEhrWebDiskUsageChkY"
-                       th:checked="${etcHrServer.ddcEhrWebDiskUsageChk eq 'Y'}" disabled>
+                       th:checked="${etcHrServer.ddcEhrWebDiskUsageChk eq 'Y'}" >
                 유
                 <input class="form-check-input" type="radio" value="N" name="ddcEhrWebDiskUsageChk" id="ddcEhrWebDiskUsageChkN"
-                       th:checked="${etcHrServer.ddcEhrWebDiskUsageChk eq 'N'}" disabled>
+                       th:checked="${etcHrServer.ddcEhrWebDiskUsageChk eq 'N'}" >
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ddcEhrWebEventChk" id="ddcEhrWebEventChkY"
-                       th:checked="${etcHrServer.ddcEhrWebEventChk eq 'Y'}" disabled>
+                       th:checked="${etcHrServer.ddcEhrWebEventChk eq 'Y'}" >
                 유
                 <input class="form-check-input" type="radio" value="N" name="ddcEhrWebEventChk" id="ddcEhrWebEventChkN"
-                       th:checked="${etcHrServer.ddcEhrWebEventChk eq 'N'}" disabled>
+                       th:checked="${etcHrServer.ddcEhrWebEventChk eq 'N'}" >
                 무  
               </p>
             </td>
             <td>
               <input type="text" class="form-control" name="ddcEhrWebCpuUsageBigo" id="ddcEhrWebCpuUsageBigoInput"
-                     th:value="${etcHrServer.ddcEhrWebCpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" readonly>
+                     th:value="${etcHrServer.ddcEhrWebCpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" >
               <input type="text" class="form-control" name="ddcEhrWebMemUsageBigo" id="ddcEhrWebMemUsageBigoInput"
-                     th:value="${etcHrServer.ddcEhrWebMemUsageBigo}" readonly>
+                     th:value="${etcHrServer.ddcEhrWebMemUsageBigo}" >
               <input type="text" class="form-control" name="ddcEhrWebDiskUsageBigo" id="ddcEhrWEbDiskUsageBigoInput"
-                     th:value="${etcHrServer.ddcEhrWebDiskUsageBigo}" readonly>
+                     th:value="${etcHrServer.ddcEhrWebDiskUsageBigo}" >
               <input type="text" class="form-control" name="ddcEhrWebEventBigo" id="ddcEhrWebEventBigoInput"
-                     th:value="${etcHrServer.ddcEhrWebEventBigo}" readonly>
+                     th:value="${etcHrServer.ddcEhrWebEventBigo}" >
             </td>
           </tr>
     </tbody>

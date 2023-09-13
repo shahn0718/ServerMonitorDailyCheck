@@ -11,8 +11,8 @@ import java.util.List;
 @Mapper
 public interface etcHrDailyMapper {
 
-    void insertEtcDailyServiceMain(MInsertEtcHrDailyServiceMain mInsertEtcHrDailyServiceMain);
-    void insertEtcDailyServerMain(MInsertEtcHrDailyServerMain mInsertEtcHrDailyServerMain);
+    void insertEtcHrDailyServiceMain(MInsertEtcHrDailyServiceMain mInsertEtcHrDailyServiceMain);
+    void insertEtcHrDailyServerMain(MInsertEtcHrDailyServerMain mInsertEtcHrDailyServerMain);
 
     List<MInsertEtcHrDailyServiceMain> selectEtcHrDailyServiceMain(@Param("etcHRMainId")Long etcHRMainId);
     List<MInsertEtcHrDailyServerMain> selectEtcHrDailyServerMain(@Param("etcHRMainId")Long etcHRMainId);

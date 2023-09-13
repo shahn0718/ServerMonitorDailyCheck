@@ -11,7 +11,7 @@
                  ETC_HRSERVICE_ID
                 ,ETC_HRMAIN_ID
                 ,ETC_HRMAIL_CHK
-                ,ETC_HRMAIN_BIGO
+                ,ETC_HRMAIL_BIGO
                 ,ETC_HRAPPROVE_CHK
                 ,ETC_HRAPPROVE_BIGO
                 ,ETC_HRBACKUP_CHK
@@ -75,7 +75,7 @@
 
         ) VALUES (
 
-                 #{etcHrServiceId}
+                 #{etcHrServerId}
                 ,#{etcHRMainId}
                 ,#{chaEhrDbCpuUsageChk}
                 ,#{chaEhrDbCpuUsageBigo}
@@ -121,7 +121,7 @@
                  ETC_HRSERVICE_ID       AS  etcHrServiceId
                 ,ETC_HRMAIN_ID          AS  etcHRMainId
                 ,ETC_HRMAIL_CHK         AS  etcHrMailServiceChk
-                ,ETC_HRMAIN_BIGO        AS  etcHrMailServiceBigo
+                ,ETC_HRMAIL_BIGO        AS  etcHrMailServiceBigo
                 ,ETC_HRAPPROVE_CHK      AS  etcHrApproveServiceChk
                 ,ETC_HRAPPROVE_BIGO     AS  etcHrApproveServiceBigo
                 ,ETC_HRBACKUP_CHK       AS  etcHrBackUpServiceChk
@@ -188,7 +188,7 @@
 
         SET
                  ETC_HRMAIL_CHK         = #{etcHrMailServiceChk}
-                ,ETC_HRMAIN_BIGO        = #{etcHrMailServiceBigo}
+                ,ETC_HRMAIL_BIGO        = #{etcHrMailServiceBigo}
                 ,ETC_HRAPPROVE_CHK      = #{etcHrApproveServiceChk}
                 ,ETC_HRAPPROVE_BIGO     = #{etcHrApproveServiceBigo}
                 ,ETC_HRBACKUP_CHK       = #{etcHrBackUpServiceChk}
