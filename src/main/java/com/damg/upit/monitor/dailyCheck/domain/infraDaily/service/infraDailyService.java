@@ -5,10 +5,15 @@ import com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDail
 import com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyServiceMain;
 import com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyVMMain;
 import com.damg.upit.monitor.dailyCheck.domain.infraDaily.repository.infraDailyRepository;
+import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain;
+import com.damg.upit.monitor.dailyCheck.domain.mainDaily.repository.mainDailyRepository;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j
@@ -17,27 +22,11 @@ public class infraDailyService {
 
     private final infraDailyRepository infraRepository;
 
-    public infraDailyService(infraDailyRepository infraRepository){
-        this.infraRepository = infraRepository;
-    }
+    private final mainDailyRepository mainRepository;
 
-    public void insertInfraDailyServiceMain(MInsertInfraDailyServiceMain mInsertInfraDailyServiceMain){
-        infraRepository.insertInfraDailyServiceMain(mInsertInfraDailyServiceMain);
-    }
-    public void insertInfraDailyServerMain(MInsertInfraDailyServerMain mInsertInfraDailyServerMain){
-        infraRepository.insertInfraDailyServerMain(mInsertInfraDailyServerMain);
-    }
-    public void insertInfraDailyVMMain(MInsertInfraDailyVMMain mInsertInfraDailyVMMain){
-        infraRepository.insertInfraDailyVMMain(mInsertInfraDailyVMMain);
-    }
-    public void insertInfraDailyEtcMain(MInsertInfraDailyEtcMain mInsertInfraDailyEtcMain){
-        infraRepository.insertInfraDailyEtcMain(mInsertInfraDailyEtcMain);
-    }
-    public List<MInsertInfraDailyServiceMain> selectInfraDailyServiceMain(Long infraMainId){
-        return infraRepository.selectInfraDailyServiceMain(infraMainId);
-    }
-    public List<MInsertInfraDailyServerMain> selectInfraDailyServerMain(Long infraMainId){
-        return infraRepository.selectInfraDailyServerMain(infraMainId);
+    public infraDailyService(infraDailyRepository infraRepository, mainDailyRepository mainRepository){
+        this.infraRepository = infraRepository;
+        this.mainRepository= mainRepository;
     }
     public List<MInsertInfraDailyVMMain> selectInfraDailyVMMain(Long infraMainId){
         return infraRepository.selectInfraDailyVMMain(infraMainId);
@@ -45,18 +34,50 @@ public class infraDailyService {
     public List<MInsertInfraDailyEtcMain> selectInfraDailyEtcMain(Long infraMainId){
         return infraRepository.selectInfraDailyEtcMain(infraMainId);
     }
-    public void updateInfraDailyServiceMain(MInsertInfraDailyServiceMain mInsertInfraDailyServiceMain){
-        infraRepository.updateInfraDailyServiceMain(mInsertInfraDailyServiceMain);
+
+    public List<MInsertInfraDailyServiceMain> selectInfraDailyServiceMain(Long infraMainId){
+        return infraRepository.selectInfraDailyServiceMain(infraMainId);
     }
-    public void updateInfraDailyServerMain(MInsertInfraDailyServerMain mInsertInfraDailyServerMain){
-        infraRepository.updateInfraDailyServerMain(mInsertInfraDailyServerMain);
+    public List<MInsertInfraDailyServerMain> selectInfraDailyServerMain(Long infraMainId){
+        return infraRepository.selectInfraDailyServerMain(infraMainId);
     }
-    public void updateInfraDailyVMMain(MInsertInfraDailyVMMain mInsertInfraDailyVMMain){
-        infraRepository.updateInfraDailyVMMain(mInsertInfraDailyVMMain);
+    @Transactional(rollbackFor=Exception.class)
+    public void insertInfraDailyCheckMain(MInsertInfraDailyServiceMain mInsertInfraDailyServiceMain,
+                                          MInsertInfraDailyServerMain mInsertInfraDailyServerMain,
+                                          MInsertInfraDailyVMMain mInsertInfraDailyVMMain,
+                                          MInsertInfraDailyEtcMain mInsertInfraDailyEtcMain,
+                                          MSVDailyCheckBoardMain msvDailyCheckBoardMain){
+
+        mainRepository.insertDailyCheckBoardList(msvDailyCheckBoardMain);
+
+        mInsertInfraDailyServiceMain.setInfraMainId(msvDailyCheckBoardMain.getDailyMainBoardId());
+        mInsertInfraDailyServerMain.setInfraMainId(msvDailyCheckBoardMain.getDailyMainBoardId());
+        mInsertInfraDailyVMMain.setInfraMainId(msvDailyCheckBoardMain.getDailyMainBoardId());
+        mInsertInfraDailyEtcMain.setInfraMainId(msvDailyCheckBoardMain.getDailyMainBoardId());
+
+        infraRepository.insertInfraDailyServiceMain(mInsertInfraDailyServiceMain);
+        infraRepository.insertInfraDailyServerMain(mInsertInfraDailyServerMain);
+        infraRepository.insertInfraDailyVMMain(mInsertInfraDailyVMMain);
+        infraRepository.insertInfraDailyEtcMain(mInsertInfraDailyEtcMain);
     }
 
-    public void updateInfraDailyEtcMain(MInsertInfraDailyEtcMain mInsertInfraDailyEtcMain){
+    @Transactional(rollbackFor = Exception.class)
+    public void updateInfraDailyCheckBoard(Long mainBoardId,
+                                           MInsertInfraDailyServiceMain mInsertInfraDailyServiceMain,
+                                           MInsertInfraDailyServerMain mInsertInfraDailyServerMain,
+                                           MInsertInfraDailyVMMain mInsertInfraDailyVMMain,
+                                           MInsertInfraDailyEtcMain mInsertInfraDailyEtcMain){
+
+        mainRepository.updateDailyCheckBoard(LocalDateTime.now(),mainBoardId);
+
+        mInsertInfraDailyServiceMain.setInfraMainId(mainBoardId);
+        mInsertInfraDailyServerMain.setInfraMainId(mainBoardId);
+        mInsertInfraDailyVMMain.setInfraMainId(mainBoardId);
+        mInsertInfraDailyEtcMain.setInfraMainId(mainBoardId);
+
+        infraRepository.updateInfraDailyServiceMain(mInsertInfraDailyServiceMain);
+        infraRepository.updateInfraDailyServerMain(mInsertInfraDailyServerMain);
+        infraRepository.updateInfraDailyVMMain(mInsertInfraDailyVMMain);
         infraRepository.updateInfraDailyEtcMain(mInsertInfraDailyEtcMain);
     }
-
 }

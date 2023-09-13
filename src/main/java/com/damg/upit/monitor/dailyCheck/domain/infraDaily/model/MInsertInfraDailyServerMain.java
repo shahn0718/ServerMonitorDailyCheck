@@ -81,7 +81,7 @@ public class MInsertInfraDailyServerMain {
      */
 
     private String chaBackUpCpuUsageChk;
-    private String chaBackUpCpUUsageBigo;
+    private String chaBackUpCpuUsageBigo;
     private String chaBackUpMemUsageChk;
     private String chaBackUpMemUsageBigo;
     private String chaBackUpDiskUsageChk;

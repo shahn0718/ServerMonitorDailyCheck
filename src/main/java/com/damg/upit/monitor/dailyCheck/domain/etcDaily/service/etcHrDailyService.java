@@ -3,10 +3,16 @@ package com.damg.upit.monitor.dailyCheck.domain.etcDaily.service;
 
 import com.damg.upit.monitor.dailyCheck.domain.etcDaily.model.ehr.MInsertEtcHrDailyServerMain;
 import com.damg.upit.monitor.dailyCheck.domain.etcDaily.model.ehr.MInsertEtcHrDailyServiceMain;
+import com.damg.upit.monitor.dailyCheck.domain.etcDaily.model.erp.MInsertEtcDailyServerMain;
+import com.damg.upit.monitor.dailyCheck.domain.etcDaily.model.erp.MInsertEtcDailyServiceMain;
 import com.damg.upit.monitor.dailyCheck.domain.etcDaily.repository.etcHrDailyRepository;
+import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain;
+import com.damg.upit.monitor.dailyCheck.domain.mainDaily.repository.mainDailyRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j
@@ -14,22 +20,61 @@ import java.util.List;
 public class etcHrDailyService {
 
     private final etcHrDailyRepository ehrRepository;
+    private final mainDailyRepository mainRepository;
 
-    public etcHrDailyService(etcHrDailyRepository ehrRepository){
+    public etcHrDailyService(etcHrDailyRepository ehrRepository, mainDailyRepository mainRepository){
         this.ehrRepository = ehrRepository;
+        this.mainRepository =mainRepository;
     }
-    public void insertEtcHrDailyServiceMain(MInsertEtcHrDailyServiceMain mInsertEtcHrDailyServiceMain){
-        ehrRepository.insertEtcHrDailyServiceMain(mInsertEtcHrDailyServiceMain);
-    }
-    public void insertEtcHrDailyServerMain(MInsertEtcHrDailyServerMain mInsertEtcHrDailyServerMain){
-        ehrRepository.insertEtcHrDailyServerMain(mInsertEtcHrDailyServerMain);
-    }
+
     public List<MInsertEtcHrDailyServiceMain> selectEtcHrDailyServiceMain(Long etcHRMainId){
         return ehrRepository.selectEtcHrDailyServiceMain(etcHRMainId);
     }
     public List<MInsertEtcHrDailyServerMain> selectEtcHrDailyServerMain(Long etcHRMainId){
         return ehrRepository.selectEtcHrDailyServerMain(etcHRMainId);
     }
+
+    @Transactional(rollbackFor=Exception.class)
+    public void insertEtcHrDailyCheckMain(MInsertEtcHrDailyServiceMain mInsertEtcHrDailyServiceMain,
+                                          MInsertEtcHrDailyServerMain mInsertEtcHrDailyServerMain,
+                                          MSVDailyCheckBoardMain msvDailyCheckBoardMain){
+
+        mainRepository.insertDailyCheckBoardList(msvDailyCheckBoardMain);
+
+        mInsertEtcHrDailyServiceMain.setEtcHRMainId(msvDailyCheckBoardMain.getDailyMainBoardId());
+        mInsertEtcHrDailyServerMain.setEtcHRMainId(msvDailyCheckBoardMain.getDailyMainBoardId());
+
+        ehrRepository.insertEtcHrDailyServiceMain(mInsertEtcHrDailyServiceMain);
+        ehrRepository.insertEtcHrDailyServerMain(mInsertEtcHrDailyServerMain);
+    }
+
+    @Transactional(rollbackFor=Exception.class)
+    public void updateEtcHrDailyCheckMain(Long mainBoardId,
+                                          MInsertEtcHrDailyServiceMain mInsertEtcHrDailyServiceMain,
+                                          MInsertEtcHrDailyServerMain mInsertEtcHrDailyServerMain){
+
+
+        mainRepository.updateDailyCheckBoard(LocalDateTime.now(),mainBoardId);
+
+        mInsertEtcHrDailyServiceMain.setEtcHRMainId(mainBoardId);
+        mInsertEtcHrDailyServerMain.setEtcHRMainId(mainBoardId);
+
+        ehrRepository.updateEtcHrDailyServiceMain(mInsertEtcHrDailyServiceMain);
+        ehrRepository.updateEtcHrDailyServerMain(mInsertEtcHrDailyServerMain);
+    }
+
+
+
+
+
+
+    public void insertEtcHrDailyServiceMain(MInsertEtcHrDailyServiceMain mInsertEtcHrDailyServiceMain){
+        ehrRepository.insertEtcHrDailyServiceMain(mInsertEtcHrDailyServiceMain);
+    }
+    public void insertEtcHrDailyServerMain(MInsertEtcHrDailyServerMain mInsertEtcHrDailyServerMain){
+        ehrRepository.insertEtcHrDailyServerMain(mInsertEtcHrDailyServerMain);
+    }
+
     public void updateEtcHrDailyServiceMain(MInsertEtcHrDailyServiceMain mInsertEtcHrDailyServiceMain){
         ehrRepository.updateEtcHrDailyServiceMain(mInsertEtcHrDailyServiceMain);
     }

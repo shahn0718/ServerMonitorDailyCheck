@@ -59,7 +59,6 @@ public class etcDailyService {
 
         etcRepository.updateEtcDailyServiceMain(mInsertEtcDailyServiceMain);
         etcRepository.updateEtcDailyServerMain(mInsertEtcDailyServerMain);
-
     }
 
 }

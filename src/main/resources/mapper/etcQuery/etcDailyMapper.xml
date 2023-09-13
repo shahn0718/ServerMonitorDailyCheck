@@ -378,12 +378,12 @@
             UPDATE ETC_DAILY_SERVICE
 
             SET
-                         ETC_MAIL_CHK           = #{etcMailServiceChk}
-                        ,ETC_MAIL_BIGO          = #{etcMailServiceBigo}
-                        ,ETC_APPROVE_CHK        = #{etcApproveServiceChk}
-                        ,ETC_APPROVE_BIGO       = #{etcApproveServiceBigo}
-                        ,ETC_BACKUP_CHK         = #{etcBackUpServiceChk}
-                        ,ETC_BACKUP_BIGO        = #{etcBackUpServiceBigo}
+                         ETC_MAIL_CHK           = #{etcErpMailServiceChk}
+                        ,ETC_MAIL_BIGO          = #{etcErpMailServiceBigo}
+                        ,ETC_APPROVE_CHK        = #{etcErpApproveServiceChk}
+                        ,ETC_APPROVE_BIGO       = #{etcErpApproveServiceBigo}
+                        ,ETC_BACKUP_CHK         = #{etcErpBackUpServiceChk}
+                        ,ETC_BACKUP_BIGO        = #{etcErpBackUpServiceBigo}
             WHERE
 
                         ETC_MAIN_ID  = #{etcMainId}
@@ -472,7 +472,7 @@
                         ,DKF1_CPUUSAGE_CHK              = #{dkf1CpuUsageChk}
                         ,DKF1_CPUUSAGE_BIGO             = #{dkf1CpuUsageBigo}
                         ,DKF1_MEMUSAGE_CHK              = #{dkf1MemUsageChk}
-                        ,DKF1_MEMUSAGE_BIGO             = #{dkf1MemUSageBigo}
+                        ,DKF1_MEMUSAGE_BIGO             = #{dkf1MemUsageBigo}
                         ,DKF1_DISKUSAGE_CHK             = #{dkf1DiskUsageChk}
                         ,DKF1_DISKUSAGE_BIGO            = #{dkf1DiskUsageBigo}
                         ,DKF1_EVENT_CHK                 = #{dkf1EventChk}
