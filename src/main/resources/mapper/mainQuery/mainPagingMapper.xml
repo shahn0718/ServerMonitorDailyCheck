@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.damg.upit.monitor.dailyCheck.domain.mainPaging.mapper.mainPagingMapper">
+
+
+    <select id="findPagingBoardList" parameterType="com.damg.upit.monitor.dailyCheck.domain.mainPaging.model.MDailyBoardPagingMain"
+            resultType="com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain">
+
+        SELECT
+                     DAILY_MAIN_ID      AS dailyMainId
+                    ,DAILY_MAIN_BOARDID AS dailyMainBoardId
+                    ,DAILY_MAIN_CD      AS dailyMainCd
+                    ,DAILY_MAIN_CDNM    AS dailyMainCdNm
+                    ,DAILY_MAIN_CONTENT AS dailyMainContent
+                    ,DAILY_MAIN_WRITER  AS dailyMainWriter
+                    ,DAILY_MAIN_WRITERNO AS dailyMainWriterNo
+                    ,DAILY_MAIN_VIEWCNT AS dailyMainViewCnt
+                    ,DAILY_MAIN_CREATEDATE AS dailyMainCreateDate
+                    ,DAILY_MAIN_MODDATE AS dailyMainModDate
+        FROM
+                    MAIN_DAILY_BOARD
+        ORDER BY
+                    DAILY_MAIN_ID  DESC
+        LIMIT
+                    #{boardPagingLimit} , #{perPageDataCnt}
+    </select>
+
+    <select id="countPerPageBoardList" parameterType="com.damg.upit.monitor.dailyCheck.domain.mainPaging.model.MDailyBoardPagingMain"
+            resultType="int">
+
+        SELECT
+                    COUNT(*)
+        FROM
+                    MAIN_DAILY_BOARD
+    </select>
+
+
+
+
+
+
+
+
+
+</mapper>
