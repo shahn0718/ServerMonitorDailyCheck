@@ -3,8 +3,8 @@ package com.damg.upit.monitor.dailyCheck.domain.mainDaily.controller;
 
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain;
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.service.mainDailyService;
+import com.damg.upit.monitor.dailyCheck.domain.mainPaging.model.MDailyBoardPaginationMain;
 import com.damg.upit.monitor.dailyCheck.domain.mainPaging.model.MDailyBoardPagingMain;
-import com.damg.upit.monitor.dailyCheck.domain.mainPaging.model.MDailyBoardPagingResponse;
 import com.damg.upit.monitor.dailyCheck.domain.mainPaging.service.mainPagingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -29,15 +29,28 @@ public class mainDailyController {
     public String homeMainDailyBoard(MDailyBoardPagingMain mDailyBoardPagingMain,
                                      Model model) {
 
-        Model mainDailyBoardList = model.addAttribute("mainDailyBoardList", mainService.selectDailyCheckBoardList());
-        log.info("mainDailyBoardList= {}", mainDailyBoardList);
-
-        List<MSVDailyCheckBoardMain> getPagingList = pagingService.getPageList(mDailyBoardPagingMain);
-        model.addAttribute("getPagingList", getPagingList);
 
         /**
-         * 여기서부터
+         * 기존에 존재하던 페이지 작업 형식
          */
+//        Model mainDailyBoardList = model.addAttribute("mainDailyBoardList", mainService.selectDailyCheckBoardList());
+//        log.info("mainDailyBoardList= {}", mainDailyBoardList);
+
+        List<MSVDailyCheckBoardMain> mainDailyBoardListWithPaging = pagingService.getPageList(mDailyBoardPagingMain);
+        model.addAttribute("mainDailyBoardList", mainDailyBoardListWithPaging);
+
+        MDailyBoardPaginationMain mDailyBoardPaginationMain = new MDailyBoardPaginationMain(pagingService.getBoardTotalList(), 5, mDailyBoardPagingMain);
+        model.addAttribute("pageMaker",mDailyBoardPaginationMain);
+        /**
+         *
+         */
+        log.info("getPagingList={}", mainDailyBoardListWithPaging);
+        log.info("pagingService.getBoardTotalList()={}",pagingService.getBoardTotalList());
+        log.info("=========================");
+        log.info("List");
+        log.info("mainDailyBoardList= {}", mainDailyBoardListWithPaging);
+        log.info("getPagingList={}", mDailyBoardPaginationMain);
+        log.info("=========================");
 
         return "mainBoard";
     }

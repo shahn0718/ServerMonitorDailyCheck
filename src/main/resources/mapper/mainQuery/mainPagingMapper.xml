@@ -23,10 +23,10 @@
         ORDER BY
                     DAILY_MAIN_ID  DESC
         LIMIT
-                    #{pagination.startLimitNum} , #{perPageDataCnt}
+                    #{pageNum} , #{pageAmount}
     </select>
 
-    <select id="countPerPageBoardList" parameterType="com.damg.upit.monitor.dailyCheck.domain.mainPaging.model.MDailyBoardPagingMain"
+    <select id="getBoardTotalList" parameterType="com.damg.upit.monitor.dailyCheck.domain.mainPaging.model.MDailyBoardPagingMain"
             resultType="int">
 
         SELECT

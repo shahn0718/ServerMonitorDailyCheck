@@ -14,5 +14,5 @@ public interface mainPagingRepository {
      */
     List<MSVDailyCheckBoardMain> findPagingBoardList(MDailyBoardPagingMain mDailyBoardPagingMain);
 
-    int getBoardTotalList (MSVDailyCheckBoardMain msvDailyCheckBoardMain);
+    int getBoardTotalList();
 }

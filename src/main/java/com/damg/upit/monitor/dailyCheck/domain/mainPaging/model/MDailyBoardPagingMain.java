@@ -18,7 +18,7 @@ public class MDailyBoardPagingMain {
      */
     private int pageNum;
     private int pageAmount;
-    private MDailyBoardPagnationMain pagination;
+    private MDailyBoardPaginationMain pagination;
 
     public MDailyBoardPagingMain(){
         this.pageNum = 1;

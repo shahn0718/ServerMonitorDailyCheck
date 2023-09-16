@@ -7,7 +7,7 @@ import lombok.ToString;
 
 @Getter @Setter
 @ToString
-public class MDailyBoardPagnationMain {
+public class MDailyBoardPaginationMain {
 
     /**
      *  <페이지 네이션>
@@ -31,9 +31,11 @@ public class MDailyBoardPagnationMain {
     private boolean existPrevPageChk;
     private boolean existNextPageChk;
     private int total;
+    public MDailyBoardPagingMain mDailyBoardPagingMain;
 
+    public MDailyBoardPaginationMain(){}
 
-    public MDailyBoardPagnationMain(int total, int pageCount ,MDailyBoardPagingMain mDailyBoardPagingMain){
+    public MDailyBoardPaginationMain(int total, int pageCount, MDailyBoardPagingMain mDailyBoardPagingMain){
 
         this.total = total;
         this.mDailyBoardPagingMain = mDailyBoardPagingMain;

@@ -170,8 +170,8 @@
                         ,#{chaErpDb1MemUsageBigo}
                         ,#{chaErpDb1DiskUsageChk}
                         ,#{chaErpDb1DiskUsageBigo}
-                        ,#{chaErpDb1DiskEventChk}
-                        ,#{chaErpDb1DiskEventBigo}
+                        ,#{chaErpDb1EventChk}
+                        ,#{chaErpDb1EventBigo}
                         ,#{chaErpDb2CpuUsageChk}
                         ,#{chaErpDb2CpuUsageBigo}
                         ,#{chaErpDb2MemUsageChk}
