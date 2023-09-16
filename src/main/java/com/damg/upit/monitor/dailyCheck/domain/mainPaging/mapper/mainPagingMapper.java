@@ -10,5 +10,5 @@ import java.util.List;
 public interface mainPagingMapper {
 
     List<MSVDailyCheckBoardMain> findPagingBoardList(MDailyBoardPagingMain mDailyBoardPagingMain);
-    int countPerPageBoardList(MDailyBoardPagingMain mDailyBoardPagingMain);
+    int getBoardTotalList(MSVDailyCheckBoardMain msvDailyCheckBoardMain);
 }

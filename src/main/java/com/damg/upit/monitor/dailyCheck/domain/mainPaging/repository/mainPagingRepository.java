@@ -14,10 +14,5 @@ public interface mainPagingRepository {
      */
     List<MSVDailyCheckBoardMain> findPagingBoardList(MDailyBoardPagingMain mDailyBoardPagingMain);
 
-    /**
-     * 게시글 수 카운팅
-     * @param mDailyBoardPagingMain
-     * @return 게시글 수
-     */
-    int countPerPageBoardList(MDailyBoardPagingMain mDailyBoardPagingMain);
+    int getBoardTotalList (MSVDailyCheckBoardMain msvDailyCheckBoardMain);
 }

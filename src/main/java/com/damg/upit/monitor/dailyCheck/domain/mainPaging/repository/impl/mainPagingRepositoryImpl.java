@@ -27,7 +27,9 @@ public class mainPagingRepositoryImpl implements mainPagingRepository {
     }
 
     @Override
-    public int countPerPageBoardList(MDailyBoardPagingMain mDailyBoardPagingMain) {
-        return pagingMapper.countPerPageBoardList(mDailyBoardPagingMain);
+    public int getBoardTotalList(MSVDailyCheckBoardMain msvDailyCheckBoardMain) {
+        return pagingMapper.getBoardTotalList(msvDailyCheckBoardMain);
     }
+
+
 }

@@ -23,7 +23,7 @@
         ORDER BY
                     DAILY_MAIN_ID  DESC
         LIMIT
-                    #{boardPagingLimit} , #{perPageDataCnt}
+                    #{pagination.startLimitNum} , #{perPageDataCnt}
     </select>
 
     <select id="countPerPageBoardList" parameterType="com.damg.upit.monitor.dailyCheck.domain.mainPaging.model.MDailyBoardPagingMain"
