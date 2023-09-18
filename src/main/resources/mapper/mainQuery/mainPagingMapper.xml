@@ -7,23 +7,34 @@
     <select id="findPagingBoardList" parameterType="com.damg.upit.monitor.dailyCheck.domain.mainPaging.model.MDailyBoardPagingMain"
             resultType="com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain">
 
-        SELECT
-                     DAILY_MAIN_ID      AS dailyMainId
-                    ,DAILY_MAIN_BOARDID AS dailyMainBoardId
-                    ,DAILY_MAIN_CD      AS dailyMainCd
-                    ,DAILY_MAIN_CDNM    AS dailyMainCdNm
-                    ,DAILY_MAIN_CONTENT AS dailyMainContent
-                    ,DAILY_MAIN_WRITER  AS dailyMainWriter
-                    ,DAILY_MAIN_WRITERNO AS dailyMainWriterNo
-                    ,DAILY_MAIN_VIEWCNT AS dailyMainViewCnt
-                    ,DAILY_MAIN_CREATEDATE AS dailyMainCreateDate
-                    ,DAILY_MAIN_MODDATE AS dailyMainModDate
-        FROM
-                    MAIN_DAILY_BOARD
-        ORDER BY
-                    DAILY_MAIN_ID  DESC
-        LIMIT
-                    #{pageNum} , #{pageAmount}
+
+        <![CDATA[
+                     SELECT
+                             DAILY_MAIN_ID      AS dailyMainId
+                            ,DAILY_MAIN_BOARDID AS dailyMainBoardId
+                            ,DAILY_MAIN_CD      AS dailyMainCd
+                            ,DAILY_MAIN_CDNM    AS dailyMainCdNm
+                            ,DAILY_MAIN_CONTENT AS dailyMainContent
+                            ,DAILY_MAIN_WRITER  AS dailyMainWriter
+                            ,DAILY_MAIN_WRITERNO AS dailyMainWriterNo
+                            ,DAILY_MAIN_VIEWCNT AS dailyMainViewCnt
+                            ,DAILY_MAIN_CREATEDATE AS dailyMainCreateDate
+                            ,DAILY_MAIN_MODDATE AS dailyMainModDate
+                     FROM
+                            (
+                                SELECT
+                                        @ROWNUM := @ROWNUM + 1 AS ROWNUM
+                                       ,MAIN_DAILY_BOARD. *
+                                FROM
+                                        MAIN_DAILY_BOARD
+                                WHERE
+                                       (@ROWNUM := 0) = 0
+                                AND
+                                       (@ROWNUM) < #{pageNum} * #{pageAmount}
+                            ) BOARD
+                     WHERE
+                            ROWNUM > (#{pageNum}-1) * #{pageAmount}
+        ]]>
     </select>
 
     <select id="getBoardTotalList" parameterType="com.damg.upit.monitor.dailyCheck.domain.mainPaging.model.MDailyBoardPagingMain"
@@ -34,8 +45,6 @@
         FROM
                     MAIN_DAILY_BOARD
     </select>
-
-
 
 
 

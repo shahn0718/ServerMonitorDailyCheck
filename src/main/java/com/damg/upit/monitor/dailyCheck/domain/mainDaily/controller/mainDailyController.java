@@ -9,8 +9,7 @@ import com.damg.upit.monitor.dailyCheck.domain.mainPaging.service.mainPagingServ
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,21 +28,23 @@ public class mainDailyController {
     public String homeMainDailyBoard(MDailyBoardPagingMain mDailyBoardPagingMain,
                                      Model model) {
 
-
         /**
          * 기존에 존재하던 페이지 작업 형식
          */
 //        Model mainDailyBoardList = model.addAttribute("mainDailyBoardList", mainService.selectDailyCheckBoardList());
 //        log.info("mainDailyBoardList= {}", mainDailyBoardList);
 
+        System.out.println("mDailyBoardPagingMain#### = " + mDailyBoardPagingMain.getPageNum());
+        System.out.println("mDailyBoardPagingMain##### = " + mDailyBoardPagingMain.getPageAmount());
+
         List<MSVDailyCheckBoardMain> mainDailyBoardListWithPaging = pagingService.getPageList(mDailyBoardPagingMain);
         model.addAttribute("mainDailyBoardList", mainDailyBoardListWithPaging);
 
-        MDailyBoardPaginationMain mDailyBoardPaginationMain = new MDailyBoardPaginationMain(pagingService.getBoardTotalList(), 5, mDailyBoardPagingMain);
+        MDailyBoardPaginationMain mDailyBoardPaginationMain = new MDailyBoardPaginationMain(pagingService.getBoardTotalList(), 10, mDailyBoardPagingMain);
         model.addAttribute("pageMaker",mDailyBoardPaginationMain);
-        /**
-         *
-         */
+
+        model.addAttribute("list",mDailyBoardPagingMain);
+
         log.info("getPagingList={}", mainDailyBoardListWithPaging);
         log.info("pagingService.getBoardTotalList()={}",pagingService.getBoardTotalList());
         log.info("=========================");
@@ -51,6 +52,21 @@ public class mainDailyController {
         log.info("mainDailyBoardList= {}", mainDailyBoardListWithPaging);
         log.info("getPagingList={}", mDailyBoardPaginationMain);
         log.info("=========================");
+
+        return "mainBoard";
+    }
+
+    @GetMapping("/{num}")
+    public String homeMainDailyBoardGetPage(@PathVariable("num")int pageNum,
+                                            MDailyBoardPagingMain mDailyBoardPagingMain,
+                                            Model model){
+
+        mDailyBoardPagingMain.setPageNum(pageNum);
+        System.out.println("mDailyBoardPagingMain #####= " + mDailyBoardPagingMain.getPageNum());
+        List<MSVDailyCheckBoardMain> mainDailyBoardListWithPaging = pagingService.getPageList(mDailyBoardPagingMain);
+        model.addAttribute("mainDailyBoardList", mainDailyBoardListWithPaging);
+        MDailyBoardPaginationMain mDailyBoardPaginationMain = new MDailyBoardPaginationMain(pagingService.getBoardTotalList(), 10, mDailyBoardPagingMain);
+        model.addAttribute("pageMaker",mDailyBoardPaginationMain);
 
         return "mainBoard";
     }
