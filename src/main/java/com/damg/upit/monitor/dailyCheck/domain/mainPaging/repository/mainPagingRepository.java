@@ -13,6 +13,5 @@ public interface mainPagingRepository {
      * @return 게시글 리스트
      */
     List<MSVDailyCheckBoardMain> findPagingBoardList(MDailyBoardPagingMain mDailyBoardPagingMain);
-
     int getBoardTotalList();
 }

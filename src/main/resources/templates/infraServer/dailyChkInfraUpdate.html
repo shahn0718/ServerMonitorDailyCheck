@@ -91,7 +91,7 @@
       </thead>
       <tbody>
         <tr align="center" th:each="infraService:${infraService}">
-          <td style="background-color: #81BEF7;">서비스</td>
+          <td style="background-color: #81BEF7; font-weight:bold">서비스</td>
           <td>  
             <p>백업</p>
             <p>스팸 솔루션</p>
@@ -156,7 +156,7 @@
           </td>
         </tr>
         <tr align="center" th:each="infraServer:${infraServer}">
-          <td rowspan="7" style="background-color: #81BEF7;">서버</td>
+          <td rowspan="7" style="background-color: #81BEF7; font-weight:bold">서버</td>
           <td>Nwblock-1</td>
           <td>윈도우</td>
           <td>  
@@ -535,7 +535,7 @@
             </td>
           </tr>
         <tr align="center" th:each="infraVM:${infraVM}">
-            <td rowspan="2" style="background-color: #81BEF7;">VM</td>
+            <td rowspan="2" style="background-color: #81BEF7; font-weight:bold">VM</td>
             <td>ERP-HVDC-01</td>
             <td>윈도우</td>
             <td>  
@@ -644,7 +644,7 @@
             </td>
           </tr>
           <tr align="center" th:each="infraEtc :${infraEtc}">
-            <td rowspan="12" style="background-color: #81BEF7;">보안 및 기타 솔루션</td>
+            <td rowspan="12" style="background-color: #81BEF7; font-weight:bold">보안 및 기타 솔루션</td>
             <td>VPN-1</td>
             <td>-</td>
             <td>  
@@ -769,7 +769,7 @@
               <input type="text" class="form-control" name="sso2ClustBigo" id="sso2ClustBigoInput"
                      th:value="${infraEtc.sso2ClustBigo}" placeholder="이상유무 유 체크시 내역기재" >
               <input type="text" class="form-control" name="sso2EventBigo" id="sso2EventBigoInput"
-                     th:value="${infraEtc.sso2EvnetBigo}" >
+                     th:value="${infraEtc.sso2EventBigo}" >
             </td>
           </tr>
           <tr align="center" th:each="infraEtc:${infraEtc}">

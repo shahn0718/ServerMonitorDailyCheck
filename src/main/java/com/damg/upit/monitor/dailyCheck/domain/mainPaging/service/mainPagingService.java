@@ -14,22 +14,17 @@ import java.util.List;
 public class mainPagingService {
 
     private final mainPagingRepository pagingRepository;
-
     public mainPagingService(mainPagingRepository pagingRepository){
         this.pagingRepository =pagingRepository;
     }
-
-
     /**
      *
      * @param mDailyBoardPagingMain
      * @return
      */
-
     public List<MSVDailyCheckBoardMain> getPageList(MDailyBoardPagingMain mDailyBoardPagingMain){
         return pagingRepository.findPagingBoardList(mDailyBoardPagingMain);
     }
-
     public int getBoardTotalList(){
         return pagingRepository.getBoardTotalList();
     }

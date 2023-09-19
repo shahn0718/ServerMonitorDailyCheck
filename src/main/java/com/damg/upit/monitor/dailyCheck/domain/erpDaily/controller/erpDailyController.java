@@ -52,14 +52,14 @@ public class erpDailyController {
             Model model){
 
         Model erpDailyCheckSubmit = model.addAttribute("erpDailyCheck");
-        log.info("erpDailyCheck={}",erpDailyCheckSubmit);
+        log.info("method=doInsertErpDailyCheck() erpDailyCheck={}",erpDailyCheckSubmit);
 
         String contentDate = DateTimeFormatter.ofPattern("yyyy.MM.dd").format(LocalDateTime.now());
         MSVDailyCheckAdminMain msvDailyCheckAdminMain = mainService.selectDailyCheckAdmin(admin_nm);
 
         MSVDailyCheckBoardMain msvDailyCheckBoardMain = new MSVDailyCheckBoardMain();
         msvDailyCheckBoardMain.setDailyMainCd(mDailyCheckElement.ERP);
-        msvDailyCheckBoardMain.setDailyMainCdNm(mDailyCheckElement.ERP_KOR);
+        msvDailyCheckBoardMain.setDailyMainCdNm(mDailyCheckElement.ERP_CDNM);
         msvDailyCheckBoardMain.setDailyMainContent(mDailyCheckElement.ERP_KOR+" 서버 일일점검 "+"("+contentDate+")");
         msvDailyCheckBoardMain.setDailyMainWriter(msvDailyCheckAdminMain.getAdmin_nm());
         msvDailyCheckBoardMain.setDailyMainWriterNo(msvDailyCheckAdminMain.getAdmin_no());
@@ -115,10 +115,10 @@ public class erpDailyController {
         erpService.updateErpDailyCheckMain(erpMainId,mInsertErpDailyServiceMain,
                 mInsertErpDailyServerMain,mInsertErpDailyVMMain,mInsertErpDailyStorageMain);
 
-        log.info("erpDailyServiceMain={}",mInsertErpDailyServiceMain);
-        log.info("erpDailyServerMain={}",mInsertErpDailyServerMain);
-        log.info("erpDailyVMMain={}",mInsertErpDailyVMMain);
-        log.info("erpDailyStorageMain={}",mInsertErpDailyStorageMain);
+        log.info("method=doUpdateErpDailyCheck() erpDailyServiceMain={}",mInsertErpDailyServiceMain);
+        log.info("method=doUpdateErpDailyCheck() erpDailyServerMain={}",mInsertErpDailyServerMain);
+        log.info("method=doUpdateErpDailyCheck() erpDailyVMMain={}",mInsertErpDailyVMMain);
+        log.info("method=doUpdateErpDailyCheck() erpDailyStorageMain={}",mInsertErpDailyStorageMain);
 
         return "redirect:/";
     }

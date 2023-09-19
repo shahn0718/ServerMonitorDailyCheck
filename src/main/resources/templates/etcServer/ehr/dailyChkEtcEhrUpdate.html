@@ -80,7 +80,7 @@
 
   <table class="table table-bordered align-middle table-hover mt-5">
       <thead>
-        <tr align="center" style="background-color: #81BEF7;">
+        <tr align="center" style="background-color: #81BEF7; font-weight:bold">
           <th scope="col">구분</th>
           <th scope="col">항목명</th>
           <th scope="col">운영체제</th>
@@ -91,20 +91,20 @@
       </thead>
       <tbody>
         <tr align="center" th:each="etcHrService:${etcHrService}">
-          <td style="background-color: #81BEF7;">서비스</td>
+          <td style="background-color: #81BEF7; font-weight:bold">서비스</td>
           <td>  
-            <p></p>
-            <p></p>
+            <p>-</p>
+            <p>-</p>
             <p>백업</p>
           </td>
           <td> 
             <p>-</p> 
             <p>-</p>
-            <p> </p>
+            <p>-</p>
           </td>
           <td> 
-            <p></p> 
-            <p></p>
+            <p>-</p>
+            <p>-</p>
             <p>백업스케쥴</p>
           </td>
           <td> 
@@ -143,7 +143,7 @@
           </td>
         </tr>
         <tr align="center" th:each="etcHrServer: ${etcHrServer}">
-          <td rowspan="4"  style="background-color: #81BEF7;">서버</td>
+          <td rowspan="4"  style="background-color: #81BEF7; font-weight:bold">서버</td>
           <td>CHA-EHR-DB</td>
           <td>윈도우</td>
           <td>  

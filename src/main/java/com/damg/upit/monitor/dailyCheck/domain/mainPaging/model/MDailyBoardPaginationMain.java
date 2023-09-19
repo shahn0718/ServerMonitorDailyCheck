@@ -23,7 +23,6 @@ public class MDailyBoardPaginationMain {
      *  7. 다음페이지 존재여부
      *
      */
-
     private int pageCount;
     private int startPage;
     private int endPage;
@@ -42,26 +41,16 @@ public class MDailyBoardPaginationMain {
         this.pageCount = pageCount;
 
         this.endPage = (int)(Math.ceil(mDailyBoardPagingMain.getPageNum()*1.0/pageCount))*pageCount;
-        System.out.println("endPage= " + endPage);
-        //endPage = 10;
 
         this.startPage = endPage- (pageCount-1);
-        //pageCount -1 = 10 -1 = 9;
-        //startPage = 1;
-        System.out.println("startPage = " + startPage);
-
 
         finalPage = (int)(Math.ceil(total*1.0/mDailyBoardPagingMain.getPageAmount()));
-        System.out.println("finalPage = " + finalPage);
 
-        //finalPage = 2;
         if(endPage>finalPage){
             endPage = finalPage == 0 ? 1 : finalPage;
         }
 
         existPrevPageChk = startPage > 1;
-        System.out.println("existPrevPageChk = " + existPrevPageChk);
         existNextPageChk = endPage < finalPage;
-        System.out.println("existNextPageChk = " + existNextPageChk);
     }
 }

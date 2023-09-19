@@ -60,7 +60,7 @@ public class infraDailyController {
         MSVDailyCheckBoardMain msvDailyCheckBoardMain = new MSVDailyCheckBoardMain();
 
         msvDailyCheckBoardMain.setDailyMainCd(mDailyCheckElement.INFRA);
-        msvDailyCheckBoardMain.setDailyMainCdNm(mDailyCheckElement.INFRA_KOR);
+        msvDailyCheckBoardMain.setDailyMainCdNm(mDailyCheckElement.INFRA_CDNM);
         msvDailyCheckBoardMain.setDailyMainContent(mDailyCheckElement.INFRA_KOR+" 서버 일일점검 "+"("+contentDate+")");
         msvDailyCheckBoardMain.setDailyMainWriter(msvDailyCheckAdminMain.getAdmin_nm());
         msvDailyCheckBoardMain.setDailyMainWriterNo(msvDailyCheckAdminMain.getAdmin_no());
@@ -116,10 +116,10 @@ public class infraDailyController {
         infraService.updateInfraDailyCheckBoard(infraMainId,mInsertInfraDailyServiceMain,
                 mInsertInfraDailyServerMain,mInsertInfraDailyVMMain,mInsertInfraDailyEtcMain);
 
-        log.info("infraDailyServiceMain={}",mInsertInfraDailyServiceMain);
-        log.info("infraDailyServerMain={}",mInsertInfraDailyServerMain);
-        log.info("infraDailyVMMain={}",mInsertInfraDailyVMMain);
-        log.info("infraDailyEtcMain={}",mInsertInfraDailyEtcMain);
+        log.info("method=doUpdateInfraDailyCheck() infraDailyServiceMain={}",mInsertInfraDailyServiceMain);
+        log.info("method=doUpdateInfraDailyCheck() infraDailyServerMain={}",mInsertInfraDailyServerMain);
+        log.info("method=doUpdateInfraDailyCheck() infraDailyVMMain={}",mInsertInfraDailyVMMain);
+        log.info("method=doUpdateInfraDailyCheck() infraDailyEtcMain={}",mInsertInfraDailyEtcMain);
 
         return "redirect:/";
     }

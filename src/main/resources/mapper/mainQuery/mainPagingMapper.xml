@@ -10,7 +10,8 @@
 
         <![CDATA[
                      SELECT
-                             DAILY_MAIN_ID      AS dailyMainId
+                             ROWNUM 			AS dailyMainBoardNum
+                            ,DAILY_MAIN_ID      AS dailyMainId
                             ,DAILY_MAIN_BOARDID AS dailyMainBoardId
                             ,DAILY_MAIN_CD      AS dailyMainCd
                             ,DAILY_MAIN_CDNM    AS dailyMainCdNm
@@ -26,11 +27,15 @@
                                         @ROWNUM := @ROWNUM + 1 AS ROWNUM
                                        ,MAIN_DAILY_BOARD. *
                                 FROM
-                                        MAIN_DAILY_BOARD
+                                        MAIN_DAILY_BOARD,
+                                       (SELECT @ROWNUM :=0) R
                                 WHERE
-                                       (@ROWNUM := 0) = 0
-                                AND
                                        (@ROWNUM) < #{pageNum} * #{pageAmount}
+
+                                ORDER BY
+
+                                       DAILY_MAIN_ID desc
+
                             ) BOARD
                      WHERE
                             ROWNUM > (#{pageNum}-1) * #{pageAmount}
@@ -45,11 +50,5 @@
         FROM
                     MAIN_DAILY_BOARD
     </select>
-
-
-
-
-
-
 
 </mapper>
