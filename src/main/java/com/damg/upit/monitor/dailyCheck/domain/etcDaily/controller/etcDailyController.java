@@ -48,7 +48,7 @@ public class etcDailyController {
             Model model){
 
         Model etcDailyCheckSubmit = model.addAttribute("etcDailyCheck");
-        log.info("etcDailyCheck={}",etcDailyCheckSubmit);
+        log.info("method=doInsertEtcDailyCheck() etcDailyCheck={}",etcDailyCheckSubmit);
 
         String contentDate = DateTimeFormatter.ofPattern("yyyy.MM.dd").format(LocalDateTime.now());
         MSVDailyCheckAdminMain msvDailyCheckAdminMain = mainService.selectDailyCheckAdmin(admin_nm);
@@ -56,7 +56,7 @@ public class etcDailyController {
         MSVDailyCheckBoardMain msvDailyCheckBoardMain = new MSVDailyCheckBoardMain();
 
         msvDailyCheckBoardMain.setDailyMainCd(mDailyCheckElement.ETC_ERP);
-        msvDailyCheckBoardMain.setDailyMainCdNm(mDailyCheckElement.ETC_ERP_KOR);
+        msvDailyCheckBoardMain.setDailyMainCdNm(mDailyCheckElement.ETC_ERP_CDNM);
         msvDailyCheckBoardMain.setDailyMainContent(mDailyCheckElement.ETC_ERP_KOR+" 서버 일일점검 "+"("+contentDate+")");
         msvDailyCheckBoardMain.setDailyMainWriter(msvDailyCheckAdminMain.getAdmin_nm());
         msvDailyCheckBoardMain.setDailyMainWriterNo(msvDailyCheckAdminMain.getAdmin_no());
@@ -100,8 +100,8 @@ public class etcDailyController {
 
         etcService.updateEtcDailyCheckMain(etcMainId,mInsertEtcDailyServiceMain,mInsertEtcDailyServerMain);
 
-        log.info("etcDailyServiceMain={}",mInsertEtcDailyServiceMain);
-        log.info("etcDailyServerMain={}",mInsertEtcDailyServerMain);
+        log.info("method=doUpdateEtcDailyCheck() etcDailyServiceMain={}",mInsertEtcDailyServiceMain);
+        log.info("method=doUpdateEtcDailyCheck() etcDailyServerMain={}",mInsertEtcDailyServerMain);
 
         return "redirect:/";
     }

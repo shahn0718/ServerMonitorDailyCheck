@@ -17,15 +17,12 @@ public class MDailyBoardPagingMain {
      *
      */
     private int pageNum;
-
-    //***
     private int pageCal;
     private int pageAmount;
     private MDailyBoardPaginationMain pagination;
 
     public MDailyBoardPagingMain(){
         this.pageNum = 1;
-        this.pageCal = 1;
         this.pageAmount = 10;
     }
     public MDailyBoardPagingMain(int pageNum, int pageAmount){

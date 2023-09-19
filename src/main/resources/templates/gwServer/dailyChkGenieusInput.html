@@ -7,78 +7,21 @@
           rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
           crossorigin="anonymous">
     <title>일일점검일지(지니어스) 입력</title>
-</head>
-
-
 <script>
 
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-      if(this.readyState == 4 && this.status == 200){
-
-        getXmlData(this);
-      }
-    }
-    xhr.open("GET" ,"donga-devwas.xml",true);
-    xhr.send();
-
-  function getXmlData(xml) {
-    var num, name;
-    var num, name;
-    var txt, ntxt, xmlDoc;
-
-    //this.reponseText와 비슷.
-    xmlData = xml.responseXML;
-
-    console.log(xmlData);
-
-    const hostname = xmlData.getElementsByTagName("hostname");
-    const hostnameValue =  hostname[0].childNodes[0].nodeValue;
-
-    console.log("hostname: " + hostnameValue);
-
-
-    const date = xmlData.getElementsByTagName("date");
-    const dateValue = date[0].childNodes[0].nodeValue;
-
-    console.log("date: " + dateValue);
-
-    const time = xmlData.getElementsByTagName("time");
-    const timeValue = time[0].childNodes[0].nodeValue
-
-    console.log("time: " + timeValue);
-
-    const osver = xmlData.getElementsByTagName("osver");
-    const osverValue = osver[0].childNodes[0].nodeValue;
-
-    console.log("osver: " + osverValue);
-
-    const ipAddr = xmlData.getElementsByTagName("ipaddr");
-    const ipAddrValue = ipAddr[0].childNodes[0].nodeValue;
-
-    console.log("ipAddress: " + ipAddrValue);
-    
-    console.log(" ");
-    let getXmlAttribute= xmlData.documentElement.childNodes[1].childNodes;
-    console.log(getXmlAttribute);
-
-    for(i=1; i<getXmlAttribute.length; i+=2){
-      console.log(xmlData.documentElement.childNodes[1].childNodes[i].firstChild.nodeValue);
-    }
-};
 
 </script>
+</head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
 </script>
-<form class method="post">
+<form method="post" name="genieusForm">
 <div class="container-fluid container-lg mt-lg-5">
-
   <div class="row text-center text-dark mb-5">
     <div class="col border mt-3">
       작성자:&nbsp;
-      <select class="form-select-s" th:name="admin_nm">
-        <option value="선택">선택</option>
+      <select class="form-select-s" th:name="admin_nm" required>
+        <option value="">선택</option>
         <option th:each="adminUser : ${adminUser}"
                       th:value="${adminUser.admin_nm}"
                       th:text="${adminUser.admin_nm}" >
@@ -111,7 +54,7 @@
     <tbody>
     <form name="gwService" th:action method="post">
       <tr align="center" >
-        <td style="background-color: #81BEF7;">서비스</td>
+        <td style="background-color: #81BEF7; font-weight:bold">서비스</td>
         <td>
           <p>메일</p>
           <p>전자결재</p>
@@ -120,7 +63,7 @@
         <td>
           <p>-</p>
           <p>-</p>
-          <p> </p>
+          <p>-</p>
         </td>
         <td>
           <p>송수신</p>
@@ -155,7 +98,7 @@
       </tr>
     <form name="gwServer" th:action="post">
       <tr align="center">
-        <td rowspan="7" style="background-color: #81BEF7;">서버</td>
+        <td rowspan="7" style="background-color: #81BEF7; font-weight:bold">서버</td>
         <td>node1(운영1)</td>
         <td>리눅스</td>
         <td>
@@ -575,7 +518,7 @@
       </tr>
     <form name="gwStorage" th:action="post">
       <tr align="center">
-        <td rowspan="4" style="background-color: #81BEF7;">스토리지</td>
+        <td rowspan="4" style="background-color: #81BEF7; font-weight:bold">스토리지</td>
         <td>GW-NAS-Main</td>
         <td>-</td>
         <td>  

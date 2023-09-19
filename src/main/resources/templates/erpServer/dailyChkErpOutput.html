@@ -52,20 +52,20 @@
     </thead>
     <tbody>
       <tr th:each="erpService:${erpService}" align="center">
-        <td style="background-color: #81BEF7;">서비스</td>
+        <td style="background-color: #81BEF7; font-weight:bold">서비스</td>
         <td>
-          <p></p>
-          <p></p>
+          <p>-</p>
+          <p>-</p>
           <p>백업</p>
         </td>
         <td>
           <p>-</p>
           <p>-</p>
-          <p> </p>
+          <p>-</p>
         </td>
         <td>
-          <p></p>
-          <p></p>
+          <p>-</p>
+          <p>-</p>
           <p>백업스케쥴</p>
         </td>
         <td>
@@ -104,7 +104,7 @@
         </td>
       </tr>
       <tr align="center" th:each="erpServer:${erpServer}">
-        <td rowspan="7" style="background-color: #81BEF7;">서버</td>
+        <td rowspan="7" style="background-color: #81BEF7; font-weight:bold">서버</td>
         <td>Main-1</td>
         <td>윈도우</td>
         <td>  
@@ -605,7 +605,7 @@
         </td>
       </tr>
       <tr align="center" th:each="erpVM: ${erpVM}">
-        <td rowspan="14" style="background-color: #81BEF7;">VM</td>
+        <td rowspan="14" style="background-color: #81BEF7; font-weight:bold">VM</td>
         <td>BNK-1</td>
         <td>윈도우</td>
         <td>  
@@ -1582,7 +1582,7 @@
         </td>
       </tr>
       <tr align="center" th:each="erpStorage: ${erpStorage}">
-        <td style="background-color: #81BEF7;">스토리지</td>
+        <td style="background-color: #81BEF7; font-weight:bold">스토리지</td>
         <td>  
           <p>NAS(SAN)</p>
         </td>

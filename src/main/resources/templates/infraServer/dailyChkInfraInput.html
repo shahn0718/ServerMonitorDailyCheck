@@ -9,62 +9,6 @@
 </head>
 
 <script>
-
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-      if(this.readyState == 4 && this.status == 200){
-
-        getXmlData(this);
-      }
-    }
-    xhr.open("GET" ,"donga-devwas.xml",true);
-    xhr.send();
-
-  function getXmlData(xml) {
-    var num, name;
-    var num, name;
-    var txt, ntxt, xmlDoc;
-
-    //this.reponseText와 비슷.
-    xmlData = xml.responseXML;
-
-    console.log(xmlData);
-
-    const hostname = xmlData.getElementsByTagName("hostname");
-    const hostnameValue =  hostname[0].childNodes[0].nodeValue;
-
-    console.log("hostname: " + hostnameValue);
-
-
-    const date = xmlData.getElementsByTagName("date");
-    const dateValue = date[0].childNodes[0].nodeValue;
-
-    console.log("date: " + dateValue);
-
-    const time = xmlData.getElementsByTagName("time");
-    const timeValue = time[0].childNodes[0].nodeValue
-
-    console.log("time: " + timeValue);
-
-    const osver = xmlData.getElementsByTagName("osver");
-    const osverValue = osver[0].childNodes[0].nodeValue;
-
-    console.log("osver: " + osverValue);
-
-    const ipAddr = xmlData.getElementsByTagName("ipaddr");
-    const ipAddrValue = ipAddr[0].childNodes[0].nodeValue;
-
-    console.log("ipAddress: " + ipAddrValue);
-    
-    console.log(" ");
-    let getXmlAttribute= xmlData.documentElement.childNodes[1].childNodes;
-    console.log(getXmlAttribute);
-
-    for(i=1; i<getXmlAttribute.length; i+=2){
-      console.log(xmlData.documentElement.childNodes[1].childNodes[i].firstChild.nodeValue);
-    }
-};
-
 </script>
 
 <body>
@@ -75,8 +19,8 @@
       <div class="row text-center text-dark mb-5">
         <div class="col border mt-3">
           작성자:&nbsp;
-          <select class="form-select-s" th:name="admin_nm">
-            <option value="선택">선택</option>
+          <select class="form-select-s" th:name="admin_nm" required>
+            <option value="">선택</option>
             <option th:each="adminUser : ${adminUser}"
                     th:value="${adminUser.admin_nm}"
                     th:text="${adminUser.admin_nm}" >
@@ -108,7 +52,7 @@
       <tbody>
       <form name="infraService" th:action method="post">
         <tr align="center">
-          <td style="background-color: #81BEF7;">서비스</td>
+          <td style="background-color: #81BEF7; font-weight:bold">서비스</td>
           <td>  
             <p>백업</p>
             <p>스팸 솔루션</p>
@@ -117,8 +61,8 @@
           </td>
           <td> 
             <p>-</p> 
-            <p></p>
-            <p></p>
+            <p>-</p>
+            <p>-</p>
             <p>-</p>
           </td>
           <td> 
@@ -162,7 +106,7 @@
         </tr>
         <form name="infraServer" th:action="post">
         <tr align="center">
-          <td rowspan="7" style="background-color: #81BEF7;">서버</td>
+          <td rowspan="7" style="background-color: #81BEF7; font-weight:bold">서버</td>
           <td>Nwblock-1</td>
           <td>윈도우</td>
           <td>  
@@ -458,7 +402,7 @@
           </tr>
           <form name="infraVM" th:action="post">
         <tr align="center">
-            <td rowspan="2">VM</td>
+            <td rowspan="2" style="background-color: #81BEF7; font-weight:bold">VM</td>
             <td>ERP-HVDC-01</td>
             <td>윈도우</td>
             <td>  
@@ -544,7 +488,7 @@
           </tr>
           <form name="infraEtc" th:action="post">
           <tr align="center">
-            <td rowspan="12" style="background-color: #81BEF7;">보안 및 기타 솔루션</td>
+            <td rowspan="12" style="background-color: #81BEF7; font-weight:bold">보안 및 기타 솔루션</td>
             <td>VPN-1</td>
             <td>-</td>
             <td>  
