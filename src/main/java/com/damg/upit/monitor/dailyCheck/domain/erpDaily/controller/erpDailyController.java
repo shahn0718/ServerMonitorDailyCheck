@@ -19,6 +19,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+
 @Slf4j
 @Controller
 public class erpDailyController {
@@ -58,6 +59,7 @@ public class erpDailyController {
         MSVDailyCheckAdminMain msvDailyCheckAdminMain = mainService.selectDailyCheckAdmin(admin_nm);
 
         MSVDailyCheckBoardMain msvDailyCheckBoardMain = new MSVDailyCheckBoardMain();
+        MSVDailyCheckBoardMain msvCheck = new MSVDailyCheckBoardMain();
         msvDailyCheckBoardMain.setDailyMainCd(mDailyCheckElement.ERP);
         msvDailyCheckBoardMain.setDailyMainCdNm(mDailyCheckElement.ERP_CDNM);
         msvDailyCheckBoardMain.setDailyMainContent(mDailyCheckElement.ERP_KOR+" 서버 일일점검 "+"("+contentDate+")");
@@ -114,7 +116,6 @@ public class erpDailyController {
 
         erpService.updateErpDailyCheckMain(erpMainId,mInsertErpDailyServiceMain,
                 mInsertErpDailyServerMain,mInsertErpDailyVMMain,mInsertErpDailyStorageMain);
-
         log.info("method=doUpdateErpDailyCheck() erpDailyServiceMain={}",mInsertErpDailyServiceMain);
         log.info("method=doUpdateErpDailyCheck() erpDailyServerMain={}",mInsertErpDailyServerMain);
         log.info("method=doUpdateErpDailyCheck() erpDailyVMMain={}",mInsertErpDailyVMMain);
