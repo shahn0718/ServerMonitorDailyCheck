@@ -22,6 +22,7 @@ public class MInsertErpDailyServerMain {
      *           <p>디스크 사용량</p>
      *           <p>클러스터</p>
      *           <p>이벤트 로그</p>
+     *           <p>V3</p>
      */
     private String main1CpuUsageChk;
     private String main1CpuUsageBigo;
@@ -33,6 +34,8 @@ public class MInsertErpDailyServerMain {
     private String main1ClustBigo;
     private String main1EventChk;
     private String main1EventBigo;
+    private String main1V3Chk;
+    private String main1V3Bigo;
 
     /**
      *         <td>Main-2</td>
@@ -43,6 +46,7 @@ public class MInsertErpDailyServerMain {
      *           <p>디스크 사용량</p>
      *           <p>클러스터</p>
      *           <p>이벤트 로그</p>
+     *           <p>V3</p>
      */
 
     private String main2CpuUsageChk;
@@ -55,6 +59,8 @@ public class MInsertErpDailyServerMain {
     private String main2ClustBigo;
     private String main2EventChk;
     private String main2EventBigo;
+    private String main2V3Chk;
+    private String main2V3Bigo;
 
     /**
      *         <td>Main-3</td>
@@ -65,6 +71,7 @@ public class MInsertErpDailyServerMain {
      *           <p>디스크 사용량</p>
      *           <p>클러스터</p>
      *           <p>이벤트 로그</p>
+     *           <p>V3</p>
      */
 
 
@@ -78,6 +85,8 @@ public class MInsertErpDailyServerMain {
     private String main3ClustBigo;
     private String main3EventChk;
     private String main3EventBigo;
+    private String main3V3Chk;
+    private String main3V3Bigo;
 
     /**
      *         <td>DB-1</td>

@@ -22,6 +22,7 @@ public class MInsertErpDailyVMMain {
      *           <p>메모리 사용량</p>
      *           <p>디스크 사용량</p>
      *           <p>이벤트 로그</p>
+     *           <p>V3</p>
      */
 
     private String bnk1CpuUsageChk;
@@ -32,6 +33,8 @@ public class MInsertErpDailyVMMain {
     private String bnk1DiskUsageBigo;
     private String bnk1EventChk;
     private String bnk1EventBigo;
+    private String bnk1V3Chk;
+    private String bnk1V3Bigo;
 
     /**
      *         <td>BNK-2</td>
@@ -41,6 +44,7 @@ public class MInsertErpDailyVMMain {
      *           <p>메모리 사용량</p>
      *           <p>디스크 사용량</p>
      *           <p>이벤트 로그</p>
+     *           <p>V3</p>
      *         </td>
      */
 
@@ -52,6 +56,8 @@ public class MInsertErpDailyVMMain {
     private String bnk2DiskUsageBigo;
     private String bnk2EventChk;
     private String bnk2EventBigo;
+    private String bnk2V3Chk;
+    private String bnk2V3Bigo;
 
     /**
      *         <td>TAX-1</td>
@@ -61,6 +67,7 @@ public class MInsertErpDailyVMMain {
      *           <p>메모리 사용량</p>
      *           <p>디스크 사용량</p>
      *           <p>이벤트 로그</p>
+     *           <p>V3</p>
      *         </td>
      */
     private String tax1CpuUsageChk;
@@ -71,6 +78,8 @@ public class MInsertErpDailyVMMain {
     private String tax1DiskUsageBigo;
     private String tax1EventChk;
     private String tax1EventBigo;
+    private String tax1V3Chk;
+    private String tax1V3Bigo;
 
     /**
      *         <td>TAX-2</td>
@@ -80,6 +89,7 @@ public class MInsertErpDailyVMMain {
      *           <p>메모리 사용량</p>
      *           <p>디스크 사용량</p>
      *           <p>이벤트 로그</p>
+     *           <p>V3</p>
      */
     private String tax2CpuUsageChk;
     private String tax2CpuUsageBigo;
@@ -89,6 +99,8 @@ public class MInsertErpDailyVMMain {
     private String tax2DiskUsageBigo;
     private String tax2EventChk;
     private String tax2EventBigo;
+    private String tax2V3Chk;
+    private String tax2V3Bigo;
 
     /**
      *         <td>EXWEB-1</td>

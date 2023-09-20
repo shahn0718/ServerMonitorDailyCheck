@@ -49,6 +49,8 @@
            ,MAIN1_CLUST_BIGO
            ,MAIN1_EVENT_CHK
            ,MAIN1_EVENT_BIGO
+           ,MAIN1_V3_CHK
+           ,MAIN1_V3_BIGO
            ,MAIN2_CPUUSAGE_CHK
            ,MAIN2_CPUUSAGE_BIGO
            ,MAIN2_MEMUSAGE_CHK
@@ -59,6 +61,8 @@
            ,MAIN2_CLUST_BIGO
            ,MAIN2_EVENT_CHK
            ,MAIN2_EVENT_BIGO
+           ,MAIN2_V3_CHK
+           ,MAIN2_V3_BIGO
            ,MAIN3_CPUUSAGE_CHK
            ,MAIN3_CPUUSAGE_BIGO
            ,MAIN3_MEMUSAGE_CHK
@@ -69,6 +73,8 @@
            ,MAIN3_CLUST_BIGO
            ,MAIN3_EVENT_CHK
            ,MAIN3_EVENT_BIGO
+           ,MAIN3_V3_CHK
+           ,MAIN3_V3_BIGO
            ,DB1_CPUUSAGE_CHK
            ,DB1_CPUUSAGE_BIGO
            ,DB1_MEMUSAGE_CHK
@@ -132,6 +138,8 @@
             ,#{main1ClustBigo}
             ,#{main1EventChk}
             ,#{main1EventBigo}
+            ,#{main1V3Chk}
+            ,#{main1V3Bigo}
             ,#{main2CpuUsageChk}
             ,#{main2CpuUsageBigo}
             ,#{main2MemUsageChk}
@@ -142,6 +150,8 @@
             ,#{main2ClustBigo}
             ,#{main2EventChk}
             ,#{main2EventBigo}
+            ,#{main2V3Chk}
+            ,#{main2V3Bigo}
             ,#{main3CpuUsageChk}
             ,#{main3CpuUsageBigo}
             ,#{main3MemUsageChk}
@@ -152,6 +162,8 @@
             ,#{main3ClustBigo}
             ,#{main3EventChk}
             ,#{main3EventBigo}
+            ,#{main3V3Chk}
+            ,#{main3V3Bigo}
             ,#{db1CpuUsageChk}
             ,#{db1CpuUsageBigo}
             ,#{db1MemUsageChk}
@@ -221,6 +233,8 @@
                 ,BNK1_DISKUSAGE_BIGO
                 ,BNK1_EVENT_CHK
                 ,BNK1_EVENT_BIGO
+                ,BNK1_V3_CHK
+                ,BNK1_V3_BIGO
                 ,BNK2_CPUUSAGE_CHK
                 ,BNK2_CPUUSAGE_BIGO
                 ,BNK2_MEMUSAGE_CHK
@@ -229,6 +243,8 @@
                 ,BNK2_DISKUSAGE_BIGO
                 ,BNK2_EVENT_CHK
                 ,BNK2_EVENT_BIGO
+                ,BNK2_V3_CHK
+                ,BNK2_V3_BIGO
                 ,TAX1_CPUUSAGE_CHK
                 ,TAX1_CPUUSAGE_BIGO
                 ,TAX1_MEMUSAGE_CHK
@@ -237,6 +253,8 @@
                 ,TAX1_DISKUSAGE_BIGO
                 ,TAX1_EVENT_CHK
                 ,TAX1_EVENT_BIGO
+                ,TAX1_V3_CHK
+                ,TAX1_V3_BIGO
                 ,TAX2_CPUUSAGE_CHK
                 ,TAX2_CPUUSAGE_BIGO
                 ,TAX2_MEMUSAGE_CHK
@@ -245,6 +263,8 @@
                 ,TAX2_DISKUSAGE_BIGO
                 ,TAX2_EVENT_CHK
                 ,TAX2_EVENT_BIGO
+                ,TAX2_V3_CHK
+                ,TAX2_V3_BIGO
                 ,EXWEB1_CPUUSAGE_CHK
                 ,EXWEB1_CPUUSAGE_BIGO
                 ,EXWEB1_MEMUSAGE_CHK
@@ -378,6 +398,8 @@
                 ,#{bnk1DiskUsageBigo}
                 ,#{bnk1EventChk}
                 ,#{bnk1EventBigo}
+                ,#{bnk1V3Chk}
+                ,#{bnk1V3Bigo}
                 ,#{bnk2CpuUsageChk}
                 ,#{bnk2CpuUsageBigo}
                 ,#{bnk2MemUsageChk}
@@ -386,6 +408,8 @@
                 ,#{bnk2DiskUsageBigo}
                 ,#{bnk2EventChk}
                 ,#{bnk2EventBigo}
+                ,#{bnk2V3Chk}
+                ,#{bnk2V3Bigo}
                 ,#{tax1CpuUsageChk}
                 ,#{tax1CpuUsageBigo}
                 ,#{tax1MemUsageChk}
@@ -394,6 +418,8 @@
                 ,#{tax1DiskUsageBigo}
                 ,#{tax1EventChk}
                 ,#{tax1EventBigo}
+                ,#{tax1V3Chk}
+                ,#{tax1V3Bigo}
                 ,#{tax2CpuUsageChk}
                 ,#{tax2CpuUsageBigo}
                 ,#{tax2MemUsageChk}
@@ -402,6 +428,8 @@
                 ,#{tax2DiskUsageBigo}
                 ,#{tax2EventChk}
                 ,#{tax2EventBigo}
+                ,#{tax2V3Chk}
+                ,#{tax2V3Bigo}
                 ,#{exWeb1CpuUsageChk}
                 ,#{exWeb1CpuUsageBigo}
                 ,#{exWeb1MemUsageChk}
@@ -583,6 +611,8 @@
                 ,MAIN1_CLUST_BIGO       AS main1ClustBigo
                 ,MAIN1_EVENT_CHK        AS main1EventChk
                 ,MAIN1_EVENT_BIGO       AS main1EventBigo
+                ,MAIN1_V3_CHK           AS main1V3Chk
+                ,MAIN1_V3_BIGO          AS main1V3Bigo
                 ,MAIN2_CPUUSAGE_CHK     AS main2CpuUsageChk
                 ,MAIN2_CPUUSAGE_BIGO    AS main2CpuUsageBigo
                 ,MAIN2_MEMUSAGE_CHK     AS main2MemUsageChk
@@ -593,6 +623,8 @@
                 ,MAIN2_CLUST_BIGO       AS main2ClustBigo
                 ,MAIN2_EVENT_CHK        AS main2EventChk
                 ,MAIN2_EVENT_BIGO       AS main2EventBigo
+                ,MAIN2_V3_CHK           AS main2V3Chk
+                ,MAIN2_V3_BIGO          AS main2V3Bigo
                 ,MAIN3_CPUUSAGE_CHK     AS main3CpuUsageChk
                 ,MAIN3_CPUUSAGE_BIGO    AS main3CpuUSageBigo
                 ,MAIN3_MEMUSAGE_CHK     AS main3MemUsageChk
@@ -603,6 +635,8 @@
                 ,MAIN3_CLUST_BIGO       AS main3ClustBigo
                 ,MAIN3_EVENT_CHK        AS main3EventChk
                 ,MAIN3_EVENT_BIGO       AS main3EventBigo
+                ,MAIN3_V3_CHK           AS main3V3Chk
+                ,MAIN3_V3_BIGO          AS main3V3Bigo
                 ,DB1_CPUUSAGE_CHK       AS db1CpuUsageCHk
                 ,DB1_CPUUSAGE_BIGO      AS db1CpuUsageBigo
                 ,DB1_MEMUSAGE_CHK       AS db1MemUsageChk
@@ -675,6 +709,8 @@
                 ,BNK1_DISKUSAGE_BIGO    AS bnk1DiskUsageBigo
                 ,BNK1_EVENT_CHK         AS bnk1EventChk
                 ,BNK1_EVENT_BIGO        AS bnk1EventBigo
+                ,BNK1_V3_CHK            AS bnk1V3Chk
+                ,BNK1_V3_BIGO           AS bnk1V3Bigo
                 ,BNK2_CPUUSAGE_CHK      AS bnk2CpuUsageChk
                 ,BNK2_CPUUSAGE_BIGO     AS bnk2CpuUsageBigo
                 ,BNK2_MEMUSAGE_CHK      AS bnk2MemUsageChk
@@ -683,6 +719,8 @@
                 ,BNK2_DISKUSAGE_BIGO    AS bnk2DiskUsageBigo
                 ,BNK2_EVENT_CHK         AS bnk2EventChk
                 ,BNK2_EVENT_BIGO        AS bnk2EventBigo
+                ,BNK2_V3_CHK            AS bnk2V3Chk
+                ,BNK2_V3_BIGO           AS bnk2V3Bigo
                 ,TAX1_CPUUSAGE_CHK      AS tax1CpuUsageChk
                 ,TAX1_CPUUSAGE_BIGO     AS tax1CpuUsageBigo
                 ,TAX1_MEMUSAGE_CHK      AS tax1MemUsageChk
@@ -691,6 +729,8 @@
                 ,TAX1_DISKUSAGE_BIGO    AS tax1DiskUsageBigo
                 ,TAX1_EVENT_CHK         AS tax1EventChk
                 ,TAX1_EVENT_BIGO        AS tax1EventBigo
+                ,TAX1_V3_CHK            AS tax1V3Chk
+                ,TAX1_V3_BIGO           AS tax1V3Bigo
                 ,TAX2_CPUUSAGE_CHK      AS tax2CpuUsageChk
                 ,TAX2_CPUUSAGE_BIGO     AS tax2CpuUsageBigo
                 ,TAX2_MEMUSAGE_CHK      AS tax2MemUsageChk
@@ -699,6 +739,8 @@
                 ,TAX2_DISKUSAGE_BIGO    AS tax2DiskUsageBigo
                 ,TAX2_EVENT_CHK         AS tax2EventChk
                 ,TAX2_EVENT_BIGO        AS tax2EventBigo
+                ,TAX2_V3_CHK            AS tax2V3Chk
+                ,TAX2_V3_BIGO           AS tax2V3Bigo
                 ,EXWEB1_CPUUSAGE_CHK    AS exWeb1CpuUsageChk
                 ,EXWEB1_CPUUSAGE_BIGO   AS exWeb1CpuUsageBigo
                 ,EXWEB1_MEMUSAGE_CHK    AS exWeb1MemUsageChk
@@ -874,6 +916,8 @@
                 ,MAIN1_CLUST_BIGO           = #{main1ClustBigo}
                 ,MAIN1_EVENT_CHK            = #{main1EventChk}
                 ,MAIN1_EVENT_BIGO           = #{main1EventBigo}
+                ,MAIN1_V3_CHK               = #{main1V3Chk}
+                ,MAIN1_V3_BIGO              = #{main1V3Bigo}
                 ,MAIN2_CPUUSAGE_CHK         = #{main2CpuUsageChk}
                 ,MAIN2_CPUUSAGE_BIGO        = #{main2CpuUsageBigo}
                 ,MAIN2_MEMUSAGE_CHK         = #{main2MemUsageChk}
@@ -884,6 +928,8 @@
                 ,MAIN2_CLUST_BIGO           = #{main2ClustBigo}
                 ,MAIN2_EVENT_CHK            = #{main2EventChk}
                 ,MAIN2_EVENT_BIGO           = #{main2EventBigo}
+                ,MAIN2_V3_CHK               = #{main2V3Chk}
+                ,MAIN2_V3_BIGO              = #{main2V3Bigo}
                 ,MAIN3_CPUUSAGE_CHK         = #{main3CpuUsageChk}
                 ,MAIN3_CPUUSAGE_BIGO        = #{main3CpuUsageBigo}
                 ,MAIN3_MEMUSAGE_CHK         = #{main3MemUsageChk}
@@ -894,6 +940,8 @@
                 ,MAIN3_CLUST_BIGO           = #{main3ClustBigo}
                 ,MAIN3_EVENT_CHK            = #{main3EventChk}
                 ,MAIN3_EVENT_BIGO           = #{main3EventBigo}
+                ,MAIN3_V3_CHK               = #{main3V3Chk}
+                ,MAIN3_V3_BIGO              = #{main3V3Bigo}
                 ,DB1_CPUUSAGE_CHK           = #{db1CpuUsageChk}
                 ,DB1_CPUUSAGE_BIGO          = #{db1CpuUsageBigo}
                 ,DB1_MEMUSAGE_CHK           = #{db1MemUsageChk}
@@ -963,6 +1011,8 @@
                 ,BNK1_DISKUSAGE_BIGO        = #{bnk1DiskUsageBigo}
                 ,BNK1_EVENT_CHK             = #{bnk1EventChk}
                 ,BNK1_EVENT_BIGO            = #{bnk1EventBigo}
+                ,BNK1_V3_CHK                = #{bnk1V3Chk}
+                ,BNK1_V3_BIGO               = #{bnk1V3Bigo}
                 ,BNK2_CPUUSAGE_CHK          = #{bnk2CpuUsageChk}
                 ,BNK2_CPUUSAGE_BIGO         = #{bnk2CpuUsageBigo}
                 ,BNK2_MEMUSAGE_CHK          = #{bnk2MemUsageChk}
@@ -971,6 +1021,8 @@
                 ,BNK2_DISKUSAGE_BIGO        = #{bnk2DiskUsageBigo}
                 ,BNK2_EVENT_CHK             = #{bnk2EventChk}
                 ,BNK2_EVENT_BIGO            = #{bnk2EventBigo}
+                ,BNK2_V3_CHK                = #{bnk2V3Chk}
+                ,BNK2_V3_BIGO               = #{bnk2V3Bigo}
                 ,TAX1_CPUUSAGE_CHK          = #{tax1CpuUsageChk}
                 ,TAX1_CPUUSAGE_BIGO         = #{tax1CpuUsageBigo}
                 ,TAX1_MEMUSAGE_CHK          = #{tax1MemUsageChk}
@@ -979,6 +1031,8 @@
                 ,TAX1_DISKUSAGE_BIGO        = #{tax1DiskUsageBigo}
                 ,TAX1_EVENT_CHK             = #{tax1EventChk}
                 ,TAX1_EVENT_BIGO            = #{tax1EventBigo}
+                ,TAX1_V3_CHK                = #{tax1V3Chk}
+                ,TAX1_V3_BIGO               = #{tax1V3Bigo}
                 ,TAX2_CPUUSAGE_CHK          = #{tax2CpuUsageChk}
                 ,TAX2_CPUUSAGE_BIGO         = #{tax2CpuUsageBigo}
                 ,TAX2_MEMUSAGE_CHK          = #{tax2MemUsageChk}
@@ -987,6 +1041,8 @@
                 ,TAX2_DISKUSAGE_BIGO        = #{tax2DiskUsageBigo}
                 ,TAX2_EVENT_CHK             = #{tax2EventChk}
                 ,TAX2_EVENT_BIGO            = #{tax2EventBigo}
+                ,TAX2_V3_CHK                = #{tax2V3Chk}
+                ,TAX2_V3_BIGO               = #{tax2V3Bigo}
                 ,EXWEB1_CPUUSAGE_CHK        = #{exWeb1CpuUsageChk}
                 ,EXWEB1_CPUUSAGE_BIGO       = #{exWeb1CpuUsageBigo}
                 ,EXWEB1_MEMUSAGE_CHK        = #{exWeb1MemUsageChk}

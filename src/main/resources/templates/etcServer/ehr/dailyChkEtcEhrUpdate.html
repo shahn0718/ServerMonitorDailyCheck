@@ -151,6 +151,7 @@
             <p>메모리 사용량</p>
             <p>디스크 사용량</p>
             <p>이벤트 로그</p>
+            <p>V3</p>
           </td>
           <td> 
             <p>
@@ -185,6 +186,14 @@
                      th:checked="${etcHrServer.chaEhrDbEventChk eq 'N'}" >
               무  
             </p>
+            <p>
+              <input class="form-check-input" type="radio" value="Y" name="chaEhrDbV3Chk" id="chaEhrDbV3ChkY"
+                     th:checked="${etcHrServer.chaEhrDbV3Chk eq 'Y'}" >
+              유
+              <input class="form-check-input" type="radio" value="N" name="chaEhrDbV3Chk" id="chaEhrDbV3ChkN"
+                     th:checked="${etcHrServer.chaEhrDbV3Chk eq 'N'}" >
+              무
+            </p>
           </td>
           <td>
             <input type="text" class="form-control" name="chaEhrDbCpuUsageBigo" id="chaEhrDbCpuUsageBigoInput"
@@ -195,6 +204,8 @@
                    th:value="${etcHrServer.chaEhrDbDiskUsageBigo}" >
             <input type="text" class="form-control" name="chaEhrDbEventBigo" id="chaEhrDbEventBigoInput"
                    th:value="${etcHrServer.chaEhrDbEventBigo}" >
+            <input type="text" class="form-control" name="chaEhrDbV3Bigo" id="chaEhrDbV3BigoInput"
+                   th:value="${etcHrServer.chaEhrDbV3Bigo}" >
           </td>
         </tr>
         <tr align="center" th:each="etcHrServer : ${etcHrServer}">
@@ -205,6 +216,7 @@
               <p>메모리 사용량</p>
               <p>디스크 사용량</p>
               <p>이벤트 로그</p>
+              <p>V3</p>
             </td>
             <td> 
               <p>
@@ -239,6 +251,14 @@
                        th:checked="${etcHrServer.chaEhrWebEventChk eq 'N'}" >
                 무  
               </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="chaEhrWebV3Chk" id="chaEhrWebV3ChkY"
+                       th:checked="${etcHrServer.chaEhrWebV3Chk eq 'Y'}" >
+                유
+                <input class="form-check-input" type="radio" value="N" name="chaEhrWebV3Chk" id="chaEhrWebV3ChkN"
+                       th:checked="${etcHrServer.chaEhrWebV3Chk eq 'N'}" >
+                무
+              </p>
             </td>
             <td>
               <input type="text" class="form-control" name="chaEhrWebCpuUsageBigo" id="chaEhrWebCpuUsageBigoInput"
@@ -249,6 +269,8 @@
                      th:value="${etcHrServer.chaEhrWebDiskUsageBigo}" >
               <input type="text" class="form-control" name="chaEhrWebEventBigo" id="chaEhrWebEventBigoInput"
                      th:value="${etcHrServer.chaEhrWebEventBigo}" >
+              <input type="text" class="form-control" name="chaEhrWebV3Bigo" id="chaEhrWebV3BigoInput"
+                     th:value="${etcHrServer.chaEhrWebV3Bigo}" >
             </td>
           </tr>
           <tr align="center" th:each="etcHrServer:${etcHrServer}">
@@ -259,6 +281,7 @@
               <p>메모리 사용량</p>
               <p>디스크 사용량</p>
               <p>이벤트 로그</p>
+              <p>V3</p>
             </td>
             <td> 
               <p>
@@ -293,6 +316,14 @@
                        th:checked="${etcHrServer.chaEhrDevEventChk eq 'N'}" >
                 무  
               </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="chaEhrDevV3Chk" id="chaEhrDevV3ChkY"
+                       th:checked="${etcHrServer.chaEhrDevV3Chk eq 'Y'}" >
+                유
+                <input class="form-check-input" type="radio" value="N" name="chaEhrDevV3Chk" id="chaEhrDevV3ChkN"
+                       th:checked="${etcHrServer.chaEhrDevV3Chk eq 'N'}" >
+                무
+              </p>
             </td>
             <td>
               <input type="text" class="form-control" name="chaEhrDevCpuUsageBigo" id="chaEhrDevCpuUsageBigoInput"
@@ -303,6 +334,8 @@
                      th:value="${etcHrServer.chaEhrDevDiskUsageBigo}">
               <input type="text" class="form-control" name="chaEhrDevEventBigo" id="chaEhrDevEventBigoInput"
                      th:value="${etcHrServer.chaEhrDevEventBigo}">
+              <input type="text" class="form-control" name="chaEhrDevV3Bigo" id="chaEhrDevV3BigoInput"
+                     th:value="${etcHrServer.chaEhrDevV3Bigo}" >
             </td>
           </tr>
           <tr align="center" th:each="etcHrServer:${etcHrServer}">
@@ -313,6 +346,7 @@
               <p>메모리 사용량</p>
               <p>디스크 사용량</p>
               <p>이벤트 로그</p>
+              <p>V3</p>
             </td>
             <td> 
               <p>
@@ -347,6 +381,14 @@
                        th:checked="${etcHrServer.ddcEhrWebEventChk eq 'N'}" >
                 무  
               </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="ddcEhrWebV3Chk" id="ddcEhrWebV3ChkY"
+                       th:checked="${etcHrServer.ddcEhrWebV3Chk eq 'Y'}" >
+                유
+                <input class="form-check-input" type="radio" value="N" name="ddcEhrWebV3Chk" id="ddcEhrWebV3ChkN"
+                       th:checked="${etcHrServer.ddcEhrWebV3Chk eq 'N'}" >
+                무
+              </p>
             </td>
             <td>
               <input type="text" class="form-control" name="ddcEhrWebCpuUsageBigo" id="ddcEhrWebCpuUsageBigoInput"
@@ -357,6 +399,8 @@
                      th:value="${etcHrServer.ddcEhrWebDiskUsageBigo}" >
               <input type="text" class="form-control" name="ddcEhrWebEventBigo" id="ddcEhrWebEventBigoInput"
                      th:value="${etcHrServer.ddcEhrWebEventBigo}" >
+              <input type="text" class="form-control" name="ddcEhrWebV3Bigo" id="ddcEhrWebV3BigoInput"
+                     th:value="${etcHrServer.ddcEhrWebV3Bigo}" >
             </td>
           </tr>
     </tbody>
