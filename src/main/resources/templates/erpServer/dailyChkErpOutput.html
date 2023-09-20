@@ -113,6 +113,7 @@
           <p>디스크 사용량</p>
           <p>클러스터</p>
           <p>이벤트 로그</p>
+          <p>V3</p>
         </td>
         <td> 
           <p>
@@ -155,6 +156,14 @@
                     th:checked="${erpServer.main1EventChk eq 'N'}" disabled>
             무  
           </p>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="main1V3Chk" id="main1V3ChkY"
+                   th:checked="${erpServer.main1V3Chk eq 'Y'}" disabled>
+            유
+            <input class="form-check-input" type="radio" value="N" name="main1V3Chk" id="main1V3ChkN"
+                   th:checked="${erpServer.main1V3Chk eq 'N'}" disabled>
+            무
+          </p>
         </td>
         <td>
           <input type="text" class="form-control" name="main1CpuUsageBigo" id="main1CpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재"
@@ -166,7 +175,9 @@
           <input type="text" class="form-control" name="main1ClustBigo" id="main1ClustBigoInput"
                  th:value="${erpServer.main1ClustBigo}" readonly>
           <input type="text" class="form-control" name="main1EventBigo" id="main1EventBigoInput"
-                 th:value="${erpServer.main1EventBigo}">
+                 th:value="${erpServer.main1EventBigo}" readonly>
+          <input type="text" class="form-control" name="main1V3Bigo" id="main1V3BigoInput"
+                 th:value="${erpServer.main1V3Bigo}" readonly>
         </td>
       </tr>
       <tr align="center" th:each="erpServer:${erpServer}">
@@ -178,6 +189,7 @@
           <p>디스크 사용량</p>
           <p>클러스터</p>
           <p>이벤트 로그</p>
+          <p>V3</p>
         </td>
         <td> 
           <p>
@@ -220,6 +232,14 @@
                    th:checked="${erpServer.main2EventChk eq 'N'}" disabled>
             무  
           </p>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="main2V3Chk" id="main2V3ChkY"
+                   th:checked="${erpServer.main2V3Chk eq 'Y'}" disabled>
+            유
+            <input class="form-check-input" type="radio" value="N" name="main2V3Chk" id="main2V3ChkN"
+                   th:checked="${erpServer.main2V3Chk eq 'N'}" disabled>
+            무
+          </p>
         </td>
         <td>
           <input type="text" class="form-control" name="main2CpuUsageBigo" id="main2CpuUsageBigoInput"
@@ -232,6 +252,8 @@
                  th:value="${erpServer.main2ClustBigo}" readonly>
           <input type="text" class="form-control" name="main2EventBigo" id="main2EventBigoInput"
                  th:value="${erpServer.main2EventBigo}" readonly>
+          <input type="text" class="form-control" name="main2V3Bigo" id="main2V3BigoInput"
+                 th:value="${erpServer.main2V3Bigo}" readonly>
         </td>
       </tr>
       <tr align="center" th:each="erpServer:${erpServer}">
@@ -243,6 +265,7 @@
           <p>디스크 사용량</p>
           <p>클러스터</p>
           <p>이벤트 로그</p>
+          <p>V3</p>
         </td>
         <td> 
           <p>
@@ -285,6 +308,14 @@
                    th:checked="${erpServer.main3EventChk eq 'N'}" disabled>
             무  
           </p>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="main3V3Chk" id="main3V3ChkY"
+                   th:checked="${erpServer.main3V3Chk eq 'Y'}" disabled>
+            유
+            <input class="form-check-input" type="radio" value="N" name="main3V3Chk" id="main3V3ChkN"
+                   th:checked="${erpServer.main3V3Chk eq 'N'}" disabled>
+            무
+          </p>
         </td>
         <td>
           <input type="text" class="form-control" name="main3CpuUsageBigo" id="main3CpuUsageBigoInput"
@@ -297,6 +328,8 @@
                  th:value="${erpServer.main3ClustBigo}" readonly>
           <input type="text" class="form-control" name="main3EventBigo" id="main3EventBigoInput"
                  th:value="${erpServer.main3EventBigo}" readonly>
+          <input type="text" class="form-control" name="main3V3Bigo" id="main3V3BigoInput"
+                 th:value="${erpServer.main3V3Bigo}" readonly>
         </td>
       </tr>
       <tr align="center" th:each="erpServer: ${erpServer}">

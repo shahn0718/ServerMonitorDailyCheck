@@ -18,7 +18,7 @@ public class MDailyCheckElement {
 
 
     public static final String ETC_ERP = "ERP_ETC";
-    public static final String ETC_ERP_KOR = "채널A 재무 및 타시스템";
+    public static final String ETC_ERP_KOR = "재무 및 경영관리";
     public static final String ETC_ERP_CDNM = "재무";
 
     public static final String INFRA  = "INFRA";

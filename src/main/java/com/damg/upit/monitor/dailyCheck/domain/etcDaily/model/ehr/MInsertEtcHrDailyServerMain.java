@@ -21,6 +21,7 @@ public class MInsertEtcHrDailyServerMain {
      *             <p>메모리 사용량</p>
      *             <p>디스크 사용량</p>
      *             <p>이벤트 로그</p>
+     *             <p>V3</p>
      */
 
     private String chaEhrDbCpuUsageChk;
@@ -31,6 +32,8 @@ public class MInsertEtcHrDailyServerMain {
     private String chaEhrDbDiskUsageBigo;
     private String chaEhrDbEventChk;
     private String chaEhrDbEventBigo;
+    private String chaEhrDbV3Chk;
+    private String chaEhrDbV3Bigo;
 
     /**
      *             <td>CHA-EHR-WEB</td>
@@ -40,6 +43,7 @@ public class MInsertEtcHrDailyServerMain {
      *               <p>메모리 사용량</p>
      *               <p>디스크 사용량</p>
      *               <p>이벤트 로그</p>
+     *               <p>V3</p>
      *             </td>
      *             <td>
      */
@@ -52,6 +56,8 @@ public class MInsertEtcHrDailyServerMain {
     private String chaEhrWebDiskUsageBigo;
     private String chaEhrWebEventChk;
     private String chaEhrWebEventBigo;
+    private String chaEhrWebV3Chk;
+    private String chaEhrWebV3Bigo;
 
     /**
      *             <td>CHA-EHR-DEV</td>
@@ -61,6 +67,7 @@ public class MInsertEtcHrDailyServerMain {
      *               <p>메모리 사용량</p>
      *               <p>디스크 사용량</p>
      *               <p>이벤트 로그</p>
+     *               <p>V3</p>
      */
 
     private String chaEhrDevCpuUsageChk;
@@ -71,6 +78,8 @@ public class MInsertEtcHrDailyServerMain {
     private String chaEhrDevDiskUsageBigo;
     private String chaEhrDevEventChk;
     private String chaEhrDevEventBigo;
+    private String chaEhrDevV3Chk;
+    private String chaEhrDevV3Bigo;
 
     /**
      *             <td>DDC-EHR-WEB</td>
@@ -80,6 +89,7 @@ public class MInsertEtcHrDailyServerMain {
      *               <p>메모리 사용량</p>
      *               <p>디스크 사용량</p>
      *               <p>이벤트 로그</p>
+     *               <p>V3</p>
      *             </td>
      */
 
@@ -91,5 +101,7 @@ public class MInsertEtcHrDailyServerMain {
     private String ddcEhrWebDiskUsageBigo;
     private String ddcEhrWebEventChk;
     private String ddcEhrWebEventBigo;
+    private String ddcEhrWebV3Chk;
+    private String ddcEhrWebV3Bigo;
 
 }

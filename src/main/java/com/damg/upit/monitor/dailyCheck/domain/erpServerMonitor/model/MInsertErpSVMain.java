@@ -1,7 +1,15 @@
 package com.damg.upit.monitor.dailyCheck.domain.erpServerMonitor.model;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.time.LocalDateTime;
 
+
+@Getter
+@Setter
+@ToString
 public class MInsertErpSVMain {
     /**
      * <server>

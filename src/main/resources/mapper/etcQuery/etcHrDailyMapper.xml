@@ -48,6 +48,8 @@
                 ,CHAEHRDB_DISKUSAGE_BIGO
                 ,CHAEHRDB_EVENT_CHK
                 ,CHAEHRDB_EVENT_BIGO
+                ,CHAEHRDB_V3_CHK
+                ,CHAEHRDB_V3_BIGO
                 ,CHAEHRWEB_CPUUSAGE_CHK
                 ,CHAEHRWEB_CPUUSAGE_BIGO
                 ,CHAEHRWEB_MEMUSAGE_CHK
@@ -56,6 +58,8 @@
                 ,CHAEHRWEB_DISKUSAGE_BIGO
                 ,CHAEHRWEB_EVENT_CHK
                 ,CHAEHRWEB_EVENT_BIGO
+                ,CHAEHRWEB_V3_CHK
+                ,CHAEHRWEB_V3_BIGO
                 ,CHAEHRDEV_CPUUSAGE_CHK
                 ,CHAEHRDEV_CPUUSAGE_BIGO
                 ,CHAEHRDEV_MEMUSAGE_CHK
@@ -64,6 +68,8 @@
                 ,CHAEHRDEV_DISKUSAGE_BIGO
                 ,CHAEHRDEV_EVENT_CHK
                 ,CHAEHRDEV_EVENT_BIGO
+                ,CHAEHRDEV_V3_CHK
+                ,CHAEHRDEV_V3_BIGO
                 ,DDCEHRWEB_CPUUSAGE_CHK
                 ,DDCEHRWEB_CPUUSAGE_BIGO
                 ,DDCEHRWEB_MEMUSAGE_CHK
@@ -72,6 +78,8 @@
                 ,DDCEHRWEB_DISKUSAGE_BIGO
                 ,DDCEHRWEB_EVENT_CHK
                 ,DDCEHRWEB_EVENT_BIGO
+                ,DDCEHRWEB_V3_CHK
+                ,DDCEHRWEB_V3_BIGO
 
         ) VALUES (
 
@@ -85,6 +93,8 @@
                 ,#{chaEhrDbDiskUsageBigo}
                 ,#{chaEhrDbEventChk}
                 ,#{chaEhrDbEventBigo}
+                ,#{chaEhrDbV3Chk}
+                ,#{chaEhrDbV3Bigo}
                 ,#{chaEhrWebCpuUsageChk}
                 ,#{chaEhrWebCpuUsageBigo}
                 ,#{chaEhrWebMemUsageChk}
@@ -93,6 +103,8 @@
                 ,#{chaEhrWebDiskUsageBigo}
                 ,#{chaEhrWebEventChk}
                 ,#{chaEhrWebEventBigo}
+                ,#{chaEhrWebV3Chk}
+                ,#{chaEhrWebV3Bigo}
                 ,#{chaEhrDevCpuUsageChk}
                 ,#{chaEhrDevCpuUsageBigo}
                 ,#{chaEhrDevMemUsageChk}
@@ -101,6 +113,8 @@
                 ,#{chaEhrDevDiskUsageBigo}
                 ,#{chaEhrDevEventChk}
                 ,#{chaEhrDevEventBigo}
+                ,#{chaEhrDevV3Chk}
+                ,#{chaEhrDevV3Bigo}
                 ,#{ddcEhrWebCpuUsageChk}
                 ,#{ddcEhrWebCpuUsageBigo}
                 ,#{ddcEhrWebMemUsageChk}
@@ -109,6 +123,8 @@
                 ,#{ddcEhrWebDiskUsageBigo}
                 ,#{ddcEhrWebEventChk}
                 ,#{ddcEhrWebEventBigo}
+                ,#{ddcEhrWebV3Chk}
+                ,#{ddcEhrWebV3Bigo}
         )
     </insert>
 
@@ -148,6 +164,8 @@
                 ,CHAEHRDB_DISKUSAGE_BIGO    AS  chaEhrDbDiskUsageBigo
                 ,CHAEHRDB_EVENT_CHK         AS  chaEhrDbEventChk
                 ,CHAEHRDB_EVENT_BIGO        AS  chaEhrDbEventBigo
+                ,CHAEHRDB_V3_CHK            AS  chaEhrDbV3Chk
+                ,CHAEHRDB_V3_BIGO           AS  chaEhrDbV3Bigo
                 ,CHAEHRWEB_CPUUSAGE_CHK     AS  chaEhrWebCpuUsageChk
                 ,CHAEHRWEB_CPUUSAGE_BIGO    AS  chaEhrWebCpuUsageBigo
                 ,CHAEHRWEB_MEMUSAGE_CHK     AS  chaEhrWebMemUsageChk
@@ -156,6 +174,8 @@
                 ,CHAEHRWEB_DISKUSAGE_BIGO   AS  chaEhrWebDiskUsageBigo
                 ,CHAEHRWEB_EVENT_CHK        AS  chaEhrWebEventChk
                 ,CHAEHRWEB_EVENT_BIGO       AS  chaEhrWebEventBigo
+                ,CHAEHRWEB_V3_CHK           AS  chaEhrWebV3Chk
+                ,CHAEHRWEB_V3_BIGO          AS  chaEhrWebV3Bigo
                 ,CHAEHRDEV_CPUUSAGE_CHK     AS  chaEhrDevCpuUsageChk
                 ,CHAEHRDEV_CPUUSAGE_BIGO    AS  chaEhrDevCpuUsageBigo
                 ,CHAEHRDEV_MEMUSAGE_CHK     AS  chaEhrDevMemUsageChk
@@ -164,6 +184,8 @@
                 ,CHAEHRDEV_DISKUSAGE_BIGO   AS  chaEhrDevDiskUsageBigo
                 ,CHAEHRDEV_EVENT_CHK        AS  chaEhrDevEventChk
                 ,CHAEHRDEV_EVENT_BIGO       AS  chaEhrDevEventBigo
+                ,CHAEHRDEV_V3_CHK           AS  chaEhrDevV3Chk
+                ,CHAEHRDEV_V3_BIGO          AS  chaEhrDevV3Bigo
                 ,DDCEHRWEB_CPUUSAGE_CHK     AS  ddcEhrWebCpuUsageChk
                 ,DDCEHRWEB_CPUUSAGE_BIGO    AS  ddcEhrWebCpuUsageBigo
                 ,DDCEHRWEB_MEMUSAGE_CHK     AS  ddcEhrWebMemUsageChk
@@ -172,6 +194,8 @@
                 ,DDCEHRWEB_DISKUSAGE_BIGO   AS  ddcEhrWebDiskUsageBigo
                 ,DDCEHRWEB_EVENT_CHK        AS  ddcEhrWebEventChk
                 ,DDCEHRWEB_EVENT_BIGO       AS  ddcEhrWebEventBigo
+                ,DDCEHRWEB_V3_CHK           AS  ddcEhrWebV3Chk
+                ,DDCEHRWEB_V3_BIGO          AS  ddcEhrWebV3Bigo
         FROM
                 ETC_DAILY_HRSERVER
         WHERE
@@ -206,9 +230,7 @@
         UPDATE
                 ETC_DAILY_HRSERVER
         SET
-                 ETC_HRSERVER_ID            = #{etcHrServerId}
-                ,ETC_HRMAIN_ID              = #{etcHRMainId}
-                ,CHAEHRDB_CPUUSAGE_CHK      = #{chaEhrDbCpuUsageChk}
+                 CHAEHRDB_CPUUSAGE_CHK      = #{chaEhrDbCpuUsageChk}
                 ,CHAEHRDB_CPUUSAGE_BIGO     = #{chaEhrDbCpuUsageBigo}
                 ,CHAEHRDB_MEMUSAGE_CHK      = #{chaEhrDbMemUsageChk}
                 ,CHAEHRDB_MEMUSAGE_BIGO     = #{chaEhrDbMemUsageBigo}
@@ -216,6 +238,8 @@
                 ,CHAEHRDB_DISKUSAGE_BIGO    = #{chaEhrDbDiskUsageBigo}
                 ,CHAEHRDB_EVENT_CHK         = #{chaEhrDbEventChk}
                 ,CHAEHRDB_EVENT_BIGO        = #{chaEhrDbEventBigo}
+                ,CHAEHRDB_V3_CHK            = #{chaEhrDbV3Chk}
+                ,CHAEHRDB_V3_BIGO           = #{chaEhrDbV3Bigo}
                 ,CHAEHRWEB_CPUUSAGE_CHK     = #{chaEhrWebCpuUsageChk}
                 ,CHAEHRWEB_CPUUSAGE_BIGO    = #{chaEhrWebCpuUsageBigo}
                 ,CHAEHRWEB_MEMUSAGE_CHK     = #{chaEhrWebMemUsageChk}
@@ -224,6 +248,8 @@
                 ,CHAEHRWEB_DISKUSAGE_BIGO   = #{chaEhrWebDiskUsageBigo}
                 ,CHAEHRWEB_EVENT_CHK        = #{chaEhrWebEventChk}
                 ,CHAEHRWEB_EVENT_BIGO       = #{chaEhrWebEventBigo}
+                ,CHAEHRWEB_V3_CHK           = #{chaEhrWebV3Chk}
+                ,CHAEHRWEB_V3_BIGO          = #{chaEhrWebV3Bigo}
                 ,CHAEHRDEV_CPUUSAGE_CHK     = #{chaEhrDevCpuUsageChk}
                 ,CHAEHRDEV_CPUUSAGE_BIGO    = #{chaEhrDevCpuUsageBigo}
                 ,CHAEHRDEV_MEMUSAGE_CHK     = #{chaEhrDevMemUsageChk}
@@ -232,6 +258,8 @@
                 ,CHAEHRDEV_DISKUSAGE_BIGO   = #{chaEhrDevDiskUsageBigo}
                 ,CHAEHRDEV_EVENT_CHK        = #{chaEhrDevEventChk}
                 ,CHAEHRDEV_EVENT_BIGO       = #{chaEhrDevEventBigo}
+                ,CHAEHRDEV_V3_CHK           = #{chaEhrDevV3Chk}
+                ,CHAEHRDEV_V3_BIGO          = #{chaEhrDevV3Bigo}
                 ,DDCEHRWEB_CPUUSAGE_CHK     = #{ddcEhrWebCpuUsageChk}
                 ,DDCEHRWEB_CPUUSAGE_BIGO    = #{ddcEhrWebCpuUsageBigo}
                 ,DDCEHRWEB_MEMUSAGE_CHK     = #{ddcEhrWebMemUsageChk}
@@ -240,6 +268,8 @@
                 ,DDCEHRWEB_DISKUSAGE_BIGO   = #{ddcEhrWebDiskUsageBigo}
                 ,DDCEHRWEB_EVENT_CHK        = #{ddcEhrWebEventChk}
                 ,DDCEHRWEB_EVENT_BIGO       = #{ddcEhrWebEventBigo}
+                ,DDCEHRWEB_V3_CHK           = #{ddcEhrWebV3Chk}
+                ,DDCEHRWEB_V3_BIGO          = #{ddcEhrWebV3Bigo}
 
         WHERE
                 ETC_HRMAIN_ID       = #{etcHRMainId}
