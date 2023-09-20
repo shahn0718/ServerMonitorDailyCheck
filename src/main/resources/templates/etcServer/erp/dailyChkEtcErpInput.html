@@ -96,7 +96,7 @@
         </tr>
         <form name="etcErpServer" th:action="post">
         <tr align="center">
-          <td rowspan="12" style="background-color:#81BEF7; font-weight:bold">서버</td>
+          <td rowspan="13" style="background-color:#81BEF7; font-weight:bold">서버</td>
           <td>CHA-ERP-LINK</td>
           <td>윈도우</td>
           <td>  
@@ -104,6 +104,7 @@
             <p>메모리 사용량</p>
             <p>디스크 사용량</p>
             <p>이벤트 로그</p>
+            <p>V3</p>
           </td>
           <td> 
             <p>
@@ -130,12 +131,19 @@
               <input class="form-check-input" type="radio" value="N" name="chaErpLinkEventChk" id="chaErpLinkEventChkN" checked>
               무  
             </p>
+            <p>
+              <input class="form-check-input" type="radio" value="Y" name="chaErpLinkV3Chk" id="chaErpLinkV3ChkY">
+              유
+              <input class="form-check-input" type="radio" value="N" name="chaErpLinkV3Chk" id="chaErpLinkV3ChkN" checked>
+              무
+            </p>
           </td>
           <td>
             <input type="text" class="form-control" name="charErpLinkCpuUsageBigo" id="chaErpLinkCpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
             <input type="text" class="form-control" name="chaErpLinkMemUsageBigo" id="chaErpLinkMemUsageBigoInput">
             <input type="text" class="form-control" name="chaErpLinkDiskUsageBigo" id="chaErpLinkDiskUsageBigoInput">
             <input type="text" class="form-control" name="chaErpLinkEventBigo" id="chaErpLinkEventBigoInput">
+            <input type="text" class="form-control" name="chaErpLinkV3Bigo" id="chaErpLinkV3BigoInput">
           </td>
         </tr>
         <tr align="center">
@@ -146,6 +154,7 @@
               <p>메모리 사용량</p>
               <p>디스크 사용량</p>
               <p>이벤트 로그</p>
+              <p>V3</p>
             </td>
             <td> 
               <p>
@@ -172,12 +181,19 @@
                 <input class="form-check-input" type="radio" value="N" name="chaErpApp1EventChk" id="chaErpApp1EventChkN" checked>
                 무  
               </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="chaErpApp1V3Chk" id="chaErpApp1V3ChkY">
+                유
+                <input class="form-check-input" type="radio" value="N" name="chaErpApp1V3Chk" id="chaErpApp1V3ChkN" checked>
+                무
+              </p>
             </td>
             <td>
               <input type="text" class="form-control" name="chaErpApp1CpuUsageBigo" id="chaErpApp1CpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
               <input type="text" class="form-control" name="chaErpApp1MemUsageBigo" id="chaErpApp1MemUsageBigoInput">
               <input type="text" class="form-control" name="chaErpApp1DiskUsageBigo" id="chaErpApp1DiskUsageBigoInput">
               <input type="text" class="form-control" name="chaErpApp1EventBigo" id="chaErpApp1EventBigoInput">
+              <input type="text" class="form-control" name="chaErpApp1V3Bigo" id="chaErpApp1V3BigoInput">
             </td>
           </tr>
           <tr align="center">
@@ -188,6 +204,7 @@
               <p>메모리 사용량</p>
               <p>디스크 사용량</p>
               <p>이벤트 로그</p>
+              <p>V3</p>
             </td>
             <td> 
               <p>
@@ -214,12 +231,19 @@
                 <input class="form-check-input" type="radio" value="N" name="chaErpApp2EventChk" id="chaErpApp2EventChkN" checked>
                 무  
               </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="chaErpApp2V3Chk" id="chaErpApp2V3ChkY">
+                유
+                <input class="form-check-input" type="radio" value="N" name="chaErpApp2V3Chk" id="chaErpApp2V3ChkN" checked>
+                무
+              </p>
             </td>
             <td>
               <input type="text" class="form-control" name="chaErpApp2CpuUsageBigo" id="chaErpApp2CpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
               <input type="text" class="form-control" name="chaErpApp2MemUsageBigo" id="chaErpApp2MemUsageBigoInput">
               <input type="text" class="form-control" name="chaErpApp2DiskUsageBigo" id="chaErpApp2DiskUsageBigoInput">
               <input type="text" class="form-control" name="chaErpApp2EventBigo" id="chaErpApp2EventBigoInput">
+              <input type="text" class="form-control" name="chaErpApp2V3Bigo" id="chaErpApp2V3BigoInput">
             </td>
           </tr>
           <tr align="center">
@@ -230,6 +254,7 @@
               <p>메모리 사용량</p>
               <p>디스크 사용량</p>
               <p>이벤트 로그</p>
+              <p>V3</p>
             </td>
             <td> 
               <p>
@@ -256,12 +281,19 @@
                 <input class="form-check-input" type="radio" value="N" name="chaErpDb1EventChk" id="chaErpDb1EventChkN" checked>
                 무  
               </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="chaErpDb1V3hk" id="chaErpDb1V3ChkY">
+                유
+                <input class="form-check-input" type="radio" value="N" name="chaErpDb1V3Chk" id="chaErpDb1V3ChkN" checked>
+                무
+              </p>
             </td>
             <td>
               <input type="text" class="form-control" name="chaErpDb1CpuUsageBigo" id="chaErpDb1CpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
               <input type="text" class="form-control" name="chaErpDb1MemUsageBigo" id="chaErpDb1MemUsageBigoInput">
               <input type="text" class="form-control" name="chaErpDb1DiskUsageBigo" id="chaErpDb1DiskUsageBigoInput">
               <input type="text" class="form-control" name="chaErpDb1EventBigo" id="chaErpDb1EventBigoInput">
+              <input type="text" class="form-control" name="chaErpDb1V3Bigo" id="chaErpDb1V3BigoInput">
             </td>
           </tr>
           <tr align="center">
@@ -272,6 +304,7 @@
               <p>메모리 사용량</p>
               <p>디스크 사용량</p>
               <p>이벤트 로그</p>
+              <p>V3</p>
             </td>
             <td> 
               <p>
@@ -298,12 +331,19 @@
                 <input class="form-check-input" type="radio" value="N" name="chaErpDb2EventChk" id="chaErpDb2EventChkN" checked>
                 무  
               </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="chaErpDb2V3Chk" id="chaErpDb2V3ChkY">
+                유
+                <input class="form-check-input" type="radio" value="N" name="chaErpDb2V3Chk" id="chaErpDb2V3ChkN" checked>
+                무
+              </p>
             </td>
             <td>
               <input type="text" class="form-control" name="chaErpDb2CpuUsageBigo" id="chaErpDb2CpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
               <input type="text" class="form-control" name="chaErpDb2MemUsageBigo" id="chaErpDb2MemUsageBigoInput">
               <input type="text" class="form-control" name="chaErpDb2DiskUsageBigo" id="chaErpDb2DiskUsageBigoInput">
               <input type="text" class="form-control" name="chaErpDb2EventBigo" id="chaErpDb2EventBigoInput">
+              <input type="text" class="form-control" name="chaErpDb2V3Bigo" id="chaErpDb2V3BigoInput">
             </td>
           </tr>
           <tr align="center">
@@ -314,6 +354,7 @@
               <p>메모리 사용량</p>
               <p>디스크 사용량</p>
               <p>이벤트 로그</p>
+              <p>V3</p>
             </td>
             <td> 
               <p>
@@ -340,12 +381,19 @@
                 <input class="form-check-input" type="radio" value="N" name="chaErpDevEventChk" id="chaErpDevEventChkN" checked>
                 무  
               </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="chaErpDevV3Chk" id="chaErpDevV3ChkY">
+                유
+                <input class="form-check-input" type="radio" value="N" name="chaErpDevV3Chk" id="chaErpDevV3ChkN" checked>
+                무
+              </p>
             </td>
             <td>
               <input type="text" class="form-control" name="chaErpDevCpuUsageBigo" id="chaErpDevCpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
               <input type="text" class="form-control" name="chaErpDevMemUsageBigo" id="chaErpDevMemUsageBigoInput">
               <input type="text" class="form-control" name="chaErpDevDiskUsageBigo" id="chaErpDevDiskUsageBigoInput">
               <input type="text" class="form-control" name="chaErpDevEventBigo"id="chaErpDevEventBigoInput">
+              <input type="text" class="form-control" name="chaErpDevV3Bigo"id=chaErpDevV3BigoInput">
             </td>
           </tr>
           <tr align="center">
@@ -356,6 +404,7 @@
               <p>메모리 사용량</p>
               <p>디스크 사용량</p>
               <p>이벤트 로그</p>
+              <p>V3</p>
             </td>
             <td> 
               <p>
@@ -382,12 +431,19 @@
                 <input class="form-check-input" type="radio" value="N" name="ddcEtiEventChk" id="ddcEtiEventChkN" checked>
                 무  
               </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="ddcEtiV3Chk" id="ddcEtiV3ChkY">
+                유
+                <input class="form-check-input" type="radio" value="N" name="ddcEtiV3Chk" id="ddcEtiV3ChkN" checked>
+                무
+              </p>
             </td>
             <td>
               <input type="text" class="form-control" name="ddcEtiCpuUsageBigo" id="ddcEtiCpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
               <input type="text" class="form-control" name="ddcEtiMemUsageBigo" id="ddcEtiMemUsageBigoInput">
               <input type="text" class="form-control" name="ddcEtiDiskUsageBigo" id="ddcEtiDiskUsageBigoInput">
               <input type="text" class="form-control" name="ddcEtiEventBigo" id="ddcEtiEventBigoInput">
+              <input type="text" class="form-control" name="ddcEtiV3Bigo" id="ddcEtiV3BigoInput">
             </td>
           </tr>
           <tr align="center">
@@ -398,6 +454,7 @@
               <p>메모리 사용량</p>
               <p>디스크 사용량</p>
               <p>이벤트 로그</p>
+              <p>V3</p>
             </td>
             <td> 
               <p>
@@ -424,12 +481,19 @@
                 <input class="form-check-input" type="radio" value="N" name="ddcMisAppEventChk" id="ddcMisAppEventChkN" checked>
                 무  
               </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="ddcMisAppV3Chk" id="ddcMisAppV3ChkY">
+                유
+                <input class="form-check-input" type="radio" value="N" name="ddcMisAppV3Chk" id="ddcMisAppV3ChkN" checked>
+                무
+              </p>
             </td>
             <td>
               <input type="text" class="form-control" name="ddcMisAppCpuUsageBigo" id="ddcMisAppCpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
               <input type="text" class="form-control" name="ddcMisAppMemUsageBigo" id="ddcMisAppMemUsageBigoInput">
               <input type="text" class="form-control" name="ddcMisAppDiskUsageBigo" id="ddcMisAppDiskUsageBigoInput">
               <input type="text" class="form-control" name="ddcMisAppEventBigo" id="ddcMisAppEventBigoInput">
+              <input type="text" class="form-control" name="ddcMisAppV3Bigo" id="ddcMisAppV3BigoInput">
             </td>
           </tr>
           <tr align="center">
@@ -440,6 +504,7 @@
               <p>메모리 사용량</p>
               <p>디스크 사용량</p>
               <p>이벤트 로그</p>
+              <p>V3</p>
             </td>
             <td> 
               <p>
@@ -466,12 +531,19 @@
                 <input class="form-check-input" type="radio" value="N" name="ddcErpDbEventChk" id="ddcErpDbEventChkN" checked>
                 무  
               </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="ddcErpDbV3Chk" id="ddcErpDbV3ChkY">
+                유
+                <input class="form-check-input" type="radio" value="N" name="ddcErpDbV3Chk" id="ddcErpDbV3ChkN" checked>
+                무
+              </p>
             </td>
             <td>
               <input type="text" class="form-control" name="ddcErpDbCpuUsageBigo" id="ddcErpDbCpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
               <input type="text" class="form-control" name="ddcErpDbMemUsageBigo" id="ddcErpDbMemUsageBigoInput">
               <input type="text" class="form-control" name="ddcErpDbDiskUsageBigo" id="ddcErpDbDiskUsageBigoInput">
               <input type="text" class="form-control" name="ddcErpDbEventBigo" id="ddcErpDbEventBigoInput">
+              <input type="text" class="form-control" name="ddcErpDbV3Bigo" id="ddcErpDbV3BigoInput">
             </td>
           </tr>
           <tr align="center">
@@ -482,6 +554,7 @@
               <p>메모리 사용량</p>
               <p>디스크 사용량</p>
               <p>이벤트 로그</p>
+              <p>V3</p>
             </td>
             <td> 
               <p>
@@ -508,12 +581,19 @@
                 <input class="form-check-input" type="radio" value="N" name="dkf1EventChk" id="dkf1EventChkN" checked>
                 무  
               </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="dkf1V3Chk" id="dkf1V3ChkY">
+                유
+                <input class="form-check-input" type="radio" value="N" name="dkf1V3Chk" id="dkf1V3ChkN" checked>
+                무
+              </p>
             </td>
             <td>
               <input type="text" class="form-control" name="dkf1CpuUsageBigo" id="dkf1CpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
               <input type="text" class="form-control" name="dkf1MemUsageBigo" id="dkf1MemUsageBigoInput">
               <input type="text" class="form-control" name="dkf1DiskUsageBigo" id="dkf1DiskUsageBigoInput">
               <input type="text" class="form-control" name="dkf1EventBigo" id="dkf1EventBigoInput">
+              <input type="text" class="form-control" name="dkf1V3Bigo" id="dkf1V3BigoInput">
             </td>
           </tr>
           <tr align="center">
@@ -524,6 +604,7 @@
               <p>메모리 사용량</p>
               <p>디스크 사용량</p>
               <p>이벤트 로그</p>
+              <p>V3</p>
             </td>
             <td> 
               <p>
@@ -550,12 +631,19 @@
                 <input class="form-check-input" type="radio" value="N" name="dkf2EventChk" id="dkf2EventChkN" checked>
                 무  
               </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="dkf2V3Chk" id="dkf2V3ChkY">
+                유
+                <input class="form-check-input" type="radio" value="N" name="dkf2V3Chk" id="dkf2V3ChkN" checked>
+                무
+              </p>
             </td>
             <td>
               <input type="text" class="form-control" name="dkf2CpuUsageBigo" id="dkf2CpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
               <input type="text" class="form-control" name="dkf2MemUsageBigo" id="dkf2MemUsageBigoInput">
               <input type="text" class="form-control" name="dkf2DiskUsageBigo" id="dkf2DiskUsageBigoInput">
               <input type="text" class="form-control" name="dkf2EventBigo" id="dkf2EventBigoInput">
+              <input type="text" class="form-control" name="dkf2V3Bigo" id="dkf2V3BigoInput">
             </td>
           </tr>
           <tr align="center">
@@ -566,6 +654,7 @@
               <p>메모리 사용량</p>
               <p>디스크 사용량</p>
               <p>이벤트 로그</p>
+              <p>V3</p>
             </td>
             <td> 
               <p>
@@ -592,12 +681,69 @@
                 <input class="form-check-input" type="radio" value="N" name="dongaBEventChk" id="dongaBEventChkN" checked>
                 무  
               </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="dongaBV3Chk" id="dongaBV3ChkY">
+                유
+                <input class="form-check-input" type="radio" value="N" name="dongaBV3Chk" id="dongaBV3ChkN" checked>
+                무
+              </p>
             </td>
             <td>
               <input type="text" class="form-control" name="dongaBCpuUsageBigo" id="dongaBCpuUsageBigoInput" placeholder="이상유무 유 체크시 내역기재">
               <input type="text" class="form-control" name="dongaBMemUsageBigo" id="dongaBMemUsageBigoInput">
               <input type="text" class="form-control" name="dongaBDiskUsageBigo" id="dongaBDiskUsageBigoInput">
               <input type="text" class="form-control" name="dongaBEventBigo" id="dongaBEventBigoInput">
+              <input type="text" class="form-control" name="dongaBV3Bigo" id="dongaBV3BigoInput">
+            </td>
+          </tr>
+          <tr align="center">
+            <td>MIS</td>
+            <td>윈도우</td>
+            <td>
+              <p>서비스 체크</p>
+              <p>오라클 체크</p>
+              <p>디스크 사용량</p>
+              <p>이벤트 로그</p>
+              <p>V3</p>
+            </td>
+            <td>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="misServiceChk" id="misServiceChkY">
+                유
+                <input class="form-check-input" type="radio" value="N" name="misServiceChk" id="misServiceChkN" checked>
+                무
+              </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="misOraUsageChk" id="misOraUsageChkY">
+                유
+                <input class="form-check-input" type="radio" value="N" name="misOraUsageChk" id="misOraUsageChkN" checked>
+                무
+              </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="misDiskUsageChk" id="misDiskUsageChkY">
+                유
+                <input class="form-check-input" type="radio" value="N" name="misDiskUsageChk" id="misDiskUsageChkN" checked>
+                무
+              </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="misEventChk" id="misEventChkY">
+                유
+                <input class="form-check-input" type="radio" value="N" name="misEventChk" id="misEventChkN" checked>
+                무
+              </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="misV3Chk" id="misV3ChkY">
+                유
+                <input class="form-check-input" type="radio" value="N" name="misV3Chk" id="misV3ChkN" checked>
+                무
+              </p>
+            </td>
+            <td>
+              <input type="text" class="form-control" name="misServiceBigo" id="misServiceBigoInput" placeholder="이상유무 유 체크시 내역기재">
+              <input type="text" class="form-control" name="misOraUsageBigo" id="misOraUsageBigoInput">
+              <input type="text" class="form-control" name="misDiskUsageBigo" id="misDiskUsageBigoInput">
+              <input type="text" class="form-control" name="misEventBigo" id="misEventBigoInput">
+              <input type="text" class="form-control" name="misV3Bigo" id="misV3BigoInput">
             </td>
           </tr>
         </form>

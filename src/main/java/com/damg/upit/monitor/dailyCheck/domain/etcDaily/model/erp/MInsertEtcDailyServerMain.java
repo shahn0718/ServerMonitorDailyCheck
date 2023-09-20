@@ -21,6 +21,7 @@ public class MInsertEtcDailyServerMain {
      *             <p>메모리 사용량</p>
      *             <p>디스크 사용량</p>
      *             <p>이벤트 로그</p>
+     *             <p>V3</p>
      */
 
     private String chaErpLinkCpuUsageChk;
@@ -31,6 +32,8 @@ public class MInsertEtcDailyServerMain {
     private String chaErpLinkDiskUsageBigo;
     private String chaErpLinkEventChk;
     private String chaErpLinkEventBigo;
+    private String chaErpLinkV3Chk;
+    private String chaErpLinkV3Bigo;
 
     /**
      *             <td>CHA-ERP-APP-1</td>
@@ -40,6 +43,7 @@ public class MInsertEtcDailyServerMain {
      *               <p>메모리 사용량</p>
      *               <p>디스크 사용량</p>
      *               <p>이벤트 로그</p>
+     *               <p>V3</p>
      */
 
     private String chaErpApp1CpuUsageChk;
@@ -50,6 +54,8 @@ public class MInsertEtcDailyServerMain {
     private String chaErpApp1DiskUsageBigo;
     private String chaErpApp1EventChk;
     private String chaErpApp1EventBigo;
+    private String chaErpApp1V3Chk;
+    private String chaErpApp1V3Bigo;
 
     /**
      *             <td>CHA-ERP-APP2</td>
@@ -59,6 +65,7 @@ public class MInsertEtcDailyServerMain {
      *               <p>메모리 사용량</p>
      *               <p>디스크 사용량</p>
      *               <p>이벤트 로그</p>
+     *               <p>V3</p>
      *             </td>
      */
 
@@ -70,6 +77,8 @@ public class MInsertEtcDailyServerMain {
     private String chaErpApp2DiskUsageBigo;
     private String chaErpApp2EventChk;
     private String chaErpApp2EventBigo;
+    private String chaErpApp2V3Chk;
+    private String chaErpApp2V3Bigo;
 
     /**
      *   <td>CHA-ERP-DB-1</td>
@@ -79,6 +88,7 @@ public class MInsertEtcDailyServerMain {
      *               <p>메모리 사용량</p>
      *               <p>디스크 사용량</p>
      *               <p>이벤트 로그</p>
+     *               <p>V3</p>
      */
     private String chaErpDb1CpuUsageChk;
     private String chaErpDb1CpuUsageBigo;
@@ -88,6 +98,8 @@ public class MInsertEtcDailyServerMain {
     private String chaErpDb1DiskUsageBigo;
     private String chaErpDb1EventChk;
     private String chaErpDb1EventBigo;
+    private String chaErpDb1V3Chk;
+    private String chaErpDb1V3Bigo;
 
     /**
      *    <td>CHA-ERP-DB-2</td>
@@ -97,6 +109,7 @@ public class MInsertEtcDailyServerMain {
      *               <p>메모리 사용량</p>
      *               <p>디스크 사용량</p>
      *               <p>이벤트 로그</p>
+     *               <p>V3</p>
      */
     private String chaErpDb2CpuUsageChk;
     private String chaErpDb2CpuUsageBigo;
@@ -106,7 +119,8 @@ public class MInsertEtcDailyServerMain {
     private String chaErpDb2DiskUsageBigo;
     private String chaErpDb2EventChk;
     private String chaErpDb2EventBigo;
-
+    private String chaErpDb2V3Chk;
+    private String chaErpDb2V3Bigo;
     /**
      *             <td>CHA-ERP-DEV</td>
      *             <td>윈도우</td>
@@ -115,6 +129,7 @@ public class MInsertEtcDailyServerMain {
      *               <p>메모리 사용량</p>
      *               <p>디스크 사용량</p>
      *               <p>이벤트 로그</p>
+     *               <p>V3</p>
      */
     private String chaErpDevCpuUsageChk;
     private String chaErpDevCpuUsageBigo;
@@ -124,6 +139,8 @@ public class MInsertEtcDailyServerMain {
     private String chaErpDevDiskUsageBigo;
     private String chaErpDevEventChk;
     private String chaErpDevEventBigo;
+    private String chaErpDevV3Chk;
+    private String chaErpDevV3Bigo;
 
     /**
      *              <td>DDC-ETI</td>
@@ -133,6 +150,7 @@ public class MInsertEtcDailyServerMain {
      *               <p>메모리 사용량</p>
      *               <p>디스크 사용량</p>
      *               <p>이벤트 로그</p>
+     *               <p>V3</p>
      */
 
     private String ddcEtiCpuUsageChk;
@@ -143,6 +161,8 @@ public class MInsertEtcDailyServerMain {
     private String ddcEtiDiskUsageBigo;
     private String ddcEtiEventChk;
     private String ddcEtiEventBigo;
+    private String ddcEtiV3Chk;
+    private String ddcEtiV3Bigo;
 
     /**
      *             <td>DDC-MIS-APP</td>
@@ -152,6 +172,7 @@ public class MInsertEtcDailyServerMain {
      *               <p>메모리 사용량</p>
      *               <p>디스크 사용량</p>
      *               <p>이벤트 로그</p>
+     *               <p>V3</p>
      */
 
     private String ddcMisAppCpuUsageChk;
@@ -162,6 +183,8 @@ public class MInsertEtcDailyServerMain {
     private String ddcMisAppDiskUsageBigo;
     private String ddcMisAppEventChk;
     private String ddcMisAppEventBigo;
+    private String ddcMisAppV3Chk;
+    private String ddcMisAppV3Bigo;
 
     /**
      *             <td>DDC-ERP-DB</td>
@@ -171,6 +194,7 @@ public class MInsertEtcDailyServerMain {
      *               <p>메모리 사용량</p>
      *               <p>디스크 사용량</p>
      *               <p>이벤트 로그</p>
+     *               <p>V3</p>
      */
 
     private String ddcErpDbCpuUsageChk;
@@ -181,6 +205,8 @@ public class MInsertEtcDailyServerMain {
     private String ddcErpDbDiskUsageBigo;
     private String ddcErpDbEventChk;
     private String ddcErpDbEventBigo;
+    private String ddcErpDbV3Chk;
+    private String ddcErpDbV3Bigo;
 
     /**
      *             <td>DKF-1</td>
@@ -190,6 +216,7 @@ public class MInsertEtcDailyServerMain {
      *               <p>메모리 사용량</p>
      *               <p>디스크 사용량</p>
      *               <p>이벤트 로그</p>
+     *               <p>V3</p>
      */
     private String dkf1CpuUsageChk;
     private String dkf1CpuUsageBigo;
@@ -199,6 +226,8 @@ public class MInsertEtcDailyServerMain {
     private String dkf1DiskUsageBigo;
     private String dkf1EventChk;
     private String dkf1EventBigo;
+    private String dkf1V3Chk;
+    private String dkf1V3Bigo;
     /**
      *             <td>DKF-2</td>
      *             <td>윈도우</td>
@@ -207,6 +236,7 @@ public class MInsertEtcDailyServerMain {
      *               <p>메모리 사용량</p>
      *               <p>디스크 사용량</p>
      *               <p>이벤트 로그</p>
+     *               <p>V3</p>
      */
     private String dkf2CpuUsageChk;
     private String dkf2CpuUsageBigo;
@@ -216,6 +246,8 @@ public class MInsertEtcDailyServerMain {
     private String dkf2DiskUsageBigo;
     private String dkf2EventChk;
     private String dkf2EventBigo;
+    private String dkf2V3Chk;
+    private String dkf2V3Bigo;
 
     /**
      *             <td>DongaBill</td>
@@ -225,6 +257,7 @@ public class MInsertEtcDailyServerMain {
      *               <p>메모리 사용량</p>
      *               <p>디스크 사용량</p>
      *               <p>이벤트 로그</p>
+     *               <p>V3</p>
      */
     private String dongaBCpuUsageChk;
     private String dongaBCpuUsageBigo;
@@ -234,4 +267,28 @@ public class MInsertEtcDailyServerMain {
     private String dongaBDiskUsageBigo;
     private String dongaBEventChk;
     private String dongaBEventBigo;
+    private String dongaBV3Chk;
+    private String dongaBV3Bigo;
+
+
+    /**
+     *             <td>MIS</td>
+     *             <td>윈도우</td>
+     *             <td>
+     *               <p>이벤트 로그</p>
+     *               <p>디스크 사용량</p>
+     *               <p>오라클 체크</p>
+     *               <p>서비스 체크</p>
+     *               <p>V3</p>
+     */
+    private String misEventChk;
+    private String misEventBigo;
+    private String misDiskUsageChk;
+    private String misDiskUsageBigo;
+    private String misOraUsageChk;
+    private String misOraUsageBigo;
+    private String misServiceChk;
+    private String misServiceBigo;
+    private String misV3Chk;
+    private String misV3Bigo;
 }
