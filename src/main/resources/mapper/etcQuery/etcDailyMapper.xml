@@ -49,6 +49,8 @@
                         ,CHAERPLINK_DISKUSAGE_BIGO
                         ,CHAERPLINK_EVENT_CHK
                         ,CHAERPLINK_EVENT_BIGO
+                        ,CHAERPLINK_V3_CHK
+                        ,CHAERPLINK_V3_BIGO
                         ,CHAERPAPP1_CPUUSAGE_CHK
                         ,CHAERPAPP1_CPUUSAGE_BIGO
                         ,CHAERPAPP1_MEMUSAGE_CHK
@@ -57,6 +59,8 @@
                         ,CHAERPAPP1_DISKUSAGE_BIGO
                         ,CHAERPAPP1_EVENT_CHK
                         ,CHAERPAPP1_EVENT_BIGO
+                        ,CHAERPAPP1_V3_CHK
+                        ,CHAERPAPP1_V3_BIGO
                         ,CHAERPAPP2_CPUUSAGE_CHK
                         ,CHAERPAPP2_CPUUSAGE_BIGO
                         ,CHAERPAPP2_MEMUSAGE_CHK
@@ -65,6 +69,8 @@
                         ,CHAERPAPP2_DISKUSAGE_BIGO
                         ,CHAERPAPP2_EVENT_CHK
                         ,CHAERPAPP2_EVENT_BIGO
+                        ,CHAERPAPP2_V3_CHK
+                        ,CHAERPAPP2_V3_BIGO
                         ,CHAERPDB1_CPUUSAGE_CHK
                         ,CHAERPDB1_CPUUSAGE_BIGO
                         ,CHAERPDB1_MEMUSAGE_CHK
@@ -73,6 +79,8 @@
                         ,CHAERPDB1_DISKUSAGE_BIGO
                         ,CHAERPDB1_EVENT_CHK
                         ,CHAERPDB1_EVENT_BIGO
+                        ,CHAERPDB1_V3_CHK
+                        ,CHAERPDB1_V3_BIGO
                         ,CHAERPDB2_CPUUSAGE_CHK
                         ,CHAERPDB2_CPUUSAGE_BIGO
                         ,CHAERPDB2_MEMUSAGE_CHK
@@ -81,6 +89,8 @@
                         ,CHAERPDB2_DISKUSAGE_BIGO
                         ,CHAERPDB2_EVENT_CHK
                         ,CHAERPDB2_EVENT_BIGO
+                        ,CHAERPDB2_V3_CHK
+                        ,CHAERPDB2_V3_BIGO
                         ,CHAERPDEV_CPUUSAGE_CHK
                         ,CHAERPDEV_CPUUSAGE_BIGO
                         ,CHAERPDEV_MEMUSAGE_CHK
@@ -89,6 +99,8 @@
                         ,CHAERPDEV_DISKUSAGE_BIGO
                         ,CHAERPDEV_EVENT_CHK
                         ,CHAERPDEV_EVENT_BIGO
+                        ,CHAERPDEV_V3_CHK
+                        ,CHAERPDEV_V3_BIGO
                         ,DDCETI_CPUUSAGE_CHK
                         ,DDCETI_CPUUSAGE_BIGO
                         ,DDCETI_MEMUSAGE_CHK
@@ -97,6 +109,8 @@
                         ,DDCETI_DISKUSAGE_BIGO
                         ,DDCETI_EVENT_CHK
                         ,DDCETI_EVENT_BIGO
+                        ,DDCETI_V3_CHK
+                        ,DDCETI_V3_BIGO
                         ,DDCMISAPP_CPUUSAGE_CHK
                         ,DDCMISAPP_CPUUSAGE_BIGO
                         ,DDCMISAPP_MEMUSAGE_CHK
@@ -105,6 +119,8 @@
                         ,DDCMISAPP_DISKUSAGE_BIGO
                         ,DDCMISAPP_EVENT_CHK
                         ,DDCMISAPP_EVENT_BIGO
+                        ,DDCMISAPP_V3_CHK
+                        ,DDCMISAPP_V3_BIGO
                         ,DDCERPDB_CPUUSAGE_CHK
                         ,DDCERPDB_CPUUSAGE_BIGO
                         ,DDCERPDB_MEMUSAGE_CHK
@@ -113,6 +129,8 @@
                         ,DDCERPDB_DISKUSAGE_BIGO
                         ,DDCERPDB_EVENT_CHK
                         ,DDCERPDB_EVENT_BIGO
+                        ,DDCERPDB_V3_CHK
+                        ,DDCERPDB_V3_BIGO
                         ,DKF1_CPUUSAGE_CHK
                         ,DKF1_CPUUSAGE_BIGO
                         ,DKF1_MEMUSAGE_CHK
@@ -121,6 +139,8 @@
                         ,DKF1_DISKUSAGE_BIGO
                         ,DKF1_EVENT_CHK
                         ,DKF1_EVENT_BIGO
+                        ,DKF1_V3_CHK
+                        ,DKF1_V3_BIGO
                         ,DKF2_CPUUSAGE_CHK
                         ,DKF2_CPUUSAGE_BIGO
                         ,DKF2_MEMUSAGE_CHK
@@ -129,6 +149,8 @@
                         ,DKF2_DISKUSAGE_BIGO
                         ,DKF2_EVENT_CHK
                         ,DKF2_EVENT_BIGO
+                        ,DKF2_V3_CHK
+                        ,DKF2_V3_BIGO
                         ,DONGAB_CPUUSAGE_CHK
                         ,DONGAB_CPUUSAGE_BIGO
                         ,DONGAB_MEMUSAGE_CHK
@@ -137,6 +159,18 @@
                         ,DONGAB_DISKUSAGE_BIGO
                         ,DONGAB_EVENT_CHK
                         ,DONGAB_EVENT_BIGO
+                        ,DONGAB_V3_CHK
+                        ,DONGAB_V3_BIGO
+                        ,MIS_SERVICE_CHK
+                        ,MIS_SERVICE_BIGO
+                        ,MIS_ORAUSAGE_CHK
+                        ,MIS_ORAUSAGE_BIGO
+                        ,MIS_DISKUSAGE_CHK
+                        ,MIS_DISKUSAGE_BIGO
+                        ,MIS_EVENT_CHK
+                        ,MIS_EVENT_BIGO
+                        ,MIS_V3_CHK
+                        ,MIS_V3_BIGO
         ) VALUES (
                          #{etcServerId}
                         ,#{etcMainId}
@@ -148,6 +182,8 @@
                         ,#{chaErpLinkDiskUsageBigo}
                         ,#{chaErpLinkEventChk}
                         ,#{chaErpLinkEventBigo}
+                        ,#{chaErpLinkV3Chk}
+                        ,#{chaErpLinkV3Bigo}
                         ,#{chaErpApp1CpuUsageChk}
                         ,#{chaErpApp1CpuUsageBigo}
                         ,#{chaErpApp1MemUsageChk}
@@ -156,6 +192,8 @@
                         ,#{chaErpApp1DiskUsageBigo}
                         ,#{chaErpApp1EventChk}
                         ,#{chaErpApp1EventBigo}
+                        ,#{chaErpApp1V3Chk}
+                        ,#{chaErpApp1V3Bigo}
                         ,#{chaErpApp2CpuUsageChk}
                         ,#{chaErpApp2CpuUsageBigo}
                         ,#{chaErpApp2MemUsageChk}
@@ -164,6 +202,8 @@
                         ,#{chaErpApp2DiskUsageBigo}
                         ,#{chaErpApp2EventChk}
                         ,#{chaErpApp2EventBigo}
+                        ,#{chaErpApp2V3Chk}
+                        ,#{chaErpApp2V3Bigo}
                         ,#{chaErpDb1CpuUsageChk}
                         ,#{chaErpDb1CpuUsageBigo}
                         ,#{chaErpDb1MemUsageChk}
@@ -172,6 +212,8 @@
                         ,#{chaErpDb1DiskUsageBigo}
                         ,#{chaErpDb1EventChk}
                         ,#{chaErpDb1EventBigo}
+                        ,#{chaErpDb1V3Chk}
+                        ,#{chaErpDb1V3Bigo}
                         ,#{chaErpDb2CpuUsageChk}
                         ,#{chaErpDb2CpuUsageBigo}
                         ,#{chaErpDb2MemUsageChk}
@@ -180,6 +222,8 @@
                         ,#{chaErpDb2DiskUsageBigo}
                         ,#{chaErpDb2EventChk}
                         ,#{chaErpDb2EventBigo}
+                        ,#{chaErpDb2V3Chk}
+                        ,#{chaErpDb2V3Bigo}
                         ,#{chaErpDevCpuUsageChk}
                         ,#{chaErpDevCpuUsageBigo}
                         ,#{chaErpDevMemUsageChk}
@@ -188,6 +232,8 @@
                         ,#{chaErpDevDiskUsageBigo}
                         ,#{chaErpDevEventChk}
                         ,#{chaErpDevEventBigo}
+                        ,#{chaErpDevV3Chk}
+                        ,#{chaErpDevV3Bigo}
                         ,#{ddcEtiCpuUsageChk}
                         ,#{ddcEtiCpuUsageBigo}
                         ,#{ddcEtiMemUsageChk}
@@ -196,6 +242,8 @@
                         ,#{ddcEtiDiskUsageBigo}
                         ,#{ddcEtiEventChk}
                         ,#{ddcEtiEventBigo}
+                        ,#{ddcEtiV3Chk}
+                        ,#{ddcEtiV3Bigo}
                         ,#{ddcMisAppCpuUsageChk}
                         ,#{ddcMisAppCpuUsageBigo}
                         ,#{ddcMisAppMemUsageChk}
@@ -204,6 +252,8 @@
                         ,#{ddcMisAppDiskUsageBigo}
                         ,#{ddcMisAppEventChk}
                         ,#{ddcMisAppEventBigo}
+                        ,#{ddcMisAppV3Chk}
+                        ,#{ddcMisAppV3Bigo}
                         ,#{ddcErpDbCpuUsageChk}
                         ,#{ddcErpDbCpuUsageBigo}
                         ,#{ddcErpDbMemUsageChk}
@@ -212,6 +262,8 @@
                         ,#{ddcErpDbDiskUsageBigo}
                         ,#{ddcErpDbEventChk}
                         ,#{ddcErpDbEventBigo}
+                        ,#{ddcErpDbV3Chk}
+                        ,#{ddcErpDbV3Bigo}
                         ,#{dkf1CpuUsageChk}
                         ,#{dkf1CpuUsageBigo}
                         ,#{dkf1MemUsageChk}
@@ -220,6 +272,8 @@
                         ,#{dkf1DiskUsageBigo}
                         ,#{dkf1EventChk}
                         ,#{dkf1EventBigo}
+                        ,#{dkf1V3Chk}
+                        ,#{dkf1V3Bigo}
                         ,#{dkf2CpuUsageChk}
                         ,#{dkf2CpuUsageBigo}
                         ,#{dkf2MemUsageChk}
@@ -228,6 +282,8 @@
                         ,#{dkf2DiskUsageBigo}
                         ,#{dkf2EventChk}
                         ,#{dkf2EventBigo}
+                        ,#{dkf2V3Chk}
+                        ,#{dkf2V3Bigo}
                         ,#{dongaBCpuUsageChk}
                         ,#{dongaBCpuUsageBigo}
                         ,#{dongaBMemUsageChk}
@@ -236,6 +292,18 @@
                         ,#{dongaBDiskUsageBigo}
                         ,#{dongaBEventChk}
                         ,#{dongaBEventBigo}
+                        ,#{dongaBV3Chk}
+                        ,#{dongaBV3Bigo}
+                        ,#{misServiceChk}
+                        ,#{misServiceBigo}
+                        ,#{misOraUsageChk}
+                        ,#{misOraUsageBigo}
+                        ,#{misDiskUsageChk}
+                        ,#{misDiskUsageBigo}
+                        ,#{misEventChk}
+                        ,#{misEventBigo}
+                        ,#{misV3Chk}
+                        ,#{misV3Bigo}
         )
         </insert>
 
@@ -275,6 +343,8 @@
                         ,CHAERPLINK_DISKUSAGE_BIGO      AS   chaErpLinkDiskUsageBigo
                         ,CHAERPLINK_EVENT_CHK           AS   chaErpLinkEventChk
                         ,CHAERPLINK_EVENT_BIGO          AS   chaErpLinkEventBigo
+                        ,CHAERPlINK_V3_CHK              AS   chaErpLinkV3Chk
+                        ,CHAERPLINK_V3_BIGO             AS   chaErpLinkV3Bigo
                         ,CHAERPAPP1_CPUUSAGE_CHK        AS   chaErpApp1CpuUsageChk
                         ,CHAERPAPP1_CPUUSAGE_BIGO       AS   chaErpApp1CpuUsageBigo
                         ,CHAERPAPP1_MEMUSAGE_CHK        AS   chaErpApp1MemUsageChk
@@ -283,6 +353,8 @@
                         ,CHAERPAPP1_DISKUSAGE_BIGO      AS   chaErpApp1DiskUsageBigo
                         ,CHAERPAPP1_EVENT_CHK           AS   chaErpApp1EventChk
                         ,CHAERPAPP1_EVENT_BIGO          AS   chaErpApp1EventBigo
+                        ,CHAERPAPP1_V3_CHK              AS   chaErpApp1V3Chk
+                        ,CHAERPAPP1_V3_BIGO             AS   chaErpApp1V3Bigo
                         ,CHAERPAPP2_CPUUSAGE_CHK        AS   chaErpApp2CpuUsageChk
                         ,CHAERPAPP2_CPUUSAGE_BIGO       AS   chaErpApp2CpuUsageBigo
                         ,CHAERPAPP2_MEMUSAGE_CHK        AS   chaErpApp2MemUsageChk
@@ -291,6 +363,8 @@
                         ,CHAERPAPP2_DISKUSAGE_BIGO      AS   chaErpApp2DiskUsageBigo
                         ,CHAERPAPP2_EVENT_CHK           AS   chaErpApp2EventChk
                         ,CHAERPAPP2_EVENT_BIGO          AS   chaErpApp2EventBigo
+                        ,CHAERPAPP2_V3_CHK              AS   chaErpApp2V3Chk
+                        ,CHAERPAPP2_V3_BIGO             AS   chaErpApp2V3Bigo
                         ,CHAERPDB1_CPUUSAGE_CHK         AS   chaErpDb1CpuUsageChk
                         ,CHAERPDB1_CPUUSAGE_BIGO        AS   chaErpDb1CpuUsageBigo
                         ,CHAERPDB1_MEMUSAGE_CHK         AS   chaErpDb1MemUsageChk
@@ -299,6 +373,8 @@
                         ,CHAERPDB1_DISKUSAGE_BIGO       AS   chaErpDb1DiskUsageBigo
                         ,CHAERPDB1_EVENT_CHK            AS   chaErpDb1EventChk
                         ,CHAERPDB1_EVENT_BIGO           AS   chaErpDb1EventBigo
+                        ,CHAERPDB1_V3_CHK               AS   chaErpDb1V3Chk
+                        ,CHAERPDB1_V3_BIGO              AS   chaErpDb1V3Bigo
                         ,CHAERPDB2_CPUUSAGE_CHK         AS   chaErpDb2CpuUsageChk
                         ,CHAERPDB2_CPUUSAGE_BIGO        AS   chaErpDb2CpuUsageBigo
                         ,CHAERPDB2_MEMUSAGE_CHK         AS   chaErpDb2MemUsageChk
@@ -307,6 +383,8 @@
                         ,CHAERPDB2_DISKUSAGE_BIGO       AS   chaErpDb2DiskUsageBigo
                         ,CHAERPDB2_EVENT_CHK            AS   chaErpDb2EventChk
                         ,CHAERPDB2_EVENT_BIGO           AS   chaErpDb2EventBigo
+                        ,CHAERPDB2_V3_CHK               AS   chaErpDb2V3Chk
+                        ,CHAERPDB2_V3_BIGO              AS   chaErpDb2V3Bigo
                         ,CHAERPDEV_CPUUSAGE_CHK         AS   chaErpDevCpuUsageChk
                         ,CHAERPDEV_CPUUSAGE_BIGO        AS   chaErpDevCpuUsageBigo
                         ,CHAERPDEV_MEMUSAGE_CHK         AS   chaErpDevMemUsageChk
@@ -315,6 +393,8 @@
                         ,CHAERPDEV_DISKUSAGE_BIGO       AS   chaErpDevDiskUsageBigo
                         ,CHAERPDEV_EVENT_CHK            AS   chaErpDevEventChk
                         ,CHAERPDEV_EVENT_BIGO           AS   chaErpDevEventBigo
+                        ,CHAERPDEV_V3_CHK               AS   chaErpDevV3Chk
+                        ,CHAERPDEV_V3_BIGO              AS   chaErpDevV3Bigo
                         ,DDCETI_CPUUSAGE_CHK            AS   ddcEtiCpuUsageChk
                         ,DDCETI_CPUUSAGE_BIGO           AS   ddcEtiCpuUsageBigo
                         ,DDCETI_MEMUSAGE_CHK            AS   ddcEtiMemUsageChk
@@ -323,6 +403,8 @@
                         ,DDCETI_DISKUSAGE_BIGO          AS   ddcEtiDiskUsageBigo
                         ,DDCETI_EVENT_CHK               AS   ddcEtiEventChk
                         ,DDCETI_EVENT_BIGO              AS   ddcEtiEventBigo
+                        ,DDCETI_V3_CHK                  AS   ddcEtiV3Chk
+                        ,DDCETI_V3_BIGO                 AS   ddcEtiV3Bigo
                         ,DDCMISAPP_CPUUSAGE_CHK         AS   ddcMisAppCpuUsageChk
                         ,DDCMISAPP_CPUUSAGE_BIGO        AS   ddcMisAppCpuUsageBigo
                         ,DDCMISAPP_MEMUSAGE_CHK         AS   ddcMisAppMemUsageChk
@@ -331,6 +413,8 @@
                         ,DDCMISAPP_DISKUSAGE_BIGO       AS   ddcMisAppDiskUsageBigo
                         ,DDCMISAPP_EVENT_CHK            AS   ddcMisAppEventChk
                         ,DDCMISAPP_EVENT_BIGO           AS   ddcMisAppEventBigo
+                        ,DDCMISAPP_V3_CHK               AS   ddcMisAppV3Chk
+                        ,DDCMISAPP_V3_BIGO              AS   ddcMisAppV3Bigo
                         ,DDCERPDB_CPUUSAGE_CHK          AS   ddcErpDbCpuUsageChk
                         ,DDCERPDB_CPUUSAGE_BIGO         AS   ddcErpDbCpuUsageBigo
                         ,DDCERPDB_MEMUSAGE_CHK          AS   ddcErpDbMemUsageChk
@@ -339,6 +423,8 @@
                         ,DDCERPDB_DISKUSAGE_BIGO        AS   ddcErpDbDiskUsageBigo
                         ,DDCERPDB_EVENT_CHK             AS   ddcErpDbEventChk
                         ,DDCERPDB_EVENT_BIGO            AS   ddcErpDbEventBigo
+                        ,DDCERPDB_V3_CHK                AS   ddcErpDbV3Chk
+                        ,DDCERPDB_V3_BIGO               AS   ddcErpDbV3Bigo
                         ,DKF1_CPUUSAGE_CHK              AS   dkf1CpuUsageChk
                         ,DKF1_CPUUSAGE_BIGO             AS   dkf1CpuUsageBigo
                         ,DKF1_MEMUSAGE_CHK              AS   dkf1MemUsageChk
@@ -347,6 +433,8 @@
                         ,DKF1_DISKUSAGE_BIGO            AS   dkf1DiskUsageBigo
                         ,DKF1_EVENT_CHK                 AS   dkf1EventChk
                         ,DKF1_EVENT_BIGO                AS   dkf1EventBigo
+                        ,DKF1_V3_CHK                    AS   dkf1V3Chk
+                        ,DKF1_V3_BIGO                   AS   dkf1V3Bigo
                         ,DKF2_CPUUSAGE_CHK              AS   dkf2CpuUsageChk
                         ,DKF2_CPUUSAGE_BIGO             AS   dkf2CpuUsageBigo
                         ,DKF2_MEMUSAGE_CHK              AS   dkf2MemUsageChk
@@ -355,6 +443,8 @@
                         ,DKF2_DISKUSAGE_BIGO            AS   dkf2DiskUsageBigo
                         ,DKF2_EVENT_CHK                 AS   dkf2EventChk
                         ,DKF2_EVENT_BIGO                AS   dkf2EventBigo
+                        ,DKF2_V3_CHK                    AS   dkf2V3Chk
+                        ,DKF2_V3_BIGO                   AS   dkf2V3Bigo
                         ,DONGAB_CPUUSAGE_CHK            AS   dongaBCpuUsageChk
                         ,DONGAB_CPUUSAGE_BIGO           AS   dongaBCpuUsageBigo
                         ,DONGAB_MEMUSAGE_CHK            AS   dongaBMemUsageChk
@@ -363,6 +453,19 @@
                         ,DONGAB_DISKUSAGE_BIGO          AS   dongaBDiskUsageBigo
                         ,DONGAB_EVENT_CHK               AS   dongaBEventChk
                         ,DONGAB_EVENT_BIGO              AS   dongaBEventBigo
+                        ,DONGAB_V3_CHK                  AS   dongaBV3Chk
+                        ,DONGAB_V3_BIGO                 AS   dongaBV3Bigo
+                        ,MIS_SERVICE_CHK                AS   misServiceChk
+                        ,MIS_SERVICE_BIGO               AS   misServiceBigo
+                        ,MIS_ORAUSAGE_CHK               AS   misOraUsageChk
+                        ,MIS_ORAUSAGE_BIGO              AS   misOraUsageBigo
+                        ,MIS_DISKUSAGE_CHK              AS   misDiskUsageChk
+                        ,MIS_DISKUSAGE_BIGO             AS   misDiskUsageBigo
+                        ,MIS_EVENT_CHK                  AS   misEventChk
+                        ,MIS_EVENT_BIGO                 AS   misEventBigo
+                        ,MIS_V3_CHK                     AS   misV3Chk
+                        ,MIS_V3_BIGO                    AS   misV3Bigo
+
             FROM
 
                         ETC_DAILY_SERVER
@@ -405,6 +508,8 @@
                         ,CHAERPLINK_DISKUSAGE_BIGO      = #{chaErpLinkDiskUsageBigo}
                         ,CHAERPLINK_EVENT_CHK           = #{chaErpLinkEventChk}
                         ,CHAERPLINK_EVENT_BIGO          = #{chaErpLinkEventBigo}
+                        ,CHAERPLINK_V3_CHK              = #{chaErpLinkV3Chk}
+                        ,CHAERPLINK_V3_BIGO             = #{chaErpLinkV3Bigo}
                         ,CHAERPAPP1_CPUUSAGE_CHK        = #{chaErpApp1CpuUsageChk}
                         ,CHAERPAPP1_CPUUSAGE_BIGO       = #{chaErpApp1CpuUsageBigo}
                         ,CHAERPAPP1_MEMUSAGE_CHK        = #{chaErpApp1MemUsageChk}
@@ -413,6 +518,8 @@
                         ,CHAERPAPP1_DISKUSAGE_BIGO      = #{chaErpApp1DiskUsageBigo}
                         ,CHAERPAPP1_EVENT_CHK           = #{chaErpApp1EventChk}
                         ,CHAERPAPP1_EVENT_BIGO          = #{chaErpApp1EventBigo}
+                        ,CHAERPAPP1_V3_CHK              = #{chaErpApp1V3Chk}
+                        ,CHAERPAPP1_V3_BIGO             = #{chaErpApp1V3Bigo}
                         ,CHAERPAPP2_CPUUSAGE_CHK        = #{chaErpApp2CpuUsageChk}
                         ,CHAERPAPP2_CPUUSAGE_BIGO       = #{chaErpApp2CpuUsageBigo}
                         ,CHAERPAPP2_MEMUSAGE_CHK        = #{chaErpApp2MemUsageChk}
@@ -421,6 +528,8 @@
                         ,CHAERPAPP2_DISKUSAGE_BIGO      = #{chaErpApp2DiskUsageBigo}
                         ,CHAERPAPP2_EVENT_CHK           = #{chaErpApp2EventChk}
                         ,CHAERPAPP2_EVENT_BIGO          = #{chaErpApp2EventBigo}
+                        ,CHAERPAPP2_V3_CHK              = #{chaErpApp2V3Chk}
+                        ,CHAERPAPP2_V3_BIGO             = #{chaErpApp2V3Bigo}
                         ,CHAERPDB1_CPUUSAGE_CHK         = #{chaErpDb1CpuUsageChk}
                         ,CHAERPDB1_CPUUSAGE_BIGO        = #{chaErpDb1CpuUsageBigo}
                         ,CHAERPDB1_MEMUSAGE_CHK         = #{chaErpDb1MemUsageChk}
@@ -429,6 +538,8 @@
                         ,CHAERPDB1_DISKUSAGE_BIGO       = #{chaErpDb1DiskUsageBigo}
                         ,CHAERPDB1_EVENT_CHK            = #{chaErpDb1EventChk}
                         ,CHAERPDB1_EVENT_BIGO           = #{chaErpDb1EventBigo}
+                        ,CHAERPDB1_V3_CHK               = #{chaErpDb1V3Chk}
+                        ,CHAERPDB1_V3_BIGO              = #{chaErpDb1V3Bigo}
                         ,CHAERPDB2_CPUUSAGE_CHK         = #{chaErpDb2CpuUsageChk}
                         ,CHAERPDB2_CPUUSAGE_BIGO        = #{chaErpDb2CpuUsageBigo}
                         ,CHAERPDB2_MEMUSAGE_CHK         = #{chaErpDb2MemUsageChk}
@@ -437,6 +548,8 @@
                         ,CHAERPDB2_DISKUSAGE_BIGO       = #{chaErpDb2DiskUsageBigo}
                         ,CHAERPDB2_EVENT_CHK            = #{chaErpDb2EventChk}
                         ,CHAERPDB2_EVENT_BIGO           = #{chaErpDb2EventBigo}
+                        ,CHAERPDB2_V3_CHK               = #{chaErpDb2V3Chk}
+                        ,CHAERPDB2_V3_BIGO              = #{chaErpDb2V3Bigo}
                         ,CHAERPDEV_CPUUSAGE_CHK         = #{chaErpDevCpuUsageChk}
                         ,CHAERPDEV_CPUUSAGE_BIGO        = #{chaErpDevCpuUsageBigo}
                         ,CHAERPDEV_MEMUSAGE_CHK         = #{chaErpDevMemUsageChk}
@@ -445,6 +558,8 @@
                         ,CHAERPDEV_DISKUSAGE_BIGO       = #{chaErpDevDiskUsageBigo}
                         ,CHAERPDEV_EVENT_CHK            = #{chaErpDevEventChk}
                         ,CHAERPDEV_EVENT_BIGO           = #{chaErpDevEventBigo}
+                        ,CHAERPDEV_V3_CHK               = #{chaErpDevV3Chk}
+                        ,CHAERPDEV_V3_BIGO              = #{chaErpDevV3Bigo}
                         ,DDCETI_CPUUSAGE_CHK            = #{ddcEtiCpuUsageChk}
                         ,DDCETI_CPUUSAGE_BIGO           = #{ddcEtiCpuUsageBigo}
                         ,DDCETI_MEMUSAGE_CHK            = #{ddcEtiMemUsageChk}
@@ -453,6 +568,8 @@
                         ,DDCETI_DISKUSAGE_BIGO          = #{ddcEtiDiskUsageBigo}
                         ,DDCETI_EVENT_CHK               = #{ddcEtiEventChk}
                         ,DDCETI_EVENT_BIGO              = #{ddcEtiEventBigo}
+                        ,DDCETI_V3_CHK                  = #{ddcEtiV3Chk}
+                        ,DDCETI_V3_BIGO                 = #{ddcEtiV3Bigo}
                         ,DDCMISAPP_CPUUSAGE_CHK         = #{ddcMisAppCpuUsageChk}
                         ,DDCMISAPP_CPUUSAGE_BIGO        = #{ddcMisAppCpuUsageBigo}
                         ,DDCMISAPP_MEMUSAGE_CHK         = #{ddcMisAppMemUsageChk}
@@ -461,6 +578,8 @@
                         ,DDCMISAPP_DISKUSAGE_BIGO       = #{ddcMisAppDiskUsageBigo}
                         ,DDCMISAPP_EVENT_CHK            = #{ddcMisAppEventChk}
                         ,DDCMISAPP_EVENT_BIGO           = #{ddcMisAppEventBigo}
+                        ,DDCMISAPP_V3_CHK               = #{ddcMisAppV3Chk}
+                        ,DDCMISAPP_V3_BIGO              = #{ddcMisAppV3Bigo}
                         ,DDCERPDB_CPUUSAGE_CHK          = #{ddcErpDbCpuUsageChk}
                         ,DDCERPDB_CPUUSAGE_BIGO         = #{ddcErpDbCpuUsageBigo}
                         ,DDCERPDB_MEMUSAGE_CHK          = #{ddcErpDbMemUsageChk}
@@ -469,6 +588,8 @@
                         ,DDCERPDB_DISKUSAGE_BIGO        = #{ddcErpDbDiskUsageBigo}
                         ,DDCERPDB_EVENT_CHK             = #{ddcErpDbEventChk}
                         ,DDCERPDB_EVENT_BIGO            = #{ddcErpDbEventBigo}
+                        ,DDCERPDB_V3_CHK                = #{ddcErpDbV3Chk}
+                        ,DDCERPDB_V3_BIGO               = #{ddcErpDbV3Bigo}
                         ,DKF1_CPUUSAGE_CHK              = #{dkf1CpuUsageChk}
                         ,DKF1_CPUUSAGE_BIGO             = #{dkf1CpuUsageBigo}
                         ,DKF1_MEMUSAGE_CHK              = #{dkf1MemUsageChk}
@@ -477,6 +598,8 @@
                         ,DKF1_DISKUSAGE_BIGO            = #{dkf1DiskUsageBigo}
                         ,DKF1_EVENT_CHK                 = #{dkf1EventChk}
                         ,DKF1_EVENT_BIGO                = #{dkf1EventBigo}
+                        ,DKF1_V3_CHK                    = #{dkf1V3Chk}
+                        ,DKF1_V3_BIGO                   = #{dkf1V3Bigo}
                         ,DKF2_CPUUSAGE_CHK              = #{dkf2CpuUsageChk}
                         ,DKF2_CPUUSAGE_BIGO             = #{dkf2CpuUsageBigo}
                         ,DKF2_MEMUSAGE_CHK              = #{dkf2MemUsageChk}
@@ -485,6 +608,8 @@
                         ,DKF2_DISKUSAGE_BIGO            = #{dkf2DiskUsageBigo}
                         ,DKF2_EVENT_CHK                 = #{dkf2EventChk}
                         ,DKF2_EVENT_BIGO                = #{dkf2EventBigo}
+                        ,DKF2_V3_CHK                    = #{dkf2V3Chk}
+                        ,DKF2_V3_BIGO                   = #{dkf2V3Bigo}
                         ,DONGAB_CPUUSAGE_CHK            = #{dongaBCpuUsageChk}
                         ,DONGAB_CPUUSAGE_BIGO           = #{dongaBCpuUsageBigo}
                         ,DONGAB_MEMUSAGE_CHK            = #{dongaBMemUsageChk}
@@ -493,7 +618,18 @@
                         ,DONGAB_DISKUSAGE_BIGO          = #{dongaBDiskUsageBigo}
                         ,DONGAB_EVENT_CHK               = #{dongaBEventChk}
                         ,DONGAB_EVENT_BIGO              = #{dongaBEventBigo}
-
+                        ,DONGAB_V3_CHK                  = #{dongaBV3Chk}
+                        ,DONGAB_V3_BIGO                 = #{dongaBV3Bigo}
+                        ,MIS_SERVICE_CHK                = #{misServiceChk}
+                        ,MIS_SERVICE_BIGO               = #{misServiceBigo}
+                        ,MIS_ORAUSAGE_CHK               = #{misOraUsageChk}
+                        ,MIS_ORAUSAGE_BIGO              = #{misOraUsageBigo}
+                        ,MIS_DISKUSAGE_CHK              = #{misDiskUsageChk}
+                        ,MIS_DISKUSAGE_BIGO             = #{misDiskUsageBigo}
+                        ,MIS_EVENT_CHK                  = #{misEventChk}
+                        ,MIS_EVENT_BIGO                 = #{misEventBigo}
+                        ,MIS_V3_CHK                     = #{misV3Chk}
+                        ,MIS_V3_BIGO                    = #{misV3Bigo}
            WHERE
 
                         ETC_MAIN_ID  = #{etcMainId}

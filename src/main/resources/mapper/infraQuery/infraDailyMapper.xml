@@ -53,6 +53,8 @@
                                 ,NWBLOCK1_DISKUSAGE_BIGO
                                 ,NWBLOCK1_EVENT_CHK
                                 ,NWBLOCK1_EVENT_BIGO
+                                ,NWBLOCK1_V3_CHK
+                                ,NWBLOCK1_V3_BIGO
                                 ,NWBLOCK2_CPUUSAGE_CHK
                                 ,NWBLOCK2_CPUUSAGE_BIGO
                                 ,NWBLOCK2_MEMUSAGE_CHK
@@ -61,6 +63,8 @@
                                 ,NWBLOCK2_DISKUSAGE_BIGO
                                 ,NWBLOCK2_EVENT_CHK
                                 ,NWBLOCK2_EVENT_BIGO
+                                ,NWBLOCK2_V3_CHK
+                                ,NWBLOCK2_V3_BIGO
                                 ,DDCBACKUP_CPUUSAGE_CHK
                                 ,DDCBACKUP_CPUUSAGE_BIGO
                                 ,DDCBACKUP_MEMUSAGE_CHK
@@ -69,6 +73,8 @@
                                 ,DDCBACKUP_DISKUSAGE_BIGO
                                 ,DDCBACKUP_EVENT_CHK
                                 ,DDCBACKUP_EVENT_BIGO
+                                ,DDCBACKUP_V3_CHK
+                                ,DDCBACKUP_V3_BIGO
                                 ,CHABACKUP_CPUUSAGE_CHK
                                 ,CHABACKUP_CPUUSAGE_BIGO
                                 ,CHABACKUP_MEMUSAGE_CHK
@@ -77,6 +83,8 @@
                                 ,CHABACKUP_DISKUSAGE_BIGO
                                 ,CHABACKUP_EVENT_CHK
                                 ,CHABACKUP_EVENT_BIGO
+                                ,CHABACKUP_V3_CHK
+                                ,CHABACKUP_V3_BIGO
                                 ,NEWFILE_CPUUSAGE_CHK
                                 ,NEWFILE_CPUUSAGE_BIGO
                                 ,NEWFILE_MEMUSAGE_CHK
@@ -85,6 +93,8 @@
                                 ,NEWFILE_DISKUSAGE_BIGO
                                 ,NEWFILE_EVENT_CHK
                                 ,NEWFILE_EVENT_BIGO
+                                ,NEWFILE_V3_CHK
+                                ,NEWFILE_V3_BIGO
                                 ,AD1_CPUUSAGE_CHK
                                 ,AD1_CPUUSAGE_BIGO
                                 ,AD1_MEMUSAGE_CHK
@@ -93,6 +103,8 @@
                                 ,AD1_DISKUSAGE_BIGO
                                 ,AD1_EVENT_CHK
                                 ,AD1_EVENT_BIGO
+                                ,AD1_V3_CHK
+                                ,AD1_V3_BIGO
                                 ,AD2_CPUUSAGE_CHK
                                 ,AD2_CPUUSAGE_BIGO
                                 ,AD2_MEMUSAGE_CHK
@@ -101,6 +113,8 @@
                                 ,AD2_DISKUSAGE_BIGO
                                 ,AD2_EVENT_CHK
                                 ,AD2_EVENT_BIGO
+                                ,AD2_V3_CHK
+                                ,AD2_V3_BIGO
 
                         ) VALUES (
 
@@ -114,6 +128,8 @@
                                 ,#{nwblock1DiskUsageBigo}
                                 ,#{nwblock1EventChk}
                                 ,#{nwblock1EventBigo}
+                                ,#{nwblock1V3Chk}
+                                ,#{nwblock1V3Bigo}
                                 ,#{nwblock2CpuUsageChk}
                                 ,#{nwblock2CpuUsageBigo}
                                 ,#{nwblock2MemUsageChk}
@@ -122,6 +138,8 @@
                                 ,#{nwblock2DiskUsageBigo}
                                 ,#{nwblock2EventChk}
                                 ,#{nwblock2EventBigo}
+                                ,#{nwblock2V3Chk}
+                                ,#{nwblock2V3Bigo}
                                 ,#{ddcBackUpCpuUsageChk}
                                 ,#{ddcBackUpCpuUsageBigo}
                                 ,#{ddcBackUpMemUsageChk}
@@ -130,6 +148,8 @@
                                 ,#{ddcBackUpDiskUsageBigo}
                                 ,#{ddcBackUpEventChk}
                                 ,#{ddcBackUpEventBigo}
+                                ,#{ddcBackUpV3Chk}
+                                ,#{ddcBackUpV3Bigo}
                                 ,#{chaBackUpCpuUsageChk}
                                 ,#{chaBackUpCpuUsageBigo}
                                 ,#{chaBackUpMemUsageChk}
@@ -138,6 +158,8 @@
                                 ,#{chaBackUpDiskUsageBigo}
                                 ,#{chaBackUpEventChk}
                                 ,#{chaBackUpEventBigo}
+                                ,#{chaBackUpV3Chk}
+                                ,#{chaBackUpV3Bigo}
                                 ,#{newFileCpuUsageChk}
                                 ,#{newFileCpuUsageBigo}
                                 ,#{newFileMemUsageChk}
@@ -146,6 +168,8 @@
                                 ,#{newFileDiskUsageBigo}
                                 ,#{newFileEventChk}
                                 ,#{newFileEventBigo}
+                                ,#{newFileV3Chk}
+                                ,#{newFileV3Bigo}
                                 ,#{ad1CpuUsageChk}
                                 ,#{ad1CpuUsageBigo}
                                 ,#{ad1MemUsageChk}
@@ -154,6 +178,8 @@
                                 ,#{ad1DiskUsageBigo}
                                 ,#{ad1EventChk}
                                 ,#{ad1EventBigo}
+                                ,#{ad1V3Chk}
+                                ,#{ad1V3Bigo}
                                 ,#{ad2CpuUsageChk}
                                 ,#{ad2CpuUsageBigo}
                                 ,#{ad2MemUsageChk}
@@ -162,6 +188,8 @@
                                 ,#{ad2DiskUsageBigo}
                                 ,#{ad2EventChk}
                                 ,#{ad2EventBigo}
+                                ,#{ad2V3Chk}
+                                ,#{ad2V3Bigo}
                         )
             </insert>
 
@@ -180,6 +208,8 @@
                                 ,ERPHVDC1_DISKUSAGE_BIGO
                                 ,ERPHVDC1_EVENT_CHK
                                 ,ERPHVDC1_EVENT_BIGO
+                                ,ERPHVDC1_V3_CHK
+                                ,ERPHVDC1_V3_BIGO
                                 ,ERPHVDC2_CPUUSAGE_CHK
                                 ,ERPHVDC2_CPUUSAGE_BIGO
                                 ,ERPHVDC2_MEMUSAGE_CHK
@@ -188,6 +218,9 @@
                                 ,ERPHVDC2_DISKUSAGE_BIGO
                                 ,ERPHVDC2_EVENT_CHK
                                 ,ERPHVDC2_EVENT_BIGO
+                                ,ERPHVDC2_V3_CHK
+                                ,ERPHVDC2_V3_BIGO
+
 
                         ) VALUES (
 
@@ -201,6 +234,8 @@
                                 ,#{erpHvdc1DiskUsageBigo}
                                 ,#{erpHvdc1EventChk}
                                 ,#{erpHvdc1EventBigo}
+                                ,#{erpHvdc1V3Chk}
+                                ,#{erpHvdc1V3Bigo}
                                 ,#{erpHvdc2CpuUsageChk}
                                 ,#{erpHvdc2CpuUsageBigo}
                                 ,#{erpHvdc2MemUsageChk}
@@ -209,6 +244,8 @@
                                 ,#{erpHvdc2DiskUsageBigo}
                                 ,#{erpHvdc2EventChk}
                                 ,#{erpHvdc2EventBigo}
+                                ,#{erpHvdc2V3Chk}
+                                ,#{erpHvdc2V3Bigo}
                 )
             </insert>
 
@@ -366,6 +403,8 @@
                                 ,NWBLOCK1_DISKUSAGE_BIGO        AS nwblock1DiskUsageBigo
                                 ,NWBLOCK1_EVENT_CHK             AS nwblock1EventChk
                                 ,NWBLOCK1_EVENT_BIGO            AS nwblock1EventBigo
+                                ,NWBLOCK1_V3_CHK                AS nwblock1V3Chk
+                                ,NWBLOCK1_V3_BIGO               AS nwblock1V3Bigo
                                 ,NWBLOCK2_CPUUSAGE_CHK          AS nwblock2CpuUsageChk
                                 ,NWBLOCK2_CPUUSAGE_BIGO         AS nwblock2CpuUsageBigo
                                 ,NWBLOCK2_MEMUSAGE_CHK          AS nwblock2MemUsageChk
@@ -374,6 +413,8 @@
                                 ,NWBLOCK2_DISKUSAGE_BIGO        AS nwblock2DiskUsageBigo
                                 ,NWBLOCK2_EVENT_CHK             AS nwblock2EventChk
                                 ,NWBLOCK2_EVENT_BIGO            AS nwblock2EventBigo
+                                ,NWBLOCK2_V3_CHK                AS nwblock2V3Chk
+                                ,NWBLOCK2_V3_BIGO               AS nwblock2V3Bigo
                                 ,DDCBACKUP_CPUUSAGE_CHK         AS ddcBackUpCpuUsageChk
                                 ,DDCBACKUP_CPUUSAGE_BIGO        AS ddcBackUpCpuUsageBigo
                                 ,DDCBACKUP_MEMUSAGE_CHK         AS ddcBackUpMemUsageChk
@@ -382,6 +423,8 @@
                                 ,DDCBACKUP_DISKUSAGE_BIGO       AS ddcBackUpDiskUsageBigo
                                 ,DDCBACKUP_EVENT_CHK            AS ddcBackUpEventChk
                                 ,DDCBACKUP_EVENT_BIGO           AS ddcBackUpEventBigo
+                                ,DDCBACKUP_V3_CHK               AS ddcBackUpV3Chk
+                                ,DDCBACKUP_V3_BIGO              AS ddcBackUpV3Bigo
                                 ,CHABACKUP_CPUUSAGE_CHK         AS chaBackUpCpuUsageChk
                                 ,CHABACKUP_CPUUSAGE_BIGO        AS chaBackUpCpuUsageBigo
                                 ,CHABACKUP_MEMUSAGE_CHK         AS chaBackUpMemUsageChk
@@ -390,6 +433,8 @@
                                 ,CHABACKUP_DISKUSAGE_BIGO       AS chaBackUpDiskUsageBigo
                                 ,CHABACKUP_EVENT_CHK            AS chaBackUpEventChk
                                 ,CHABACKUP_EVENT_BIGO           AS chaBackUpEventBigo
+                                ,CHABACKUP_V3_CHK               AS chaBackUpV3Chk
+                                ,CHABACKUP_V3_BIGO              AS chaBackUpV3Bigo
                                 ,NEWFILE_CPUUSAGE_CHK           AS newFileCpuUsageChk
                                 ,NEWFILE_CPUUSAGE_BIGO          AS newFileCpuUsageBigo
                                 ,NEWFILE_MEMUSAGE_CHK           AS newFileMemUsageChk
@@ -398,6 +443,8 @@
                                 ,NEWFILE_DISKUSAGE_BIGO         AS newFileDiskUsageBigo
                                 ,NEWFILE_EVENT_CHK              AS newFileEventChk
                                 ,NEWFILE_EVENT_BIGO             AS newFileEventBigo
+                                ,NEWFILE_V3_CHK                 AS newFileV3Chk
+                                ,NEWFILE_V3_BIGO                AS newFileV3Bigo
                                 ,AD1_CPUUSAGE_CHK               AS ad1CpuUsageChk
                                 ,AD1_CPUUSAGE_BIGO              AS ad1CpuUsageBigo
                                 ,AD1_MEMUSAGE_CHK               AS ad1MemUsageChk
@@ -406,6 +453,8 @@
                                 ,AD1_DISKUSAGE_BIGO             AS ad1DiskUsageBigo
                                 ,AD1_EVENT_CHK                  AS ad1EventChk
                                 ,AD1_EVENT_BIGO                 AS ad1EventBigo
+                                ,AD1_V3_CHK                     AS ad1V3Chk
+                                ,AD1_V3_BIGO                    AS ad1V3Bigo
                                 ,AD2_CPUUSAGE_CHK               AS ad2CpuUsageChk
                                 ,AD2_CPUUSAGE_BIGO              AS ad2CpuUsageBigo
                                 ,AD2_MEMUSAGE_CHK               AS ad2MemUsageChk
@@ -414,6 +463,8 @@
                                 ,AD2_DISKUSAGE_BIGO             AS ad2DiskUsageBigo
                                 ,AD2_EVENT_CHK                  AS ad2EventChk
                                 ,AD2_EVENT_BIGO                 AS ad2EventBigo
+                                ,AD2_V3_CHK                     AS ad2V3Chk
+                                ,AD2_V3_BIGO                    AS ad2V3Bigo
 
                         FROM
                                 INFRA_DAILY_SERVER
@@ -438,6 +489,8 @@
                                 ,ERPHVDC1_DISKUSAGE_BIGO        AS erpHvdc1DiskUsageBigo
                                 ,ERPHVDC1_EVENT_CHK             AS erpHvdc1EventChk
                                 ,ERPHVDC1_EVENT_BIGO            AS erpHvdc1EventBigo
+                                ,ERPHVDC1_V3_CHK                AS erpHvdc1V3Chk
+                                ,ERPHVDC1_V3_BIGO               AS erpHvdc1V3Bigo
                                 ,ERPHVDC2_CPUUSAGE_CHK          AS erpHvdc2CpuUsageChk
                                 ,ERPHVDC2_CPUUSAGE_BIGO         AS erpHvdc2CpuUsageBigo
                                 ,ERPHVDC2_MEMUSAGE_CHK          AS erpHvdc2MemUsageChk
@@ -446,6 +499,8 @@
                                 ,ERPHVDC2_DISKUSAGE_BIGO        AS erpHvdc2DiskUsageBigo
                                 ,ERPHVDC2_EVENT_CHK             AS erpHvdc2EventChk
                                 ,ERPHVDC2_EVENT_BIGO            AS erpHvdc2EventBigo
+                                ,ERPHVDC2_V3_CHK                AS erpHvdc2V3Chk
+                                ,ERPHVDC2_V3_BIGO               AS erpHvdc2V3Bigo
 
 
                         FROM
@@ -557,6 +612,8 @@
                         ,NWBLOCK1_DISKUSAGE_BIGO    = #{nwblock1DiskUsageBigo}
                         ,NWBLOCK1_EVENT_CHK         = #{nwblock1EventChk}
                         ,NWBLOCK1_EVENT_BIGO        = #{nwblock1EventBigo}
+                        ,NWBLOCK1_V3_CHK            = #{nwblock1V3Chk}
+                        ,NWBLOCK1_V3_BIGO           = #{nwblock1V3Bigo}
                         ,NWBLOCK2_CPUUSAGE_CHK      = #{nwblock2CpuUsageChk}
                         ,NWBLOCK2_CPUUSAGE_BIGO     = #{nwblock2CpuUsageBigo}
                         ,NWBLOCK2_MEMUSAGE_CHK      = #{nwblock2MemUsageChk}
@@ -565,6 +622,8 @@
                         ,NWBLOCK2_DISKUSAGE_BIGO    = #{nwblock2DiskUsageBigo}
                         ,NWBLOCK2_EVENT_CHK         = #{nwblock2EventChk}
                         ,NWBLOCK2_EVENT_BIGO        = #{nwblock2EventBigo}
+                        ,NWBLOCK2_V3_CHK            = #{nwblock2V3Chk}
+                        ,NWBLOCK2_V3_BIGO           = #{nwblock2V3Bigo}
                         ,DDCBACKUP_CPUUSAGE_CHK     = #{ddcBackUpCpuUsageChk}
                         ,DDCBACKUP_CPUUSAGE_BIGO    = #{ddcBackUpCpuUsageBigo}
                         ,DDCBACKUP_MEMUSAGE_CHK     = #{ddcBackUpMemUsageChk}
@@ -573,6 +632,8 @@
                         ,DDCBACKUP_DISKUSAGE_BIGO   = #{ddcBackUpDiskUsageBigo}
                         ,DDCBACKUP_EVENT_CHK        = #{ddcBackUpEventChk}
                         ,DDCBACKUP_EVENT_BIGO       = #{ddcBackUpEventBigo}
+                        ,DDCBACKUP_V3_CHK           = #{ddcBackUpV3Chk}
+                        ,DDCBACKUP_V3_BIGO          = #{ddcBackUpV3Bigo}
                         ,CHABACKUP_CPUUSAGE_CHK     = #{chaBackUpCpuUsageChk}
                         ,CHABACKUP_CPUUSAGE_BIGO    = #{chaBackUpCpuUsageBigo}
                         ,CHABACKUP_MEMUSAGE_CHK     = #{chaBackUpMemUsageChk}
@@ -581,6 +642,8 @@
                         ,CHABACKUP_DISKUSAGE_BIGO   = #{chaBackUpDiskUsageBigo}
                         ,CHABACKUP_EVENT_CHK        = #{chaBackUpEventChk}
                         ,CHABACKUP_EVENT_BIGO       = #{chaBackUpEventBigo}
+                        ,CHABACKUP_V3_CHK           = #{chaBackUpV3Chk}
+                        ,CHABACKUP_V3_BIGO          = #{chaBackUpV3Bigo}
                         ,NEWFILE_CPUUSAGE_CHK       = #{newFileCpuUsageChk}
                         ,NEWFILE_CPUUSAGE_BIGO      = #{newFileCpuUsageBigo}
                         ,NEWFILE_MEMUSAGE_CHK       = #{newFileMemUsageChk}
@@ -589,6 +652,8 @@
                         ,NEWFILE_DISKUSAGE_BIGO     = #{newFileDiskUsageBigo}
                         ,NEWFILE_EVENT_CHK          = #{newFileEventChk}
                         ,NEWFILE_EVENT_BIGO         = #{newFileEventBigo}
+                        ,NEWFILE_V3_CHK             = #{newFileV3Chk}
+                        ,NEWFILE_V3_BIGO            = #{newFileV3Bigo}
                         ,AD1_CPUUSAGE_CHK           = #{ad1CpuUsageChk}
                         ,AD1_CPUUSAGE_BIGO          = #{ad1CpuUsageBigo}
                         ,AD1_MEMUSAGE_CHK           = #{ad1MemUsageChk}
@@ -597,6 +662,8 @@
                         ,AD1_DISKUSAGE_BIGO         = #{ad1DiskUsageBigo}
                         ,AD1_EVENT_CHK              = #{ad1EventChk}
                         ,AD1_EVENT_BIGO             = #{ad1EventBigo}
+                        ,AD1_V3_CHK                 = #{ad1V3Chk}
+                        ,AD1_V3_BIGO                = #{ad1V3Bigo}
                         ,AD2_CPUUSAGE_CHK           = #{ad2CpuUsageChk}
                         ,AD2_CPUUSAGE_BIGO          = #{ad2CpuUsageBigo}
                         ,AD2_MEMUSAGE_CHK           = #{ad2MemUsageChk}
@@ -605,6 +672,8 @@
                         ,AD2_DISKUSAGE_BIGO         = #{ad2DiskUsageBigo}
                         ,AD2_EVENT_CHK              = #{ad2EventChk}
                         ,AD2_EVENT_BIGO             = #{ad2EventBigo}
+                        ,AD2_V3_CHK                 = #{ad2V3Chk}
+                        ,AD2_V3_BIGO                = #{ad2V3Bigo}
 
                 WHERE
 
@@ -629,6 +698,8 @@
                         ,ERPHVDC1_DISKUSAGE_BIGO        = #{erpHvdc1DiskUsageBigo}
                         ,ERPHVDC1_EVENT_CHK             = #{erpHvdc1EventChk}
                         ,ERPHVDC1_EVENT_BIGO            = #{erpHvdc1EventBigo}
+                        ,ERPHVDC1_V3_CHK                = #{erpHvdc1V3Chk}
+                        ,ERPHVDC1_V3_BIGO               = #{erpHvdc1V3Bigo}
                         ,ERPHVDC2_CPUUSAGE_CHK          = #{erpHvdc2CpuUsageChk}
                         ,ERPHVDC2_CPUUSAGE_BIGO         = #{erpHvdc2CpuUsageBigo}
                         ,ERPHVDC2_MEMUSAGE_CHK          = #{erpHvdc2MemUsageChk}
@@ -637,6 +708,8 @@
                         ,ERPHVDC2_DISKUSAGE_BIGO        = #{erpHvdc2DiskUsageBigo}
                         ,ERPHVDC2_EVENT_CHK             = #{erpHvdc2EventChk}
                         ,ERPHVDC2_EVENT_BIGO            = #{erpHvdc2EventBigo}
+                        ,ERPHVDC2_V3_CHK                = #{erpHvdc2V3Chk}
+                        ,ERPHVDC2_V3_BIGO               = #{erpHvdc2V3Bigo}
 
                 WHERE
 

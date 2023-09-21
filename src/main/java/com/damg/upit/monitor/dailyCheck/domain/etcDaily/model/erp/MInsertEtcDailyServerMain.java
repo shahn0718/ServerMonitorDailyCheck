@@ -275,20 +275,20 @@ public class MInsertEtcDailyServerMain {
      *             <td>MIS</td>
      *             <td>윈도우</td>
      *             <td>
-     *               <p>이벤트 로그</p>
-     *               <p>디스크 사용량</p>
-     *               <p>오라클 체크</p>
-     *               <p>서비스 체크</p>
-     *               <p>V3</p>
+     *              <p>서비스 체크</p>
+     *              <p>오라클 체크</p>
+     *              <p>디스크 사용량</p>
+     *              <p>이벤트 로그</p>
+     *              <p>V3</p>
      */
-    private String misEventChk;
-    private String misEventBigo;
-    private String misDiskUsageChk;
-    private String misDiskUsageBigo;
-    private String misOraUsageChk;
-    private String misOraUsageBigo;
     private String misServiceChk;
     private String misServiceBigo;
+    private String misOraUsageChk;
+    private String misOraUsageBigo;
+    private String misDiskUsageChk;
+    private String misDiskUsageBigo;
+    private String misEventChk;
+    private String misEventBigo;
     private String misV3Chk;
     private String misV3Bigo;
 }

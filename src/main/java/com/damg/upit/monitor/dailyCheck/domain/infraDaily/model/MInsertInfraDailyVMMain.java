@@ -20,6 +20,7 @@ public class MInsertInfraDailyVMMain {
      *               <p>메모리 사용량</p>
      *               <p>디스크 사용량</p>
      *               <p>이벤트 로그</p>
+     *               <p>V3</p>>
      */
 
     private String erpHvdc1CpuUsageChk;
@@ -30,6 +31,8 @@ public class MInsertInfraDailyVMMain {
     private String erpHvdc1DiskUsageBigo;
     private String erpHvdc1EventChk;
     private String erpHvdc1EventBigo;
+    private String erpHvdc1V3Chk;
+    private String erpHvdc1V3Bigo;
 
 
     /**
@@ -40,6 +43,7 @@ public class MInsertInfraDailyVMMain {
      *               <p>메모리 사용량</p>
      *               <p>디스크 사용량</p>
      *               <p>이벤트 로그</p>
+     *               <p>V3</p>
      */
 
     private String erpHvdc2CpuUsageChk;
@@ -50,5 +54,7 @@ public class MInsertInfraDailyVMMain {
     private String erpHvdc2DiskUsageBigo;
     private String erpHvdc2EventChk;
     private String erpHvdc2EventBigo;
+    private String erpHvdc2V3Chk;
+    private String erpHvdc2V3Bigo;
 
 }
