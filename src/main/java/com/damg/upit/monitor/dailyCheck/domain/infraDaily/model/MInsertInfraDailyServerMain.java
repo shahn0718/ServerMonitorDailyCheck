@@ -20,6 +20,7 @@ public class MInsertInfraDailyServerMain {
      *             <p>메모리 사용량</p>
      *             <p>디스크 사용량</p>
      *             <p>이벤트 로그</p>
+     *             <p>V3</p>
      */
 
     private String nwblock1CpuUsageChk;
@@ -30,6 +31,8 @@ public class MInsertInfraDailyServerMain {
     private String nwblock1DiskUsageBigo;
     private String nwblock1EventChk;
     private String nwblock1EventBigo;
+    private String nwblock1V3Chk;
+    private String nwblock1V3Bigo;
 
     /**
      *            <td>Nwblock-2</td>
@@ -39,6 +42,7 @@ public class MInsertInfraDailyServerMain {
      *               <p>메모리 사용량</p>
      *               <p>디스크 사용량</p>
      *               <p>이벤트 로그</p>
+     *               <p>V3</p>
      */
 
     private String nwblock2CpuUsageChk;
@@ -49,6 +53,8 @@ public class MInsertInfraDailyServerMain {
     private String nwblock2DiskUsageBigo;
     private String nwblock2EventChk;
     private String nwblock2EventBigo;
+    private String nwblock2V3Chk;
+    private String nwblock2V3Bigo;
 
     /**
      *             <td>DDC-Backup</td>
@@ -58,6 +64,7 @@ public class MInsertInfraDailyServerMain {
      *               <p>메모리 사용량</p>
      *               <p>디스크 사용량</p>
      *               <p>이벤트 로그</p>
+     *               <p>V3</p>
      *             </td>
      */
 
@@ -69,6 +76,9 @@ public class MInsertInfraDailyServerMain {
     private String ddcBackUpDiskUsageBigo;
     private String ddcBackUpEventChk;
     private String ddcBackUpEventBigo;
+    private String ddcBackUpV3Chk;
+    private String ddcBackUpV3Bigo;
+
 
     /**
      *             <td>CHA-Backup</td>
@@ -78,6 +88,7 @@ public class MInsertInfraDailyServerMain {
      *               <p>메모리 사용량</p>
      *               <p>디스크 사용량</p>
      *               <p>이벤트 로그</p>
+     *               <p>V3</p>
      */
 
     private String chaBackUpCpuUsageChk;
@@ -88,6 +99,8 @@ public class MInsertInfraDailyServerMain {
     private String chaBackUpDiskUsageBigo;
     private String chaBackUpEventChk;
     private String chaBackUpEventBigo;
+    private String chaBackUpV3Chk;
+    private String chaBackUpV3Bigo;
 
     /**
      *             <td>NewFile</td>
@@ -97,6 +110,7 @@ public class MInsertInfraDailyServerMain {
      *               <p>메모리 사용량</p>
      *               <p>디스크 사용량</p>
      *               <p>이벤트 로그</p>
+     *               <p>V3</p>
      *             </td>
      */
 
@@ -108,6 +122,8 @@ public class MInsertInfraDailyServerMain {
     private String newFileDiskUsageBigo;
     private String newFileEventChk;
     private String newFileEventBigo;
+    private String newFileV3Chk;
+    private String newFileV3Bigo;
 
     /**
      *             <td>AD-1</td>
@@ -117,6 +133,7 @@ public class MInsertInfraDailyServerMain {
      *               <p>메모리 사용량</p>
      *               <p>디스크 사용량</p>
      *               <p>이벤트 로그</p>
+     *               <p>V3</p>
      */
 
     private String ad1CpuUsageChk;
@@ -127,6 +144,8 @@ public class MInsertInfraDailyServerMain {
     private String ad1DiskUsageBigo;
     private String ad1EventChk;
     private String ad1EventBigo;
+    private String ad1V3Chk;
+    private String ad1V3Bigo;
 
     /**
      *             <td>AD-2</td>
@@ -136,6 +155,7 @@ public class MInsertInfraDailyServerMain {
      *               <p>메모리 사용량</p>
      *               <p>디스크 사용량</p>
      *               <p>이벤트 로그</p>
+     *               <p>V3</p>
      */
 
     private String ad2CpuUsageChk;
@@ -146,5 +166,7 @@ public class MInsertInfraDailyServerMain {
     private String ad2DiskUsageBigo;
     private String ad2EventChk;
     private String ad2EventBigo;
+    private String ad2V3Chk;
+    private String ad2V3Bigo;
 
 }

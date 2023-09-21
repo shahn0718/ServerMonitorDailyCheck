@@ -164,6 +164,7 @@
             <p>메모리 사용량</p>
             <p>디스크 사용량</p>
             <p>이벤트 로그</p>
+            <p>V3</p>
           </td>
           <td> 
             <p>
@@ -198,6 +199,14 @@
                      th:checked="${infraServer.nwblock1EventChk eq 'N'}" >
               무  
             </p>
+            <p>
+              <input class="form-check-input" type="radio" value="Y" name="nwblock1EventChk" id="nwblock1V3ChkY"
+                     th:checked="${infraServer.nwblock1V3Chk eq 'Y'}" >
+              유
+              <input class="form-check-input" type="radio" value="N" name="nwblock1EventChk" id="nwblock1V3ChkN"
+                     th:checked="${infraServer.nwblock1V3Chk eq 'N'}" >
+              무
+            </p>
           </td>
           <td>
             <input type="text" class="form-control" name="nwblock1CpuUsageBigo" id="nwblock1CpuUsageBigoInput"
@@ -208,6 +217,8 @@
                    th:value="${infraServer.nwblock1DiskUsageBigo}" >
             <input type="text" class="form-control" name="nwblock1EventBigo" id="nwblock1EventBigoInput"
                    th:value="${infraServer.nwblock1EventBigo}" >
+            <input type="text" class="form-control" name="nwblock1V3Bigo" id="nwblock1V3BigoInput"
+                   th:value="${infraServer.nwblock1V3Bigo}" >
           </td>
         </tr>
         <tr align="center" th:each="infraServer:${infraServer}">
@@ -218,6 +229,7 @@
               <p>메모리 사용량</p>
               <p>디스크 사용량</p>
               <p>이벤트 로그</p>
+              <p>V3</p>
             </td>
             <td> 
               <p>
@@ -252,6 +264,14 @@
                        th:checked="${infraServer.nwblock2EventChk eq 'N'}" >
                 무  
               </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="nwblock2V3Chk" id="nwblock2V3ChkY"
+                       th:checked="${infraServer.nwblock2V3Chk eq 'Y'}" >
+                유
+                <input class="form-check-input" type="radio" value="N" name="nwblock2V3Chk" id="nwblock2V3ChkN"
+                       th:checked="${infraServer.nwblock2V3Chk eq 'N'}" >
+                무
+              </p>
             </td>
             <td>
               <input type="text" class="form-control" name="nwblock2CpuUsageBigo" id="nwblock2CpuUsageBigoInput"
@@ -262,6 +282,8 @@
                      th:value="${infraServer.nwblock2DiskUsageBigo}" >
               <input type="text" class="form-control" name="nwblock2EventBigo" id="nwblock2EventBigoInput"
                      th:value="${infraServer.nwblock2EventBigo}" >
+              <input type="text" class="form-control" name="nwblock2V3Bigo" id="nwblock2V3BigoInput"
+                     th:value="${infraServer.nwblock2V3Bigo}" >
             </td>
           </tr>
           <tr align="center" th:each="infraServer:${infraServer}">
@@ -272,6 +294,7 @@
               <p>메모리 사용량</p>
               <p>디스크 사용량</p>
               <p>이벤트 로그</p>
+              <p>V3</p>
             </td>
             <td> 
               <p>
@@ -306,6 +329,14 @@
                        th:checked="${infraServer.ddcBackUpEventChk eq 'N'}" >
                 무  
               </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="ddcBackUpV3Chk" id="ddcBackUpV3ChkY"
+                       th:checked="${infraServer.ddcBackUpV3Chk eq 'Y'}" >
+                유
+                <input class="form-check-input" type="radio" value="N" name="ddcBackUpV3Chk" id="ddcBackUpV3ChkN"
+                       th:checked="${infraServer.ddcBackUpV3Chk eq 'N'}" >
+                무
+              </p>
             </td>
             <td>
               <input type="text" class="form-control" name="ddcBackUpCpuUsageBigo" id="ddcBackUpCpuUsageBigoInput"
@@ -316,6 +347,8 @@
                      th:value="${infraServer.ddcBackUpDiskUsageBigo}" >
               <input type="text" class="form-control" name="ddcBackUpEventBigo" id="ddcBackUpEventBigoInput"
                      th:value="${infraServer.ddcBackUpEventBigo}" >
+              <input type="text" class="form-control" name="ddcBackUpV3Bigo" id="ddcBackUpV3BigoInput"
+                     th:value="${infraServer.ddcBackUpV3Bigo}" readonly>
             </td>
           </tr>
           <tr align="center" th:each="infraServer:${infraServer}">
@@ -326,6 +359,7 @@
               <p>메모리 사용량</p>
               <p>디스크 사용량</p>
               <p>이벤트 로그</p>
+              <p>V3</p>
             </td>
             <td> 
               <p>
@@ -360,6 +394,14 @@
                        th:checked="${infraServer.chaBackUpEventChk eq 'N'}" >
                 무  
               </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="chaBackUpV3Chk" id="chaBackUpV3ChkY"
+                       th:checked="${infraServer.chaBackUpV3Chk eq 'Y'}" >
+                유
+                <input class="form-check-input" type="radio" value="N" name="chaBackUpV3Chk" id="chaBackUpV3ChkN"
+                       th:checked="${infraServer.chaBackUpV3Chk eq 'N'}" >
+                무
+              </p>
             </td>
             <td>
               <input type="text" class="form-control" name="chaBackUpCpuUsageBigo" id="chaBackUpCpuUsageBigoInput"
@@ -370,6 +412,8 @@
                      th:value="${infraServer.chaBackUpDiskUsageBigo}" >
               <input type="text" class="form-control" name="chaBackUpEventBigo" id="chaBackUpEventBigoInput"
                      th:value="${infraServer.chaBackUpEventBigo}" >
+              <input type="text" class="form-control" name="chaBackUpV3Bigo" id="chaBackUpV3BigoInput"
+                     th:value="${infraServer.chaBackUpV3Bigo}" >
             </td>
           </tr>
           <tr align="center" th:each="infraServer:${infraServer}">
@@ -380,6 +424,7 @@
               <p>메모리 사용량</p>
               <p>디스크 사용량</p>
               <p>이벤트 로그</p>
+              <p>V3</p>
             </td>
             <td> 
               <p>
@@ -414,6 +459,14 @@
                        th:checked="${infraServer.newFileEventChk eq 'N'}" >
                 무  
               </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="newFileV3Chk" id="newFileV3ChkY"
+                       th:checked="${infraServer.newFileV3Chk eq 'Y'}" >
+                유
+                <input class="form-check-input" type="radio" value="N" name="newFileV3Chk" id="newFileV3ChkN"
+                       th:checked="${infraServer.newFileV3Chk eq 'N'}" >
+                무
+              </p>
             </td>
             <td>
               <input type="text" class="form-control" name="newFileCpuUsageBigo" id="newFileCpuUsageBigoInput"
@@ -424,6 +477,8 @@
                      th:value="${infraServer.newFileDiskUsageBigo}" >
               <input type="text" class="form-control" name="newFileEventBigo" id="newFileEventBigoInput"
                      th:value="${infraServer.newFileEventBigo}" >
+              <input type="text" class="form-control" name="newFileEventBigo" id="newFileV3BigoInput"
+                     th:value="${infraServer.newFileV3Bigo}" >
             </td>
           </tr>
           <tr align="center" th:each="infraServer:${infraServer}">
@@ -434,6 +489,7 @@
               <p>메모리 사용량</p>
               <p>디스크 사용량</p>
               <p>이벤트 로그</p>
+              <p>V3</p>
             </td>
             <td> 
               <p>
@@ -468,6 +524,14 @@
                        th:checked="${infraServer.ad1EventChk eq 'N'}" >
                 무  
               </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="ad1V3Chk" id="ad1V3ChkY"
+                       th:checked="${infraServer.ad1V3Chk eq 'Y'}" >
+                유
+                <input class="form-check-input" type="radio" value="N" name="ad1V3Chk" id="ad1V3ChkN"
+                       th:checked="${infraServer.ad1V3Chk eq 'N'}" >
+                무
+              </p>
             </td>
             <td>
               <input type="text" class="form-control" name="ad1CpuUsageBigo" id="ad1CpuUsageBigoInput"
@@ -478,6 +542,8 @@
                      th:value="${infraServer.ad1DiskUsageBigo}" >
               <input type="text" class="form-control" name="ad1EventBigo" id="ad1EventBigoInput"
                      th:value="${infraServer.ad1EventBigo}" >
+              <input type="text" class="form-control" name="ad1V3Bigo" id="ad1V3BigoInput"
+                     th:value="${infraServer.ad1V3Bigo}" >
             </td>
           </tr>
           <tr align="center" th:each="infraServer:${infraServer}">
@@ -488,6 +554,7 @@
               <p>메모리 사용량</p>
               <p>디스크 사용량</p>
               <p>이벤트 로그</p>
+              <p>V3</p>
             </td>
             <td> 
               <p>
@@ -522,6 +589,15 @@
                        th:checked="${infraServer.ad2EventChk eq 'N'}" >
                 무  
               </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="ad2V3Chk" id="ad2V3ChkY"
+                       th:checked="${infraServer.ad2V3Chk eq 'Y'}" >
+                유
+                <input class="form-check-input" type="radio" value="N" name="ad2V3Chk" id="ad2V3ChkN"
+                       th:checked="${infraServer.ad2V3Chk eq 'N'}" >
+                무
+              </p>
+
             </td>
             <td>
               <input type="text" class="form-control" name="ad2CpuUsageBigo" id="ad2CpuUsageBigoInput"
@@ -532,6 +608,8 @@
                      th:value="${infraServer.ad2DiskUsageBigo}" >
               <input type="text" class="form-control" name="ad2EventBigo" id="ad2EventBigoInput"
                      th:value="${infraServer.ad2EventBigo}" >
+              <input type="text" class="form-control" name="ad2V3Bigo" id="ad2V3BigoInput"
+                     th:value="${infraServer.ad2V3Bigo}" >
             </td>
           </tr>
         <tr align="center" th:each="infraVM:${infraVM}">
@@ -543,6 +621,7 @@
               <p>메모리 사용량</p>
               <p>디스크 사용량</p>
               <p>이벤트 로그</p>
+              <p>V3</p>
             </td>
             <td> 
               <p>
@@ -577,6 +656,14 @@
                        th:checked="${infraVM.erpHvdc1EventChk eq 'N'}" >
                 무  
               </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="erpHvdc1V3Chk" id="erpHvdc1V3ChkY"
+                       th:checked="${infraVM.erpHvdc1V3Chk eq 'Y'}" >
+                유
+                <input class="form-check-input" type="radio" value="N" name="erpHvdc1V3Chk" id="erpHvdc1V3ChkN"
+                       th:checked="${infraVM.erpHvdc1V3Chk eq 'N'}" >
+                무
+              </p>
             </td>
             <td>
               <input type="text" class="form-control" name="erpHvdc1CpuUsageBigo" id="erpHvdc1CpuUsageBigoInput"
@@ -587,6 +674,8 @@
                      th:value="${infraVM.erpHvdc1DiskUsageBigo}" >
               <input type="text" class="form-control" name="erpHvdc1EventBigo" id="erpHvdc1EventBigoInput"
                      th:value="${infraVM.erpHvdc1EventBigo}" >
+              <input type="text" class="form-control" name="erpHvdc1V3Bigo" id="erpHvdc1V3BigoInput"
+                     th:value="${infraVM.erpHvdc1V3Bigo}">
             </td>
           </tr>
           <tr align="center" th:each="infraVM : ${infraVM}">
@@ -597,6 +686,7 @@
               <p>메모리 사용량</p>
               <p>디스크 사용량</p>
               <p>이벤트 로그</p>
+              <p>V3</p>
             </td>
             <td> 
               <p>
@@ -631,6 +721,14 @@
                        th:checked="${infraVM.erpHvdc2EventChk eq 'N'}" >
                 무  
               </p>
+              <p>
+                <input class="form-check-input" type="radio" value="Y" name="erpHvdc2V3Chk" id="erpHvdc2V3ChkY"
+                       th:checked="${infraVM.erpHvdc2V3Chk eq 'Y'}" >
+                유
+                <input class="form-check-input" type="radio" value="N" name="erpHvdc2V3Chk" id="erpHvdc2V3ChkN"
+                       th:checked="${infraVM.erpHvdc2V3Chk eq 'N'}" >
+                무
+              </p>
             </td>
             <td>
               <input type="text" class="form-control" name="erpHvdc2CpuUsageBigo" id="erpHvdc2CpuUsageBigoInput"
@@ -641,6 +739,8 @@
                      th:value="${infraVM.erpHvdc2DiskUsageBigo}" >
               <input type="text" class="form-control" name="erpHvdc2EventBigo" id="erpHvdc2EventBigoInput"
                      th:value="${infraVM.erpHvdc2EventBigo}" >
+              <input type="text" class="form-control" name="erpHvdc2EventBigo" id="erpHvdc2V3BigoInput"
+                     th:value="${infraVM.erpHvdc2V3Bigo}" >
             </td>
           </tr>
           <tr align="center" th:each="infraEtc :${infraEtc}">
