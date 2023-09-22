@@ -51,4 +51,8 @@ public class mainDailyService {
         dailyRepository.updateDailyCheckBoard(mainBoardModDate,mainBoardId);
     }
 
+    public void delteDailyCheckBoard(Long dailyMainId, String dailyMainCd){
+        dailyRepository.deleteDailyCheckBoard(dailyMainId,dailyMainCd);
+    }
+
 }

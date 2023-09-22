@@ -45,4 +45,10 @@ public class mainDailyRepositoryImpl implements mainDailyRepository {
     public void updateDailyCheckBoard(LocalDateTime mainBoardModDate, Long mainBoardId) {
         dailyMapper.updateDailyCheckBoard(mainBoardModDate,mainBoardId);
     }
+
+    @Override
+    public void deleteDailyCheckBoard(Long dailyMainId, String dailyMainCd) {
+        dailyMapper.deleteDailyCheckBoard(dailyMainId, dailyMainCd);
+    }
+
 }

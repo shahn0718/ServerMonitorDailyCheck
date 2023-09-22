@@ -26,5 +26,6 @@ public interface mainDailyRepository {
     MSVDailyCheckAdminMain selectDailyCheckAdmin(String admin_nm);
     void insertDailyCheckBoardList(MSVDailyCheckBoardMain msvDailyCheckBoardMain);
     void updateDailyCheckBoard(LocalDateTime mainBoardModDate, Long mainBoardId);
+    void deleteDailyCheckBoard(Long dailyMainId, String dailyMainCd);
 
 }

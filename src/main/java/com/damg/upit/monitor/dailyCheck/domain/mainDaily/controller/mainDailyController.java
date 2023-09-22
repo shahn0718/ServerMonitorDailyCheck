@@ -60,5 +60,21 @@ public class mainDailyController {
 
         return "mainBoard";
     }
+
+    @GetMapping("/delete")
+    public String homeMainDailyBoardDeleteData(Model model, MSVDailyCheckBoardMain msvDailyCheckBoardMain,
+                                               MDailyBoardPagingMain mDailyBoardPagingMain){
+
+
+            //여기에서 또 한번 보내야된다.
+        /**
+         * <input type="hidden" name="dailyMainCd" th:value="${list.dailyMainCd}">
+         *
+         */
+
+
+
+        return "mainBoard";
+    }
 }
 

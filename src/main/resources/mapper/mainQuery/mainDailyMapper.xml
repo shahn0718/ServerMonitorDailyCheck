@@ -126,5 +126,19 @@
                     DAILY_MAIN_BOARDID = #{mainBoardId}
     </update>
 
+    <delete id="deleteDailyCheckBoard" parameterType="Long">
+
+        /* deleteDailyCheckBoard */
+
+        DELETE
+                *
+        FROM
+                MAIN_DAILY_BOARD
+        WHERE
+                DAILY_MAIN_BOARDID  = #{dailyMainId}
+        AND
+                DAILY_MAIN_CD       = #{dailyMainCd}
+    </delete>
+
 
 </mapper>
