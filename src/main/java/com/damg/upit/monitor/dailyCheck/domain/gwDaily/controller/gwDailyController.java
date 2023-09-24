@@ -95,6 +95,24 @@ public class gwDailyController {
 
         return "gwServer/dailyChkGenieusOutput";
     }
+
+    @GetMapping ("/GW/delete/{boardId}")
+    public String getDeleteGwDailyCheck(@PathVariable("boardId")Long mainBoardId,
+                                        Model model){
+
+        System.out.println(" = llllllllllllllllllllllllllllllllll" );
+        System.out.println("mainBoardId = " + mainBoardId);
+
+        /**
+         *
+         * delete 관련 Mapper 및 등등 만들어서 적용해보기
+         * 20230924
+         */
+
+        return "redirect:/";
+    }
+
+
     @GetMapping("/GW/{boardId}/Update")
     public String getUpdateGwDailyCheck(@PathVariable("boardId")Long gwMainId, Model model){
 

@@ -6,9 +6,11 @@ import com.damg.upit.monitor.dailyCheck.domain.mainDaily.service.mainDailyServic
 import com.damg.upit.monitor.dailyCheck.domain.mainPaging.model.MDailyBoardPaginationMain;
 import com.damg.upit.monitor.dailyCheck.domain.mainPaging.model.MDailyBoardPagingMain;
 import com.damg.upit.monitor.dailyCheck.domain.mainPaging.service.mainPagingService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -57,22 +59,6 @@ public class mainDailyController {
 
         log.info("method=homeMainDailyBoardGetPage(), mainDailyBoardList={}", mainDailyBoardListWithPaging);
         log.info("method=homeMainDailyBoardGetPage(), pageMaker={}", mDailyBoardPaginationMain);
-
-        return "mainBoard";
-    }
-
-    @GetMapping("/delete")
-    public String homeMainDailyBoardDeleteData(Model model, MSVDailyCheckBoardMain msvDailyCheckBoardMain,
-                                               MDailyBoardPagingMain mDailyBoardPagingMain){
-
-
-            //여기에서 또 한번 보내야된다.
-        /**
-         * <input type="hidden" name="dailyMainCd" th:value="${list.dailyMainCd}">
-         *
-         */
-
-
 
         return "mainBoard";
     }
