@@ -62,7 +62,7 @@ public class gwDailyService {
     }
 
     @Transactional(rollbackFor=Exception.class)
-    public void updateErpDailyCheckMain(Long mainBoardId,
+    public void updateGwDailyCheckMain(Long mainBoardId,
                                         MInsertGwDailyServiceMain mInsertGwDailyServiceMain,
                                         MInsertGwDailyServerMain mInsertGwDailyServerMain,
                                         MInsertGwDailyStorageMain mInsertGwDailyStorageMain){
@@ -77,5 +77,15 @@ public class gwDailyService {
         gwRepository.updateGwDailyServerMain(mInsertGwDailyServerMain);
         gwRepository.updateGwDailyStorageMain(mInsertGwDailyStorageMain);
 
+    }
+
+    @Transactional(rollbackFor=Exception.class)
+    public void deletGwDailyCheckMain(Long mainBoardId){
+
+        mainRepository.deleteDailyCheckBoard(mainBoardId);
+
+        gwRepository.deleteGwDailyServerMain(mainBoardId);
+        gwRepository.deleteGwDailyServiceMain(mainBoardId);
+        gwRepository.deleteGwDailyStorageMain(mainBoardId);
     }
 }

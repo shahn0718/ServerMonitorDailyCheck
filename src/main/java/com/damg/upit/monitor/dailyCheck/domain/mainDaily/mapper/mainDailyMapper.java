@@ -35,4 +35,5 @@ public interface mainDailyMapper {
      void updateDailyCheckBoard(@Param("dailyMainModDate")LocalDateTime mainBoardModDate,
                                 @Param("mainBoardId")Long dailyBoardId);
 
+     void deleteDailyCheckBoard(@Param("boardId")Long boardId);
 }

@@ -526,4 +526,32 @@
         WHERE
                     GW_MAIN_ID = #{gwMainId}
     </update>
+
+    <delete id="deleteGwDailyServerMain" parameterType="long">
+
+        /* deleteGwDailyServerMain */
+        DELETE
+        FROM
+                GW_DAILY_SERVER
+        WHERE
+                GW_MAIN_ID = #{boardId}
+    </delete>
+    <delete id="deleteGwDailyServiceMain" parameterType="long">
+
+        /* deleteGwDailyServerMain */
+        DELETE
+        FROM
+                GW_DAILY_SERVICE
+        WHERE
+                GW_MAIN_ID = #{boardId}
+    </delete>
+    <delete id="deleteGwDailyStorageMain" parameterType="long">
+
+        /* deleteGwDailyServerMain */
+        DELETE
+        FROM
+                GW_DAILY_STORAGE
+        WHERE
+                GW_MAIN_ID = #{boardId}
+    </delete>
 </mapper>

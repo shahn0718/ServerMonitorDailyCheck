@@ -6,9 +6,11 @@ import com.damg.upit.monitor.dailyCheck.domain.mainDaily.service.mainDailyServic
 import com.damg.upit.monitor.dailyCheck.domain.mainPaging.model.MDailyBoardPaginationMain;
 import com.damg.upit.monitor.dailyCheck.domain.mainPaging.model.MDailyBoardPagingMain;
 import com.damg.upit.monitor.dailyCheck.domain.mainPaging.service.mainPagingService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +32,8 @@ public class mainDailyController {
     public String homeMainDailyBoard(MDailyBoardPagingMain mDailyBoardPagingMain,
                                      Model model) {
 
+
+        mDailyBoardPagingMain.setPageNum(1);
         List<MSVDailyCheckBoardMain> mainDailyBoardList = pagingService.getPageList(mDailyBoardPagingMain);
         model.addAttribute("mainDailyBoardList", mainDailyBoardList);
 

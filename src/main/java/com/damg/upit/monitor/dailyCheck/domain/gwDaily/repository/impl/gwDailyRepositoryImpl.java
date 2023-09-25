@@ -56,4 +56,20 @@ public class gwDailyRepositoryImpl implements gwDailyRepository {
     public void updateGwDailyStorageMain(MInsertGwDailyStorageMain mInsertGwDailyStorageMain) {
         gwDailyMapper.updateGwDailyStorageMain(mInsertGwDailyStorageMain);
     }
+
+    @Override
+    public void deleteGwDailyServerMain(Long boardId) {
+        gwDailyMapper.deleteGwDailyServerMain(boardId);
+    }
+
+    @Override
+    public void deleteGwDailyServiceMain(Long boardId) {
+        gwDailyMapper.deleteGwDailyServiceMain(boardId);
+    }
+
+    @Override
+    public void deleteGwDailyStorageMain(Long boardId) {
+        gwDailyMapper.deleteGwDailyStorageMain(boardId);
+    }
+
 }

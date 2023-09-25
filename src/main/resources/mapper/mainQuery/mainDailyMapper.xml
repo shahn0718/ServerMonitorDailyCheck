@@ -126,5 +126,16 @@
                     DAILY_MAIN_BOARDID = #{mainBoardId}
     </update>
 
+    <delete id="deleteDailyCheckBoard" parameterType="Long">
+
+        /* deleteDailyCheckBoard */
+
+        DELETE
+        FROM
+                MAIN_DAILY_BOARD
+        WHERE
+                DAILY_MAIN_BOARDID  = #{boardId}
+    </delete>
+
 
 </mapper>

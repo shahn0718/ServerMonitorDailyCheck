@@ -20,7 +20,8 @@ public interface gwDailyMapper {
     void updateGwDailyServerMain(MInsertGwDailyServerMain mInsertGwDailyServerMain);
     void updateGwDailyServiceMain(MInsertGwDailyServiceMain mInsertGwDailyServiceMain);
     void updateGwDailyStorageMain(MInsertGwDailyStorageMain mInsertGwDailyStorageMain);
-
-
+    void deleteGwDailyServerMain(@Param("boardId")Long boardId);
+    void deleteGwDailyServiceMain(@Param("boardId")Long boardId);
+    void deleteGwDailyStorageMain(@Param("boardId")Long boardId);
 
 }
