@@ -48,4 +48,15 @@ public class etcDailyRepositoryImpl implements etcDailyRepository {
     public void updateEtcDailyServerMain(MInsertEtcDailyServerMain mInsertEtcDailyServerMain) {
         etcDailyMapper.updateEtcDailyServerMain(mInsertEtcDailyServerMain);
     }
+
+    @Override
+    public void deleteEtcDailyServiceMain(Long boardId) {
+
+    }
+
+    @Override
+    public void deleteEtcDailyServerMain(Long boardId) {
+
+    }
+
 }

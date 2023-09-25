@@ -1179,4 +1179,41 @@
         WHERE
                 ERP_MAIN_ID     = #{erpMainId}
     </update>
+
+    <delete id="deleteErpDailyServiceMain" parameterType="long">
+
+        DELETE
+        FROM
+                ERP_DAILY_SERVICE
+        WHERE
+                ERP_MAIN_ID      = #{boardId}
+
+    </delete>
+    <delete id="deleteErpDailyServerMain" parameterType="long">
+
+        DELETE
+        FROM
+                ERP_DAILY_SERVER
+        WHERE
+                ERP_MAIN_ID      = #{boardId}
+
+    </delete>
+    <delete id="deleteErpDailyVMMain" parameterType="long">
+
+        DELETE
+        FROM
+                ERP_DAILY_VM
+        WHERE
+                ERP_MAIN_ID      = #{boardId}
+
+    </delete>
+    <delete id="deleteErpDailyStorageMain" parameterType="long">
+
+        DELETE
+        FROM
+                ERP_DAILY_STORAGE
+        WHERE
+                ERP_MAIN_ID      = #{boardId}
+
+    </delete>
 </mapper>

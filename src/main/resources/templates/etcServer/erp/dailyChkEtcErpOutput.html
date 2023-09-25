@@ -32,8 +32,10 @@
     </div>
   </div>
 
-  <div class="form-row float-end">
-    <button type="button" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" th:each="mainBoard : ${mainBoardInfo}"
+  <div class="form-row float-end" th:each="mainBoard : ${mainBoardInfo}">
+    <button type="button" class="mb-3 btn btn-outline-danger"
+            th:onclick="|location.href='@{/ERP_ETC/delete/{boardId} (boardId=${mainBoard.dailyMainBoardId})}'|">삭제</button>
+    <button type="button" class="btn mb-3" style="background-color:#81BEF7; color: #fff;"
             th:onclick="|location.href='@{/{category}/{boardId}/Update (category=${mainBoard.dailyMainCd}, boardId=${mainBoard.dailyMainBoardId})}'|">수정</button>
     <button type="button" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" th:onclick="|location.href='@{/}'|">뒤로가기</button>
   </div>

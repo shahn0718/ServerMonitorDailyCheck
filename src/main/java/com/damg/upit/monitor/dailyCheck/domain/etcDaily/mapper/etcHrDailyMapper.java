@@ -19,4 +19,7 @@ public interface etcHrDailyMapper {
 
     void updateEtcHrDailyServiceMain(MInsertEtcHrDailyServiceMain mInsertEtcHrDailyServiceMain);
     void updateEtcHrDailyServerMain(MInsertEtcHrDailyServerMain mInsertEtcHrDailyServerMain);
+
+    void deleteEtcHrDailyServiceMain(@Param("boardId")Long boardId);
+    void deleteEtcHrDailyServerMain(@Param("boardId")Long boardId);
 }

@@ -634,4 +634,26 @@
 
                         ETC_MAIN_ID  = #{etcMainId}
         </update>
+
+        <delete id="deleteEtcDailyServiceMain" parameterType="long">
+
+           DELETE
+           FROM
+                    ETC_DAILY_SERVICE
+
+           WHERE
+
+                    ETC_MAIN_ID     = #{boardId}
+        </delete>
+
+        <delete id="deleteEtcDailyServerMain" parameterType="long">
+
+            DELETE
+            FROM
+                    ETC_DAILY_SERVER
+
+            WHERE
+
+                    ETC_MAIN_ID     = #{boardId}
+        </delete>
 </mapper>

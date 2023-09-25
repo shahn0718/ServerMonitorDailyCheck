@@ -123,4 +123,14 @@ public class erpDailyController {
 
         return "redirect:/";
     }
+
+    @GetMapping ("/ERP/delete/{boardId}")
+    public String doDeleteErpDailyCheck(@PathVariable("boardId")Long boardId, Model model){
+
+        log.info("method=doDeleteErpDailyCheck() boardId={}",boardId);
+        mainService.deleteDailyCheckBoard(boardId);
+        erpService.deleteErpDailyCheckMain(boardId);
+
+        return "redirect:/";
+    }
 }

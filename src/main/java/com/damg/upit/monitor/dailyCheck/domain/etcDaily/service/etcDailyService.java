@@ -60,5 +60,13 @@ public class etcDailyService {
         etcRepository.updateEtcDailyServiceMain(mInsertEtcDailyServiceMain);
         etcRepository.updateEtcDailyServerMain(mInsertEtcDailyServerMain);
     }
+    @Transactional(rollbackFor=Exception.class)
+    public void deleteEtcDailyCheckMain(Long boardId){
+
+        mainRepository.deleteDailyCheckBoard(boardId);
+
+        etcRepository.deleteEtcDailyServerMain(boardId);
+        etcRepository.deleteEtcDailyServerMain(boardId);
+    }
 
 }

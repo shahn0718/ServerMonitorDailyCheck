@@ -72,7 +72,30 @@ public interface erpDailyRepository {
      * @param mInsertErpDailyStorageMain
      */
     void updateErpDailyStorageMain(MInsertErpDailyStorageMain mInsertErpDailyStorageMain);
-    
+
+    /**
+     * DELETE ERP 일일점검 (서비스)
+     * @param boardId
+     */
+    void deleteErpDailyServiceMain(Long boardId);
+
+    /**
+     * DELETE ERP 일일점검 (서버)
+     * @param boardId
+     */
+    void deleteErpDailyServerMain(Long boardId);
+
+    /**
+     * DELETE ERP 일일점검 (VM)
+     * @param boardId
+     */
+    void deleteErpDailyVMMain(Long boardId);
+
+    /**
+     * DELETE ERP 일일점검 (스토리지)
+     * @param boardId
+     */
+    void deleteErpDailyStorageMain(Long boardId);
     
     
 }

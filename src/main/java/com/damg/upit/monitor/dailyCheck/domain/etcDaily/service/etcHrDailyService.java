@@ -63,23 +63,8 @@ public class etcHrDailyService {
         ehrRepository.updateEtcHrDailyServerMain(mInsertEtcHrDailyServerMain);
     }
 
+    @Transactional(rollbackFor=Exception.class)
+    public void deleteEtcHrDailyCheckMain(Long mainBoardId){
 
-
-
-
-
-    public void insertEtcHrDailyServiceMain(MInsertEtcHrDailyServiceMain mInsertEtcHrDailyServiceMain){
-        ehrRepository.insertEtcHrDailyServiceMain(mInsertEtcHrDailyServiceMain);
     }
-    public void insertEtcHrDailyServerMain(MInsertEtcHrDailyServerMain mInsertEtcHrDailyServerMain){
-        ehrRepository.insertEtcHrDailyServerMain(mInsertEtcHrDailyServerMain);
-    }
-
-    public void updateEtcHrDailyServiceMain(MInsertEtcHrDailyServiceMain mInsertEtcHrDailyServiceMain){
-        ehrRepository.updateEtcHrDailyServiceMain(mInsertEtcHrDailyServiceMain);
-    }
-    public void updateEtcHrDailyServerMain(MInsertEtcHrDailyServerMain mInsertEtcHrDailyServerMain){
-        ehrRepository.updateEtcHrDailyServerMain(mInsertEtcHrDailyServerMain);
-    }
-
 }

@@ -17,5 +17,7 @@ public interface etcDailyMapper {
     List<MInsertEtcDailyServerMain> selectEtcDailyServerMain(@Param("etcMainId") Long etcMainId);
     void updateEtcDailyServiceMain(MInsertEtcDailyServiceMain mInsertEtcDailyServiceMain);
     void updateEtcDailyServerMain(MInsertEtcDailyServerMain mInsertEtcDailyServerMain);
+    void deleteEtcDailyServiceMain(@Param("boardId") Long boardId);
+    void deleteEtcDailyServerMain(@Param("boardId")Long boardId);
 
 }

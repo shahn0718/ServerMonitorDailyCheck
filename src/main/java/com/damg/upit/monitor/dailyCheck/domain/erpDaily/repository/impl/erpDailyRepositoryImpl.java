@@ -79,4 +79,26 @@ public class erpDailyRepositoryImpl implements erpDailyRepository {
     public void updateErpDailyStorageMain(MInsertErpDailyStorageMain mInsertErpDailyStorageMain) {
         erpDailyMapper.updateErpDailyStorageMain(mInsertErpDailyStorageMain);
     }
+
+    @Override
+    public void deleteErpDailyServiceMain(Long boardId) {
+        erpDailyMapper.deleteErpDailyServiceMain(boardId);
+    }
+
+    @Override
+    public void deleteErpDailyServerMain(Long boardId) {
+        erpDailyMapper.deleteErpDailyServerMain(boardId);
+    }
+
+    @Override
+    public void deleteErpDailyVMMain(Long boardId) {
+        erpDailyMapper.deleteErpDailyVMMain(boardId);
+    }
+
+    @Override
+    public void deleteErpDailyStorageMain(Long boardId) {
+        erpDailyMapper.deleteErpDailyStorageMain(boardId);
+    }
+
+
 }

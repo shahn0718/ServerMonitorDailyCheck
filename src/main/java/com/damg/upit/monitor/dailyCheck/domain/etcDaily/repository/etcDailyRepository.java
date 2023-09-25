@@ -40,4 +40,16 @@ public interface etcDailyRepository {
      * @param mInsertEtcDailyServerMain
      */
     void updateEtcDailyServerMain(MInsertEtcDailyServerMain mInsertEtcDailyServerMain);
+
+    /**
+     * DELETE 동아 외 ERP 일일점검(서비스)
+     * @param boardId
+     */
+    void deleteEtcDailyServiceMain(Long boardId);
+
+    /**
+     * DELETE 동아 외 ERP 일일점검(서버)
+     * @param boardId
+     */
+    void deleteEtcDailyServerMain(Long boardId);
 }
