@@ -105,4 +105,14 @@ public class etcDailyController {
 
         return "redirect:/";
     }
+
+    @GetMapping ("/ERP_ETC/delete/{boardId}")
+    public String doDeleteEtcDailyCheck(@PathVariable("boardId")Long boardId, Model model){
+
+        log.info("method=doDeleteGwDailyCheck() boardId={}",boardId);
+        mainService.deleteDailyCheckBoard(boardId);
+        etcService.deleteEtcDailyCheckMain(boardId);
+
+        return "redirect:/";
+    }
 }

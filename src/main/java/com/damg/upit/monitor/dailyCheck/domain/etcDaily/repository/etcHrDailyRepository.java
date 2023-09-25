@@ -41,4 +41,15 @@ public interface etcHrDailyRepository {
      */
     void updateEtcHrDailyServerMain(MInsertEtcHrDailyServerMain mInsertEtcHRDailyServerMain);
 
+    /**
+     * DELETE 동아 외 EHR 일일점검(서비스)
+     * @param boardId
+     */
+    void deleteEtcHrDailyServiceMain(Long boardId);
+
+    /**
+     * DELETE 동아 외 EHR 일일점검(서버)
+     * @param boardId
+     */
+    void deleteEtcHrDailyServerMain(Long boardId);
 }

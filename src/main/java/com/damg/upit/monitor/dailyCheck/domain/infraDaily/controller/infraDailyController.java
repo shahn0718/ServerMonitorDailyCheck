@@ -123,4 +123,15 @@ public class infraDailyController {
 
         return "redirect:/";
     }
+
+    @GetMapping ("/INFRA/delete/{boardId}")
+    public String doDeleteInfraDailyCheck(@PathVariable("boardId")Long boardId, Model model){
+
+        log.info("method=doDeleteGwDailyCheck() boardId={}",boardId);
+        mainService.deleteDailyCheckBoard(boardId);
+        infraService.deleteInfraDailyCheckBoard(boardId);
+
+
+        return "redirect:/";
+    }
 }

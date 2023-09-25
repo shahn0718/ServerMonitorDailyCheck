@@ -15,7 +15,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
 
-<form class>
+<form class method="post">
 <div class="container-fluid container-lg mt-lg-5">
 
   <div class="row text-center text-dark mb-5 mt-10">
@@ -33,8 +33,10 @@
     </div>
   </div>
 
-  <div class="form-row float-end">
-    <button type="button" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" th:each="mainBoard : ${mainBoardInfo}"
+  <div class="form-row float-end" th:each="mainBoard : ${mainBoardInfo}">
+    <button type="button" class="mb-3 btn btn-outline-danger"
+            th:onclick="|location.href='@{/ERP/delete/{boardId} (boardId=${mainBoard.dailyMainBoardId})}'|">삭제</button>
+    <button type="button" class="btn mb-3" style="background-color:#81BEF7; color: #fff;"
             th:onclick="|location.href='@{/{category}/{boardId}/Update (category=${mainBoard.dailyMainCd}, boardId=${mainBoard.dailyMainBoardId})}'|">수정</button>
     <button type="button" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" th:onclick="|location.href='@{/}'|">뒤로가기</button>
   </div>
@@ -49,6 +51,7 @@
         <th scope="col">이상유무</th>
         <th scope="col">비고</th>
       </tr>
+    </thead>
     </thead>
     <tbody>
       <tr th:each="erpService:${erpService}" align="center">

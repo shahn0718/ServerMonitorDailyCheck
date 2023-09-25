@@ -82,4 +82,24 @@ public class infraDailyRepositoryImpl implements infraDailyRepository {
     public void updateInfraDailyEtcMain(MInsertInfraDailyEtcMain mInsertInfraDailyEtcMain) {
         infraMapper.updateInfraDailyEtcMain(mInsertInfraDailyEtcMain);
     }
+
+    @Override
+    public void deleteInfraDailyService(Long boardId) {
+
+    }
+
+    @Override
+    public void deleteInfraDailyServer(Long boardId) {
+
+    }
+
+    @Override
+    public void deleteInfraDailyVMMain(Long boardId) {
+
+    }
+
+    @Override
+    public void deleteInfraDailyEtcMain(Long boardId) {
+
+    }
 }

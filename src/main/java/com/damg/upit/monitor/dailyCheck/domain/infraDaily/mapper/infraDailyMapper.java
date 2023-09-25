@@ -26,4 +26,9 @@ public interface infraDailyMapper {
     void updateInfraDailyServerMain(MInsertInfraDailyServerMain mInsertInfraDailyServerMain);
     void updateInfraDailyVMMain(MInsertInfraDailyVMMain mInsertInfraDailyVMMain);
     void updateInfraDailyEtcMain(MInsertInfraDailyEtcMain mInsertInfraDailyEtcMain);
+
+    void deleteInfraDailyServiceMain(@Param("boardId")Long boardId);
+    void deleteInfraDailyServerMain(@Param("boardId")Long boardId);
+    void deleteInfraDailyVMMain(@Param("boardId")Long boardId);
+    void deleteInfraDailyEtcMain(@Param("boardId")Long boardId);
 }

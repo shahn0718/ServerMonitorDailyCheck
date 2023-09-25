@@ -27,4 +27,9 @@ public interface erpDailyMapper {
     void updateErpDailyServiceMain(MInsertErpDailyServiceMain mInsertErpDailySErviceMain);
     void updateErpDailyVMMain(MInsertErpDailyVMMain mInsertErpDailyVMMain);
     void updateErpDailyStorageMain(MInsertErpDailyStorageMain mInsertErpDailyStorageMain);
+
+    void deleteErpDailyServiceMain(@Param("boardId")Long boardId);
+    void deleteErpDailyServerMain(@Param("boardId")Long boardId);
+    void deleteErpDailyVMMain(@Param("boardId")Long boardId);
+    void deleteErpDailyStorageMain(@Param("boardId")Long boardId);
 }

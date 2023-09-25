@@ -81,4 +81,9 @@ public interface infraDailyRepository {
      * @param mInsertInfraDailyEtcMain
      */
     void updateInfraDailyEtcMain(MInsertInfraDailyEtcMain mInsertInfraDailyEtcMain);
+
+    void deleteInfraDailyService(Long boardId);
+    void deleteInfraDailyServer(Long boardId);
+    void deleteInfraDailyVMMain(Long boardId);
+    void deleteInfraDailyEtcMain(Long boardId);
 }

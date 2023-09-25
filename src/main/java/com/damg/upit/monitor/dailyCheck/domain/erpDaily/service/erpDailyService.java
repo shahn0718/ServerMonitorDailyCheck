@@ -81,4 +81,14 @@ public class erpDailyService {
         erpRepository.updateErpDailyVMMain(mInsertErpDailyVMMain);
         erpRepository.updateErpDailyStorageMain(mInsertErpDailyStorageMain);
     }
+    @Transactional(rollbackFor=Exception.class)
+    public void deleteErpDailyCheckMain(Long mainBoardId){
+
+        mainRepository.deleteDailyCheckBoard(mainBoardId);
+
+        erpRepository.deleteErpDailyServerMain(mainBoardId);
+        erpRepository.deleteErpDailyServiceMain(mainBoardId);
+        erpRepository.deleteErpDailyVMMain(mainBoardId);
+        erpRepository.deleteErpDailyStorageMain(mainBoardId);
+    }
 }

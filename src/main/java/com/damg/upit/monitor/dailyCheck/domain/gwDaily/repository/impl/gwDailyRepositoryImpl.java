@@ -72,4 +72,5 @@ public class gwDailyRepositoryImpl implements gwDailyRepository {
         gwDailyMapper.deleteGwDailyStorageMain(boardId);
     }
 
+
 }

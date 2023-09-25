@@ -275,4 +275,26 @@
                 ETC_HRMAIN_ID       = #{etcHRMainId}
     </update>
 
+     <delete id="deleteEtcHrDailyServiceMain" parameterType="long">
+
+     /* deleteEtcHrDailyServiceMain */
+
+        DELETE
+        FROM
+              ETC_DAILY_HRSERVICE
+        WHERE
+              ETC_HR_MAIN_ID       = #{boardId}
+     </delete>
+
+     <delete id="deleteEtcHrDailyServerMain" parameterType="long">
+
+        /* deleteEtcHrDailyServerMain */
+
+        DELETE
+        FROM
+                ETC_DAILY_HRSERVER
+        WHERE
+                ETC_HR_MAIN_ID       = #{boardId}
+     </delete>
+
 </mapper>
