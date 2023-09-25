@@ -55,4 +55,22 @@ public interface gwDailyRepository {
      * @param mInsertGwDailyStorageMain
      */
     void updateGwDailyStorageMain(MInsertGwDailyStorageMain mInsertGwDailyStorageMain);
+
+    /**
+     * DELETE 지니어스 일일점검(서버)
+     * @param boardId
+     */
+    void deleteGwDailyServerMain(Long boardId);
+
+    /**
+     * DELETE 지니어스 일일점검(서비스)
+     * @param boardId
+     */
+    void deleteGwDailyServiceMain(Long boardId);
+
+    /**
+     * DELETE 지니어스 일일점검(스토리지)
+     * @param boardId
+     */
+    void deleteGwDailyStorageMain(Long boardId);
 }

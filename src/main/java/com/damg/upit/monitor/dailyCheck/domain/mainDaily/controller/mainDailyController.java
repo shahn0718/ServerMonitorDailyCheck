@@ -32,6 +32,8 @@ public class mainDailyController {
     public String homeMainDailyBoard(MDailyBoardPagingMain mDailyBoardPagingMain,
                                      Model model) {
 
+
+        mDailyBoardPagingMain.setPageNum(1);
         List<MSVDailyCheckBoardMain> mainDailyBoardList = pagingService.getPageList(mDailyBoardPagingMain);
         model.addAttribute("mainDailyBoardList", mainDailyBoardList);
 

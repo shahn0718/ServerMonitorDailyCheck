@@ -97,11 +97,12 @@ public class gwDailyController {
     }
 
     @GetMapping ("/GW/delete/{boardId}")
-    public String getDeleteGwDailyCheck(@PathVariable("boardId")Long mainBoardId,
+    public String doDeleteGwDailyCheck(@PathVariable("boardId")Long boardId,
                                         Model model){
 
-        System.out.println(" = llllllllllllllllllllllllllllllllll" );
-        System.out.println("mainBoardId = " + mainBoardId);
+        log.info("method=doDeleteGwDailyCheck() boardId={}",boardId);
+        mainService.deleteDailyCheckBoard(boardId);
+        gwService.deletGwDailyCheckMain(boardId);
 
         /**
          *
@@ -133,7 +134,7 @@ public class gwDailyController {
                                         @ModelAttribute("gwDailyServerMain")MInsertGwDailyServerMain mInsertGwDailyServerMain,
                                         @ModelAttribute("gwDailyStorageMain")MInsertGwDailyStorageMain mInsertGwDailyStorageMain){
 
-        gwService.updateErpDailyCheckMain(mainBoardId,mInsertGwDailyServiceMain
+        gwService.updateGwDailyCheckMain(mainBoardId,mInsertGwDailyServiceMain
                 ,mInsertGwDailyServerMain,mInsertGwDailyStorageMain);
 
         log.info("method=doSelectGenieusDailyCheck() gwDailyUpdateCheck={}", mInsertGwDailyServerMain);

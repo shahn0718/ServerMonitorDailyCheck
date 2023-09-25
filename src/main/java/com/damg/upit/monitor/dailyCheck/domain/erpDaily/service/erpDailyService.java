@@ -6,16 +6,13 @@ import com.damg.upit.monitor.dailyCheck.domain.erpDaily.model.MInsertErpDailySer
 import com.damg.upit.monitor.dailyCheck.domain.erpDaily.model.MInsertErpDailyStorageMain;
 import com.damg.upit.monitor.dailyCheck.domain.erpDaily.model.MInsertErpDailyVMMain;
 import com.damg.upit.monitor.dailyCheck.domain.erpDaily.repository.erpDailyRepository;
-import com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyServerMain;
-import com.damg.upit.monitor.dailyCheck.domain.infraDaily.model.MInsertInfraDailyServiceMain;
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain;
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.repository.mainDailyRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.SQLException;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -83,7 +80,5 @@ public class erpDailyService {
         erpRepository.updateErpDailyServerMain(mInsertErpDailyServerMain);
         erpRepository.updateErpDailyVMMain(mInsertErpDailyVMMain);
         erpRepository.updateErpDailyStorageMain(mInsertErpDailyStorageMain);
-
-
     }
 }

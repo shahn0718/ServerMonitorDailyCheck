@@ -131,13 +131,10 @@
         /* deleteDailyCheckBoard */
 
         DELETE
-                *
         FROM
                 MAIN_DAILY_BOARD
         WHERE
-                DAILY_MAIN_BOARDID  = #{dailyMainId}
-        AND
-                DAILY_MAIN_CD       = #{dailyMainCd}
+                DAILY_MAIN_BOARDID  = #{boardId}
     </delete>
 
 

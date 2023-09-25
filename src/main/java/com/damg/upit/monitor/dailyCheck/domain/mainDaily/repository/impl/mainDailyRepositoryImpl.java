@@ -47,8 +47,8 @@ public class mainDailyRepositoryImpl implements mainDailyRepository {
     }
 
     @Override
-    public void deleteDailyCheckBoard(Long dailyMainId, String dailyMainCd) {
-        dailyMapper.deleteDailyCheckBoard(dailyMainId, dailyMainCd);
+    public void deleteDailyCheckBoard(Long boardId) {
+        dailyMapper.deleteDailyCheckBoard(boardId);
     }
 
 }
