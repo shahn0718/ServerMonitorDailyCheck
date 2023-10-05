@@ -85,21 +85,21 @@ public class infraDailyRepositoryImpl implements infraDailyRepository {
 
     @Override
     public void deleteInfraDailyService(Long boardId) {
-
+        infraMapper.deleteInfraDailyServiceMain(boardId);
     }
 
     @Override
     public void deleteInfraDailyServer(Long boardId) {
-
+        infraMapper.deleteInfraDailyServerMain(boardId);
     }
 
     @Override
     public void deleteInfraDailyVMMain(Long boardId) {
-
+        infraMapper.deleteInfraDailyVMMain(boardId);
     }
 
     @Override
     public void deleteInfraDailyEtcMain(Long boardId) {
-
+        infraMapper.deleteInfraDailyEtcMain(boardId);
     }
 }

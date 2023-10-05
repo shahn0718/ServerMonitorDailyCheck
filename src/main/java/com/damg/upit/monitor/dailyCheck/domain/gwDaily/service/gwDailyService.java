@@ -82,10 +82,12 @@ public class gwDailyService {
     @Transactional(rollbackFor=Exception.class)
     public void deletGwDailyCheckMain(Long mainBoardId){
 
-        mainRepository.deleteDailyCheckBoard(mainBoardId);
-
         gwRepository.deleteGwDailyServerMain(mainBoardId);
         gwRepository.deleteGwDailyServiceMain(mainBoardId);
         gwRepository.deleteGwDailyStorageMain(mainBoardId);
+
+        mainRepository.deleteDailyCheckBoard(mainBoardId);
+
+
     }
 }

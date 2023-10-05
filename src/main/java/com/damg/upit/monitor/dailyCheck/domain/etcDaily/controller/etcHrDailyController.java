@@ -94,7 +94,7 @@ public class etcHrDailyController {
         model.addAttribute("etcHrService",mInsertEtcHrDailyServiceMain);
         model.addAttribute("etcHrServer",mInsertEtcHrDailyServerMain);
 
-        return "/etcServer/ehr/dailyChkEtcEhrUpdate";
+        return "etcServer/ehr/dailyChkEtcEhrUpdate";
     }
 
     @PostMapping("HR/{boardId}/Update")

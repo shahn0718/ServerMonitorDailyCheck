@@ -783,4 +783,45 @@
                         INFRA_MAIN_ID  = #{infraMainId}
         </update>
 
+        <delete id="deleteInfraDailyServiceMain" parameterType="long">
+
+                /* deleteInfraDailyServiceMain */
+                DELETE
+                FROM
+                        INFRA_DAILY_SERVICE
+                WHERE
+                        INFRA_MAIN_ID = #{boardId}
+        </delete>
+
+        <delete id="deleteInfraDailyServerMain" parameterType="long">
+
+                /* deleteInfraDailyServerMain */
+                DELETE
+                FROM
+                        INFRA_DAILY_SERVER
+                WHERE
+                        INFRA_MAIN_ID = #{boardId}
+        </delete>
+
+        <delete id="deleteInfraDailyVMMain" parameterType="long">
+
+                /* deleteInfraDailyVMMain */
+                DELETE
+                FROM
+                        INFRA_DAILY_VM
+                WHERE
+                        INFRA_MAIN_ID = #{boardId}
+        </delete>
+
+        <delete id="deleteInfraDailyEtcMain" parameterType="long">
+
+                /* deleteInfraDailyEtcMain */
+                DELETE
+                FROM
+                        INFRA_DAILY_ETC
+                WHERE
+                        INFRA_MAIN_ID = #{boardId}
+        </delete>
+
+
 </mapper>

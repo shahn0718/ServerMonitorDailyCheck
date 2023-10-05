@@ -283,7 +283,7 @@
         FROM
               ETC_DAILY_HRSERVICE
         WHERE
-              ETC_HR_MAIN_ID       = #{boardId}
+              ETC_HRMAIN_ID       = #{boardId}
      </delete>
 
      <delete id="deleteEtcHrDailyServerMain" parameterType="long">
@@ -294,7 +294,7 @@
         FROM
                 ETC_DAILY_HRSERVER
         WHERE
-                ETC_HR_MAIN_ID       = #{boardId}
+                ETC_HRMAIN_ID       = #{boardId}
      </delete>
 
 </mapper>

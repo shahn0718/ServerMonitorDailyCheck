@@ -583,7 +583,7 @@
                  ERP_SERVICE_ID         AS erpServiceId
                 ,ERP_MAIN_ID            AS erpMainId
                 ,ERP_MAIL_CHK           AS erpMailServiceChk
-                ,ERP_MAIL_BIGO          AS erpMainServiceBigo
+                ,ERP_MAIL_BIGO          AS erpMailServiceBigo
                 ,ERP_APPROVE_CHK        AS erpApproveServiceChk
                 ,ERP_APPROVE_BIGO       AS erpApproveServiceBigo
                 ,ERP_BACKUP_CHK         AS erpBackUpServiceChk

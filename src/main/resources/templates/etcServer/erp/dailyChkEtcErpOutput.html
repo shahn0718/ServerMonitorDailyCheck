@@ -894,7 +894,6 @@
               <p>오라클 체크</p>
               <p>디스크 사용량</p>
               <p>이벤트 로그</p>
-              <p>V3</p>
             </td>
             <td>
               <p>
@@ -929,14 +928,6 @@
                        th:checked="${etcErpServer.misEventChk eq 'N'}" disabled>
                 무
               </p>
-              <p>
-                <input class="form-check-input" type="radio" value="Y" name="misV3Chk" id="misV3ChkY"
-                       th:checked="${etcErpServer.misV3Chk eq 'Y'}" disabled>
-                유
-                <input class="form-check-input" type="radio" value="N" name="misV3Chk" id="misV3ChkN"
-                       th:checked="${etcErpServer.misV3Chk eq 'N'}" disabled>
-                무
-              </p>
             </td>
             <td>
               <input type="text" class="form-control" name="misServiceBigo" id="misServiceBigoInput"
@@ -947,8 +938,6 @@
                      th:value="${etcErpServer.misDiskUsageBigo}" readonly>
               <input type="text" class="form-control" name="misEventBigo" id="misEventBigoInput"
                      th:value="${etcErpServer.misEventBigo}" readonly>
-              <input type="text" class="form-control" name="misV3Bigo" id="misV3BigoInput"
-                     th:value="${etcErpServer.misV3Bigo}" readonly>
             </td>
           </tr>
     </tbody>
