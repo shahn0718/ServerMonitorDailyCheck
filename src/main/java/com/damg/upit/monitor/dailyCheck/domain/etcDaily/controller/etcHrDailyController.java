@@ -84,6 +84,7 @@ public class etcHrDailyController {
         return "etcServer/ehr/dailyChkEtcEhrOutput";
     }
 
+
     @GetMapping("/HR/{boardId}/Update")
     public String getUpdateEtcHrDailyCheck(@PathVariable("boardId")Long etcHrMainId, Model model){
 
