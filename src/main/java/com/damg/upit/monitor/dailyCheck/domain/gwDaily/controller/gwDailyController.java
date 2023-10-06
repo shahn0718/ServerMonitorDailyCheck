@@ -8,6 +8,7 @@ import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MDailyCheckElemen
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckAdminMain;
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain;
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.service.mainDailyService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,13 +48,16 @@ public class gwDailyController {
             @ModelAttribute("gwDailyServerMain")MInsertGwDailyServerMain mInsertGwDailyServerMain,
             @ModelAttribute("gwDailyStorageMain")MInsertGwDailyStorageMain mInsertGwDailyStorageMain,
             @RequestParam String admin_nm,
+            HttpServletRequest request,
             Model model){
 
         Model gwDailyCheckSubmit = model.addAttribute("gwDailyCheck");
+        String dailyMainViewCnt = request.getParameter("dailyMainViewCnt");
         log.info("method=doInsertGenieusDailyCheck(), gwDailyCheckSubmit={}",gwDailyCheckSubmit);
 
         String contentDate = DateTimeFormatter.ofPattern("yyyy.MM.dd").format(LocalDateTime.now());
         MSVDailyCheckAdminMain msvDailyCheckAdminMain = mainService.selectDailyCheckAdmin(admin_nm);
+
 
         MSVDailyCheckBoardMain msvDailyCheckBoardMain = new MSVDailyCheckBoardMain();
         msvDailyCheckBoardMain.setDailyMainCd(mDailyCheckElement.GW);
@@ -61,6 +65,7 @@ public class gwDailyController {
         msvDailyCheckBoardMain.setDailyMainContent(mDailyCheckElement.GW_KOR+" 서버 일일점검 "+"("+contentDate+")");
         msvDailyCheckBoardMain.setDailyMainWriter(msvDailyCheckAdminMain.getAdmin_nm());
         msvDailyCheckBoardMain.setDailyMainWriterNo(msvDailyCheckAdminMain.getAdmin_no());
+        msvDailyCheckBoardMain.setDailyMainViewCnt(Integer.parseInt(dailyMainViewCnt));
         msvDailyCheckBoardMain.setDailyMainCreateDate(LocalDateTime.now());
 
         gwService.insertGwDailyCheckMain(mInsertGwDailyServiceMain,mInsertGwDailyServerMain,
@@ -113,10 +118,15 @@ public class gwDailyController {
     public String doUpdateGwDailyCheck (@PathVariable("boardId")Long mainBoardId,
                                         @ModelAttribute("gwDailyServiceMain")MInsertGwDailyServiceMain mInsertGwDailyServiceMain,
                                         @ModelAttribute("gwDailyServerMain")MInsertGwDailyServerMain mInsertGwDailyServerMain,
-                                        @ModelAttribute("gwDailyStorageMain")MInsertGwDailyStorageMain mInsertGwDailyStorageMain){
+                                        @ModelAttribute("gwDailyStorageMain")MInsertGwDailyStorageMain mInsertGwDailyStorageMain,
+                                        HttpServletRequest request){
 
-        gwService.updateGwDailyCheckMain(mainBoardId,mInsertGwDailyServiceMain
-                ,mInsertGwDailyServerMain,mInsertGwDailyStorageMain);
+
+        int dailyMainViewCnt = Integer.parseInt(request.getParameter("dailyMainViewCnt"));
+
+        System.out.println("dailyMainViewCnt"+dailyMainViewCnt);
+        gwService.updateGwDailyCheckMain(mainBoardId, dailyMainViewCnt,
+                mInsertGwDailyServiceMain,mInsertGwDailyServerMain,mInsertGwDailyStorageMain);
 
         log.info("method=doSelectGenieusDailyCheck() gwDailyUpdateCheck={}", mInsertGwDailyServerMain);
         log.info("method=doSelectGenieusDailyCheck() gwDailyUpdateCheck={}", mInsertGwDailyServiceMain);

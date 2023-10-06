@@ -63,11 +63,14 @@ public class gwDailyService {
 
     @Transactional(rollbackFor=Exception.class)
     public void updateGwDailyCheckMain(Long mainBoardId,
+                                        int dailyMainViewCnt,
                                         MInsertGwDailyServiceMain mInsertGwDailyServiceMain,
                                         MInsertGwDailyServerMain mInsertGwDailyServerMain,
                                         MInsertGwDailyStorageMain mInsertGwDailyStorageMain){
 
-        mainRepository.updateDailyCheckBoard(LocalDateTime.now(),mainBoardId);
+
+        mainRepository.updateDailyCheckBoardNew(LocalDateTime.now(),dailyMainViewCnt,mainBoardId);
+
 
         mInsertGwDailyServiceMain.setGwMainId(mainBoardId);
         mInsertGwDailyServerMain.setGwMainId(mainBoardId);
