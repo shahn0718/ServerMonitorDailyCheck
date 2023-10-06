@@ -10,60 +10,6 @@
 
 <script>
 
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-      if(this.readyState == 4 && this.status == 200){
-
-        getXmlData(this);
-      }
-    }
-    xhr.open("GET" ,"donga-devwas.xml",true);
-    xhr.send();
-
-  function getXmlData(xml) {
-    var num, name;
-    var num, name;
-    var txt, ntxt, xmlDoc;
-
-    //this.reponseText와 비슷.
-    xmlData = xml.responseXML;
-
-    console.log(xmlData);
-
-    const hostname = xmlData.getElementsByTagName("hostname");
-    const hostnameValue =  hostname[0].childNodes[0].nodeValue;
-
-    console.log("hostname: " + hostnameValue);
-
-
-    const date = xmlData.getElementsByTagName("date");
-    const dateValue = date[0].childNodes[0].nodeValue;
-
-    console.log("date: " + dateValue);
-
-    const time = xmlData.getElementsByTagName("time");
-    const timeValue = time[0].childNodes[0].nodeValue
-
-    console.log("time: " + timeValue);
-
-    const osver = xmlData.getElementsByTagName("osver");
-    const osverValue = osver[0].childNodes[0].nodeValue;
-
-    console.log("osver: " + osverValue);
-
-    const ipAddr = xmlData.getElementsByTagName("ipaddr");
-    const ipAddrValue = ipAddr[0].childNodes[0].nodeValue;
-
-    console.log("ipAddress: " + ipAddrValue);
-    
-    console.log(" ");
-    let getXmlAttribute= xmlData.documentElement.childNodes[1].childNodes;
-    console.log(getXmlAttribute);
-
-    for(i=1; i<getXmlAttribute.length; i+=2){
-      console.log(xmlData.documentElement.childNodes[1].childNodes[i].firstChild.nodeValue);
-    }
-};
 
 </script>
 
@@ -200,10 +146,10 @@
               무  
             </p>
             <p>
-              <input class="form-check-input" type="radio" value="Y" name="nwblock1EventChk" id="nwblock1V3ChkY"
+              <input class="form-check-input" type="radio" value="Y" name="nwblock1V3Chk" id="nwblock1V3ChkY"
                      th:checked="${infraServer.nwblock1V3Chk eq 'Y'}" >
               유
-              <input class="form-check-input" type="radio" value="N" name="nwblock1EventChk" id="nwblock1V3ChkN"
+              <input class="form-check-input" type="radio" value="N" name="nwblock1V3Chk" id="nwblock1V3ChkN"
                      th:checked="${infraServer.nwblock1V3Chk eq 'N'}" >
               무
             </p>
@@ -341,14 +287,14 @@
             <td>
               <input type="text" class="form-control" name="ddcBackUpCpuUsageBigo" id="ddcBackUpCpuUsageBigoInput"
                      th:value="${infraServer.ddcBackUpCpuUsageBigo}" placeholder="이상유무 유 체크시 내역기재" >
-              <input type="text" class="form-control" name="ddcBackUpMemUSageBigo" id="ddcBackUpMemUSageBigoInput"
+              <input type="text" class="form-control" name="ddcBackUpMemUsageBigo" id="ddcBackUpMemUsageBigoInput"
                      th:value="${infraServer.ddcBackUpMemUsageBigo}" >
               <input type="text" class="form-control" name="ddcBackUpDiskUsageBigo" id="ddcBackupDiskUsageBigoInput"
                      th:value="${infraServer.ddcBackUpDiskUsageBigo}" >
               <input type="text" class="form-control" name="ddcBackUpEventBigo" id="ddcBackUpEventBigoInput"
                      th:value="${infraServer.ddcBackUpEventBigo}" >
               <input type="text" class="form-control" name="ddcBackUpV3Bigo" id="ddcBackUpV3BigoInput"
-                     th:value="${infraServer.ddcBackUpV3Bigo}" readonly>
+                     th:value="${infraServer.ddcBackUpV3Bigo}" >
             </td>
           </tr>
           <tr align="center" th:each="infraServer:${infraServer}">
@@ -477,7 +423,7 @@
                      th:value="${infraServer.newFileDiskUsageBigo}" >
               <input type="text" class="form-control" name="newFileEventBigo" id="newFileEventBigoInput"
                      th:value="${infraServer.newFileEventBigo}" >
-              <input type="text" class="form-control" name="newFileEventBigo" id="newFileV3BigoInput"
+              <input type="text" class="form-control" name="newFileV3Bigo" id="newFileV3BigoInput"
                      th:value="${infraServer.newFileV3Bigo}" >
             </td>
           </tr>
@@ -739,7 +685,7 @@
                      th:value="${infraVM.erpHvdc2DiskUsageBigo}" >
               <input type="text" class="form-control" name="erpHvdc2EventBigo" id="erpHvdc2EventBigoInput"
                      th:value="${infraVM.erpHvdc2EventBigo}" >
-              <input type="text" class="form-control" name="erpHvdc2EventBigo" id="erpHvdc2V3BigoInput"
+              <input type="text" class="form-control" name="erpHvdc2V3Bigo" id="erpHvdc2V3BigoInput"
                      th:value="${infraVM.erpHvdc2V3Bigo}" >
             </td>
           </tr>

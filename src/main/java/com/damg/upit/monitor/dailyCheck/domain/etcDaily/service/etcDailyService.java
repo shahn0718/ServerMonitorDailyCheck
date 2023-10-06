@@ -66,7 +66,7 @@ public class etcDailyService {
         mainRepository.deleteDailyCheckBoard(boardId);
 
         etcRepository.deleteEtcDailyServerMain(boardId);
-        etcRepository.deleteEtcDailyServerMain(boardId);
+        etcRepository.deleteEtcDailyServiceMain(boardId);
     }
 
 }

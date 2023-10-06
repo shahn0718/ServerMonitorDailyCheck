@@ -6,6 +6,7 @@ import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoar
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -34,6 +35,10 @@ public interface mainDailyMapper {
 
      void updateDailyCheckBoard(@Param("dailyMainModDate")LocalDateTime mainBoardModDate,
                                 @Param("mainBoardId")Long dailyBoardId);
+
+     void updateDailyCheckBoardNew(@Param("dailyMainModDate")LocalDateTime mainBOardModeDate,
+                                   @Param("dailyMainViewCnt")int dailyMainViewCnt,
+                                   @Param("mainBoardId")Long dailyBoardId);
 
      void deleteDailyCheckBoard(@Param("boardId")Long boardId);
 }

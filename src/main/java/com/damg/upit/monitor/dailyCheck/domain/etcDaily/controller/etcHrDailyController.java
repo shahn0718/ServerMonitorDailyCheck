@@ -84,6 +84,7 @@ public class etcHrDailyController {
         return "etcServer/ehr/dailyChkEtcEhrOutput";
     }
 
+
     @GetMapping("/HR/{boardId}/Update")
     public String getUpdateEtcHrDailyCheck(@PathVariable("boardId")Long etcHrMainId, Model model){
 
@@ -93,7 +94,7 @@ public class etcHrDailyController {
         model.addAttribute("etcHrService",mInsertEtcHrDailyServiceMain);
         model.addAttribute("etcHrServer",mInsertEtcHrDailyServerMain);
 
-        return "/etcServer/ehr/dailyChkEtcEhrUpdate";
+        return "etcServer/ehr/dailyChkEtcEhrUpdate";
     }
 
     @PostMapping("HR/{boardId}/Update")

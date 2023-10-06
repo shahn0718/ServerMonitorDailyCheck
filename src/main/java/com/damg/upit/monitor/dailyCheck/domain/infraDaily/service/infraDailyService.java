@@ -83,11 +83,11 @@ public class infraDailyService {
     @Transactional(rollbackFor=Exception.class)
     public void deleteInfraDailyCheckBoard(Long boardId){
 
-        mainRepository.deleteDailyCheckBoard(boardId);
-
         infraRepository.deleteInfraDailyService(boardId);
         infraRepository.deleteInfraDailyServer(boardId);
         infraRepository.deleteInfraDailyVMMain(boardId);
         infraRepository.deleteInfraDailyEtcMain(boardId);
+
+        mainRepository.deleteDailyCheckBoard(boardId);
     }
 }

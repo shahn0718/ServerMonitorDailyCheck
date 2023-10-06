@@ -9,6 +9,64 @@
   <title>일일점검일지(지니어스) 수정</title>
 </head>
 <script>
+
+  window.onload = function() {
+    const query = 'input[class="form-check-input"]:checked';
+    const data = document.querySelectorAll(query);
+
+    for( let i =0; i< data.length; i++){
+      if(data[i].value  == "Y"){
+        target = data[i].parentNode.parentNode.parentNode;
+        target.style.backgroundColor = "#F5D0A9";
+      }
+    }
+    document.getElementById('gwSubmit').onclick = function(){
+      //저장 및 수정완료 진행시, 점검페이지 내 체크항목 확인 및 총 갯수 넘기기.
+      getChkCnt();
+      console.log("checkedCnt: "+ document.getElementById('dailyMainViewCnt').value);
+    };
+  };
+
+  function getChkCnt(){
+
+    // 해당 점검페이지 내 체크 항목 확인 메소드
+    const query = 'input[class="form-check-input"]:checked';
+    const data = document.querySelectorAll(query);
+
+    let dataYCnt = 0;
+    for( let i =0; i< data.length; i++){
+      if(data[i].value  == "Y"){
+        dataYCnt++;
+      }
+    }
+    console.log("checkedCnt: " + dataYCnt);
+    document.getElementById('dailyMainViewCnt').value = dataYCnt;
+  }
+
+  function getChgChk(t){
+
+    //체크 변경시, 테이블 내 색 변경 메소드
+    let checkedValue = t.value;
+    console.log("checkedValue: "+ checkedValue);
+    let tableChg = t.parentNode.parentNode.parentNode;
+    tableChg.style.backgroundColor = (checkedValue == "Y") ?  "#F5D0A9" : "#FFF";
+
+    refreshChk();
+  }
+
+
+  function refreshChk(){
+    const query = 'input[class="form-check-input"]:checked';
+    const data = document.querySelectorAll(query);
+    for( let i =0; i< data.length; i++){
+      if(data[i].value  == "Y"){
+        target = data[i].parentNode.parentNode.parentNode;
+        target.style.backgroundColor = "#F5D0A9";
+      }
+    }
+  }
+
+
 </script>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
@@ -17,7 +75,7 @@
   <div class="container-fluid container-lg mt-lg-5">
 
     <div class="form-row float-end">
-      <button type="submit" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" >수정 완료</button>
+      <button  id="gwSubmit" type="submit" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" >수정 완료</button>
       <button type="button" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" th:onclick="|location.href='@{/}'|">뒤로가기</button>
     </div>
 
@@ -33,6 +91,7 @@
       </tr>
       </thead>
       <tbody>
+      <input type="hidden" id="dailyMainViewCnt" name="dailyMainViewCnt" value="">
       <tr th:each="gwService:${gwService}" align="center">
         <td style="background-color: #81BEF7; font-weight:bold">서비스</td>
         <td>
@@ -53,26 +112,26 @@
         <td>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="gwMailServiceChk" id="gwMailServiceMailChkY"
-                   th:checked="${gwService.gwMailServiceChk eq 'Y'}"  >
+                   th:checked="${gwService.gwMailServiceChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="gwMailServiceChk" id="gwMailServiceMailChkN"
-                   th:checked="${gwService.gwMailServiceChk eq 'N'}"  >
+                   th:checked="${gwService.gwMailServiceChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="gwApproveServiceChk" id="gwServiceApproveChkY"
-                   th:checked="${gwService.gwApproveServiceChk eq 'Y'}"  >
+                   th:checked="${gwService.gwApproveServiceChk eq 'Y'}"  th:onclick="getChgChk(this)">
             유
             <input class="form-check-input" type="radio" value="N" name="gwApproveServiceChk" id="gwServiceApproveChkN"
-                   th:checked="${gwService.gwApproveServiceChk eq 'N'}"  >
+                   th:checked="${gwService.gwApproveServiceChk eq 'N'}"  th:onclick="getChgChk(this)">
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="gwBackUpServiceChk" id="gwBackUpServiceChkY"
-                   th:checked="${gwService.gwBackUpServiceChk eq 'Y'}"  >
+                   th:checked="${gwService.gwBackUpServiceChk eq 'Y'}"  th:onclick="getChgChk(this)">
             유
             <input class="form-check-input" type="radio" value="N" name="gwBackUpServiceChk" id="gwBackUpServiceChkN"
-                   th:checked="${gwService.gwBackUpServiceChk eq 'N'}"   >
+                   th:checked="${gwService.gwBackUpServiceChk eq 'N'}"   th:onclick="getChgChk(this)">
             무
           </p>
         </td>
@@ -102,50 +161,50 @@
         <td>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node1CpuUsageChk" id="node1CpuUsageChkY"
-                   th:checked="${gwServer.node1CpuUsageChk eq 'Y'}"  >
+                   th:checked="${gwServer.node1CpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="node1CpuUsageChk" id="node1CpuUsageChkN"
-                   th:checked="${gwServer.node1CpuUsageChk eq 'N'}"  >
+                   th:checked="${gwServer.node1CpuUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node1MemUsageChk" id="node1MemUsageChkY"
-                   th:checked="${gwServer.node1MemUsageChk eq 'Y'}"  >
+                   th:checked="${gwServer.node1MemUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="node1MemUsageChk" id="node1MemUsageChkN"
-                   th:checked="${gwServer.node1MemUsageChk eq 'N'}"  >
+                   th:checked="${gwServer.node1MemUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node1OverLoadChk" id="node1OverLoadChkY"
-                   th:checked="${gwServer.node1OverLoadChk eq 'Y'}"  >
+                   th:checked="${gwServer.node1OverLoadChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="node1OverLoadChk" id="node1OverLoadChkN"
-                   th:checked="${gwServer.node1OverLoadChk eq 'N'}"  >
+                   th:checked="${gwServer.node1OverLoadChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node1DiskUsageChk" id="node1DiskUsageChkY"
-                   th:checked="${gwServer.node1DiskUsageChk eq 'Y'}"  >
+                   th:checked="${gwServer.node1DiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="node1DiskUsageChk" id="node1DiskUsageChkN"
-                   th:checked="${gwServer.node1DiskUsageChk eq 'N'}"  >
+                   th:checked="${gwServer.node1DiskUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node1ProcessChk" id="node1ProcessChkY"
-                   th:checked="${gwServer.node1ProcessChk eq 'Y'}"  >
+                   th:checked="${gwServer.node1ProcessChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="node1ProcessChk" id="node1ProcessChkN"
-                   th:checked="${gwServer.node1ProcessChk eq 'N'}"  >
+                   th:checked="${gwServer.node1ProcessChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node1KubChk" id="node1KubChkY"
-                   th:checked="${gwServer.node1KubChk eq 'Y'}"  >
+                   th:checked="${gwServer.node1KubChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="node1KubChk" id="node1KubChkN"
-                   th:checked="${gwServer.node1KubChk eq 'N'}"  >
+                   th:checked="${gwServer.node1KubChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
         </td>
@@ -178,50 +237,50 @@
         <td>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node2CpuUsageChk" id="node2CpuUsageChkY"
-                   th:checked="${gwServer.node2CpuUsageChk eq 'Y'}"  >
+                   th:checked="${gwServer.node2CpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="node2CpuUsageChk" id="node2CpuUsageChkN"
-                   th:checked="${gwServer.node2CpuUsageChk eq 'N'}"  >
+                   th:checked="${gwServer.node2CpuUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node2MemUsageChk" id="node2MemUsageChkY"
-                   th:checked="${gwServer.node2MemUsageChk eq 'Y'}"  >
+                   th:checked="${gwServer.node2MemUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="node2MemUsageChk" id="node2MemUsageChkN"
-                   th:checked="${gwServer.node2MemUsageChk eq 'N'}"  >
+                   th:checked="${gwServer.node2MemUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node2OverLoadChk" id="node2OverLoadChkY"
-                   th:checked="${gwServer.node2OverLoadChk eq 'Y'}"  >
+                   th:checked="${gwServer.node2OverLoadChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="node2OverLoadChk" id="node2OverLoadChkN"
-                   th:checked="${gwServer.node2OverLoadChk eq 'N'}"  >
+                   th:checked="${gwServer.node2OverLoadChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node2DiskUsageChk" id="node2DiskUsageChkY"
-                   th:checked="${gwServer.node2DiskUsageChk eq 'Y'}"  >
+                   th:checked="${gwServer.node2DiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="node2DiskUsageChk" id="node2DiskUsageChkN"
-                   th:checked="${gwServer.node2DiskUsageChk eq 'N'}"  >
+                   th:checked="${gwServer.node2DiskUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node2ProcessChk" id="node2ProcessChkY"
-                   th:checked="${gwServer.node2ProcessChk eq 'Y'}"  >
+                   th:checked="${gwServer.node2ProcessChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="node2ProcessChk" id="node2ProcessChkN"
-                   th:checked="${gwServer.node2ProcessChk eq 'N'}"  >
+                   th:checked="${gwServer.node2ProcessChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node2KubChk" id="node2KubChkY"
-                   th:checked="${gwServer.node2KubChk eq 'Y'}"  >
+                   th:checked="${gwServer.node2KubChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="node2KubChk" id="node2KubChkN"
-                   th:checked="${gwServer.node2KubChk eq 'N'}"  >
+                   th:checked="${gwServer.node2KubChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
         </td>
@@ -254,50 +313,50 @@
         <td>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node3CpuUsageChk" id="node3CpuUsageChkY"
-                   th:checked="${gwServer.node3CpuUsageChk eq 'Y'}"  >
+                   th:checked="${gwServer.node3CpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="node3CpuUsageChk" id="node3CpuUsageChkN"
-                   th:checked="${gwServer.node3CpuUsageChk eq 'N'}"  >
+                   th:checked="${gwServer.node3CpuUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node3MemUsageChk" id="node3MemUsageChkY"
-                   th:checked="${gwServer.node3MemUsageChk eq 'Y'}"  >
+                   th:checked="${gwServer.node3MemUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="node3MemUsageChk" id="node3MemUsageChkN"
-                   th:checked="${gwServer.node3MemUsageChk eq 'N'}"  >
+                   th:checked="${gwServer.node3MemUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node3OverLoadChk" id="node3OverLoadChkY"
-                   th:checked="${gwServer.node3OverLoadChk eq 'Y'}"  >
+                   th:checked="${gwServer.node3OverLoadChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="node3OverLoadChk" id="node3OverLoadChkN"
-                   th:checked="${gwServer.node3OverLoadChk eq 'N'}"  >
+                   th:checked="${gwServer.node3OverLoadChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node3DiskUsageChk" id="node3DiskUsageChkY"
-                   th:checked="${gwServer.node3DiskUsageChk eq 'Y'}"  >
+                   th:checked="${gwServer.node3DiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="node3DiskUsageChk" id="node3DiskUsageChkN"
-                   th:checked="${gwServer.node3DiskUsageChk eq 'N'}"  >
+                   th:checked="${gwServer.node3DiskUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node3ProcessChk" id="node3ProcessChkY"
-                   th:checked="${gwServer.node3ProcessChk eq 'Y'}"  >
+                   th:checked="${gwServer.node3ProcessChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="node3ProcessChk" id="node3ProcessChkN"
-                   th:checked="${gwServer.node3ProcessChk eq 'N'}"  >
+                   th:checked="${gwServer.node3ProcessChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node3KubChk" id="node3KubChkY"
-                   th:checked="${gwServer.node3KubChk eq 'Y'}"  >
+                   th:checked="${gwServer.node3KubChk eq 'Y'}" th:onclick="getChgChk(this)"  >
             유
             <input class="form-check-input" type="radio" value="N" name="node3KubChk" id="node3KubChkN"
-                   th:checked="${gwServer.node3KubChk eq 'N'}"  >
+                   th:checked="${gwServer.node3KubChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
         </td>
@@ -330,50 +389,50 @@
         <td>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node4CpuUsageChk" id="node4CpuUsageChkY"
-                   th:checked="${gwServer.node4CpuUsageChk eq 'Y'}"  >
+                   th:checked="${gwServer.node4CpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="node4CpuUsageChk" id="node4CpuUsageChkN"
-                   th:checked="${gwServer.node4CpuUsageChk eq 'N'}"  >
+                   th:checked="${gwServer.node4CpuUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node4MemUsageChk" id="node4MemUsageChkY"
-                   th:checked="${gwServer.node4MemUsageChk eq 'Y'}"  >
+                   th:checked="${gwServer.node4MemUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="node4MemUsageChk" id="node4MemUsageChkN"
-                   th:checked="${gwServer.node4MemUsageChk eq 'N'}"  >
+                   th:checked="${gwServer.node4MemUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node4OverLoadChk" id="node4OverLoadChkY"
-                   th:checked="${gwServer.node4OverLoadChk eq 'Y'}"  >
+                   th:checked="${gwServer.node4OverLoadChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="node4OverLoadChk" id="node4OverLoadChkN"
-                   th:checked="${gwServer.node4OverLoadChk eq 'N'}"  >
+                   th:checked="${gwServer.node4OverLoadChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node4DiskUsageChk" id="node4DiskUsageChkY"
-                   th:checked="${gwServer.node4DiskUsageChk eq 'Y'}"  >
+                   th:checked="${gwServer.node4DiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="node4DiskUsageChk" id="node4DiskUsageChkN"
-                   th:checked="${gwServer.node4DiskUsageChk eq 'N'}"  >
+                   th:checked="${gwServer.node4DiskUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node4ProcessChk" id="node4ProcessChkY"
-                   th:checked="${gwServer.node4ProcessChk eq 'Y'}"  >
+                   th:checked="${gwServer.node4ProcessChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="node4ProcessChk" id="node4ProcessChkN"
-                   th:checked="${gwServer.node4ProcessChk eq 'N'}"  >
+                   th:checked="${gwServer.node4ProcessChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node4KubChk" id="node4KubChkY"
-                   th:checked="${gwServer.node4KubChk eq 'Y'}"  >
+                   th:checked="${gwServer.node4KubChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="node4KubChk" id="node4KubChkN"
-                   th:checked="${gwServer.node4KubChk eq 'N'}"  >
+                   th:checked="${gwServer.node4KubChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
         </td>
@@ -406,50 +465,50 @@
         <td>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="devNodeCpuUsageChk" id="devNodeCpuUsageChkY"
-                   th:checked="${gwServer.devNodeCpuUsageChk eq 'Y'}"  >
+                   th:checked="${gwServer.devNodeCpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="devNodeCpuUsageChk" id="devNodeCpuUsageChkN"
-                   th:checked="${gwServer.devNodeCpuUsageChk eq 'N'}"  >
+                   th:checked="${gwServer.devNodeCpuUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="devNodeMemUsageChk" id="devNodeMemUsageChkY"
-                   ]      th:checked="${gwServer.devNodeMemUsageChk eq 'Y'}"  >
+                   ]      th:checked="${gwServer.devNodeMemUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="devNodeMemUsageChk" id="devNodeMemUsageChkN"
-                   th:checked="${gwServer.devNodeMemUsageChk eq 'N'}"  >
+                   th:checked="${gwServer.devNodeMemUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="devNodeOverLoadChk" id="devNodeOverLoadChkY"
-                   th:checked="${gwServer.devNodeOverLoadChk eq 'Y'}"  >
+                   th:checked="${gwServer.devNodeOverLoadChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="devNodeOverLoadChk" id="devNodeOverLoadChkN"
-                   th:checked="${gwServer.devNodeOverLoadChk eq 'N'}"  >
+                   th:checked="${gwServer.devNodeOverLoadChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="devNodeDiskUsageChk" id="devNodeDiskUsageChkY"
-                   th:checked="${gwServer.devNodeDiskUsageChk eq 'Y'}"  >
+                   th:checked="${gwServer.devNodeDiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="devNodeDiskUsageChk" id="devNodeDiskUsageChkN"
-                   th:checked="${gwServer.devNodeDiskUsageChk eq 'N'}"  >
+                   th:checked="${gwServer.devNodeDiskUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="devNodeProcessChk" id="devNodeProcessChkY"
-                   th:checked="${gwServer.devNodeProcessChk eq 'Y'}"  >
+                   th:checked="${gwServer.devNodeProcessChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="devNodeProcessChk" id="devNodeProcessChkN"
-                   th:checked="${gwServer.devNodeProcessChk eq 'N'}"  >
+                   th:checked="${gwServer.devNodeProcessChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="devNodeKubChk" id="devNodeKubChkY"
-                   th:checked="${gwServer.devNodeKubChk eq 'Y'}"  >
+                   th:checked="${gwServer.devNodeKubChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="devNodeKubChk" id="devNodeKubChkN"
-                   th:checked="${gwServer.devNodeKubChk eq 'N'}"  >
+                   th:checked="${gwServer.devNodeKubChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
         </td>
@@ -482,50 +541,50 @@
         <td>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="archCpuUsageChk" id="archCpuUsageChkY"
-                   th:checked="${gwServer.archCpuUsageChk eq 'Y'}"  >
+                   th:checked="${gwServer.archCpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="archCpuUsageChk" id="archCpuUsageChkN"
-                   th:checked="${gwServer.archCpuUsageChk eq 'N'}"  >
+                   th:checked="${gwServer.archCpuUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="archMemUsageChk" id="archMemUsageChkY"
-                   th:checked="${gwServer.archMemUsageChk eq 'Y'}"  >
+                   th:checked="${gwServer.archMemUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="archMemUsageChk" id="archMemUsageChkN"
-                   th:checked="${gwServer.archMemUsageChk eq 'N'}"  >
+                   th:checked="${gwServer.archMemUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="archSwapUsageChk" id="archSwapUsageChkY"
-                   th:checked="${gwServer.archSwapUsageChk eq 'Y'}"  >
+                   th:checked="${gwServer.archSwapUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="archSwapUsageChk" id="archSwapUsageChkN"
-                   th:checked="${gwServer.archSwapUsageChk eq 'N'}"  >
+                   th:checked="${gwServer.archSwapUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="archOverLoadChk" id="archOverLoadChkY"
-                   th:checked="${gwServer.archOverLoadChk eq 'Y'}"  >
+                   th:checked="${gwServer.archOverLoadChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="archOverLoadChk" id="archOverLoadChkN"
-                   th:checked="${gwServer.archOverLoadChk eq 'N'}"  >
+                   th:checked="${gwServer.archOverLoadChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="archDiskUsageChk" id="archDiskUsageChkY"
-                   th:checked="${gwServer.archDiskUsageChk eq 'Y'}"  >
+                   th:checked="${gwServer.archDiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="archDiskUsageChk" id="archDiskUsageChkN"
-                   th:checked="${gwServer.archDiskUsageChk eq 'N'}"  >
+                   th:checked="${gwServer.archDiskUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="archProcessChk" id="archProcessChkY"
-                   th:checked="${gwServer.archProcessChk eq 'Y'}"  >
+                   th:checked="${gwServer.archProcessChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="archProcessChk" id="archProcessChkN"
-                   th:checked="${gwServer.archProcessChk eq 'N'}"  >
+                   th:checked="${gwServer.archProcessChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
         </td>
@@ -558,50 +617,50 @@
         <td>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="backCpuUsageChk" id="backCpuUsageChkY"
-                   th:checked="${gwServer.backCpuUsageChk eq 'Y'}"  >
+                   th:checked="${gwServer.backCpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="backCpuUsageChk" id="backCpuUsageChkN"
-                   th:checked="${gwServer.backCpuUsageChk eq 'N'}"  >
+                   th:checked="${gwServer.backCpuUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="backMemUsageChk" id="backMemUsageChkY"
-                   th:checked="${gwServer.backMemUsageChk eq 'Y'}"  >
+                   th:checked="${gwServer.backMemUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="backMemUsageChk" id="backMemUsageChkN"
-                   th:checked="${gwServer.backMemUsageChk eq 'N'}"  >
+                   th:checked="${gwServer.backMemUsageChk eq 'N'}" th:onclick="getChgChk(this)"  >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="backSwapUsageChk" id="backSwapUsageChkY"
-                   th:checked="${gwServer.backSwapUsageChk eq 'Y'}"  >
+                   th:checked="${gwServer.backSwapUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="backSwapUsageChk" id="backSwapUsageChkN"
-                   th:checked="${gwServer.backSwapUsageChk eq 'N'}"  >
+                   th:checked="${gwServer.backSwapUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="backOverLoadChk" id="backOverLoadChkY"
-                   th:checked="${gwServer.backOverLoadChk eq 'Y'}"  >
+                   th:checked="${gwServer.backOverLoadChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="backOverLoadChk" id="backOverLoadChkN"
-                   th:checked="${gwServer.backOverLoadChk eq 'N'}"  >
+                   th:checked="${gwServer.backOverLoadChk eq 'N'}" th:onclick="getChgChk(this)"  >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="backDiskUsageChk" id="backDiskUsageChkY"
-                   th:checked="${gwServer.backDiskUsageChk eq 'Y'}"  >
+                   th:checked="${gwServer.backDiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="backDiskUsageChk" id="backDiskUsageChkN"
-                   th:checked="${gwServer.backDiskUsageChk eq 'N'}"  >
+                   th:checked="${gwServer.backDiskUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="backProcessChk" id="backProcessChkY"
-                   th:checked="${gwServer.backProcessChk eq 'Y'}"  >
+                   th:checked="${gwServer.backProcessChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="backProcessChk" id="backProcessChkN"
-                   th:checked="${gwServer.backProcessChk eq 'N'}"  >
+                   th:checked="${gwServer.backProcessChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
         </td>
@@ -630,10 +689,10 @@
         <td>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="gwNasMainClustChk" id="gwNasMainChkY"
-                   th:checked="${gwStorage.gwNasMainClustChk eq 'Y'}"  >
+                   th:checked="${gwStorage.gwNasMainClustChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="gwNasMainClustChk" id="gwNasMainChkN"
-                   th:checked="${gwStorage.gwNasMainClustChk eq 'N'}"  >
+                   th:checked="${gwStorage.gwNasMainClustChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
         </td>
@@ -651,10 +710,10 @@
         <td>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="gwNasBackClustChk" id="gwNasBackClustChkY"
-                   th:checked="${gwStorage.gwNasBackClustChk eq 'Y'}"  >
+                   th:checked="${gwStorage.gwNasBackClustChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="gwNasBackClustChk" id="gwNasBackClustChkN"
-                   th:checked="${gwStorage.gwNasBackClustChk eq 'N'}"  >
+                   th:checked="${gwStorage.gwNasBackClustChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
         </td>
@@ -672,10 +731,10 @@
         <td>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="archNasMainClustChk" id="archNasMainClustChkY"
-                   th:checked="${gwStorage.archNasMainClustChk eq 'Y'}"  >
+                   th:checked="${gwStorage.archNasMainClustChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="archNasMainClustChk" id="archNasMainClustChkN"
-                   th:checked="${gwStorage.archNasMainClustChk eq 'N'}"  >
+                   th:checked="${gwStorage.archNasMainClustChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
         </td>
@@ -693,10 +752,10 @@
         <td>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="archNasBackClustChk" id="archNasBackClustChkY"
-                   th:checked="${gwStorage.archNasBackClustChk eq 'Y'}"  >
+                   th:checked="${gwStorage.archNasBackClustChk eq 'Y'}" th:onclick="getChgChk(this)" >
             유
             <input class="form-check-input" type="radio" value="N" name="archNasBackClustChk" id="archNasBackClustChkN"
-                   th:checked="${gwStorage.archNasBackClustChk eq 'N'}"  >
+                   th:checked="${gwStorage.archNasBackClustChk eq 'N'}" th:onclick="getChgChk(this)" >
             무
           </p>
         </td>

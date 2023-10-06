@@ -108,7 +108,7 @@
                     ,#{dailyMainContent}
                     ,#{dailyMainWriter}
                     ,#{dailyMainWriterNo}
-                    ,0
+                    ,#{dailyMainViewCnt}
                     ,#{dailyMainCreateDate}
                     ,NULL
         )
@@ -124,6 +124,19 @@
                     DAILY_MAIN_MODDATE =   #{dailyMainModDate}
         WHERE
                     DAILY_MAIN_BOARDID = #{mainBoardId}
+    </update>
+
+    <update id="updateDailyCheckBoardNew" parameterType="com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain">
+
+        /* updateDailyCheckBoardNew */
+
+        UPDATE
+        MAIN_DAILY_BOARD
+        SET
+            DAILY_MAIN_MODDATE =   #{dailyMainModDate}
+        ,   DAILY_MAIN_VIEWCNT =   #{dailyMainViewCnt}
+        WHERE
+        DAILY_MAIN_BOARDID = #{mainBoardId}
     </update>
 
     <delete id="deleteDailyCheckBoard" parameterType="Long">

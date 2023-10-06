@@ -9,62 +9,6 @@
 </head>
 
 <script>
-
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-      if(this.readyState == 4 && this.status == 200){
-
-        getXmlData(this);
-      }
-    }
-    xhr.open("GET" ,"donga-devwas.xml",true);
-    xhr.send();
-
-  function getXmlData(xml) {
-    var num, name;
-    var num, name;
-    var txt, ntxt, xmlDoc;
-
-    //this.reponseText와 비슷.
-    xmlData = xml.responseXML;
-
-    console.log(xmlData);
-
-    const hostname = xmlData.getElementsByTagName("hostname");
-    const hostnameValue =  hostname[0].childNodes[0].nodeValue;
-
-    console.log("hostname: " + hostnameValue);
-
-
-    const date = xmlData.getElementsByTagName("date");
-    const dateValue = date[0].childNodes[0].nodeValue;
-
-    console.log("date: " + dateValue);
-
-    const time = xmlData.getElementsByTagName("time");
-    const timeValue = time[0].childNodes[0].nodeValue
-
-    console.log("time: " + timeValue);
-
-    const osver = xmlData.getElementsByTagName("osver");
-    const osverValue = osver[0].childNodes[0].nodeValue;
-
-    console.log("osver: " + osverValue);
-
-    const ipAddr = xmlData.getElementsByTagName("ipaddr");
-    const ipAddrValue = ipAddr[0].childNodes[0].nodeValue;
-
-    console.log("ipAddress: " + ipAddrValue);
-    
-    console.log(" ");
-    let getXmlAttribute= xmlData.documentElement.childNodes[1].childNodes;
-    console.log(getXmlAttribute);
-
-    for(i=1; i<getXmlAttribute.length; i+=2){
-      console.log(xmlData.documentElement.childNodes[1].childNodes[i].firstChild.nodeValue);
-    }
-};
-
 </script>
 
 <body>

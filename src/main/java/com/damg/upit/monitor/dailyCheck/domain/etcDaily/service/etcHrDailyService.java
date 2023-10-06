@@ -66,5 +66,11 @@ public class etcHrDailyService {
     @Transactional(rollbackFor=Exception.class)
     public void deleteEtcHrDailyCheckMain(Long mainBoardId){
 
+
+        ehrRepository.deleteEtcHrDailyServerMain(mainBoardId);
+        ehrRepository.deleteEtcHrDailyServiceMain(mainBoardId);
+
+        mainRepository.deleteDailyCheckBoard(mainBoardId);
+
     }
 }
