@@ -9,63 +9,62 @@
 </head>
 
 <script>
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-      if(this.readyState == 4 && this.status == 200){
 
-        getXmlData(this);
+  window.onload = function() {
+    const query = 'input[class="form-check-input"]:checked';
+    const data = document.querySelectorAll(query);
+
+    for( let i =0; i< data.length; i++){
+      if(data[i].value  == "Y"){
+        target = data[i].parentNode.parentNode.parentNode;
+        target.style.backgroundColor = "#F5D0A9";
       }
     }
-    xhr.open("GET" ,"donga-devwas.xml",true);
-    xhr.send();
+    document.getElementById('erpSubmit').onclick = function(){
+      //저장 및 수정완료 진행시, 점검페이지 내 체크항목 확인 및 총 갯수 넘기기.
+      getChkCnt();
+      console.log("checkedCnt: "+ document.getElementById('dailyMainViewCnt').value);
+    };
+  };
 
-  function getXmlData(xml) {
-    var num, name;
-    var num, name;
-    var txt, ntxt, xmlDoc;
+  function getChkCnt(){
 
-    //this.reponseText와 비슷.
-    xmlData = xml.responseXML;
+    // 해당 점검페이지 내 체크 항목 확인 메소드
+    const query = 'input[class="form-check-input"]:checked';
+    const data = document.querySelectorAll(query);
 
-    console.log(xmlData);
-
-    const hostname = xmlData.getElementsByTagName("hostname");
-    const hostnameValue =  hostname[0].childNodes[0].nodeValue;
-
-    console.log("hostname: " + hostnameValue);
-
-
-    const date = xmlData.getElementsByTagName("date");
-    const dateValue = date[0].childNodes[0].nodeValue;
-
-    console.log("date: " + dateValue);
-
-    const time = xmlData.getElementsByTagName("time");
-    const timeValue = time[0].childNodes[0].nodeValue
-
-    console.log("time: " + timeValue);
-
-    const osver = xmlData.getElementsByTagName("osver");
-    const osverValue = osver[0].childNodes[0].nodeValue;
-
-    console.log("osver: " + osverValue);
-
-    const ipAddr = xmlData.getElementsByTagName("ipaddr");
-    const ipAddrValue = ipAddr[0].childNodes[0].nodeValue;
-
-    console.log("ipAddress: " + ipAddrValue);
-    
-    console.log(" ");
-    let getXmlAttribute= xmlData.documentElement.childNodes[1].childNodes;
-    console.log(getXmlAttribute);
-
-    for(i=1; i<getXmlAttribute.length; i+=2){
-      console.log(xmlData.documentElement.childNodes[1].childNodes[i].firstChild.nodeValue);
+    let dataYCnt = 0;
+    for( let i =0; i< data.length; i++){
+      if(data[i].value  == "Y"){
+        dataYCnt++;
+      }
     }
+    console.log("checkedCnt: " + dataYCnt);
+    document.getElementById('dailyMainViewCnt').value = dataYCnt;
+  }
 
-    let today = new Date();
-    console.log(today);
-};
+  function getChgChk(t){
+
+    //체크 변경시, 테이블 내 색 변경 메소드
+    let checkedValue = t.value;
+    console.log("checkedValue: "+ checkedValue);
+    let tableChg = t.parentNode.parentNode.parentNode;
+    tableChg.style.backgroundColor = (checkedValue == "Y") ?  "#F5D0A9" : "#FFF";
+
+    refreshChk();
+  }
+
+  function refreshChk(){
+    const query = 'input[class="form-check-input"]:checked';
+    const data = document.querySelectorAll(query);
+    for( let i =0; i< data.length; i++){
+      if(data[i].value  == "Y"){
+        target = data[i].parentNode.parentNode.parentNode;
+        target.style.backgroundColor = "#F5D0A9";
+      }
+    }
+  }
+
 </script>
 
 <body>
@@ -76,7 +75,7 @@
 <div class="container-fluid container-lg mt-lg-5">
 
   <div class="form-row float-end">
-    <button type="submit" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" >수정 완료</button>
+    <button id="erpSubmit" type="submit" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" >수정 완료</button>
     <button type="button" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" th:onclick="|location.href='@{/}'|">뒤로가기</button>
   </div>
 
@@ -92,7 +91,7 @@
         </tr>
       </thead>
     <tbody>
-
+    <input type="hidden" id="dailyMainViewCnt" name="dailyMainViewCnt" value="">
     <tr align="center" th:each="etcErpService:${etcErpService}">
       <td style="background-color: #81BEF7; font-weight:bold">서비스</td>
       <td>
@@ -113,26 +112,26 @@
       <td>
         <p><!--추후 수정 필요 현재는 백업 서비스만 체크 진행-->
           <input class="form-check-input" type="radio" value="Y" name="etcErpMailServiceChk" id="etcErpMailServiceChkY"
-                 th:checked="${etcErpService.etcErpMailServiceChk eq 'Y'}" >
+                 th:onclick="getChgChk(this)" th:checked="${etcErpService.etcErpMailServiceChk eq 'Y'}" >
           유
           <input class="form-check-input" type="radio" value="N" name="etcErpMailServiceChk" id="etcErpMailServiceChkN"
-                 th:checked="${etcErpService.etcErpMailServiceChk eq 'N'}" >
+                 th:onclick="getChgChk(this)" th:checked="${etcErpService.etcErpMailServiceChk eq 'N'}" >
           무
         </p>
         <p><!--추후 수정 필요 현재는 백업 서비스만 체크 진행-->
           <input class="form-check-input" type="radio" value="Y" name="etcErpApproveServiceChk" id="etcErpApproveServiceChkY"
-                 th:checked="${etcErpService.etcErpApproveServiceChk eq 'Y'}" >
+                 th:onclick="getChgChk(this)" th:checked="${etcErpService.etcErpApproveServiceChk eq 'Y'}" >
           유
           <input class="form-check-input" type="radio" value="N" name="etcErpApproveServiceChk" id="etcErpApproveServiceChkN"
-                 th:checked="${etcErpService.etcErpApproveServiceChk eq 'N'}" >
+                 th:onclick="getChgChk(this)" th:checked="${etcErpService.etcErpApproveServiceChk eq 'N'}" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="etcErpBackUpServiceChk" id="etcErpBackUpServiceChkY"
-                 th:checked="${etcErpService.etcErpBackUpServiceChk eq 'Y'}" >
+                 th:onclick="getChgChk(this)" th:checked="${etcErpService.etcErpBackUpServiceChk eq 'Y'}" >
           유
           <input class="form-check-input" type="radio" value="N" name="etcErpBackUpServiceChk" id="etcErpBackUpServiceChkN"
-                 th:checked="${etcErpService.etcErpBackUpServiceChk eq 'N'}" >
+                 th:onclick="getChgChk(this)" th:checked="${etcErpService.etcErpBackUpServiceChk eq 'N'}" >
           무
         </p>
       </td>
@@ -159,42 +158,42 @@
       <td>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpLinkCpuUsageChk" id="chaErpLinkCpuUsageChkY"
-                 th:checked="${etcErpServer.chaErpLinkCpuUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpLinkCpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpLinkCpuUsageChk" id="chaErpLinkCpuUsageChkN"
-                 th:checked="${etcErpServer.chaErpLinkCpuUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpLinkCpuUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpLinkMemUsageChk" id="chaErpLinkMemUsageChkY"
-                 th:checked="${etcErpServer.chaErpLinkMemUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpLinkMemUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpLinkMemUsageChk" id="chaErpLinkMemUsageChkN"
-                 th:checked="${etcErpServer.chaErpLinkMemUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpLinkMemUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpLinkDiskUsageChk" id="chaErpLinkDiskUsageChkY"
-                 th:checked="${etcErpServer.chaErpLinkDiskUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpLinkDiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpLinkDiskUsageChk" id="chaErpLinkDiskUsageChkN"
-                 th:checked="${etcErpServer.chaErpLinkDiskUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpLinkDiskUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpLinkEventChk" id="chaErpLinkEventChkY"
-                 th:checked="${etcErpServer.chaErpLinkEventChk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpLinkEventChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpLinkEventChk" id="chaErpLinkEventChkN"
-                 th:checked="${etcErpServer.chaErpLinkEventChk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpLinkEventChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpLinkV3Chk" id="chaErpLinkV3ChkY"
-                 th:checked="${etcErpServer.chaErpLinkV3Chk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpLinkV3Chk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpLinkV3Chk" id="chaErpLinkV3ChkN"
-                 th:checked="${etcErpServer.chaErpLinkV3Chk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpLinkV3Chk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
       </td>
@@ -224,42 +223,42 @@
       <td>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpApp1CpuUsageChk" id="chaErpApp1CpuUsageChkY"
-                 th:checked="${etcErpServer.chaErpApp1CpuUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpApp1CpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpApp1CpuUsageChk" id="chaErpApp1CpuUsageChkN"
-                 th:checked="${etcErpServer.chaErpApp1CpuUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpApp1CpuUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpApp1MemUsageChk" id="chaErpApp1MemUsageChkY"
-                 th:checked="${etcErpServer.chaErpApp1MemUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpApp1MemUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpApp1MemUsageChk" id="chaErpApp1MemUsageChkN"
-                 th:checked="${etcErpServer.chaErpApp1MemUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpApp1MemUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpApp1DiskUsageChk" id="chaErpApp1DiskUsageChkY"
-                 th:checked="${etcErpServer.chaErpApp1DiskUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpApp1DiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpApp1DiskUsageChk" id="chaErpApp1DiskUsageChkN"
-                 th:checked="${etcErpServer.chaErpApp1DiskUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpApp1DiskUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpApp1EventChk" id="chaErpApp1EventChkY"
-                 th:checked="${etcErpServer.chaErpApp1EventChk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpApp1EventChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpApp1EventChk" id="chaErpApp1EventChkN"
-                 th:checked="${etcErpServer.chaErpApp1EventChk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpApp1EventChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpApp1V3Chk" id="chaErpApp1V3ChkY"
-                 th:checked="${etcErpServer.chaErpApp1V3Chk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpApp1V3Chk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpApp1V3Chk" id="chaErpApp1V3ChkN"
-                 th:checked="${etcErpServer.chaErpApp1V3Chk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpApp1V3Chk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
       </td>
@@ -289,42 +288,42 @@
       <td>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpApp2CpuUsageChk" id="chaErpApp2CpuUsageChkY"
-                 th:checked="${etcErpServer.chaErpApp2CpuUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpApp2CpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpApp2CpuUsageChk" id="chaErpApp2CpuUsageChkN"
-                 th:checked="${etcErpServer.chaErpApp2CpuUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpApp2CpuUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpApp2MemUsageChk" id="chaErpApp2MemUsageChkY"
-                 th:checked="${etcErpServer.chaErpApp2MemUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpApp2MemUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpApp2MemUsageChk" id="chaErpApp2MemUsageChkN"
-                 th:checked="${etcErpServer.chaErpApp2MemUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpApp2MemUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpApp2DiskUsageChk" id="chaErpApp2DiskUsageChkY"
-                 th:checked="${etcErpServer.chaErpApp2DiskUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpApp2DiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpApp2DiskUsageChk" id="chaErpApp2DiskUsageChkN"
-                 th:checked="${etcErpServer.chaErpApp2DiskUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpApp2DiskUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpApp2EventChk" id="chaErpApp2EventChkY"
-                 th:checked="${etcErpServer.chaErpApp2EventChk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpApp2EventChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpApp2EventChk" id="chaErpApp2EventChkN"
-                 th:checked="${etcErpServer.chaErpApp2EventChk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpApp2EventChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpApp2V3Chk" id="chaErpApp2V3ChkY"
-                 th:checked="${etcErpServer.chaErpApp2V3Chk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpApp2V3Chk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpApp2V3Chk" id="chaErpApp2V3ChkN"
-                 th:checked="${etcErpServer.chaErpApp2V3Chk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpApp2V3Chk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
       </td>
@@ -354,42 +353,42 @@
       <td>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpDb1CpuUsageChk" id="chaErpDb1CpuUsageChkY"
-                 th:checked="${etcErpServer.chaErpDb1CpuUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpDb1CpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpDb1CpuUsageChk" id="chaErpDb1CpuUsageChkN"
-                 th:checked="${etcErpServer.chaErpDb1CpuUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpDb1CpuUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpDb1MemUsageChk" id="chaErpDb1MemUsageChkY"
-                 th:checked="${etcErpServer.chaErpDb1MemUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpDb1MemUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpDb1MemUsageChk" id="chaErpDb1MemUsageChkN"
-                 th:checked="${etcErpServer.chaErpDb1MemUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpDb1MemUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpDb1DiskUsageChk" id="chaErpDb1DiskUsageChkY"
-                 th:checked="${etcErpServer.chaErpDb1DiskUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpDb1DiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpDb1DiskUsageChk" id="chaErpDb1DiskUsageChkN"
-                 th:checked="${etcErpServer.chaErpDb1DiskUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpDb1DiskUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpDb1EventChk" id="chaErpDb1EventChkY"
-                 th:checked="${etcErpServer.chaErpDb1EventChk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpDb1EventChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpDb1EventChk" id="chaErpDb1EventChkN"
-                 th:checked="${etcErpServer.chaErpDb1EventChk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpDb1EventChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpDb1V3Chk" id="chaErpDb1V3ChkY"
-                 th:checked="${etcErpServer.chaErpDb1V3Chk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpDb1V3Chk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpDb1V3Chk" id="chaErpDb1V3ChkN"
-                 th:checked="${etcErpServer.chaErpDb1V3Chk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpDb1V3Chk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
       </td>
@@ -419,42 +418,42 @@
       <td>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpDb2CpuUsageChk" id="chaErpDb2CpuUsageChkY"
-                 th:checked="${etcErpServer.chaErpDb2CpuUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpDb2CpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpDb2CpuUsageChk" id="chaErpDb2CpuUsageChkN"
-                 th:checked="${etcErpServer.chaErpDb2CpuUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpDb2CpuUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpDb2MemUsageChk" id="chaErpDb2MemUsageChkY"
-                 th:checked="${etcErpServer.chaErpDb2MemUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpDb2MemUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpDb2MemUsageChk" id="chaErpDb2MemUsageChkN"
-                 th:checked="${etcErpServer.chaErpDb2MemUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpDb2MemUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpDb2DiskUsageChk" id="chaErpDb2DiskUsageChkY"
-                 th:checked="${etcErpServer.chaErpDb2DiskUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpDb2DiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpDb2DiskUsageChk" id="chaErpDb2DiskUsageChkN"
-                 th:checked="${etcErpServer.chaErpDb2DiskUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpDb2DiskUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpDb2EventChk" id="chaErpDb2EventChkY"
-                 th:checked="${etcErpServer.chaErpDb2EventChk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpDb2EventChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpDb2EventChk" id="chaErpDb2EventChkN"
-                 th:checked="${etcErpServer.chaErpDb2EventChk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpDb2EventChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpDb2V3Chk" id="chaErpDb2V3ChkY"
-                 th:checked="${etcErpServer.chaErpDb2V3Chk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpDb2V3Chk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpDb2V3Chk" id="chaErpDb2V3ChkN"
-                 th:checked="${etcErpServer.chaErpDb2V3Chk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpDb2V3Chk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
       </td>
@@ -484,42 +483,42 @@
       <td>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpDevCpuUsageChk" id="chaErpDevCpuUsageChkY"
-                 th:checked="${etcErpServer.chaErpDevCpuUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpDevCpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpDevCpuUsageChk" id="chaErpDevCpuUsageChkN"
-                 th:checked="${etcErpServer.chaErpDevCpuUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpDevCpuUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpDevMemUsageChk" id="chaErpDevMemUsageChkY"
-                 th:checked="${etcErpServer.chaErpDevMemUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpDevMemUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpDevMemUsageChk" id="chaErpDevMemUsageChkN"
-                 th:checked="${etcErpServer.chaErpDevMemUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpDevMemUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpDevDiskUsageChk" id="chaErpDevDiskUsageChkY"
-                 th:checked="${etcErpServer.chaErpDevDiskUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpDevDiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpDevDiskUsageChk" id="chaErpDevDiskUsageChkN"
-                 th:checked="${etcErpServer.chaErpDevDiskUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpDevDiskUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpDevEventChk" id="chaErpDevEventChkY"
-                 th:checked="${etcErpServer.chaErpDevEventChk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpDevEventChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpDevEventChk" id="chaErpDevEventChkN"
-                 th:checked="${etcErpServer.chaErpDevEventChk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpDevEventChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="chaErpDevV3Chk" id="chaErpDevV3ChkY"
-                 th:checked="${etcErpServer.chaErpDevV3Chk eq 'Y'}" >
+                 th:checked="${etcErpServer.chaErpDevV3Chk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="chaErpDevV3Chk" id="chaErpDevV3ChkN"
-                 th:checked="${etcErpServer.chaErpDevV3Chk eq 'N'}" >
+                 th:checked="${etcErpServer.chaErpDevV3Chk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
       </td>
@@ -549,42 +548,42 @@
       <td>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="ddcEtiCpuUsageChk" id="ddcEtiCpuUsageChkY"
-                 th:checked="${etcErpServer.ddcEtiCpuUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.ddcEtiCpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="ddcEtiCpuUsageChk" id="ddcEtiCpuUsageChkN"
-                 th:checked="${etcErpServer.ddcEtiCpuUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.ddcEtiCpuUsageChk eq 'N'}" th:onclick="getChgChk(this)">
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="ddcEtiMemUsageChk" id="ddcEtiMemUsageChkY"
-                 th:checked="${etcErpServer.ddcEtiMemUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.ddcEtiMemUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="ddcEtiMemUsageChk" id="ddcEtiMemUsageChkN"
-                 th:checked="${etcErpServer.ddcEtiMemUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.ddcEtiMemUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="ddcEtiDiskUsageChk" id="ddcEtiDiskUsageChkY"
-                 th:checked="${etcErpServer.ddcEtiDiskUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.ddcEtiDiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="ddcEtiDiskUsageChk" id="ddcEtiDiskUsageChkN"
-                 th:checked="${etcErpServer.ddcEtiDiskUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.ddcEtiDiskUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="ddcEtiEventChk" id="ddcEtiEventChkY"
-                 th:checked="${etcErpServer.ddcEtiEventChk eq 'Y'}" >
+                 th:checked="${etcErpServer.ddcEtiEventChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="ddcEtiEventChk" id="ddcEtiEventChkN"
-                 th:checked="${etcErpServer.ddcEtiEventChk eq 'N'}" >
+                 th:checked="${etcErpServer.ddcEtiEventChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="ddcEtiV3Chk" id="ddcEtiV3ChkY"
-                 th:checked="${etcErpServer.ddcEtiV3Chk eq 'Y'}" >
+                 th:checked="${etcErpServer.ddcEtiV3Chk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="ddcEtiV3Chk" id="ddcEtiV3ChkN"
-                 th:checked="${etcErpServer.ddcEtiV3Chk eq 'N'}" >
+                 th:checked="${etcErpServer.ddcEtiV3Chk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
       </td>
@@ -614,42 +613,42 @@
       <td>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="ddcMisAppCpuUsageChk" id="ddcMisAppCpuUsageChkY"
-                 th:checked="${etcErpServer.ddcMisAppCpuUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.ddcMisAppCpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)"  >
           유
           <input class="form-check-input" type="radio" value="N" name="ddcMisAppCpuUsageChk" id="ddcMisAppCpuUsageChkN"
-                 th:checked="${etcErpServer.ddcMisAppCpuUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.ddcMisAppCpuUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="ddcMisAppMemUsageChk" id="ddcMisAppMemUsageChkY"
-                 th:checked="${etcErpServer.ddcMisAppMemUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.ddcMisAppMemUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="ddcMisAppMemUsageChk" id="ddcMisAppMemUsageChkN"
-                 th:checked="${etcErpServer.ddcMisAppMemUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.ddcMisAppMemUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="ddcMisAppDiskUsageChk" id="ddcMisAppDiskUsageChkY"
-                 th:checked="${etcErpServer.ddcMisAppDiskUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.ddcMisAppDiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="ddcMisAppDiskUsageChk" id="ddcMisAppDiskUsageChkN"
-                 th:checked="${etcErpServer.ddcMisAppDiskUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.ddcMisAppDiskUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="ddcMisAppEventChk" id="ddcMisAppEventChkY"
-                 th:checked="${etcErpServer.ddcMisAppEventChk eq 'Y'}" >
+                 th:checked="${etcErpServer.ddcMisAppEventChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="ddcMisAppEventChk" id="ddcMisAppEventChkN"
-                 th:checked="${etcErpServer.ddcMisAppEventChk eq 'N'}" >
+                 th:checked="${etcErpServer.ddcMisAppEventChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="ddcMisAppV3Chk" id="ddcMisAppV3ChkY"
-                 th:checked="${etcErpServer.ddcMisAppV3Chk eq 'Y'}" >
+                 th:checked="${etcErpServer.ddcMisAppV3Chk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="ddcMisAppV3Chk" id="ddcMisAppV3ChkN"
-                 th:checked="${etcErpServer.ddcMisAppV3Chk eq 'N'}" >
+                 th:checked="${etcErpServer.ddcMisAppV3Chk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
       </td>
@@ -679,42 +678,42 @@
       <td>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="ddcErpDbCpuUsageChk" id="ddcErpDbCpuUsageChkY"
-                 th:checked="${etcErpServer.ddcErpDbCpuUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.ddcErpDbCpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="ddcErpDbCpuUsageChk" id="ddcErpDbCpuUsageChkN"
-                 th:checked="${etcErpServer.ddcErpDbCpuUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.ddcErpDbCpuUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="ddcErpDbMemUsageChk" id="ddcErpDbMemUsageChkY"
-                 th:checked="${etcErpServer.ddcErpDbMemUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.ddcErpDbMemUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="ddcErpDbMemUsageChk" id="ddcErpDbMemUsageChkN"
-                 th:checked="${etcErpServer.ddcErpDbMemUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.ddcErpDbMemUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="ddcErpDbDiskUsageChk" id="ddcErpDbDiskUsageChkY"
-                 th:checked="${etcErpServer.ddcErpDbDiskUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.ddcErpDbDiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="ddcErpDbDiskUsageChk" id="ddcErpDbDiskUsageChkN"
-                 th:checked="${etcErpServer.ddcErpDbDiskUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.ddcErpDbDiskUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="ddcErpDbEventChk" id="ddcErpDbEventChkY"
-                 th:checked="${etcErpServer.ddcErpDbEventChk eq 'Y'}" >
+                 th:checked="${etcErpServer.ddcErpDbEventChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="ddcErpDbEventChk" id="ddcErpDbEventChkN"
-                 th:checked="${etcErpServer.ddcErpDbEventChk eq 'N'}" >
+                 th:checked="${etcErpServer.ddcErpDbEventChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="ddcErpDbV3Chk" id="ddcErpDbV3ChkY"
-                 th:checked="${etcErpServer.ddcErpDbV3Chk eq 'Y'}" >
+                 th:checked="${etcErpServer.ddcErpDbV3Chk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="ddcErpDbEventChk" id="ddcErpDbV3ChkN"
-                 th:checked="${etcErpServer.ddcErpDbV3Chk eq 'N'}" >
+                 th:checked="${etcErpServer.ddcErpDbV3Chk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
       </td>
@@ -744,42 +743,42 @@
       <td>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="dkf1CpuUsageChk" id="dkf1CpuUsageChkY"
-                 th:checked="${etcErpServer.dkf1CpuUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.dkf1CpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="dkf1CpuUsageChk" id="dkf1CpuUsageChkN"
-                 th:checked="${etcErpServer.dkf1CpuUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.dkf1CpuUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="dkf1MemUsageChk" id="dkf1MemUsageChkY"
-                 th:checked="${etcErpServer.dkf1MemUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.dkf1MemUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="dkf1MemUsageChk" id="dkf1MemUsageChkN"
-                 th:checked="${etcErpServer.dkf1MemUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.dkf1MemUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="dkf1DiskUsageChk" id="dkf1DiskUsageChkY"
-                 th:checked="${etcErpServer.dkf1DiskUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.dkf1DiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="dkf1DiskUsageChk" id="dkf1DiskUsageChkN"
-                 th:checked="${etcErpServer.dkf1DiskUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.dkf1DiskUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="dkf1EventChk" id="dkf1EventChkY"
-                 th:checked="${etcErpServer.dkf1EventChk eq 'Y'}" >
+                 th:checked="${etcErpServer.dkf1EventChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="dkf1EventChk" id="dkf1EventChkN"
-                 th:checked="${etcErpServer.dkf1EventChk eq 'N'}" >
+                 th:checked="${etcErpServer.dkf1EventChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="dkf1V3Chk" id="dkf1V3ChkY"
-                 th:checked="${etcErpServer.dkf1V3Chk eq 'Y'}" >
+                 th:checked="${etcErpServer.dkf1V3Chk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="dkf1EventChk" id="dkf1V3ChkN"
-                 th:checked="${etcErpServer.dkf1V3Chk eq 'N'}" >
+                 th:checked="${etcErpServer.dkf1V3Chk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
       </td>
@@ -809,42 +808,42 @@
       <td>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="dkf2CpuUsageChk" id="dkf2CpuUsageChkY"
-                 th:checked="${etcErpServer.dkf2CpuUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.dkf2CpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="dkf2CpuUsageChk" id="dkf2CpuUsageChkN"
-                 th:checked="${etcErpServer.dkf2CpuUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.dkf2CpuUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="dkf2MemUsageChk" id="dkf2MemUsageChkY"
-                 th:checked="${etcErpServer.dkf2MemUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.dkf2MemUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="dkf2MemUsageChk" id="dkf2MemUsageChkN"
-                 th:checked="${etcErpServer.dkf2MemUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.dkf2MemUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="dkf2DiskUsageChk" id="dkf2DiskUsageChkY"
-                 th:checked="${etcErpServer.dkf2DiskUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.dkf2DiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="dkf2DiskUsageChk" id="dkf2DiskUsageChkN"
-                 th:checked="${etcErpServer.dkf2DiskUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.dkf2DiskUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="dkf2EventChk" id="dkf2EventChkY"
-                 th:checked="${etcErpServer.dkf2EventChk eq 'Y'}" >
+                 th:checked="${etcErpServer.dkf2EventChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="dkf2EventChk" id="dkf2EventChkN"
-                 th:checked="${etcErpServer.dkf2EventChk eq 'N'}" >
+                 th:checked="${etcErpServer.dkf2EventChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="dkf2V3Chk" id="dkf2V3ChkY"
-                 th:checked="${etcErpServer.dkf2V3Chk eq 'Y'}" >
+                 th:checked="${etcErpServer.dkf2V3Chk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="dkf2V3Chk" id="dkf2V3ChkN"
-                 th:checked="${etcErpServer.dkf2V3Chk eq 'N'}" >
+                 th:checked="${etcErpServer.dkf2V3Chk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
       </td>
@@ -874,42 +873,42 @@
       <td>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="dongaBCpuUsageChk" id="dongaBCpuUsageChkY"
-                 th:checked="${etcErpServer.dongaBCpuUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.dongaBCpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="dongaBCpuUsageChk" id="dongaBCpuUsageChkN"
-                 th:checked="${etcErpServer.dongaBCpuUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.dongaBCpuUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="dongaBMemUsageChk" id="dongaBMemUsageChkY"
-                 th:checked="${etcErpServer.dongaBMemUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.dongaBMemUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="dongaBMemUsageChk" id="dongaBMemUsageChkN"
-                 th:checked="${etcErpServer.dongaBMemUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.dongaBMemUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="dongaBDiskUsageChk" id="dongaBDiskUsageChkY"
-                 th:checked="${etcErpServer.dongaBDiskUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.dongaBDiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="dongaBDiskUsageChk" id="dongaBDiskUsageChkN"
-                 th:checked="${etcErpServer.dongaBDiskUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.dongaBDiskUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="dongaBEventChk" id="dongaBEventChkY"
-                 th:checked="${etcErpServer.dongaBEventChk eq 'Y'}" >
+                 th:checked="${etcErpServer.dongaBEventChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="dongaBEventChk" id="dongaBEventChkN"
-                 th:checked="${etcErpServer.dongaBEventChk eq 'N'}" >
+                 th:checked="${etcErpServer.dongaBEventChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="dongaBV3Chk" id="dongaBV3ChkY"
-                 th:checked="${etcErpServer.dongaBV3Chk eq 'Y'}" >
+                 th:checked="${etcErpServer.dongaBV3Chk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="dongaBV3Chk" id="dongaBV3ChkN"
-                 th:checked="${etcErpServer.dongaBV3Chk eq 'N'}" >
+                 th:checked="${etcErpServer.dongaBV3Chk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
       </td>
@@ -938,34 +937,34 @@
       <td>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="misServiceChk" id="misServiceChkY"
-                 th:checked="${etcErpServer.misServiceChk eq 'Y'}" >
+                 th:checked="${etcErpServer.misServiceChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="misServiceChk" id="misServiceChkN"
-                 th:checked="${etcErpServer.misServiceChk eq 'N'}" >
+                 th:checked="${etcErpServer.misServiceChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="misOraUsageChk" id="misOraUsageChkY"
-                 th:checked="${etcErpServer.misOraUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.misOraUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="misOraUsageChk" id="misOraUsageChkN"
-                 th:checked="${etcErpServer.misOraUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.misOraUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="misDiskUsageChk" id="misDiskUsageChkY"
-                 th:checked="${etcErpServer.misDiskUsageChk eq 'Y'}" >
+                 th:checked="${etcErpServer.misDiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="misDiskUsageChk" id="misDiskUsageChkN"
-                 th:checked="${etcErpServer.misDiskUsageChk eq 'N'}" >
+                 th:checked="${etcErpServer.misDiskUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
         <p>
           <input class="form-check-input" type="radio" value="Y" name="misEventChk" id="misEventChkY"
-                 th:checked="${etcErpServer.misEventChk eq 'Y'}" >
+                 th:checked="${etcErpServer.misEventChk eq 'Y'}" th:onclick="getChgChk(this)" >
           유
           <input class="form-check-input" type="radio" value="N" name="misEventChk" id="misEventChkN"
-                 th:checked="${etcErpServer.misEventChk eq 'N'}" >
+                 th:checked="${etcErpServer.misEventChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
       </td>

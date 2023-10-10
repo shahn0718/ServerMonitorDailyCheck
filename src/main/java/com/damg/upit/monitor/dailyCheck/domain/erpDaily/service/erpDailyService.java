@@ -66,10 +66,11 @@ public class erpDailyService {
 
     @Transactional(rollbackFor=Exception.class)
     public void updateErpDailyCheckMain(Long mainBoardId,
+                                        int dailyMainViewCnt,
                                         MInsertErpDailyServiceMain mInsertErpDailyServiceMain, MInsertErpDailyServerMain mInsertErpDailyServerMain,
                                         MInsertErpDailyVMMain mInsertErpDailyVMMain, MInsertErpDailyStorageMain mInsertErpDailyStorageMain){
 
-        mainRepository.updateDailyCheckBoard(LocalDateTime.now(),mainBoardId);
+        mainRepository.updateDailyCheckBoardNew(LocalDateTime.now(),dailyMainViewCnt,mainBoardId);
 
         mInsertErpDailyServiceMain.setErpMainId(mainBoardId);
         mInsertErpDailyServerMain.setErpMainId(mainBoardId);

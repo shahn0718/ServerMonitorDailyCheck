@@ -123,8 +123,8 @@ public class gwDailyController {
 
 
         int dailyMainViewCnt = Integer.parseInt(request.getParameter("dailyMainViewCnt"));
+        log.info("dailyMainViewCnt={}",dailyMainViewCnt);
 
-        System.out.println("dailyMainViewCnt"+dailyMainViewCnt);
         gwService.updateGwDailyCheckMain(mainBoardId, dailyMainViewCnt,
                 mInsertGwDailyServiceMain,mInsertGwDailyServerMain,mInsertGwDailyStorageMain);
 

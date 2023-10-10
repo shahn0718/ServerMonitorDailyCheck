@@ -50,11 +50,12 @@ public class etcHrDailyService {
 
     @Transactional(rollbackFor=Exception.class)
     public void updateEtcHrDailyCheckMain(Long mainBoardId,
+                                          int dailyMainViewCnt,
                                           MInsertEtcHrDailyServiceMain mInsertEtcHrDailyServiceMain,
                                           MInsertEtcHrDailyServerMain mInsertEtcHrDailyServerMain){
 
 
-        mainRepository.updateDailyCheckBoard(LocalDateTime.now(),mainBoardId);
+        mainRepository.updateDailyCheckBoardNew(LocalDateTime.now(),dailyMainViewCnt,mainBoardId);
 
         mInsertEtcHrDailyServiceMain.setEtcHRMainId(mainBoardId);
         mInsertEtcHrDailyServerMain.setEtcHRMainId(mainBoardId);

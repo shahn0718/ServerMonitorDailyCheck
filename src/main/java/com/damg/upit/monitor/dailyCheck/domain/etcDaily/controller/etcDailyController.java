@@ -9,6 +9,7 @@ import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MDailyCheckElemen
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckAdminMain;
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain;
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.service.mainDailyService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,9 +46,11 @@ public class etcDailyController {
             @ModelAttribute("etcDailyServiceMain")MInsertEtcDailyServiceMain mInsertEtcDailyServiceMain,
             @ModelAttribute("etcDailyServerMain")MInsertEtcDailyServerMain mInsertEtcDailyServerMain,
             @RequestParam String admin_nm,
+            HttpServletRequest request,
             Model model){
 
         Model etcDailyCheckSubmit = model.addAttribute("etcDailyCheck");
+        String dailyMainViewCnt = request.getParameter("dailyMainViewCnt");
         log.info("method=doInsertEtcDailyCheck() etcDailyCheck={}",etcDailyCheckSubmit);
 
         String contentDate = DateTimeFormatter.ofPattern("yyyy.MM.dd").format(LocalDateTime.now());
@@ -60,6 +63,7 @@ public class etcDailyController {
         msvDailyCheckBoardMain.setDailyMainContent(mDailyCheckElement.ETC_ERP_KOR+" 서버 일일점검 "+"("+contentDate+")");
         msvDailyCheckBoardMain.setDailyMainWriter(msvDailyCheckAdminMain.getAdmin_nm());
         msvDailyCheckBoardMain.setDailyMainWriterNo(msvDailyCheckAdminMain.getAdmin_no());
+        msvDailyCheckBoardMain.setDailyMainViewCnt(Integer.parseInt(dailyMainViewCnt));
         msvDailyCheckBoardMain.setDailyMainCreateDate(LocalDateTime.now());
 
         etcService.insertEtcDailyCheckMain(mInsertEtcDailyServiceMain,mInsertEtcDailyServerMain,msvDailyCheckBoardMain);
@@ -96,9 +100,13 @@ public class etcDailyController {
     @PostMapping("/ERP_ETC/{boardId}/Update")
     public String doUpdateEtcDailyCheck(@PathVariable("boardId")Long etcMainId,
                                         @ModelAttribute("etcDailyServiceMain") MInsertEtcDailyServiceMain mInsertEtcDailyServiceMain,
-                                        @ModelAttribute("etcDailyServerMain")MInsertEtcDailyServerMain mInsertEtcDailyServerMain){
+                                        @ModelAttribute("etcDailyServerMain")MInsertEtcDailyServerMain mInsertEtcDailyServerMain,
+                                        HttpServletRequest request){
 
-        etcService.updateEtcDailyCheckMain(etcMainId,mInsertEtcDailyServiceMain,mInsertEtcDailyServerMain);
+        int dailyMainViewCnt = Integer.parseInt(request.getParameter("dailyMainViewCnt"));
+        log.info("dailyMainViewCnt={}",dailyMainViewCnt);
+
+        etcService.updateEtcDailyCheckMain(etcMainId,dailyMainViewCnt,mInsertEtcDailyServiceMain,mInsertEtcDailyServerMain);
 
         log.info("method=doUpdateEtcDailyCheck() etcDailyServiceMain={}",mInsertEtcDailyServiceMain);
         log.info("method=doUpdateEtcDailyCheck() etcDailyServerMain={}",mInsertEtcDailyServerMain);

@@ -10,6 +10,7 @@ import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MDailyCheckElemen
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckAdminMain;
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain;
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.service.mainDailyService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,21 +51,23 @@ public class erpDailyController {
             @ModelAttribute("erpDailyStorageMain")MInsertErpDailyStorageMain mInsertErpDailyStorageMain,
             @ModelAttribute("erpDailyVMMain")MInsertErpDailyVMMain mInsertErpDailyVMMain,
             @RequestParam String admin_nm,
+            HttpServletRequest request,
             Model model){
 
         Model erpDailyCheckSubmit = model.addAttribute("erpDailyCheck");
+        String dailyMainViewCnt = request.getParameter("dailyMainViewCnt");
         log.info("method=doInsertErpDailyCheck() erpDailyCheck={}",erpDailyCheckSubmit);
 
         String contentDate = DateTimeFormatter.ofPattern("yyyy.MM.dd").format(LocalDateTime.now());
         MSVDailyCheckAdminMain msvDailyCheckAdminMain = mainService.selectDailyCheckAdmin(admin_nm);
 
         MSVDailyCheckBoardMain msvDailyCheckBoardMain = new MSVDailyCheckBoardMain();
-        MSVDailyCheckBoardMain msvCheck = new MSVDailyCheckBoardMain();
         msvDailyCheckBoardMain.setDailyMainCd(mDailyCheckElement.ERP);
         msvDailyCheckBoardMain.setDailyMainCdNm(mDailyCheckElement.ERP_CDNM);
         msvDailyCheckBoardMain.setDailyMainContent(mDailyCheckElement.ERP_KOR+" 서버 일일점검 "+"("+contentDate+")");
         msvDailyCheckBoardMain.setDailyMainWriter(msvDailyCheckAdminMain.getAdmin_nm());
         msvDailyCheckBoardMain.setDailyMainWriterNo(msvDailyCheckAdminMain.getAdmin_no());
+        msvDailyCheckBoardMain.setDailyMainViewCnt(Integer.parseInt(dailyMainViewCnt));
         msvDailyCheckBoardMain.setDailyMainCreateDate(LocalDateTime.now());
 
         erpService.insertErpDailyCheckMain(mInsertErpDailyServiceMain,mInsertErpDailyServerMain,
@@ -112,9 +115,13 @@ public class erpDailyController {
                                         @ModelAttribute("erpDailyServiceMain")MInsertErpDailyServiceMain mInsertErpDailyServiceMain,
                                         @ModelAttribute("erpDailyServerMain")MInsertErpDailyServerMain mInsertErpDailyServerMain,
                                         @ModelAttribute("erpDailyVMMain")MInsertErpDailyVMMain mInsertErpDailyVMMain,
-                                        @ModelAttribute("erpDailyStorageMain")MInsertErpDailyStorageMain mInsertErpDailyStorageMain){
+                                        @ModelAttribute("erpDailyStorageMain")MInsertErpDailyStorageMain mInsertErpDailyStorageMain,
+                                        HttpServletRequest request){
 
-        erpService.updateErpDailyCheckMain(erpMainId,mInsertErpDailyServiceMain,
+        int dailyMainViewCnt = Integer.parseInt(request.getParameter("dailyMainViewCnt"));
+        log.info("dailyMainViewCnt={}",dailyMainViewCnt);
+
+        erpService.updateErpDailyCheckMain(erpMainId,dailyMainViewCnt,mInsertErpDailyServiceMain,
                 mInsertErpDailyServerMain,mInsertErpDailyVMMain,mInsertErpDailyStorageMain);
         log.info("method=doUpdateErpDailyCheck() erpDailyServiceMain={}",mInsertErpDailyServiceMain);
         log.info("method=doUpdateErpDailyCheck() erpDailyServerMain={}",mInsertErpDailyServerMain);

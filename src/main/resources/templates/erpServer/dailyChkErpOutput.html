@@ -8,6 +8,16 @@
 </head>
 
 <script>
+  window.onload = function() {
+ const query = 'input[class="form-check-input"]:checked';
+ const data = document.querySelectorAll(query);
+  for( let i =0; i< data.length; i++){
+    if(data[i].value  == "Y"){
+      target = data[i].parentNode.parentNode.parentNode;
+      target.style.backgroundColor = "#F5D0A9";
+    }
+  }
+};
 </script>
 
 
