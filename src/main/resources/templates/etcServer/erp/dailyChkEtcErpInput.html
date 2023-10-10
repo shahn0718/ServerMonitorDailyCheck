@@ -50,7 +50,7 @@
 
 
    window.onload = function() {
-      document.getElementById('gwSubmit').onclick = function(){
+      document.getElementById('erpSubmit').onclick = function(){
         //저장 및 수정완료 진행시, 점검페이지 내 체크항목 확인 및 총 갯수 넘기기.
         getChkCnt();
         console.log("checkedCnt: "+ document.getElementById('dailyMainViewCnt').value);
@@ -97,6 +97,7 @@
         </tr>
       </thead>
       <tbody>
+      <input type="hidden" id="dailyMainViewCnt" name="dailyMainViewCnt" value="">
       <form name="etcErpService" th:action="post">
         <tr align="center">
           <td style="background-color: #81BEF7; font-weight:bold">서비스</td>

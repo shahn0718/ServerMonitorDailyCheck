@@ -49,10 +49,11 @@ public class etcDailyService {
 
     @Transactional(rollbackFor = Exception.class)
     public void updateEtcDailyCheckMain(Long mainBoardId,
+                                        int dailyMainViewCnt,
                                         MInsertEtcDailyServiceMain mInsertEtcDailyServiceMain,
                                         MInsertEtcDailyServerMain mInsertEtcDailyServerMain){
 
-        mainRepository.updateDailyCheckBoard(LocalDateTime.now(),mainBoardId);
+        mainRepository.updateDailyCheckBoardNew(LocalDateTime.now(),dailyMainViewCnt,mainBoardId);
 
         mInsertEtcDailyServiceMain.setEtcMainId(mainBoardId);
         mInsertEtcDailyServerMain.setEtcMainId(mainBoardId);
