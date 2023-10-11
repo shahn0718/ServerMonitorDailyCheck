@@ -10,6 +10,63 @@
 
 <script>
 
+  window.onload = function() {
+    const query = 'input[class="form-check-input"]:checked';
+    const data = document.querySelectorAll(query);
+
+    for( let i =0; i< data.length; i++){
+      if(data[i].value  == "Y"){
+        target = data[i].parentNode.parentNode.parentNode;
+        target.style.backgroundColor = "#FFD400";
+      }
+    }
+    document.getElementById('infraSubmit').onclick = function(){
+      //저장 및 수정완료 진행시, 점검페이지 내 체크항목 확인 및 총 갯수 넘기기.
+      getChkCnt();
+      console.log("checkedCnt: "+ document.getElementById('dailyMainViewCnt').value);
+    };
+  };
+
+  function getChkCnt(){
+
+    // 해당 점검페이지 내 체크 항목 확인 메소드
+    const query = 'input[class="form-check-input"]:checked';
+    const data = document.querySelectorAll(query);
+
+    let dataYCnt = 0;
+    for( let i =0; i< data.length; i++){
+      if(data[i].value  == "Y"){
+        dataYCnt++;
+      }
+    }
+    console.log("checkedCnt: " + dataYCnt);
+    document.getElementById('dailyMainViewCnt').value = dataYCnt;
+  }
+
+  function getChgChk(t){
+
+    //체크 변경시, 테이블 내 색 변경 메소드
+    let checkedValue = t.value;
+    console.log("checkedValue: "+ checkedValue);
+    let tableChg = t.parentNode.parentNode.parentNode;
+    tableChg.style.backgroundColor = (checkedValue == "Y") ?  "#FFD400" : "#FFF";
+
+    refreshChk();
+  }
+
+
+  function refreshChk(){
+    const query = 'input[class="form-check-input"]:checked';
+    const data = document.querySelectorAll(query);
+    for( let i =0; i< data.length; i++){
+      if(data[i].value  == "Y"){
+        target = data[i].parentNode.parentNode.parentNode;
+        target.style.backgroundColor = "#FFD400";
+      }
+    }
+  }
+
+
 
 </script>
 
@@ -20,7 +77,7 @@
   <div class="container-fluid container-lg mt-lg-5">
 
     <div class="form-row float-end">
-      <button type="submit" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" >수정 완료</button>
+      <button id="infraSubmit" type="submit" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" >수정 완료</button>
       <button type="button" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" th:onclick="|location.href='@{/}'|">뒤로가기</button>
     </div>
 
@@ -36,6 +93,7 @@
         </tr>
       </thead>
       <tbody>
+      <input type="hidden" id="dailyMainViewCnt" name="dailyMainViewCnt" value="">
         <tr align="center" th:each="infraService:${infraService}">
           <td style="background-color: #81BEF7; font-weight:bold">서비스</td>
           <td>  
@@ -59,34 +117,34 @@
           <td> 
             <p>
               <input class="form-check-input" type="radio" value="Y" name="infraBackUpServiceChk" id="infraBackUpServiceChkY"
-                     th:checked="${infraService.infraBackUpServiceChk eq 'Y'}" >
+                     th:checked="${infraService.infraBackUpServiceChk eq 'Y'}" th:onclick="getChgChk(this)" >
               유
               <input class="form-check-input" type="radio" value="N" name="infraBackUpServiceChk" id="infraBackUpServiceChkN"
-                     th:checked="${infraService.infraBackUpServiceChk eq 'N'}" >
+                     th:checked="${infraService.infraBackUpServiceChk eq 'N'}" th:onclick="getChgChk(this)">
               무
             </p> 
             <p>
               <input class="form-check-input" type="radio" value="Y" name="infraSpamServiceChk" id="infraSpamServiceChkY"
-                     th:checked="${infraService.infraSpamServiceChk eq 'Y'}" >
+                     th:checked="${infraService.infraSpamServiceChk eq 'Y'}" th:onclick="getChgChk(this)">
               유
               <input class="form-check-input" type="radio" value="N" name="infraSpamServiceChk" id="infraSpamServiceChkN"
-                     th:checked="${infraService.infraSpamServiceChk eq 'N'}" >
+                     th:checked="${infraService.infraSpamServiceChk eq 'N'}" th:onclick="getChgChk(this)">
               무  
             </p>
             <p>
                 <input class="form-check-input" type="radio" value="Y" name="infraMailServiceChk" id="infraMailServiceChkY"
-                       th:checked="${infraService.infraMailServiceChk eq 'Y'}" >
+                       th:checked="${infraService.infraMailServiceChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="infraMailServiceChk" id="infraMailServiceChkN"
-                       th:checked="${infraService.infraMailServiceChk eq 'N'}" >
+                       th:checked="${infraService.infraMailServiceChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
             </p>
             <p>
                 <input class="form-check-input" type="radio" value="Y" name="infraDNSServiceChk" id="infraDNSServiceChkY"
-                       th:checked="${infraService.infraDNSServiceChk eq 'Y'}" >
+                       th:checked="${infraService.infraDNSServiceChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="infraDNSServiceChk" id="infraDNSServiceChkN"
-                       th:checked="${infraService.infraDNSServiceChk eq 'N'}" >
+                       th:checked="${infraService.infraDNSServiceChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
           </td>
@@ -115,42 +173,42 @@
           <td> 
             <p>
               <input class="form-check-input" type="radio" value="Y" name="nwblock1CpuUsageChk" id="nwblock1CpuUsageChkY"
-                     th:checked="${infraServer.nwblock1CpuUsageChk eq 'Y'}" >
+                     th:checked="${infraServer.nwblock1CpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
               유
               <input class="form-check-input" type="radio" value="N" name="nwblock1CpuUsageChk" id="nwblock1CpuUsageChkN"
-                     th:checked="${infraServer.nwblock1CpuUsageChk eq 'N'}" >
+                     th:checked="${infraServer.nwblock1CpuUsageChk eq 'N'}" th:onclick="getChgChk(this)">
               무
             </p> 
             <p>
               <input class="form-check-input" type="radio" value="Y" name="nwblock1MemUsageChk" id="nwblock1MemUsageChkY"
-                     th:checked="${infraServer.nwblock1MemUsageChk eq 'Y'}" >
+                     th:checked="${infraServer.nwblock1MemUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
               유
               <input class="form-check-input" type="radio" value="N" name="nwblock1MemUsageChk" id="nwblock1MemUsageChkN"
-                     th:checked="${infraServer.nwblock1MemUsageChk eq 'N'}" >
+                     th:checked="${infraServer.nwblock1MemUsageChk eq 'N'}" th:onclick="getChgChk(this)">
               무  
             </p>
             <p>
               <input class="form-check-input" type="radio" value="Y" name="nwblock1DiskUsageChk" id="nwblock1DiskUsageChkY"
-                     th:checked="${infraServer.nwblock1DiskUsageChk eq 'Y'}" >
+                     th:checked="${infraServer.nwblock1DiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
               유
               <input class="form-check-input" type="radio" value="N" name="nwblock1DiskUsageChk" id="nwblock1DiskUsageChkN"
-                     th:checked="${infraServer.nwblock1DiskUsageChk eq 'N'}" >
+                     th:checked="${infraServer.nwblock1DiskUsageChk eq 'N'}" th:onclick="getChgChk(this)">
               무  
             </p>
             <p>
               <input class="form-check-input" type="radio" value="Y" name="nwblock1EventChk" id="nwblock1EventChkY"
-                     th:checked="${infraServer.nwblock1EventChk eq 'Y'}" >
+                     th:checked="${infraServer.nwblock1EventChk eq 'Y'}" th:onclick="getChgChk(this)">
               유
               <input class="form-check-input" type="radio" value="N" name="nwblock1EventChk" id="nwblock1EventChkN"
-                     th:checked="${infraServer.nwblock1EventChk eq 'N'}" >
+                     th:checked="${infraServer.nwblock1EventChk eq 'N'}" th:onclick="getChgChk(this)">
               무  
             </p>
             <p>
               <input class="form-check-input" type="radio" value="Y" name="nwblock1V3Chk" id="nwblock1V3ChkY"
-                     th:checked="${infraServer.nwblock1V3Chk eq 'Y'}" >
+                     th:checked="${infraServer.nwblock1V3Chk eq 'Y'}" th:onclick="getChgChk(this)">
               유
               <input class="form-check-input" type="radio" value="N" name="nwblock1V3Chk" id="nwblock1V3ChkN"
-                     th:checked="${infraServer.nwblock1V3Chk eq 'N'}" >
+                     th:checked="${infraServer.nwblock1V3Chk eq 'N'}" th:onclick="getChgChk(this)">
               무
             </p>
           </td>
@@ -180,42 +238,42 @@
             <td> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="nwblock2CpuUsageChk" id="nwblock2CpuUsageChkY"
-                       th:checked="${infraServer.nwblock2CpuUsageChk eq 'Y'}" >
+                       th:checked="${infraServer.nwblock2CpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="nwblock2CpuUsageChk" id="nwblock2CpuUsageChkN"
-                       th:checked="${infraServer.nwblock2CpuUsageChk eq 'N'}" >
+                       th:checked="${infraServer.nwblock2CpuUsageChk eq 'N'}" th:onclick="getChgChk(this)" >
                 무
               </p> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="nwblock2MemUsageChk" id="nwblock2MemUsageChkY"
-                       th:checked="${infraServer.nwblock2MemUsageChk eq 'Y'}" >
+                       th:checked="${infraServer.nwblock2MemUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="nwblock2MemUsageChk" id="nwblock2MemUsageChkN"
-                       th:checked="${infraServer.nwblock2MemUsageChk eq 'N'}" >
+                       th:checked="${infraServer.nwblock2MemUsageChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="nwblock2DiskUsageChk" id="nwblock2DiskUsageChkY"
-                       th:checked="${infraServer.nwblock2DiskUsageChk eq 'Y'}" >
+                       th:checked="${infraServer.nwblock2DiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="nwblock2DiskUsageChk" id="nwblock2DiskUsageChkN"
-                       th:checked="${infraServer.nwblock2DiskUsageChk eq 'N'}" >
+                       th:checked="${infraServer.nwblock2DiskUsageChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="nwblock2EventChk" id="nwblock2EventChkY"
-                       th:checked="${infraServer.nwblock2EventChk eq 'Y'}" >
+                       th:checked="${infraServer.nwblock2EventChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="nwblock2EventChk" id="nwblock2EventChkN"
-                       th:checked="${infraServer.nwblock2EventChk eq 'N'}" >
+                       th:checked="${infraServer.nwblock2EventChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="nwblock2V3Chk" id="nwblock2V3ChkY"
-                       th:checked="${infraServer.nwblock2V3Chk eq 'Y'}" >
+                       th:checked="${infraServer.nwblock2V3Chk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="nwblock2V3Chk" id="nwblock2V3ChkN"
-                       th:checked="${infraServer.nwblock2V3Chk eq 'N'}" >
+                       th:checked="${infraServer.nwblock2V3Chk eq 'N'}" th:onclick="getChgChk(this)">
                 무
               </p>
             </td>
@@ -245,42 +303,42 @@
             <td> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ddcBackUpCpuUsageChk" id="ddcBackUpCpuUsageChkY"
-                       th:checked="${infraServer.ddcBackUpCpuUsageChk eq 'Y'}" >
+                       th:checked="${infraServer.ddcBackUpCpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="ddcBackUpCpuUsageChk" id="ddcBackUpCpuUsageChkN"
-                       th:checked="${infraServer.ddcBackUpCpuUsageChk eq 'N'}" >
+                       th:checked="${infraServer.ddcBackUpCpuUsageChk eq 'N'}" th:onclick="getChgChk(this)">
                 무
               </p> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ddcBackUpMemUsageChk" id="ddcBackUpMemUsageChkY"
-                       th:checked="${infraServer.ddcBackUpMemUsageChk eq 'Y'}" >
+                       th:checked="${infraServer.ddcBackUpMemUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="ddcBackUpMemUsageChk" id="ddcBackUpMemUsageChkN"
-                       th:checked="${infraServer.ddcBackUpMemUsageChk eq 'N'}" >
+                       th:checked="${infraServer.ddcBackUpMemUsageChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ddcBackUpDiskUsageChk" id="ddcBackUpDiskUsageChkY"
-                       th:checked="${infraServer.ddcBackUpDiskUsageChk eq 'Y'}" >
+                       th:checked="${infraServer.ddcBackUpDiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="ddcBackUpDiskUsageChk" id="ddcBackUpDiskUsageChkN"
-                       th:checked="${infraServer.ddcBackUpDiskUsageChk eq 'N'}" >
+                       th:checked="${infraServer.ddcBackUpDiskUsageChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ddcBackUpEventChk" id="ddcBackUpEventChkY"
-                       th:checked="${infraServer.ddcBackUpEventChk eq 'Y'}" >
+                       th:checked="${infraServer.ddcBackUpEventChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="ddcBackUpEventChk" id="ddcBackUpEventChkN"
-                       th:checked="${infraServer.ddcBackUpEventChk eq 'N'}" >
+                       th:checked="${infraServer.ddcBackUpEventChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ddcBackUpV3Chk" id="ddcBackUpV3ChkY"
-                       th:checked="${infraServer.ddcBackUpV3Chk eq 'Y'}" >
+                       th:checked="${infraServer.ddcBackUpV3Chk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="ddcBackUpV3Chk" id="ddcBackUpV3ChkN"
-                       th:checked="${infraServer.ddcBackUpV3Chk eq 'N'}" >
+                       th:checked="${infraServer.ddcBackUpV3Chk eq 'N'}" th:onclick="getChgChk(this)">
                 무
               </p>
             </td>
@@ -310,42 +368,42 @@
             <td> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="chaBackUpCpuUsageChk" id="chaBackUpCpuUsageChkY"
-                       th:checked="${infraServer.chaBackUpCpuUsageChk eq 'Y'}" >
+                       th:checked="${infraServer.chaBackUpCpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="chaBackUpCpuUsageChk" id="chaBackUpCpuUsageChkN"
-                       th:checked="${infraServer.chaBackUpCpuUsageChk eq 'N'}" >
+                       th:checked="${infraServer.chaBackUpCpuUsageChk eq 'N'}" th:onclick="getChgChk(this)">
                 무
               </p> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="chaBackUpMemUsageChk" id="chaBackUpMemUsageChkY"
-                       th:checked="${infraServer.chaBackUpMemUsageChk eq 'Y'}" >
+                       th:checked="${infraServer.chaBackUpMemUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="chaBackUpMemUsageChk" id="chaBackUpMemUsageChkN"
-                       th:checked="${infraServer.chaBackUpMemUsageChk eq 'N'}" >
+                       th:checked="${infraServer.chaBackUpMemUsageChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="chaBackUpDiskUsageChk" id="chaBackUpDiskUsageChkY"
-                       th:checked="${infraServer.chaBackUpDiskUsageChk eq 'Y'}" >
+                       th:checked="${infraServer.chaBackUpDiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="chaBackUpDiskUsageChk" id="chaBackUpDiskUsageChkN"
-                       th:checked="${infraServer.chaBackUpDiskUsageChk eq 'N'}" >
+                       th:checked="${infraServer.chaBackUpDiskUsageChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="chaBackUpEventChk" id="chaBackUpEventChkY"
-                       th:checked="${infraServer.chaBackUpEventChk eq 'Y'}" >
+                       th:checked="${infraServer.chaBackUpEventChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="chaBackUpEventChk" id="chaBackUpEventChkN"
-                       th:checked="${infraServer.chaBackUpEventChk eq 'N'}" >
+                       th:checked="${infraServer.chaBackUpEventChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="chaBackUpV3Chk" id="chaBackUpV3ChkY"
-                       th:checked="${infraServer.chaBackUpV3Chk eq 'Y'}" >
+                       th:checked="${infraServer.chaBackUpV3Chk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="chaBackUpV3Chk" id="chaBackUpV3ChkN"
-                       th:checked="${infraServer.chaBackUpV3Chk eq 'N'}" >
+                       th:checked="${infraServer.chaBackUpV3Chk eq 'N'}" th:onclick="getChgChk(this)">
                 무
               </p>
             </td>
@@ -375,42 +433,42 @@
             <td> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="newFileCpuUsageChk" id="newFileCpuUsageChkY"
-                       th:checked="${infraServer.newFileCpuUsageChk eq 'Y'}" >
+                       th:checked="${infraServer.newFileCpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="newFileCpuUsageChk" id="newFileCpuUsageChkN"
-                       th:checked="${infraServer.newFileCpuUsageChk eq 'N'}" >
+                       th:checked="${infraServer.newFileCpuUsageChk eq 'N'}" th:onclick="getChgChk(this)">
                 무
               </p> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="newFileMemUsageChk" id="newFileMemUsageChkY"
-                       th:checked="${infraServer.newFileMemUsageChk eq 'Y'}" >
+                       th:checked="${infraServer.newFileMemUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="newFileMemUsageChk" id="newFileMemUsageChkN"
-                       th:checked="${infraServer.newFileMemUsageChk eq 'N'}" >
+                       th:checked="${infraServer.newFileMemUsageChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="newFileDiskUsageChk" id="newFileDiskUsageChkY"
-                       th:checked="${infraServer.newFileDiskUsageChk eq 'Y'}" >
+                       th:checked="${infraServer.newFileDiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="newFileDiskUsageChk" id="newFileDiskUsageChkN"
-                       th:checked="${infraServer.newFileDiskUsageChk eq 'N'}" >
+                       th:checked="${infraServer.newFileDiskUsageChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="newFileEventChk" id="newFileEventChkY"
-                       th:checked="${infraServer.newFileEventChk eq 'Y'}" >
+                       th:checked="${infraServer.newFileEventChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="newFileEventChk" id="newFileEventChkN"
-                       th:checked="${infraServer.newFileEventChk eq 'N'}" >
+                       th:checked="${infraServer.newFileEventChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="newFileV3Chk" id="newFileV3ChkY"
-                       th:checked="${infraServer.newFileV3Chk eq 'Y'}" >
+                       th:checked="${infraServer.newFileV3Chk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="newFileV3Chk" id="newFileV3ChkN"
-                       th:checked="${infraServer.newFileV3Chk eq 'N'}" >
+                       th:checked="${infraServer.newFileV3Chk eq 'N'}" th:onclick="getChgChk(this)">
                 무
               </p>
             </td>
@@ -440,42 +498,42 @@
             <td> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ad1CpuUsageChk" id="ad1CpuUsageChkY"
-                       th:checked="${infraServer.ad1CpuUsageChk eq 'Y'}" >
+                       th:checked="${infraServer.ad1CpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="ad1CpuUsageChk" id="ad1CpuUsageChkN"
-                       th:checked="${infraServer.ad1CpuUsageChk eq 'N'}" >
+                       th:checked="${infraServer.ad1CpuUsageChk eq 'N'}" th:onclick="getChgChk(this)">
                 무
               </p> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ad1MemUsageChk" id="ad1MemUsageChkY"
-                       th:checked="${infraServer.ad1MemUsageChk eq 'Y'}" >
+                       th:checked="${infraServer.ad1MemUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="ad1MemUsageChk" id="ad1MemUsageChkN"
-                       th:checked="${infraServer.ad1MemUsageChk eq 'N'}" >
+                       th:checked="${infraServer.ad1MemUsageChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ad1DiskUsageChk" id="ad1DiskUsageChkY"
-                       th:checked="${infraServer.ad1DiskUsageChk eq 'Y'}" >
+                       th:checked="${infraServer.ad1DiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="ad1DiskUsageChk" id="ad1DiskUsageChkN"
-                       th:checked="${infraServer.ad1DiskUsageChk eq 'N'}" >
+                       th:checked="${infraServer.ad1DiskUsageChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ad1EventChk" id="ad1EventChkY"
-                       th:checked="${infraServer.ad1EventChk eq 'Y'}" >
+                       th:checked="${infraServer.ad1EventChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="ad1EventChk" id="ad1EventChkN"
-                       th:checked="${infraServer.ad1EventChk eq 'N'}" >
+                       th:checked="${infraServer.ad1EventChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ad1V3Chk" id="ad1V3ChkY"
-                       th:checked="${infraServer.ad1V3Chk eq 'Y'}" >
+                       th:checked="${infraServer.ad1V3Chk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="ad1V3Chk" id="ad1V3ChkN"
-                       th:checked="${infraServer.ad1V3Chk eq 'N'}" >
+                       th:checked="${infraServer.ad1V3Chk eq 'N'}" th:onclick="getChgChk(this)">
                 무
               </p>
             </td>
@@ -505,42 +563,42 @@
             <td> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ad2CpuUsageChk" id="ad2CpuUsageChkY"
-                       th:checked="${infraServer.ad2CpuUsageChk eq 'Y'}" >
+                       th:checked="${infraServer.ad2CpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="ad2CpuUsageChk" id="ad2CpuUsageChkN"
-                       th:checked="${infraServer.ad2CpuUsageChk eq 'N'}" >
+                       th:checked="${infraServer.ad2CpuUsageChk eq 'N'}" th:onclick="getChgChk(this)">
                 무
               </p> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ad2MemUsageChk" id="ad2MemUsageChkY"
-                       th:checked="${infraServer.ad2MemUsageChk eq 'Y'}" >
+                       th:checked="${infraServer.ad2MemUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="ad2MemUsageChk" id="ad2MemUsageChkN"
-                       th:checked="${infraServer.ad2MemUsageChk eq 'N'}" >
+                       th:checked="${infraServer.ad2MemUsageChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ad2DiskUsageChk" id="ad2DiskUsageChkY"
-                       th:checked="${infraServer.ad2DiskUsageChk eq 'Y'}" >
+                       th:checked="${infraServer.ad2DiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)" >
                 유
                 <input class="form-check-input" type="radio" value="N" name="ad2DiskUsageChk" id="ad2DiskUsageChkN"
-                       th:checked="${infraServer.ad2DiskUsageChk eq 'N'}" >
+                       th:checked="${infraServer.ad2DiskUsageChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ad2EventChk" id="ad2EventChkY"
-                       th:checked="${infraServer.ad2EventChk eq 'Y'}" >
+                       th:checked="${infraServer.ad2EventChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="ad2EventChk" id="ad2EventChkN"
-                       th:checked="${infraServer.ad2EventChk eq 'N'}" >
+                       th:checked="${infraServer.ad2EventChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ad2V3Chk" id="ad2V3ChkY"
-                       th:checked="${infraServer.ad2V3Chk eq 'Y'}" >
+                       th:checked="${infraServer.ad2V3Chk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="ad2V3Chk" id="ad2V3ChkN"
-                       th:checked="${infraServer.ad2V3Chk eq 'N'}" >
+                       th:checked="${infraServer.ad2V3Chk eq 'N'}" th:onclick="getChgChk(this)">
                 무
               </p>
 
@@ -572,42 +630,42 @@
             <td> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="erpHvdc1CpuUsageChk" id="erpHvdc1CpuUsageChkY"
-                       th:checked="${infraVM.erpHvdc1CpuUsageChk eq 'Y'}" >
+                       th:checked="${infraVM.erpHvdc1CpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="erpHvdc1CpuUsageChk" id="erpHvdc1CpuUsageChkN"
-                       th:checked="${infraVM.erpHvdc1CpuUsageChk eq 'N'}" >
+                       th:checked="${infraVM.erpHvdc1CpuUsageChk eq 'N'}" th:onclick="getChgChk(this)">
                 무
               </p> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="erpHvdc1MemUsageChk" id="erpHvdc1MemUsageChkY"
-                       th:checked="${infraVM.erpHvdc1MemUsageChk eq 'Y'}" >
+                       th:checked="${infraVM.erpHvdc1MemUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="erpHvdc1MemUsageChk" id="erpHvdc1MemUsageChkN"
-                       th:checked="${infraVM.erpHvdc1MemUsageChk eq 'N'}" >
+                       th:checked="${infraVM.erpHvdc1MemUsageChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="erpHvdc1DiskUsageChk" id="erpHvdc1DiskUsageChkY"
-                       th:checked="${infraVM.erpHvdc1DiskUsageChk eq 'Y'}" >
+                       th:checked="${infraVM.erpHvdc1DiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="erpHvdc1DiskUsageChk" id="erpHvdc1DiskUsageChkN"
-                       th:checked="${infraVM.erpHvdc1DiskUsageChk eq 'N'}" >
+                       th:checked="${infraVM.erpHvdc1DiskUsageChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="erpHvdc1EventChk" id="erpHvdc1EventChkY"
-                       th:checked="${infraVM.erpHvdc1EventChk eq 'Y'}" >
+                       th:checked="${infraVM.erpHvdc1EventChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="erpHvdc1EventChk" id="erpHvdc1EventChkN"
-                       th:checked="${infraVM.erpHvdc1EventChk eq 'N'}" >
+                       th:checked="${infraVM.erpHvdc1EventChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="erpHvdc1V3Chk" id="erpHvdc1V3ChkY"
-                       th:checked="${infraVM.erpHvdc1V3Chk eq 'Y'}" >
+                       th:checked="${infraVM.erpHvdc1V3Chk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="erpHvdc1V3Chk" id="erpHvdc1V3ChkN"
-                       th:checked="${infraVM.erpHvdc1V3Chk eq 'N'}" >
+                       th:checked="${infraVM.erpHvdc1V3Chk eq 'N'}" th:onclick="getChgChk(this)">
                 무
               </p>
             </td>
@@ -637,42 +695,42 @@
             <td> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="erpHvdc2CpuUsageChk" id="erpHvdc2CpuUsageChkY"
-                       th:checked="${infraVM.erpHvdc2CpuUsageChk eq 'Y'}" >
+                       th:checked="${infraVM.erpHvdc2CpuUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="erpHvdc2CpuUsageChk" id="erpHvdc2CpuUsageChkN"
-                       th:checked="${infraVM.erpHvdc2CpuUsageChk eq 'N'}" >
+                       th:checked="${infraVM.erpHvdc2CpuUsageChk eq 'N'}" th:onclick="getChgChk(this)">
                 무
               </p> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="erpHvdc2MemUsageChk" id="erpHvdc2MemUsageChkY"
-                       th:checked="${infraVM.erpHvdc2MemUsageChk eq 'Y'}" >
+                       th:checked="${infraVM.erpHvdc2MemUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="erpHvdc2MemUsageChk" id="erpHvdc2MemUsageChkN"
-                       th:checked="${infraVM.erpHvdc2MemUsageChk eq 'N'}" >
+                       th:checked="${infraVM.erpHvdc2MemUsageChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="erpHvdc2DiskUsageChk" id="erpHvdc2DiskUsageChkY"
-                       th:checked="${infraVM.erpHvdc2DiskUsageChk eq 'Y'}" >
+                       th:checked="${infraVM.erpHvdc2DiskUsageChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="erpHvdc2DiskUsageChk" id="erpHvdc2DiskUsageChkN"
-                       th:checked="${infraVM.erpHvdc2DiskUsageChk eq 'N'}" >
+                       th:checked="${infraVM.erpHvdc2DiskUsageChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="erpHvdc2EventChk" id="erpHvdc2EventChkY"
-                       th:checked="${infraVM.erpHvdc2EventChk eq 'Y'}" >
+                       th:checked="${infraVM.erpHvdc2EventChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="erpHvdc2EventChk" id="erpHvdc2EventChkN"
-                       th:checked="${infraVM.erpHvdc2EventChk eq 'N'}" >
+                       th:checked="${infraVM.erpHvdc2EventChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="erpHvdc2V3Chk" id="erpHvdc2V3ChkY"
-                       th:checked="${infraVM.erpHvdc2V3Chk eq 'Y'}" >
+                       th:checked="${infraVM.erpHvdc2V3Chk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="erpHvdc2V3Chk" id="erpHvdc2V3ChkN"
-                       th:checked="${infraVM.erpHvdc2V3Chk eq 'N'}" >
+                       th:checked="${infraVM.erpHvdc2V3Chk eq 'N'}" th:onclick="getChgChk(this)">
                 무
               </p>
             </td>
@@ -700,18 +758,18 @@
             <td> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="vpn1ClustChk" id="vpn1ClustChkY"
-                       th:checked="${infraEtc.vpn1ClustChk eq 'Y'}" >
+                       th:checked="${infraEtc.vpn1ClustChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="vpn1ClustChk" id="vpn1ClustChkN"
-                       th:checked="${infraEtc.vpn1ClustChk eq 'N'}" >
+                       th:checked="${infraEtc.vpn1ClustChk eq 'N'}" th:onclick="getChgChk(this)">
                 무
               </p> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="vpn1EventChk" id="vpn1EventChkY"
-                       th:checked="${infraEtc.vpn1EventChk eq 'Y'}" >
+                       th:checked="${infraEtc.vpn1EventChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="vpn1EventChk" id="vpn1EventChkN"
-                       th:checked="${infraEtc.vpn1EventChk eq 'N'}" >
+                       th:checked="${infraEtc.vpn1EventChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
             </td>
@@ -732,18 +790,18 @@
             <td> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="vpn2ClustChk" id="vpn2ClustChkY"
-                       th:checked="${infraEtc.vpn2ClustChk eq 'Y'}" >
+                       th:checked="${infraEtc.vpn2ClustChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="vpn2ClustChk" id="vpn2ClustChkN"
-                       th:checked="${infraEtc.vpn2ClustChk eq 'N'}" >
+                       th:checked="${infraEtc.vpn2ClustChk eq 'N'}" th:onclick="getChgChk(this)">
                 무
               </p> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="vpn2EventChk" id="vpn2EventChkY"
-                       th:checked="${infraEtc.vpn2EventChk eq 'Y'}" >
+                       th:checked="${infraEtc.vpn2EventChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="vpn2EventChk" id="vpn2EventChkN"
-                       th:checked="${infraEtc.vpn2EventChk eq 'N'}" >
+                       th:checked="${infraEtc.vpn2EventChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
             </td>
@@ -764,18 +822,18 @@
             <td> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="sso1ClustChk" id="sso1ClustChkY"
-                       th:checked="${infraEtc.sso1ClustChk eq 'Y'}" >
+                       th:checked="${infraEtc.sso1ClustChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="sso1ClustChk" id="sso1ClustChkN"
-                       th:checked="${infraEtc.sso1ClustChk eq 'N'}" >
+                       th:checked="${infraEtc.sso1ClustChk eq 'N'}" th:onclick="getChgChk(this)">
                 무
               </p> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="sso1EventChk" id="sso1EventChkY"
-                       th:checked="${infraEtc.sso1EventChk eq 'Y'}" >
+                       th:checked="${infraEtc.sso1EventChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="sso1EventChk" id="sso1EventChkN"
-                       th:checked="${infraEtc.sso1EventChk eq 'N'}" >
+                       th:checked="${infraEtc.sso1EventChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
             </td>
@@ -796,18 +854,18 @@
             <td> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="sso2ClustChk" id="sso2ClustChkY"
-                       th:checked="${infraEtc.sso2ClustChk eq 'Y'}" >
+                       th:checked="${infraEtc.sso2ClustChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="sso2ClustChk" id="sso2ClustChkN"
-                       th:checked="${infraEtc.sso2ClustChk eq 'N'}" >
+                       th:checked="${infraEtc.sso2ClustChk eq 'N'}" th:onclick="getChgChk(this)">
                 무
               </p> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="sso2EventChk" id="sso2EventChkY"
-                       th:checked="${infraEtc.sso2EventChk eq 'Y'}" >
+                       th:checked="${infraEtc.sso2EventChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="sso2EventChk" id="sso2EventChkN"
-                       th:checked="${infraEtc.sso2EventChk eq 'N'}" >
+                       th:checked="${infraEtc.sso2EventChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
             </td>
@@ -828,18 +886,18 @@
             <td> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ddos1ClustChk" id="ddos1ClustChkY"
-                       th:checked="${infraEtc.ddos1ClustChk eq 'Y'}" >
+                       th:checked="${infraEtc.ddos1ClustChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="ddos1ClustChk" id="ddos1ClustChkN"
-                       th:checked="${infraEtc.ddos1ClustChk eq 'N'}" >
+                       th:checked="${infraEtc.ddos1ClustChk eq 'N'}" th:onclick="getChgChk(this)">
                 무
               </p> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ddos1EventChk" id="ddos1EventChkY"
-                       th:checked="${infraEtc.ddos1EventChk eq 'Y'}" >
+                       th:checked="${infraEtc.ddos1EventChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="ddos1EventChk" id="ddos1EventChkN"
-                       th:checked="${infraEtc.ddos1EventChk eq 'N'}" >
+                       th:checked="${infraEtc.ddos1EventChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
             </td>
@@ -860,18 +918,18 @@
             <td> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ddos2ClustChk" id="ddos2ClustChkY"
-                       th:checked="${infraEtc.ddos2ClustChk eq 'Y'}" >
+                       th:checked="${infraEtc.ddos2ClustChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="ddos2ClustChk" id="ddos2ClustChkN"
-                       th:checked="${infraEtc.ddos2ClustChk eq 'N'}" >
+                       th:checked="${infraEtc.ddos2ClustChk eq 'N'}" th:onclick="getChgChk(this)">
                 무
               </p> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="ddos2EventChk" id="ddos2EventChkY"
-                       th:checked="${infraEtc.ddos2EventChk eq 'Y'}" >
+                       th:checked="${infraEtc.ddos2EventChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="ddos2EventChk" id="ddos2EventChkN"
-                       th:checked="${infraEtc.ddos2EventChk eq 'N'}" >
+                       th:checked="${infraEtc.ddos2EventChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
             </td>
@@ -892,18 +950,18 @@
             <td> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="fw1ClustChk" id="fw1ClustChkY"
-                       th:checked="${infraEtc.fw1ClustChk eq 'Y'}" >
+                       th:checked="${infraEtc.fw1ClustChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="fw1ClustChk" id="fw1ClustChkN"
-                       th:checked="${infraEtc.fw1ClustChk eq 'N'}" >
+                       th:checked="${infraEtc.fw1ClustChk eq 'N'}" th:onclick="getChgChk(this)">
                 무
               </p> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="fw1EventChk" id="fw1EventChkY"
-                       th:checked="${infraEtc.fw1EventChk eq 'Y'}" >
+                       th:checked="${infraEtc.fw1EventChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="fw1EventChk" id="fw1EventChkN"
-                       th:checked="${infraEtc.fw1EventChk eq 'N'}" >
+                       th:checked="${infraEtc.fw1EventChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
             </td>
@@ -924,18 +982,18 @@
             <td> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="fw2ClustChk" id="fw2ClustChkY"
-                       th:checked="${infraEtc.fw2ClustChk eq 'Y'}" >
+                       th:checked="${infraEtc.fw2ClustChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="fw2ClustChk" id="fw2ClustChkN"
-                       th:checked="${infraEtc.fw2ClustChk eq 'N'}" >
+                       th:checked="${infraEtc.fw2ClustChk eq 'N'}" th:onclick="getChgChk(this)">
                 무
               </p> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="fw2EventChk" id="fw2EventChkY"
-                       th:checked="${infraEtc.fw2EventChk eq 'Y'}" >
+                       th:checked="${infraEtc.fw2EventChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="fw2EventChk" id="fw2EventChkN"
-                       th:checked="${infraEtc.fw2EventChk eq 'N'}" >
+                       th:checked="${infraEtc.fw2EventChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
             </td>
@@ -956,18 +1014,18 @@
             <td> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="spam1ClustChk" id="spam1ClustChkY"
-                       th:checked="${infraEtc.spam1ClustChk eq 'Y'}" >
+                       th:checked="${infraEtc.spam1ClustChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="spam1ClustChk" id="spam1ClustChkN"
-                       th:checked="${infraEtc.spam1ClustChk eq 'N'}" >
+                       th:checked="${infraEtc.spam1ClustChk eq 'N'}" th:onclick="getChgChk(this)">
                 무
               </p> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="spam1EventChk" id="spam1EventChkY"
-                       th:checked="${infraEtc.spam1EventChk eq 'Y'}" >
+                       th:checked="${infraEtc.spam1EventChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="spam1EventChk" id="spam1EventChkN"
-                       th:checked="${infraEtc.spam1EventChk eq 'N'}" >
+                       th:checked="${infraEtc.spam1EventChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
             </td>
@@ -988,18 +1046,18 @@
             <td> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="spam2ClustChk" id="spam2ClustChkY"
-                       th:checked="${infraEtc.spam2ClustChk eq 'Y'}" >
+                       th:checked="${infraEtc.spam2ClustChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="spam2ClustChk" id="spam2ClustChkN"
-                       th:checked="${infraEtc.spam2ClustChk eq 'N'}" >
+                       th:checked="${infraEtc.spam2ClustChk eq 'N'}" th:onclick="getChgChk(this)">
                 무
               </p> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="spam2EventChk" id="spam2EventChkY"
-                       th:checked="${infraEtc.spam2EventChk eq 'Y'}" >
+                       th:checked="${infraEtc.spam2EventChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="spam2EventChk" id="spam2EventChkN"
-                       th:checked="${infraEtc.spam2EventChk eq 'N'}" >
+                       th:checked="${infraEtc.spam2EventChk eq 'N'}" th:onclick="getChgChk(this)" >
                 무  
               </p>
             </td>
@@ -1020,18 +1078,18 @@
             <td> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="gMonitorClustChk" id="gMonitorClustChkY"
-                       th:checked="${infraEtc.gMonitorClustChk eq 'Y'}" >
+                       th:checked="${infraEtc.gMonitorClustChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="gMonitorClustChk" id="gMonitorClustChkN"
-                       th:checked="${infraEtc.gMonitorClustChk eq 'N'}" >
+                       th:checked="${infraEtc.gMonitorClustChk eq 'N'}" th:onclick="getChgChk(this)">
                 무
               </p> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="gMonitorEventChk" id="gMonitorEventChkY"
-                       th:checked="${infraEtc.gMonitorEventChk eq 'Y'}" >
+                       th:checked="${infraEtc.gMonitorEventChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="gMonitorEventChk" id="gMonitorEventChkN"
-                       th:checked="${infraEtc.gMonitorEventChk eq 'N'}" >
+                       th:checked="${infraEtc.gMonitorEventChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
             </td>
@@ -1052,18 +1110,18 @@
             <td> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="eMonitorClustChk" id="eMonitorClustChkY"
-                       th:checked="${infraEtc.eMonitorClustChk eq 'Y'}" >
+                       th:checked="${infraEtc.eMonitorClustChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="eMonitorClustChk" id="eMonitorClustChkN"
-                       th:checked="${infraEtc.eMonitorClustChk eq 'N'}" >
+                       th:checked="${infraEtc.eMonitorClustChk eq 'N'}" th:onclick="getChgChk(this)">
                 무
               </p> 
               <p>
                 <input class="form-check-input" type="radio" value="Y" name="eMonitorEventChk" id="eMonitorEventChkY"
-                       th:checked="${infraEtc.eMonitorEventChk eq 'Y'}" >
+                       th:checked="${infraEtc.eMonitorEventChk eq 'Y'}" th:onclick="getChgChk(this)">
                 유
                 <input class="form-check-input" type="radio" value="N" name="eMonitorEventChk" id="eMonitorEventChkN"
-                       th:checked="${infraEtc.eMonitorEventChk eq 'N'}" >
+                       th:checked="${infraEtc.eMonitorEventChk eq 'N'}" th:onclick="getChgChk(this)">
                 무  
               </p>
             </td>

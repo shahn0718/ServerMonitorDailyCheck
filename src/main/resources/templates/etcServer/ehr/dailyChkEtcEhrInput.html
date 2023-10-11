@@ -16,7 +16,7 @@
     let checkedValue = t.value;
     console.log("checkedValue: "+ checkedValue);
     let tableChg = t.parentNode.parentNode.parentNode;
-    tableChg.style.backgroundColor = (checkedValue == "Y") ?  "#F5D0A9" : "#FFF";
+    tableChg.style.backgroundColor = (checkedValue == "Y") ?  "#FFD400" : "#FFF";
     //체크 새로고침
     refreshChk();
   }
@@ -43,7 +43,7 @@
     for( let i =0; i< data.length; i++){
       if(data[i].value  == "Y"){
         target = data[i].parentNode.parentNode.parentNode;
-        target.style.backgroundColor = "#F5D0A9";
+        target.style.backgroundColor = "#FFD400";
       }
     }
   }

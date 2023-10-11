@@ -63,12 +63,13 @@ public class infraDailyService {
 
     @Transactional(rollbackFor = Exception.class)
     public void updateInfraDailyCheckBoard(Long mainBoardId,
+                                           int dailyMainViewCnt,
                                            MInsertInfraDailyServiceMain mInsertInfraDailyServiceMain,
                                            MInsertInfraDailyServerMain mInsertInfraDailyServerMain,
                                            MInsertInfraDailyVMMain mInsertInfraDailyVMMain,
                                            MInsertInfraDailyEtcMain mInsertInfraDailyEtcMain){
 
-        mainRepository.updateDailyCheckBoard(LocalDateTime.now(),mainBoardId);
+        mainRepository.updateDailyCheckBoardNew(LocalDateTime.now(),dailyMainViewCnt,mainBoardId);
 
         mInsertInfraDailyServiceMain.setInfraMainId(mainBoardId);
         mInsertInfraDailyServerMain.setInfraMainId(mainBoardId);

@@ -9,6 +9,54 @@
 </head>
 
 <script>
+
+  function getChgChk(t){
+
+    //체크 변경시, 테이블 내 색 변경 메소드
+    let checkedValue = t.value;
+    console.log("checkedValue: "+ checkedValue);
+    let tableChg = t.parentNode.parentNode.parentNode;
+    tableChg.style.backgroundColor = (checkedValue == "Y") ?  "#FFD400" : "#FFF";
+    //체크 새로고침
+    refreshChk();
+  }
+
+  function getChkCnt(){
+
+    // 해당 점검페이지 내 체크 항목 확인 메소드
+    const query = 'input[class="form-check-input"]:checked';
+    const data = document.querySelectorAll(query);
+
+    let dataYCnt = 0;
+    for( let i =0; i< data.length; i++){
+      if(data[i].value  == "Y"){
+        dataYCnt++;
+      }
+    }
+    console.log("checkedCnt: " + dataYCnt);
+    document.getElementById('dailyMainViewCnt').value = dataYCnt;
+  }
+
+  function refreshChk(){
+    const query = 'input[class="form-check-input"]:checked';
+    const data = document.querySelectorAll(query);
+    for( let i =0; i< data.length; i++){
+      if(data[i].value  == "Y"){
+        target = data[i].parentNode.parentNode.parentNode;
+        target.style.backgroundColor = "#FFD400";
+      }
+    }
+  }
+
+
+   window.onload = function() {
+      document.getElementById('infraSubmit').onclick = function(){
+        //저장 및 수정완료 진행시, 점검페이지 내 체크항목 확인 및 총 갯수 넘기기.
+        getChkCnt();
+        console.log("checkedCnt: "+ document.getElementById('dailyMainViewCnt').value);
+      };
+  };
+
 </script>
 
 <body>
@@ -34,7 +82,7 @@
       </div>
 
       <div class="form-row float-end">
-        <button type="submit" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" >저장</button>
+        <button id="infraSubmit" type="submit" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" >저장</button>
         <button type="button" class="btn mb-3" style="background-color:#81BEF7; color: #fff;" th:onclick="|location.href='@{/}'|" >뒤로가기</button>
       </div>
 
@@ -50,6 +98,7 @@
         </tr>
       </thead>
       <tbody>
+      <input type="hidden" id="dailyMainViewCnt" name="dailyMainViewCnt" value="">
       <form name="infraService" th:action method="post">
         <tr align="center">
           <td style="background-color: #81BEF7; font-weight:bold">서비스</td>
@@ -73,27 +122,35 @@
           </td>
           <td> 
             <p><!--추후 수정 필요-->
-              <input class="form-check-input" type="radio" value="Y" name="infraBackUpServiceChk" id="infraBackUpServiceChkY">
+              <input class="form-check-input" type="radio" value="Y" name="infraBackUpServiceChk" id="infraBackUpServiceChkY"
+                     th:onclick="getChgChk(this)">
               유
-              <input class="form-check-input" type="radio" value="N" name="infraBackUpServiceChk" id="infraBackUpServiceChkN" checked>
+              <input class="form-check-input" type="radio" value="N" name="infraBackUpServiceChk" id="infraBackUpServiceChkN"
+                     th:onclick="getChgChk(this)" checked>
               무
             </p> 
             <p><!--추후 수정 필요-->
-              <input class="form-check-input" type="radio" value="Y" name="infraSpamServiceChk" id="infraSpamServiceChkY">
+              <input class="form-check-input" type="radio" value="Y" name="infraSpamServiceChk" id="infraSpamServiceChkY"
+                     th:onclick="getChgChk(this)">
               유
-              <input class="form-check-input" type="radio" value="N" name="infraSpamServiceChk" id="infraSpamServiceChkN" checked>
+              <input class="form-check-input" type="radio" value="N" name="infraSpamServiceChk" id="infraSpamServiceChkN"
+                     th:onclick="getChgChk(this)" checked>
               무  
             </p>
             <p>
-                <input class="form-check-input" type="radio" value="Y" name="infraMailServiceChk" id="infraMailServiceChkY">
+                <input class="form-check-input" type="radio" value="Y" name="infraMailServiceChk" id="infraMailServiceChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="infraMailServiceChk" id="infraMailServiceChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="infraMailServiceChk" id="infraMailServiceChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
             </p>
             <p>
-                <input class="form-check-input" type="radio" value="Y" name="infraDNSServiceChk" id="infraDNSServiceChkY">
+                <input class="form-check-input" type="radio" value="Y" name="infraDNSServiceChk" id="infraDNSServiceChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="infraDNSServiceChk" id="infraDNSServiceChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="infraDNSServiceChk" id="infraDNSServiceChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
           </td>
@@ -118,33 +175,43 @@
           </td>
           <td> 
             <p>
-              <input class="form-check-input" type="radio" value="Y" name="nwblock1CpuUsageChk" id="nwblock1CpuUsageChkY">
+              <input class="form-check-input" type="radio" value="Y" name="nwblock1CpuUsageChk" id="nwblock1CpuUsageChkY"
+                     th:onclick="getChgChk(this)">
               유
-              <input class="form-check-input" type="radio" value="N" name="nwblock1CpuUsageChk" id="nwblock1CpuUsageChkN" checked>
+              <input class="form-check-input" type="radio" value="N" name="nwblock1CpuUsageChk" id="nwblock1CpuUsageChkN"
+                     th:onclick="getChgChk(this)" checked>
               무
             </p> 
             <p>
-              <input class="form-check-input" type="radio" value="Y" name="nwblock1MemUsageChk" id="nwblock1MemUsageChkY">
+              <input class="form-check-input" type="radio" value="Y" name="nwblock1MemUsageChk" id="nwblock1MemUsageChkY"
+                     th:onclick="getChgChk(this)">
               유
-              <input class="form-check-input" type="radio" value="N" name="nwblock1MemUsageChk" id="nwblock1MemUsageChkN" checked>
+              <input class="form-check-input" type="radio" value="N" name="nwblock1MemUsageChk" id="nwblock1MemUsageChkN"
+                     th:onclick="getChgChk(this)" checked>
               무  
             </p>
             <p>
-              <input class="form-check-input" type="radio" value="Y" name="nwblock1DiskUsageChk" id="nwblock1DiskUsageChkY">
+              <input class="form-check-input" type="radio" value="Y" name="nwblock1DiskUsageChk" id="nwblock1DiskUsageChkY"
+                     th:onclick="getChgChk(this)">
               유
-              <input class="form-check-input" type="radio" value="N" name="nwblock1DiskUsageChk" id="nwblock1DiskUsageChkN" checked>
+              <input class="form-check-input" type="radio" value="N" name="nwblock1DiskUsageChk" id="nwblock1DiskUsageChkN"
+                     th:onclick="getChgChk(this)" checked>
               무  
             </p>
             <p>
-              <input class="form-check-input" type="radio" value="Y" name="nwblock1EventChk" id="nwblock1EventChkY">
+              <input class="form-check-input" type="radio" value="Y" name="nwblock1EventChk" id="nwblock1EventChkY"
+                     th:onclick="getChgChk(this)">
               유
-              <input class="form-check-input" type="radio" value="N" name="nwblock1EventChk" id="nwblock1EventChkN" checked>
+              <input class="form-check-input" type="radio" value="N" name="nwblock1EventChk" id="nwblock1EventChkN"
+                     th:onclick="getChgChk(this)" checked>
               무  
             </p>
             <p>
-              <input class="form-check-input" type="radio" value="Y" name="nwblock1V3Chk" id="nwblock1V3ChkY">
+              <input class="form-check-input" type="radio" value="Y" name="nwblock1V3Chk" id="nwblock1V3ChkY"
+                     th:onclick="getChgChk(this)">
               유
-              <input class="form-check-input" type="radio" value="N" name="nwblock1V3Chk" id="nwblock1V3ChkN" checked>
+              <input class="form-check-input" type="radio" value="N" name="nwblock1V3Chk" id="nwblock1V3ChkN"
+                     th:onclick="getChgChk(this)" checked>
               무
             </p>
           </td>
@@ -168,33 +235,43 @@
             </td>
             <td> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="nwblock2CpuUsageChk" id="nwblock2CpuUsageChkY">
+                <input class="form-check-input" type="radio" value="Y" name="nwblock2CpuUsageChk" id="nwblock2CpuUsageChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="nwblock2CpuUsageChk" id="nwblock2CpuUsageChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="nwblock2CpuUsageChk" id="nwblock2CpuUsageChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="nwblock2MemUsageChk" id="nwblock2MemUsageChkY">
+                <input class="form-check-input" type="radio" value="Y" name="nwblock2MemUsageChk" id="nwblock2MemUsageChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="nwblock2MemUsageChk" id="nwblock2MemUsageChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="nwblock2MemUsageChk" id="nwblock2MemUsageChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="nwblock2DiskUsageChk" id="nwblock2DiskUsageChkY">
+                <input class="form-check-input" type="radio" value="Y" name="nwblock2DiskUsageChk" id="nwblock2DiskUsageChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="nwblock2DiskUsageChk" id="nwblock2DiskUsageChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="nwblock2DiskUsageChk" id="nwblock2DiskUsageChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="nwblock2EventChk" id="nwblock2EventChkY">
+                <input class="form-check-input" type="radio" value="Y" name="nwblock2EventChk" id="nwblock2EventChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="nwblock2EventChk" id="nwblock2EventChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="nwblock2EventChk" id="nwblock2EventChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="nwblock2V3Chk" id="nwblock2V3ChkY">
+                <input class="form-check-input" type="radio" value="Y" name="nwblock2V3Chk" id="nwblock2V3ChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="nwblock2V3Chk" id="nwblock2V3ChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="nwblock2V3Chk" id="nwblock2V3ChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p>
             </td>
@@ -218,33 +295,43 @@
             </td>
             <td> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="ddcBackUpCpuUsageChk" id="ddcBackUpCpuUsageChkY">
+                <input class="form-check-input" type="radio" value="Y" name="ddcBackUpCpuUsageChk" id="ddcBackUpCpuUsageChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="ddcBackUpCpuUsageChk" id="ddcBackUpCpuUsageChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="ddcBackUpCpuUsageChk" id="ddcBackUpCpuUsageChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="ddcBackUpMemUsageChk" id="ddcBackUpMemUsageChkY">
+                <input class="form-check-input" type="radio" value="Y" name="ddcBackUpMemUsageChk" id="ddcBackUpMemUsageChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="ddcBackUpMemUsageChk" id="ddcBackUpMemUsageChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="ddcBackUpMemUsageChk" id="ddcBackUpMemUsageChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="ddcBackUpDiskUsageChk" id="ddcBackUpDiskUsageChkY">
+                <input class="form-check-input" type="radio" value="Y" name="ddcBackUpDiskUsageChk" id="ddcBackUpDiskUsageChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="ddcBackUpDiskUsageChk" id="ddcBackUpDiskUsageChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="ddcBackUpDiskUsageChk" id="ddcBackUpDiskUsageChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="ddcBackUpEventChk" id="ddcBackUpEventChkY">
+                <input class="form-check-input" type="radio" value="Y" name="ddcBackUpEventChk" id="ddcBackUpEventChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="ddcBackUpEventChk" id="ddcBackUpEventChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="ddcBackUpEventChk" id="ddcBackUpEventChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="ddcBackUpV3Chk" id="ddcBackUpV3ChkY">
+                <input class="form-check-input" type="radio" value="Y" name="ddcBackUpV3Chk" id="ddcBackUpV3ChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="ddcBackUpV3Chk" id="ddcBackUpV3ChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="ddcBackUpV3Chk" id="ddcBackUpV3ChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p>
             </td>
@@ -268,33 +355,43 @@
             </td>
             <td> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="chaBackUpCpuUsageChk" id="chaBackUpCpuUsageChkY">
+                <input class="form-check-input" type="radio" value="Y" name="chaBackUpCpuUsageChk" id="chaBackUpCpuUsageChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="chaBackUpCpuUsageChk" id="chaBackUpCpuUsageChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="chaBackUpCpuUsageChk" id="chaBackUpCpuUsageChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="chaBackUpMemUsageChk" id="chaBackUpMemUsageChkY">
+                <input class="form-check-input" type="radio" value="Y" name="chaBackUpMemUsageChk" id="chaBackUpMemUsageChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="chaBackUpMemUsageChk" id="chaBackUpMemUsageChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="chaBackUpMemUsageChk" id="chaBackUpMemUsageChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="chaBackUpDiskUsageChk" id="chaBackUpDiskUsageChkY">
+                <input class="form-check-input" type="radio" value="Y" name="chaBackUpDiskUsageChk" id="chaBackUpDiskUsageChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="chaBackUpDiskUsageChk" id="chaBackUpDiskUsageChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="chaBackUpDiskUsageChk" id="chaBackUpDiskUsageChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="chaBackUpEventChk" id="chaBackUpEventChkY">
+                <input class="form-check-input" type="radio" value="Y" name="chaBackUpEventChk" id="chaBackUpEventChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="chaBackUpEventChk" id="chaBackUpEventChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="chaBackUpEventChk" id="chaBackUpEventChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="chaBackUpV3Chk" id="chaBackUpV3ChkY">
+                <input class="form-check-input" type="radio" value="Y" name="chaBackUpV3Chk" id="chaBackUpV3ChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="chaBackUpV3Chk" id="chaBackUpV3ChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="chaBackUpV3Chk" id="chaBackUpV3ChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p>
             </td>
@@ -318,33 +415,43 @@
             </td>
             <td> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="newFileCpuUsageChk" id="newFileCpuUsageChkY">
+                <input class="form-check-input" type="radio" value="Y" name="newFileCpuUsageChk" id="newFileCpuUsageChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="newFileCpuUsageChk" id="newFileCpuUsageChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="newFileCpuUsageChk" id="newFileCpuUsageChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="newFileMemUsageChk" id="newFileMemUsageChkY">
+                <input class="form-check-input" type="radio" value="Y" name="newFileMemUsageChk" id="newFileMemUsageChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="newFileMemUsageChk" id="newFileMemUsageChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="newFileMemUsageChk" id="newFileMemUsageChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="newFileDiskUsageChk" id="newFileDiskUsageChkY">
+                <input class="form-check-input" type="radio" value="Y" name="newFileDiskUsageChk" id="newFileDiskUsageChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="newFileDiskUsageChk" id="newFileDiskUsageChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="newFileDiskUsageChk" id="newFileDiskUsageChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="newFileEventChk" id="newFileEventChkY">
+                <input class="form-check-input" type="radio" value="Y" name="newFileEventChk" id="newFileEventChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="newFileEventChk" id="newFileEventChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="newFileEventChk" id="newFileEventChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="newFileV3Chk" id="newFileV3ChkY">
+                <input class="form-check-input" type="radio" value="Y" name="newFileV3Chk" id="newFileV3ChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="newFileV3Chk" id="newFileV3ChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="newFileV3Chk" id="newFileV3ChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p>
             </td>
@@ -368,33 +475,43 @@
             </td>
             <td> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="ad1CpuUsageChk" id="ad1CpuUsageChkY">
+                <input class="form-check-input" type="radio" value="Y" name="ad1CpuUsageChk" id="ad1CpuUsageChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="ad1CpuUsageChk" id="ad1CpuUsageChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="ad1CpuUsageChk" id="ad1CpuUsageChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="ad1MemUsageChk" id="ad1MemUsageChkY">
+                <input class="form-check-input" type="radio" value="Y" name="ad1MemUsageChk" id="ad1MemUsageChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="ad1MemUsageChk" id="ad1MemUsageChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="ad1MemUsageChk" id="ad1MemUsageChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="ad1DiskUsageChk" id="ad1DiskUsageChkY">
+                <input class="form-check-input" type="radio" value="Y" name="ad1DiskUsageChk" id="ad1DiskUsageChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="ad1DiskUsageChk" id="ad1DiskUsageChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="ad1DiskUsageChk" id="ad1DiskUsageChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="ad1EventChk" id="ad1EventChkY">
+                <input class="form-check-input" type="radio" value="Y" name="ad1EventChk" id="ad1EventChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="ad1EventChk" id="ad1EventChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="ad1EventChk" id="ad1EventChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="ad1V3Chk" id="ad1V3ChkY">
+                <input class="form-check-input" type="radio" value="Y" name="ad1V3Chk" id="ad1V3ChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="ad1V3Chk" id="ad1V3ChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="ad1V3Chk" id="ad1V3ChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p>
             </td>
@@ -418,33 +535,43 @@
             </td>
             <td> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="ad2CpuUsageChk" id="ad2CpuUsageChkY">
+                <input class="form-check-input" type="radio" value="Y" name="ad2CpuUsageChk" id="ad2CpuUsageChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="ad2CpuUsageChk" id="ad2CpuUsageChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="ad2CpuUsageChk" id="ad2CpuUsageChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="ad2MemUsageChk" id="ad2MemUsageChkY">
+                <input class="form-check-input" type="radio" value="Y" name="ad2MemUsageChk" id="ad2MemUsageChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="ad2MemUsageChk" id="ad2MemUsageChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="ad2MemUsageChk" id="ad2MemUsageChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="ad2DiskUsageChk" id="ad2DiskUsageChkY">
+                <input class="form-check-input" type="radio" value="Y" name="ad2DiskUsageChk" id="ad2DiskUsageChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="ad2DiskUsageChk" id="ad2DiskUsageChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="ad2DiskUsageChk" id="ad2DiskUsageChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="ad2EventChk" id="ad2EventChkY">
+                <input class="form-check-input" type="radio" value="Y" name="ad2EventChk" id="ad2EventChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="ad2EventChk" id="ad2EventChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="ad2EventChk" id="ad2EventChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="ad2V3Chk" id="ad2V3ChkY">
+                <input class="form-check-input" type="radio" value="Y" name="ad2V3Chk" id="ad2V3ChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="ad2V3Chk" id="ad2V3ChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="ad2V3Chk" id="ad2V3ChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p>
             </td>
@@ -470,33 +597,43 @@
             </td>
             <td> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="erpHvdc1CpuUsageChk" id="erpHvdc1CpuUsageChkY">
+                <input class="form-check-input" type="radio" value="Y" name="erpHvdc1CpuUsageChk" id="erpHvdc1CpuUsageChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="erpHvdc1CpuUsageChk" id="erpHvdc1CpuUsageChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="erpHvdc1CpuUsageChk" id="erpHvdc1CpuUsageChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="erpHvdc1MemUsageChk" id="erpHvdc1MemUsageChkY">
+                <input class="form-check-input" type="radio" value="Y" name="erpHvdc1MemUsageChk" id="erpHvdc1MemUsageChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="erpHvdc1MemUsageChk" id="erpHvdc1MemUsageChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="erpHvdc1MemUsageChk" id="erpHvdc1MemUsageChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="erpHvdc1DiskUsageChk" id="erpHvdc1DiskUsageChkY">
+                <input class="form-check-input" type="radio" value="Y" name="erpHvdc1DiskUsageChk" id="erpHvdc1DiskUsageChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="erpHvdc1DiskUsageChk" id="erpHvdc1DiskUsageChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="erpHvdc1DiskUsageChk" id="erpHvdc1DiskUsageChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="erpHvdc1EventChk" id="erpHvdc1EventChkY">
+                <input class="form-check-input" type="radio" value="Y" name="erpHvdc1EventChk" id="erpHvdc1EventChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="erpHvdc1EventChk" id="erpHvdc1EventChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="erpHvdc1EventChk" id="erpHvdc1EventChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="erpHvdc1V3Chk" id="erpHvdc1V3ChkY">
+                <input class="form-check-input" type="radio" value="Y" name="erpHvdc1V3Chk" id="erpHvdc1V3ChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="erpHvdc1V3Chk" id="erpHvdc1V3ChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="erpHvdc1V3Chk" id="erpHvdc1V3ChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p>
             </td>
@@ -520,33 +657,43 @@
             </td>
             <td> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="erpHvdc2CpuUsageChk" id="erpHvdc2CpuUsageChkY">
+                <input class="form-check-input" type="radio" value="Y" name="erpHvdc2CpuUsageChk" id="erpHvdc2CpuUsageChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="erpHvdc2CpuUsageChk" id="erpHvdc2CpuUsageChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="erpHvdc2CpuUsageChk" id="erpHvdc2CpuUsageChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="erpHvdc2MemUsageChk" id="erpHvdc2MemUsageChkY">
+                <input class="form-check-input" type="radio" value="Y" name="erpHvdc2MemUsageChk" id="erpHvdc2MemUsageChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="erpHvdc2MemUsageChk" id="erpHvdc2MemUsageChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="erpHvdc2MemUsageChk" id="erpHvdc2MemUsageChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="erpHvdc2DiskUsageChk" id="erpHvdc2DiskUsageChkY">
+                <input class="form-check-input" type="radio" value="Y" name="erpHvdc2DiskUsageChk" id="erpHvdc2DiskUsageChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="erpHvdc2DiskUsageChk" id="erpHvdc2DiskUsageChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="erpHvdc2DiskUsageChk" id="erpHvdc2DiskUsageChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="erpHvdc2EventChk" id="erpHvdc2EventChkY">
+                <input class="form-check-input" type="radio" value="Y" name="erpHvdc2EventChk" id="erpHvdc2EventChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="erpHvdc2EventChk" id="erpHvdc2EventChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="erpHvdc2EventChk" id="erpHvdc2EventChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="erpHvdc2V3Chk" id="erpHvdc2V3ChkY">
+                <input class="form-check-input" type="radio" value="Y" name="erpHvdc2V3Chk" id="erpHvdc2V3ChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="erpHvdc2V3Chk" id="erpHvdc2V3ChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="erpHvdc2V3Chk" id="erpHvdc2V3ChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p>
             </td>
@@ -569,15 +716,19 @@
             </td>
             <td> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="vpn1ClustChk" id="vpn1ClustChkY">
+                <input class="form-check-input" type="radio" value="Y" name="vpn1ClustChk" id="vpn1ClustChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="vpn1ClustChk" id="vpn1ClustChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="vpn1ClustChk" id="vpn1ClustChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="vpn1EventChk" id="vpn1EventChkY">
+                <input class="form-check-input" type="radio" value="Y" name="vpn1EventChk" id="vpn1EventChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="vpn1EventChk" id="vpn1EventChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="vpn1EventChk" id="vpn1EventChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
             </td>
@@ -595,15 +746,19 @@
             </td>
             <td> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="vpn2ClustChk" id="vpn2ClustChkY">
+                <input class="form-check-input" type="radio" value="Y" name="vpn2ClustChk" id="vpn2ClustChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="vpn2ClustChk" id="vpn2ClustChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="vpn2ClustChk" id="vpn2ClustChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="vpn2EventChk" id="vpn2EventChkY">
+                <input class="form-check-input" type="radio" value="Y" name="vpn2EventChk" id="vpn2EventChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="vpn2EventChk" id="vpn2EventChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="vpn2EventChk" id="vpn2EventChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
             </td>
@@ -621,15 +776,19 @@
             </td>
             <td> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="sso1ClustChk" id="sso1ClustChkY">
+                <input class="form-check-input" type="radio" value="Y" name="sso1ClustChk" id="sso1ClustChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="sso1ClustChk" id="sso1ClustChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="sso1ClustChk" id="sso1ClustChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="sso1EventChk" id="sso1EventChkY">
+                <input class="form-check-input" type="radio" value="Y" name="sso1EventChk" id="sso1EventChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="sso1EventChk" id="sso1EventChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="sso1EventChk" id="sso1EventChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
             </td>
@@ -647,15 +806,19 @@
             </td>
             <td> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="sso2ClustChk" id="sso2ClustChkY">
+                <input class="form-check-input" type="radio" value="Y" name="sso2ClustChk" id="sso2ClustChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="sso2ClustChk" id="sso2ClustChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="sso2ClustChk" id="sso2ClustChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="sso2EventChk" id="sso2EventChkY">
+                <input class="form-check-input" type="radio" value="Y" name="sso2EventChk" id="sso2EventChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="sso2EventChk" id="sso2EventChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="sso2EventChk" id="sso2EventChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
             </td>
@@ -673,15 +836,19 @@
             </td>
             <td> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="ddos1ClustChk" id="ddos1ClustChkY">
+                <input class="form-check-input" type="radio" value="Y" name="ddos1ClustChk" id="ddos1ClustChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="ddos1ClustChk" id="ddos1ClustChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="ddos1ClustChk" id="ddos1ClustChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="ddos1EventChk" id="ddos1EventChkY">
+                <input class="form-check-input" type="radio" value="Y" name="ddos1EventChk" id="ddos1EventChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="ddos1EventChk" id="ddos1EventChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="ddos1EventChk" id="ddos1EventChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
             </td>
@@ -699,15 +866,19 @@
             </td>
             <td> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="ddos2ClustChk" id="ddos2ClustChkY">
+                <input class="form-check-input" type="radio" value="Y" name="ddos2ClustChk" id="ddos2ClustChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="ddos2ClustChk" id="ddos2ClustChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="ddos2ClustChk" id="ddos2ClustChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="ddos2EventChk" id="ddos2EventChkY">
+                <input class="form-check-input" type="radio" value="Y" name="ddos2EventChk" id="ddos2EventChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="ddos2EventChk" id="ddos2EventChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="ddos2EventChk" id="ddos2EventChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
             </td>
@@ -725,15 +896,19 @@
             </td>
             <td> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="fw1ClustChk" id="fw1ClustChkY">
+                <input class="form-check-input" type="radio" value="Y" name="fw1ClustChk" id="fw1ClustChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="fw1ClustChk" id="fw1ClustChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="fw1ClustChk" id="fw1ClustChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="fw1EventChk" id="fw1EventChkY">
+                <input class="form-check-input" type="radio" value="Y" name="fw1EventChk" id="fw1EventChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="fw1EventChk" id="fw1EventChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="fw1EventChk" id="fw1EventChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
             </td>
@@ -751,15 +926,19 @@
             </td>
             <td> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="fw2ClustChk" id="fw2ClustChkY">
+                <input class="form-check-input" type="radio" value="Y" name="fw2ClustChk" id="fw2ClustChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="fw2ClustChk" id="fw2ClustChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="fw2ClustChk" id="fw2ClustChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="fw2EventChk" id="fw2EventChkY">
+                <input class="form-check-input" type="radio" value="Y" name="fw2EventChk" id="fw2EventChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="fw2EventChk" id="fw2EventChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="fw2EventChk" id="fw2EventChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
             </td>
@@ -777,15 +956,19 @@
             </td>
             <td> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="spam1ClustChk" id="spam1ClustChkY">
+                <input class="form-check-input" type="radio" value="Y" name="spam1ClustChk" id="spam1ClustChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="spam1ClustChk" id="spam1ClustChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="spam1ClustChk" id="spam1ClustChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="spam1EventChk" id="spam1EventChkY">
+                <input class="form-check-input" type="radio" value="Y" name="spam1EventChk" id="spam1EventChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="spam1EventChk" id="spam1EventChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="spam1EventChk" id="spam1EventChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
             </td>
@@ -803,15 +986,19 @@
             </td>
             <td> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="spam2ClustChk" id="spam2ClustChkY">
+                <input class="form-check-input" type="radio" value="Y" name="spam2ClustChk" id="spam2ClustChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="spam2ClustChk" id="spam2ClustChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="spam2ClustChk" id="spam2ClustChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="spam2EventChk" id="spam2EventChkY">
+                <input class="form-check-input" type="radio" value="Y" name="spam2EventChk" id="spam2EventChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="spam2EventChk" id="spam2EventChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="spam2EventChk" id="spam2EventChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
             </td>
@@ -829,15 +1016,19 @@
             </td>
             <td> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="gMonitorClustChk" id="gMonitorClustChkY">
+                <input class="form-check-input" type="radio" value="Y" name="gMonitorClustChk" id="gMonitorClustChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="gMonitorClustChk" id="gMonitorClustChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="gMonitorClustChk" id="gMonitorClustChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="gMonitorEventChk" id="gMonitorEventChkY">
+                <input class="form-check-input" type="radio" value="Y" name="gMonitorEventChk" id="gMonitorEventChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="gMonitorEventChk" id="gMonitorEventChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="gMonitorEventChk" id="gMonitorEventChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
             </td>
@@ -855,15 +1046,19 @@
             </td>
             <td> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="eMonitorClustChk" id="eMonitorClustChkY">
+                <input class="form-check-input" type="radio" value="Y" name="eMonitorClustChk" id="eMonitorClustChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="eMonitorClustChk" id="eMonitorClustChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="eMonitorClustChk" id="eMonitorClustChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무
               </p> 
               <p>
-                <input class="form-check-input" type="radio" value="Y" name="eMonitorEventChk" id="eMonitorEventChkY">
+                <input class="form-check-input" type="radio" value="Y" name="eMonitorEventChk" id="eMonitorEventChkY"
+                       th:onclick="getChgChk(this)">
                 유
-                <input class="form-check-input" type="radio" value="N" name="eMonitorEventChk" id="eMonitorEventChkN" checked>
+                <input class="form-check-input" type="radio" value="N" name="eMonitorEventChk" id="eMonitorEventChkN"
+                       th:onclick="getChgChk(this)" checked>
                 무  
               </p>
             </td>
