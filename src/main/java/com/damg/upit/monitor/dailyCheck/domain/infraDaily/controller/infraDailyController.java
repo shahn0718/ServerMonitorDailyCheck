@@ -10,6 +10,7 @@ import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MDailyCheckElemen
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckAdminMain;
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain;
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.service.mainDailyService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,10 +49,12 @@ public class infraDailyController {
             @ModelAttribute("infraDailyVMMain")MInsertInfraDailyVMMain mInsertInfraDailyVMMain,
             @ModelAttribute("infraDailyEtcMain")MInsertInfraDailyEtcMain mInsertInfraDailyEtcMain,
             @RequestParam String admin_nm,
+            HttpServletRequest request,
             Model model
             ){
 
         Model infraDailyCheck = model.addAttribute("infraDailyCheck");
+        String dailyMainViewCnt = request.getParameter("dailyMainViewCnt");
         log.info("infraDailyCheck={}", infraDailyCheck);
 
         String contentDate = DateTimeFormatter.ofPattern("yyyy.MM.dd").format(LocalDateTime.now());
@@ -64,6 +67,7 @@ public class infraDailyController {
         msvDailyCheckBoardMain.setDailyMainContent(mDailyCheckElement.INFRA_KOR+" 서버 일일점검 "+"("+contentDate+")");
         msvDailyCheckBoardMain.setDailyMainWriter(msvDailyCheckAdminMain.getAdmin_nm());
         msvDailyCheckBoardMain.setDailyMainWriterNo(msvDailyCheckAdminMain.getAdmin_no());
+        msvDailyCheckBoardMain.setDailyMainViewCnt(Integer.parseInt(dailyMainViewCnt));
         msvDailyCheckBoardMain.setDailyMainCreateDate(LocalDateTime.now());
 
         infraService.insertInfraDailyCheckMain(mInsertInfraDailyServiceMain,mInsertInfraDailyServerMain,
@@ -111,10 +115,14 @@ public class infraDailyController {
                                           @ModelAttribute("infraDailyServiceMain") MInsertInfraDailyServiceMain mInsertInfraDailyServiceMain,
                                           @ModelAttribute("infraDailyServerMain") MInsertInfraDailyServerMain mInsertInfraDailyServerMain,
                                           @ModelAttribute("infraDailyVMMain") MInsertInfraDailyVMMain mInsertInfraDailyVMMain,
-                                          @ModelAttribute("infraDailyEtcMain")MInsertInfraDailyEtcMain mInsertInfraDailyEtcMain){
+                                          @ModelAttribute("infraDailyEtcMain")MInsertInfraDailyEtcMain mInsertInfraDailyEtcMain,
+                                          HttpServletRequest request){
 
-        infraService.updateInfraDailyCheckBoard(infraMainId,mInsertInfraDailyServiceMain,
-                mInsertInfraDailyServerMain,mInsertInfraDailyVMMain,mInsertInfraDailyEtcMain);
+        int dailyMainViewCnt = Integer.parseInt(request.getParameter("dailyMainViewCnt"));
+        log.info("dailyMainViewCnt={}",dailyMainViewCnt);
+
+        infraService.updateInfraDailyCheckBoard(infraMainId,dailyMainViewCnt,
+                mInsertInfraDailyServiceMain,mInsertInfraDailyServerMain,mInsertInfraDailyVMMain,mInsertInfraDailyEtcMain);
 
         log.info("method=doUpdateInfraDailyCheck() infraDailyServiceMain={}",mInsertInfraDailyServiceMain);
         log.info("method=doUpdateInfraDailyCheck() infraDailyServerMain={}",mInsertInfraDailyServerMain);
