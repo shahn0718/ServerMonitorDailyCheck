@@ -69,7 +69,7 @@ public class infraDailyService {
                                            MInsertInfraDailyVMMain mInsertInfraDailyVMMain,
                                            MInsertInfraDailyEtcMain mInsertInfraDailyEtcMain){
 
-        mainRepository.updateDailyCheckBoardNew(LocalDateTime.now(),dailyMainViewCnt,mainBoardId);
+        mainRepository.updateDailyCheckBoard(LocalDateTime.now(),dailyMainViewCnt,mainBoardId);
 
         mInsertInfraDailyServiceMain.setInfraMainId(mainBoardId);
         mInsertInfraDailyServerMain.setInfraMainId(mainBoardId);

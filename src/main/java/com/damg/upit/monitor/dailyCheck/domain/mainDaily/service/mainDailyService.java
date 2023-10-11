@@ -47,10 +47,9 @@ public class mainDailyService {
     public void insertDailyCheckBoardList(MSVDailyCheckBoardMain msvDailyCheckBoardMain){
         dailyRepository.insertDailyCheckBoardList(msvDailyCheckBoardMain);
     }
-    public void updateDailyCheckBoard(LocalDateTime mainBoardModDate, Long mainBoardId){
-        dailyRepository.updateDailyCheckBoard(mainBoardModDate,mainBoardId);
+    public void updateDailyCheckBoard(LocalDateTime mainBoardModDate,  int dailyMainViewCnt, Long mainBoardId){
+        dailyRepository.updateDailyCheckBoard(mainBoardModDate,dailyMainViewCnt, mainBoardId);
     }
-
     public void deleteDailyCheckBoard(Long boardId){
         dailyRepository.deleteDailyCheckBoard(boardId);
     }

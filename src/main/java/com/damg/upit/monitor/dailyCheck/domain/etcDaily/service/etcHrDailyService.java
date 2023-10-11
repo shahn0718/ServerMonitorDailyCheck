@@ -55,7 +55,7 @@ public class etcHrDailyService {
                                           MInsertEtcHrDailyServerMain mInsertEtcHrDailyServerMain){
 
 
-        mainRepository.updateDailyCheckBoardNew(LocalDateTime.now(),dailyMainViewCnt,mainBoardId);
+        mainRepository.updateDailyCheckBoard(LocalDateTime.now(),dailyMainViewCnt,mainBoardId);
 
         mInsertEtcHrDailyServiceMain.setEtcHRMainId(mainBoardId);
         mInsertEtcHrDailyServerMain.setEtcHRMainId(mainBoardId);
