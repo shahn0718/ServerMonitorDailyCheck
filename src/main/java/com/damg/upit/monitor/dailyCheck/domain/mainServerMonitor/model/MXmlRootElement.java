@@ -1,8 +1,11 @@
 package com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.model;
 
 
+
+
 import lombok.Getter;
 import lombok.ToString;
+
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

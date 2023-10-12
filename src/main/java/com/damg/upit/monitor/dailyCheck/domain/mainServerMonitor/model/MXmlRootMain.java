@@ -16,5 +16,5 @@ import javax.xml.bind.annotation.XmlRootElement;
 @ToString
 public class MXmlRootMain {
     @XmlElement(name="info")
-    private XmlRootElement[] xmlServerData;
+    private MXmlRootElement[] xmlServerData;
 }
