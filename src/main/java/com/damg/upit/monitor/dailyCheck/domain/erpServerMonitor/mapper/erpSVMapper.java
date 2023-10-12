@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface erpSVMapper {
-
     void insertErpSVMainData(MInsertErpSVMain mInsertErpSVMain);
     void insertErpSVProcData(MInsertErpSVProcChk mInsertErpSVProcChk);
     void insertErpSVDiskData(MInsertErpSVDiskUsage mInsertErpSVDiskUsage);

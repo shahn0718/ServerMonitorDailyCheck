@@ -43,7 +43,7 @@ public class MInsertErpSVMain {
      * </info>
      * </server>
      */
-
+    private Long erpMainId;
     private Long erpSVId;
     private String erpSVCd;
     /**

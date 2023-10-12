@@ -41,13 +41,9 @@ public class mainDailyRepositoryImpl implements mainDailyRepository {
     public void insertDailyCheckBoardList(MSVDailyCheckBoardMain msvDailyCheckBoardMain) {
         dailyMapper.insertDailyCheckBoardList(msvDailyCheckBoardMain);
     }
-    @Override
-    public void updateDailyCheckBoard(LocalDateTime mainBoardModDate, Long mainBoardId) {
-        dailyMapper.updateDailyCheckBoard(mainBoardModDate,mainBoardId);
-    }
 
     @Override
-    public void updateDailyCheckBoardNew(LocalDateTime mainBoardModDate, int dailyMainViewCnt, Long mainBoadId) {
+    public void updateDailyCheckBoard(LocalDateTime mainBoardModDate, int dailyMainViewCnt, Long mainBoadId) {
         dailyMapper.updateDailyCheckBoardNew(mainBoardModDate, dailyMainViewCnt, mainBoadId);
     }
 

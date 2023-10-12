@@ -53,7 +53,7 @@ public class etcDailyService {
                                         MInsertEtcDailyServiceMain mInsertEtcDailyServiceMain,
                                         MInsertEtcDailyServerMain mInsertEtcDailyServerMain){
 
-        mainRepository.updateDailyCheckBoardNew(LocalDateTime.now(),dailyMainViewCnt,mainBoardId);
+        mainRepository.updateDailyCheckBoard(LocalDateTime.now(),dailyMainViewCnt,mainBoardId);
 
         mInsertEtcDailyServiceMain.setEtcMainId(mainBoardId);
         mInsertEtcDailyServerMain.setEtcMainId(mainBoardId);

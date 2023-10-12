@@ -21,11 +21,6 @@ public class erpSVRepositoryImpl implements erpSVRepository {
     }
 
     @Override
-    public JsonNode toJsonFromErpSVXmlData(String fileName) throws Exception {
-        return null;
-    }
-
-    @Override
     public void insertErpSVMainData(MInsertErpSVMain mInsertErpSVMain) throws Exception {
         erpMapper.insertErpSVMainData(mInsertErpSVMain);
     }

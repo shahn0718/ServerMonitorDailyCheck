@@ -69,7 +69,7 @@ public class gwDailyService {
                                         MInsertGwDailyStorageMain mInsertGwDailyStorageMain){
 
 
-        mainRepository.updateDailyCheckBoardNew(LocalDateTime.now(),dailyMainViewCnt,mainBoardId);
+        mainRepository.updateDailyCheckBoard(LocalDateTime.now(),dailyMainViewCnt,mainBoardId);
 
 
         mInsertGwDailyServiceMain.setGwMainId(mainBoardId);

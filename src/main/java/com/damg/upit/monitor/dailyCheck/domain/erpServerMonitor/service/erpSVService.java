@@ -1,49 +1,146 @@
 package com.damg.upit.monitor.dailyCheck.domain.erpServerMonitor.service;
 
 
+import com.damg.upit.monitor.dailyCheck.domain.erpServerMonitor.model.MInsertErpSVDiskUsage;
+import com.damg.upit.monitor.dailyCheck.domain.erpServerMonitor.model.MInsertErpSVMain;
+import com.damg.upit.monitor.dailyCheck.domain.erpServerMonitor.model.MInsertErpSVProcChk;
 import com.damg.upit.monitor.dailyCheck.domain.erpServerMonitor.repository.erpSVRepository;
 import com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.model.MXmlRootMain;
+import com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.service.xmlBasicService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 import java.io.FileInputStream;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 @Slf4j
 @Service
 public class erpSVService {
 
     private erpSVRepository erpRepository;
-    private ObjectMapper objMapper;
+    private xmlBasicService basicService;
+    private Long erpSVId;
 
-    public erpSVService(erpSVRepository erpRepository){
+    public erpSVService(erpSVRepository erpRepository, xmlBasicService basicService){
         this.erpRepository = erpRepository;
+        this.basicService = basicService;
     }
 
-    public JsonNode toJsonFromErpSVXmlData(String fileName) throws Exception{
-        FileInputStream fileInputStream = new FileInputStream(fileName);
+    @Transactional(rollbackFor= Exception.class)
+    public void InsertErpSVMainData(JsonNode jsonFromErpSVXmlData) throws Exception{
 
-        //JSON {"etcXmlServer":[{"hostname": ...
-        JAXBContext jaxbContext = JAXBContext.newInstance(MXmlRootMain.class);
-        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-        Object xmlErpSVData = unmarshaller.unmarshal(fileInputStream);
+        MInsertErpSVMain mInsertErpSVMain = new MInsertErpSVMain();
 
-        //JSON {"etcXmlServer":[{"hostname": ...
-        String makeErpSVJsonData = objMapper.writeValueAsString(xmlErpSVData);
-        log.info("makeErpSVJsonData={}",makeErpSVJsonData);
-        JsonNode erpXmlSVMainData = objMapper.readValue(makeErpSVJsonData, JsonNode.class);
+        mInsertErpSVMain.setErpSVCd(jsonFromErpSVXmlData.findValue("hostname").asText());
+        mInsertErpSVMain.setErpSVOs(jsonFromErpSVXmlData.findValue("osVersion").asText());
+        mInsertErpSVMain.setErpSVIp(jsonFromErpSVXmlData.findValue("ipAddress").asText());
+        mInsertErpSVMain.setErpSVCpuUsage(jsonFromErpSVXmlData.findValue("cpuUsage").asText());
+        mInsertErpSVMain.setErpSVMemUsage(jsonFromErpSVXmlData.findValue("memUsage").asText());
 
-        //JSON [{"hostname":"monitor"
-        JsonNode mainErpSVData = erpXmlSVMainData.findValue("xmlServerData");
-        log.info("mainErpSVData = {}", mainErpSVData);
+        LocalDateTime getDataResult = basicService.getFormateDateTime(jsonFromErpSVXmlData.findValue("datetime").asText(),
+                jsonFromErpSVXmlData.findValue("timeDate").asText());
 
+        mInsertErpSVMain.setErpSVDateTime(getDataResult);
 
-        return mainErpSVData;
+        erpRepository.insertErpSVMainData(mInsertErpSVMain);
+        erpSVId = mInsertErpSVMain.getErpSVId();
     }
 
+    @Transactional(rollbackFor = Exception.class)
+    public void InsertErpSVProcData(JsonNode jsonFromErpSVXmlData) throws Exception {
+
+        JsonNode erpSVProcData = jsonFromErpSVXmlData.findValue("processChk");
+        log.info("getErpSVProcData = {}", erpSVProcData);
+
+        List<String> procDataToList = new ArrayList<>();
+        for(JsonNode nodeData : erpSVProcData){
+            procDataToList.add(nodeData.asText());
+        }
+
+        List<MInsertErpSVProcChk> insertErpSVProcDataList = getInsertErpSVProcData(procDataToList);
+        for(MInsertErpSVProcChk mInsertErpSVProcChk : insertErpSVProcDataList){
+            erpRepository.insertErpSVProcData(mInsertErpSVProcChk);
+        }
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void InsertErpSVDiskData(JsonNode jsonFromErpSVXmlData) throws Exception{
+
+        JsonNode erpSVDiskData = jsonFromErpSVXmlData.findValue("diskUsage");
+        log.info("getErpSVDiskData = {}" ,erpSVDiskData);
+
+        List<String> diskDataToList = new ArrayList<>();
+        for(JsonNode nodeData: erpSVDiskData){
+            diskDataToList.add(nodeData.asText());
+        }
+
+        List<MInsertErpSVDiskUsage> insertErpSVDiskDataList = getInsertErpSVDiskData(diskDataToList);
+        for(MInsertErpSVDiskUsage mInsertErpSVDiskUsage : insertErpSVDiskDataList){
+            erpRepository.insertErpSVDiskData(mInsertErpSVDiskUsage);
+        }
+
+    }
+
+    private List<MInsertErpSVProcChk> getInsertErpSVProcData(List<String> procDataToList){
+
+
+        HashMap<String,String> procListToMap = new HashMap<>();
+        for(String listData : procDataToList){
+            String[] procArr = listData.split(",");
+            procListToMap.put(procArr[0],procArr[1]);
+        }
+
+        List<MInsertErpSVProcChk> insertErpSVProcDataList = new ArrayList<>();
+        Set<String> keySet = procListToMap.keySet();
+
+        log.info("erpSVProcData_keySet={}",keySet);
+
+        for(String key: keySet){
+            MInsertErpSVProcChk mInsertErpSVProcChkData = new MInsertErpSVProcChk();
+            mInsertErpSVProcChkData.setErpSVId(erpSVId);
+            mInsertErpSVProcChkData.setErpSVProcCd(key);
+            mInsertErpSVProcChkData.setErpSVProcData(procListToMap.get(key));
+            insertErpSVProcDataList.add(mInsertErpSVProcChkData);
+        }
+
+        return insertErpSVProcDataList;
+    }
+
+    private List<MInsertErpSVDiskUsage> getInsertErpSVDiskData(List<String> diskDataToList){
+
+
+        HashMap<String,String> diskListToMap = new HashMap<>();
+        for(String listData : diskDataToList){
+            String[] procArr = listData.split(",");
+            diskListToMap.put(procArr[0],procArr[1]);
+        }
+
+        List<MInsertErpSVDiskUsage> insertErpSVdiskDataList = new ArrayList<>();
+        Set<String> keySet = diskListToMap.keySet();
+
+        log.info("erpSVProcData_keySet={}",keySet);
+
+        for(String key: keySet){
+            MInsertErpSVDiskUsage mInsertErpSVDiskUsage = new MInsertErpSVDiskUsage();
+            mInsertErpSVDiskUsage.setErpSVId(erpSVId);
+            mInsertErpSVDiskUsage.setErpSVDiskCd(key);
+            mInsertErpSVDiskUsage.setErpSVDiskData(diskListToMap.get(key));
+            insertErpSVdiskDataList.add(mInsertErpSVDiskUsage);
+        }
+
+        return insertErpSVdiskDataList;
+    }
 
 }

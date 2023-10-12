@@ -70,7 +70,7 @@ public class erpDailyService {
                                         MInsertErpDailyServiceMain mInsertErpDailyServiceMain, MInsertErpDailyServerMain mInsertErpDailyServerMain,
                                         MInsertErpDailyVMMain mInsertErpDailyVMMain, MInsertErpDailyStorageMain mInsertErpDailyStorageMain){
 
-        mainRepository.updateDailyCheckBoardNew(LocalDateTime.now(),dailyMainViewCnt,mainBoardId);
+        mainRepository.updateDailyCheckBoard(LocalDateTime.now(),dailyMainViewCnt,mainBoardId);
 
         mInsertErpDailyServiceMain.setErpMainId(mainBoardId);
         mInsertErpDailyServerMain.setErpMainId(mainBoardId);

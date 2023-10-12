@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.damg.upit.monitor.dailyCheck.domain.erpServerMonitor.mapper.erpSVMapper">
+
+    <insert id="insertErpSVMainData" parameterType="com.damg.upit.monitor.dailyCheck.domain.erpServerMonitor.model.MInsertErpSVMain"
+            useGeneratedKeys="true" keyProperty="erpMainId">
+
+        <selectKey keyProperty="erpSVId" resultType="long" order="BEFORE">
+            SELECT IFNULL(MAX(ERP_SV_ID)+1,902) FROM ERP_SV_MAIN AS ERP_SV_ID
+        </selectKey>
+
+
+        /* insertErpSVMainData */
+
+        INSERT INTO ERP_SV_MAIN (
+
+                 ERP_MAIN_ID
+                ,ERP_SV_ID
+                ,ERP_SV_CD
+                ,ERP_SV_OS
+                ,ERP_SV_IP
+                ,ERP_SV_CPU_USAGE
+                ,ERP_SV_MEM_USAGE
+                ,ERP_SV_SWAP_USAGE
+                ,ERP_SV_DATETIME
+
+        ) VALUES (
+
+                 #{erpMainId}
+                ,#{erpSVId}
+                ,#{erpSVCd}
+                ,#{erpSVOs}
+                ,#{erpSVIp}
+                ,#{erpSVCpuUsage}
+                ,#{erpSVMemUsage}
+                ,#{erpSVSwapUsage}
+                ,#{erpSVDateTime}
+                )
+    </insert>
+
+
+    <insert id="insertErpSVProcData" parameterType="com.damg.upit.monitor.dailyCheck.domain.erpServerMonitor.model.MInsertErpSVProcChk"
+        useGeneratedKeys="true" keyProperty="erpSVProcId">
+        /* insertErpSVProcData : */
+
+        INSERT INTO ERP_SV_PROCESS (
+
+                 ERP_SV_PROC_ID
+                ,ERP_SV_ID
+                ,ERP_SV_PROC_CD
+                ,ERP_SV_PROC_CHK
+
+        ) VALUES (
+
+                 #{erpSVProcId}
+                ,#{erpSVId}
+                ,#{erpSVProcCd}
+                ,#{erpSVProcData}
+
+        )
+    </insert>
+
+   <insert id="insertErpSVDiskData" parameterType="com.damg.upit.monitor.dailyCheck.domain.erpServerMonitor.model.MInsertErpSVDiskUsage"
+        useGeneratedKeys="true" keyProperty="erpSVDiskId">
+
+        /* insertErpSVDiskDate : */
+
+        INSERT INTO ERP_SV_DISK (
+
+                 ERP_SV_DISK_ID
+                ,ERP_SV_ID
+                ,ERP_SV_DISK_CD
+                ,ERP_SV_DISK_USAGE
+
+        ) VALUES (
+
+                 #{erpSVDiskId}
+                ,#{erpSVId}
+                ,#{erpSVDiskCd}
+                ,#{erpSVDiskData}
+
+        )
+   </insert>
+
+</mapper>

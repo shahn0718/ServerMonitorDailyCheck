@@ -1,14 +1,19 @@
 package com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.service;
 
 
+import com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.model.MXmlRootMain;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
+import java.text.ParseException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,33 +29,33 @@ public class xmlBasicService {
         return getFileList;
     }
 
-    public String readFileFromDir(File fileName) throws Exception{
+    public LocalDateTime getFormateDateTime(String dateTime, String timeDate) throws ParseException{
 
-        FileInputStream fileInputStream = new FileInputStream(fileName);
-        InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
-        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+        String beforeFormatDate = dateTime + timeDate ;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-ddHH:mm:ss");
 
-        String readData = "";
-        String readTmpData="";
-
-        while((readTmpData = bufferedReader.readLine()) != null){
-            readData += readTmpData + "\n";
-        }
-        return readData;
+        LocalDateTime afterFormatDate = LocalDateTime.parse(beforeFormatDate,formatter);
+        return afterFormatDate;
     }
 
-    public List<String> makeListFromDir(File fileName) throws Exception{
+    public JsonNode toJsonFromSVXmlData(String fileName) throws Exception{
         FileInputStream fileInputStream = new FileInputStream(fileName);
-        InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
-        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+        ObjectMapper objMapper = new ObjectMapper();
 
-        ArrayList<String> fileData = new ArrayList<>();
-        String readTmpData ="";
+        //JSON {"etcXmlServer":[{"hostname": ...
+        JAXBContext jaxbContext = JAXBContext.newInstance(MXmlRootMain.class);
+        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        Object xmlErpSVData = unmarshaller.unmarshal(fileInputStream);
 
-        while((readTmpData = bufferedReader.readLine()) != null){
-            fileData.add(readTmpData);
-        }
+        //JSON {"etcXmlServer":[{"hostname": ...
+        String makeJsonData = objMapper.writeValueAsString(xmlErpSVData);
+        log.info("makeJsonData={}",makeJsonData);
+        JsonNode xmlSVMainData = objMapper.readValue(makeJsonData, JsonNode.class);
 
-        return fileData;
+        //JSON [{"hostname":"monitor" ...
+        JsonNode jsonDataFromSVXml = xmlSVMainData.findValue("xmlServerData");
+        log.info("resultJsonData = {}", jsonDataFromSVXml);
+
+        return jsonDataFromSVXml;
     }
 }
