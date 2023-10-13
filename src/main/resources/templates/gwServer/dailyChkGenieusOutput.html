@@ -67,16 +67,19 @@
           <p>메일</p>
           <p>전자결재</p>
           <p>백업</p>
+          <p>인물정보</p>
         </td>
         <td> 
           <p>-</p> 
           <p>-</p>
-          <p> </p>
+          <p>-</p>
+          <p>-</p>
         </td>
         <td> 
-          <p>송수신</p> 
-          <p>?</p>
+          <p>송수신</p>
+          <p>리스트 확인</p>
           <p>백업스케쥴</p>
+          <p>리스트 확인</p>
         </td>
         <td> 
           <p>
@@ -103,15 +106,24 @@
                    th:checked="${gwService.gwBackUpServiceChk eq 'N'}"  disabled>
             무  
           </p>
+          <p>
+            <input class="form-check-input" type="radio" value="Y" name="gwInmulServiceChk" id="gwInmulServiceChkY"
+                   th:checked="${gwService.gwInmulServiceChk eq 'Y'}" disabled>
+            유
+            <input class="form-check-input" type="radio" value="N" name="gwInmulServiceChk" id="gwInmulServiceChkN"
+                   th:checked="${gwService.gwInmulServiceChk eq 'N'}"  disabled>
+            무
+          </p>
         </td>
         <td>
           <input class="form-control" id="gwMailServiceBigoInput" name="gwMailServiceBigo" placeholder="이상유무 유 체크시 내역기재"
                  th:value="${gwService.gwMailServiceBigo}" type="text" readonly>
           <input type="text" class="form-control" name="gwApproveServiceBigo" id="gwApproveServiceBigoInput"
                  th:value="${gwService.gwApproveServiceBigo}" readonly>
-          <input type="text" class="form-control" name="gwBackUpServiceBigo" id="backupServiceBigoInput"
+          <input type="text" class="form-control" name="gwBackUpServiceBigo" id="gwBackupServiceBigoInput"
                  th:value="${gwService.gwBackUpServiceBigo}" readonly>
-
+          <input type="text" class="form-control" name="gwInmulServiceBigo" id="gwInmulServiceBigoInput"
+                 th:value="${gwService.gwInmulServiceBigo}" readonly>
 
         </td>
       </tr>

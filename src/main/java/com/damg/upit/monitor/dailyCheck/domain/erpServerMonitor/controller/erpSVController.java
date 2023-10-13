@@ -5,7 +5,6 @@ import com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.model.MXmlFileP
 import com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.service.xmlBasicService;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

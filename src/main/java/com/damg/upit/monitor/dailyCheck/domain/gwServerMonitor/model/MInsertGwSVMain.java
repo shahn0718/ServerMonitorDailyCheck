@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+
 @Getter @Setter
 @ToString
 public class MInsertGwSVMain {
@@ -73,7 +75,7 @@ public class MInsertGwSVMain {
      * <load_num>0</load_num>
      * → gwSVLoadNum
      */
-    private String gwSVDateTime;
+    private LocalDateTime gwSVDateTime;
     /**
      *  <date>2023-05-23</date>
      *  <time>15:00:01</time>

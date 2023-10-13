@@ -5,21 +5,15 @@ import com.damg.upit.monitor.dailyCheck.domain.erpServerMonitor.model.MInsertErp
 import com.damg.upit.monitor.dailyCheck.domain.erpServerMonitor.model.MInsertErpSVMain;
 import com.damg.upit.monitor.dailyCheck.domain.erpServerMonitor.model.MInsertErpSVProcChk;
 import com.damg.upit.monitor.dailyCheck.domain.erpServerMonitor.repository.erpSVRepository;
-import com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.model.MXmlRootMain;
 import com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.service.xmlBasicService;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Unmarshaller;
-import java.io.FileInputStream;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -54,6 +48,8 @@ public class erpSVService {
 
         mInsertErpSVMain.setErpSVDateTime(getDataResult);
 
+        log.info("method=InsertErpSVMainData, mInsertErpSVMain={}",mInsertErpSVMain);
+
         erpRepository.insertErpSVMainData(mInsertErpSVMain);
         erpSVId = mInsertErpSVMain.getErpSVId();
     }
@@ -62,7 +58,7 @@ public class erpSVService {
     public void InsertErpSVProcData(JsonNode jsonFromErpSVXmlData) throws Exception {
 
         JsonNode erpSVProcData = jsonFromErpSVXmlData.findValue("processChk");
-        log.info("getErpSVProcData = {}", erpSVProcData);
+        log.info("method=InsertErpSVProcData, getErpSVProcData = {}", erpSVProcData);
 
         List<String> procDataToList = new ArrayList<>();
         for(JsonNode nodeData : erpSVProcData){
@@ -79,7 +75,7 @@ public class erpSVService {
     public void InsertErpSVDiskData(JsonNode jsonFromErpSVXmlData) throws Exception{
 
         JsonNode erpSVDiskData = jsonFromErpSVXmlData.findValue("diskUsage");
-        log.info("getErpSVDiskData = {}" ,erpSVDiskData);
+        log.info("method=InsertErpSVDiskData, getErpSVDiskData = {}" ,erpSVDiskData);
 
         List<String> diskDataToList = new ArrayList<>();
         for(JsonNode nodeData: erpSVDiskData){
@@ -105,7 +101,7 @@ public class erpSVService {
         List<MInsertErpSVProcChk> insertErpSVProcDataList = new ArrayList<>();
         Set<String> keySet = procListToMap.keySet();
 
-        log.info("erpSVProcData_keySet={}",keySet);
+        log.info("method=getInsertErpSVProcData, erpSVProcData_keySet={}",keySet);
 
         for(String key: keySet){
             MInsertErpSVProcChk mInsertErpSVProcChkData = new MInsertErpSVProcChk();
@@ -130,7 +126,7 @@ public class erpSVService {
         List<MInsertErpSVDiskUsage> insertErpSVdiskDataList = new ArrayList<>();
         Set<String> keySet = diskListToMap.keySet();
 
-        log.info("erpSVProcData_keySet={}",keySet);
+        log.info("method=getInsertErpSVDiskData, erpSVProcData_keySet={}",keySet);
 
         for(String key: keySet){
             MInsertErpSVDiskUsage mInsertErpSVDiskUsage = new MInsertErpSVDiskUsage();
