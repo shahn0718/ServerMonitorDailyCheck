@@ -17,6 +17,8 @@
                 ,GW_APPROVE_BIGO
                 ,GW_BACKUP_CHK
                 ,GW_BACKUP_BIGO
+                ,GW_INMUL_CHK
+                ,GW_INMUL_BIGO
 
         ) VALUES (
 
@@ -28,6 +30,8 @@
                 ,#{gwApproveServiceBigo}
                 ,#{gwBackUpServiceChk}
                 ,#{gwBackUpServiceBigo}
+                ,#{gwInmulServiceChk}
+                ,#{gwInmulServiceBigo}
         )
     </insert>
 
@@ -265,6 +269,8 @@
                     ,GW_APPROVE_BIGO    AS gwApproveServiceBigo
                     ,GW_BACKUP_CHK      AS gwBackUpServiceChk
                     ,GW_BACKUP_BIGO     AS gwBackUpServiceBigo
+                    ,GW_INMUL_CHK       AS gwInmulServiceChk
+                    ,GW_INMUL_BIGO      AS gwInmulServiceBigo
         FROM
                     GW_DAILY_SERVICE
         WHERE
@@ -409,6 +415,8 @@
                     ,GW_APPROVE_BIGO    = #{gwApproveServiceBigo}
                     ,GW_BACKUP_CHK      = #{gwBackUpServiceChk}
                     ,GW_BACKUP_BIGO     = #{gwBackUpServiceBigo}
+                    ,GW_INMUL_CHK       = #{gwInmulServiceChk}
+                    ,GW_INMUL_BIGO      = #{gwInmulServiceBigo}
         WHERE
                     GW_MAIN_ID = #{gwMainId}
     </update>
