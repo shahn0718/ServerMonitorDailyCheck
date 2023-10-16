@@ -1,9 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.damg.upit.monitor.dailyCheck.domain.gwServerMonitor.mapper.gwDailyMapper">
+<mapper namespace="com.damg.upit.monitor.dailyCheck.domain.gwServerMonitor.mapper.gwSVMapper">
 
+    <insert id="insertGwSVMainData" parameterType="com.damg.upit.monitor.dailyCheck.domain.gwServerMonitor.model.MInsertGwSVMain"
+            useGeneratedKeys="true" keyProperty="gwMainId">
 
+        <selectKey keyProperty="gwSVId" resultType="long" order="BEFORE">
+            SELECT IFNULL(MAX(GW_SV_ID)+1,202) FROM GW_SV_MAIN AS GW_SV_ID
+        </selectKey>
 
+        /*insertGwSVMainData*/
 
+        INSERT INTO GW_SV_MAIN (
+
+             GW_MAIN_ID
+            ,GW_SV_ID
+            ,GW_SV_CD
+            ,GW_SV_OS
+            ,GW_SV_IP
+            ,GW_SV_CPU_USAGE
+            ,GW_SV_MEM_USAGE
+            ,GW_SV_SWAP_USAGE
+            ,GW_SV_CLUST_USAGE
+            ,GW_SV_DATETIME
+
+        ) VALUES (
+
+             #{gwMainId}
+            ,#{gwSVId}
+            ,#{gwSVCd}
+            ,#{gwSVOs}
+            ,#{gwSVIp}
+            ,#{gwSVCpuUsage}
+            ,#{gwSVMemUsage}
+            ,#{gwSVSwapUsage}
+            ,#{gwSVClustUsage}
+            ,#{gwSVDateTime}
+        )
+    </insert>
+
+    <insert id="insertGwSVProcData" parameterType="com.damg.upit.monitor.dailyCheck.domain.gwServerMonitor.model.MInsertGwSVProcChk"
+            useGeneratedKeys="true" keyProperty="gwSVProcId">
+
+        /* insertGwSVProcData : */
+
+        INSERT INTO GW_SV_PROCESS (
+
+             GW_SV_PROC_ID
+            ,GW_SV_ID
+            ,GW_SV_PROC_CD
+            ,GW_SV_PROC_CHK
+
+        ) VALUES (
+
+             #{gwSVProcId}
+            ,#{gwSVId}
+            ,#{gwSVProcCd}
+            ,#{gwSVProcData}
+        )
+
+    </insert>
+
+    <insert id="insertGwSVDiskData" parameterType="com.damg.upit.monitor.dailyCheck.domain.gwServerMonitor.model.MInsertGwSVDiskUsage"
+            useGeneratedKeys="true" keyProperty="gwSVDiskId">
+
+        /* insertGwSVDiskData : */
+
+        INSERT INTO GW_SV_DISK (
+
+             GW_SV_DISK_ID
+            ,GW_SV_ID
+            ,GW_SV_DISK_CD
+            ,GW_SV_DISK_USAGE
+
+        ) VALUES (
+
+             #{gwSVDiskId}
+            ,#{gwSVId}
+            ,#{gwSVDiskCd}
+            ,#{gwSVDiskData}
+
+        )
+    </insert>
+
+    <insert id="insertGwSVClustData" parameterType="com.damg.upit.monitor.dailyCheck.domain.gwServerMonitor.model.MInsertGwSVClustChk"
+            useGeneratedKeys="true" keyProperty="gwSVClustId">
+
+        /* insertGwSVClustData : */
+
+        INSERT INTO GW_SV_CLUSTER (
+
+             GW_SV_CLUST_ID
+            ,GW_SV_ID
+            ,GW_SV_CLUST_CD
+            ,GW_SV_CLUST_NAME
+            ,GW_SV_CLUST_STAT
+
+        ) VALUES (
+
+             #{gwSVClustId}
+            ,#{gwSVId}
+            ,#{gwSVClustCd}
+            ,#{gwSVClustPod}
+            ,#{gwSVClustStatus}
+
+        )
+    </insert>
 
 </mapper>

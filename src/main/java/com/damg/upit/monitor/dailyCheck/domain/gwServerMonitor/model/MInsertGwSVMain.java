@@ -35,6 +35,7 @@ public class MInsertGwSVMain {
      * </server>
      */
 
+    private Long gwMainId;
     private Long gwSVId;
     private String gwSVCd;
     /**

@@ -35,8 +35,11 @@ public class gwSVController {
         for(File fileName : fileListFromDir){
             log.info("gwSVFileName = {}", fileName);
             JsonNode jsonFromGwSVXmlData = basicService.toJsonFromSVXmlData(String.valueOf(fileName));
-            gwService.InsertGwSVMainData(jsonFromGwSVXmlData);
 
+            gwService.InsertGwSVMainData(jsonFromGwSVXmlData);
+            gwService.InsertGwSVProcData(jsonFromGwSVXmlData);
+//            gwService.InsertGwSVDiskData(jsonFromGwSVXmlData);
+            gwService.InsertGwSVClustData(jsonFromGwSVXmlData);
         }
 
         return "makeGwSVXmlList";
