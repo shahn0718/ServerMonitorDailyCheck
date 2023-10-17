@@ -71,7 +71,7 @@ public class gwSVService {
     }
     public void InsertGwSVDiskData(JsonNode jsonFromGwSVXmlData) throws Exception {
 
-        Optional<JsonNode> gwSVDiskData = Optional.of(jsonFromGwSVXmlData.findValue("diskUsage"));
+        Optional<JsonNode> gwSVDiskData = Optional.ofNullable(jsonFromGwSVXmlData.findValue("diskUsage"));
         log.info("method=InsertGwSVDiskData, getGwSVDiskData={}", gwSVDiskData);
 
         List<String> diskDataToList = new ArrayList<>();

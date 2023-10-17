@@ -42,6 +42,7 @@ public class erpSVService {
         mInsertErpSVMain.setErpSVIp(jsonFromErpSVXmlData.findValue("ipAddress").asText());
         mInsertErpSVMain.setErpSVCpuUsage(jsonFromErpSVXmlData.findValue("cpuUsage").asText());
         mInsertErpSVMain.setErpSVMemUsage(jsonFromErpSVXmlData.findValue("memUsage").asText());
+        mInsertErpSVMain.setErpSVSwapUsage(jsonFromErpSVXmlData.findValue("swapUsage").asText());
 
         LocalDateTime getDataResult = basicService.getFormateDateTime(jsonFromErpSVXmlData.findValue("datetime").asText(),
                 jsonFromErpSVXmlData.findValue("timeDate").asText());
