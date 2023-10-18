@@ -68,7 +68,6 @@ public class etcErpSVService {
         }
 
     }
-
     @Transactional(rollbackFor = Exception.class)
     public void InsertEtcSVDiskData(JsonNode jsonFromEtcSVXmlData) throws Exception {
 
@@ -85,7 +84,6 @@ public class etcErpSVService {
                 etcRepository.insertEtcSVDiskData(mInsertEtcSVDiskUsage);
             }
         }
-
     }
     private List<MInsertEtcSVProcChk> getInsertEtcSVProcData(List<String> procDataToList){
 
@@ -107,10 +105,8 @@ public class etcErpSVService {
             mInsertEtcSVProcChk.setEtcSVProcData(procListToMap.get(key));
             insertEtcSVProcDataList.add(mInsertEtcSVProcChk);
         }
-
         return insertEtcSVProcDataList;
     }
-
     private List<MInsertEtcSVDiskUsage> getInsertEtcSVDiskData(List<String> diskDataToList){
 
         HashMap<String, String> diskListToMap = new HashMap<>();
@@ -130,8 +126,6 @@ public class etcErpSVService {
             mInsertEtcSVDiskUsageData.setEtcSVDiskData(diskListToMap.get(key));
             insertEtcSVDiskUsageData.add(mInsertEtcSVDiskUsageData);
         }
-
         return insertEtcSVDiskUsageData;
     }
-
 }

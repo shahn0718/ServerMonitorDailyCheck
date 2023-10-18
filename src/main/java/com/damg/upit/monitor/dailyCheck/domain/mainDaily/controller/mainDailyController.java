@@ -3,14 +3,12 @@ package com.damg.upit.monitor.dailyCheck.domain.mainDaily.controller;
 
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain;
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.service.mainDailyService;
-import com.damg.upit.monitor.dailyCheck.domain.mainPaging.model.MDailyBoardPaginationMain;
-import com.damg.upit.monitor.dailyCheck.domain.mainPaging.model.MDailyBoardPagingMain;
-import com.damg.upit.monitor.dailyCheck.domain.mainPaging.service.mainPagingService;
-import jakarta.servlet.http.HttpServletRequest;
+import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MDailyBoardPaginationMain;
+import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MDailyBoardPagingMain;
+import com.damg.upit.monitor.dailyCheck.domain.mainDaily.service.mainPagingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

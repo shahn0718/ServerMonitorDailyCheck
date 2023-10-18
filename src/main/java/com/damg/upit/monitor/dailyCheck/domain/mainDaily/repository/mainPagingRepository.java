@@ -1,7 +1,7 @@
-package com.damg.upit.monitor.dailyCheck.domain.mainPaging.repository;
+package com.damg.upit.monitor.dailyCheck.domain.mainDaily.repository;
 
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain;
-import com.damg.upit.monitor.dailyCheck.domain.mainPaging.model.MDailyBoardPagingMain;
+import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MDailyBoardPagingMain;
 
 import java.util.List;
 

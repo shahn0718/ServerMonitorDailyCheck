@@ -1,8 +1,8 @@
-package com.damg.upit.monitor.dailyCheck.domain.mainPaging.service;
+package com.damg.upit.monitor.dailyCheck.domain.mainDaily.service;
 
 import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain;
-import com.damg.upit.monitor.dailyCheck.domain.mainPaging.model.MDailyBoardPagingMain;
-import com.damg.upit.monitor.dailyCheck.domain.mainPaging.repository.mainPagingRepository;
+import com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MDailyBoardPagingMain;
+import com.damg.upit.monitor.dailyCheck.domain.mainDaily.repository.mainPagingRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

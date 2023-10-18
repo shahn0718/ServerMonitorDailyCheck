@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace = "com.damg.upit.monitor.dailyCheck.domain.mainPaging.mapper.mainPagingMapper">
+<mapper namespace = "com.damg.upit.monitor.dailyCheck.domain.mainDaily.mapper.mainPagingMapper">
 
 
-    <select id="findPagingBoardList" parameterType="com.damg.upit.monitor.dailyCheck.domain.mainPaging.model.MDailyBoardPagingMain"
+    <select id="findPagingBoardList" parameterType="com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MDailyBoardPagingMain"
             resultType="com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MSVDailyCheckBoardMain">
 
 
@@ -42,7 +42,7 @@
         ]]>
     </select>
 
-    <select id="getBoardTotalList" parameterType="com.damg.upit.monitor.dailyCheck.domain.mainPaging.model.MDailyBoardPagingMain"
+    <select id="getBoardTotalList" parameterType="com.damg.upit.monitor.dailyCheck.domain.mainDaily.model.MDailyBoardPagingMain"
             resultType="int">
 
         SELECT
