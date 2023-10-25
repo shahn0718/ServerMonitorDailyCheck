@@ -41,7 +41,6 @@ public class gwSVController {
             gwService.InsertGwSVDiskData(jsonFromGwSVXmlData);
             gwService.InsertGwSVClustData(jsonFromGwSVXmlData);
         }
-
         return "makeGwSVXmlList";
     }
 }

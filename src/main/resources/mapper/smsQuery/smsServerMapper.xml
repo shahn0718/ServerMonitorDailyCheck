@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.mapper.smsSVMapper">
+
+    <insert id="insertSmsData" parameterType="com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.param.PInsertSmsElement">
+        insert into pysms.sc_tran(
+              tr_senddate
+            , tr_sendstat
+            , tr_rsltstat
+            , tr_msgtype
+            , tr_phone
+            , tr_callback
+            , tr_msg
+            , tr_etc3
+        )values (
+            #{trSendDate}
+            , '0'
+            , '00'
+            , '0'
+            , #{trPhone}
+            , #{trCallBack}
+            , #{trMsg}
+            , #{trEtc3}
+        );
+    </insert>
+</mapper>

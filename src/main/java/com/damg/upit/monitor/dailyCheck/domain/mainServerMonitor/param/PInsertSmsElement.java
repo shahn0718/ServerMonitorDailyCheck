@@ -1,4 +1,4 @@
-package com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.model;
+package com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.param;
 
 
 import lombok.Getter;
