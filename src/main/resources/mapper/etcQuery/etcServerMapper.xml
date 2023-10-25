@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.damg.upit.monitor.dailyCheck.domain.etcServerMonitor.mapper.etcErpSVMapper">
+
+    <insert id="insertEtcSVMainData" parameterType="com.damg.upit.monitor.dailyCheck.domain.etcServerMonitor.model.MInsertEtcSVMain"
+            useGeneratedKeys="true" keyProperty="etcMainId">
+
+        <selectKey keyProperty="etcSVId" resultType="long" order="BEFORE">
+            SELECT IFNULL(MAX(ETC_SV_ID)+1,402) FROM ETC_SV_MAIN AS ETC_SV_ID
+        </selectKey>
+
+
+        /* insertEtcSVMainData : */
+
+        INSERT INTO ETC_SV_MAIN (
+
+             ETC_MAIN_ID
+            ,ETC_SV_ID
+            ,ETC_SV_CD
+            ,ETC_SV_OS
+            ,ETC_SV_IP
+            ,ETC_SV_CPU_USAGE
+            ,ETC_SV_MEM_USAGE
+            ,ETC_SV_SWAP_USAGE
+            ,ETC_SV_DATETIME
+
+        ) VALUES (
+
+             #{etcMainId}
+            ,#{etcSVId}
+            ,#{etcSVCd}
+            ,#{etcSVOs}
+            ,#{etcSVIp}
+            ,#{etcSVCpuUsage}
+            ,#{etcSVMemUsage}
+            ,#{etcSVSwapUsage}
+            ,#{etcSVDateTime}
+
+        )
+    </insert>
+
+    <insert id="insertEtcSVProcData" parameterType="com.damg.upit.monitor.dailyCheck.domain.etcServerMonitor.model.MInsertEtcSVProcChk"
+            useGeneratedKeys="true" keyProperty="etcSVProcId">
+
+        /* insertEtcSVProcData : */
+
+        INSERT INTO ETC_SV_PROCESS (
+
+             ETC_SV_PROC_ID
+            ,ETC_SV_ID
+            ,ETC_SV_PROC_CD
+            ,ETC_SV_PROC_CHK
+
+        ) VALUES (
+
+             #{etcSVProcId}
+            ,#{etcSVId}
+            ,#{etcSVProcCd}
+            ,#{etcSVProcData}
+        )
+    </insert>
+
+
+    <insert id="insertEtcSVDiskData" parameterType="com.damg.upit.monitor.dailyCheck.domain.etcServerMonitor.model.MInsertEtcSVDiskUsage"
+            useGeneratedKeys="true" keyProperty="etcSVDiskId">
+
+        /* insertEtcSVDiskData : */
+
+        INSERT INTO ETC_SV_DISK (
+
+             ETC_SV_DISK_ID
+            ,ETC_SV_ID
+            ,ETC_SV_DISK_CD
+            ,ETC_SV_DISK_USAGE
+
+        ) VALUES (
+
+             #{etcSVDiskId}
+            ,#{etcSVId}
+            ,#{etcSVDiskCd}
+            ,#{etcSVDiskData}
+        )
+    </insert>
+</mapper>

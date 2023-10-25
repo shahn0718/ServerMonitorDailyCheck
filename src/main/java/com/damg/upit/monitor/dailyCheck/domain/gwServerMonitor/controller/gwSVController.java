@@ -38,10 +38,9 @@ public class gwSVController {
 
             gwService.InsertGwSVMainData(jsonFromGwSVXmlData);
             gwService.InsertGwSVProcData(jsonFromGwSVXmlData);
-//            gwService.InsertGwSVDiskData(jsonFromGwSVXmlData);
+            gwService.InsertGwSVDiskData(jsonFromGwSVXmlData);
             gwService.InsertGwSVClustData(jsonFromGwSVXmlData);
         }
-
         return "makeGwSVXmlList";
     }
 }

@@ -1,14 +1,21 @@
 #server:
 #  port: 8081
 spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/servermonitor?serverTimezone=Asia/Seoul
-#    url: jdbc:mysql://10.13.7.142:3306/servermonitor?serverTimezone=Asia/Seoul
-    username: root
-#    password: 142ehddk@W
-#    password: 1346520ASd!
-    password: admin
+  monitor-db:
+    datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/servermonitor?serverTimezone=Asia/Seoul
+  #    url: jdbc:mysql://10.13.7.142:3306/servermonitor?serverTimezone=Asia/Seoul
+      username: root
+  #    password: 142ehddk@W
+  #    password: 1346520ASd!
+      password: admin
+  sms-db:
+    datasource:
+      driver-class-name: org.mariadb.jdbc.Driver
+      jdbc-url: jdbc:mariadb://10.13.7.222:3306/pysms
+      username: pysms
+      password: sm100255
   devtools:
     livereload:
       enabled: true

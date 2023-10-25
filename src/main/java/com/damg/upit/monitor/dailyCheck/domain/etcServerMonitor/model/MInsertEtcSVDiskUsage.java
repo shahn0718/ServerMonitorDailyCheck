@@ -18,5 +18,5 @@ public class MInsertEtcSVDiskUsage {
     private Long etcSVDiskId;
     private Long etcSVId;
     private String etcSVDiskCd;
-    private String etcSVDiskUsage;
+    private String etcSVDiskData;
 }

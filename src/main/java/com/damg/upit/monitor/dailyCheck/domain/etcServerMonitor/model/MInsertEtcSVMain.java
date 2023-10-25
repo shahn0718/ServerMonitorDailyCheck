@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+
 @Getter @Setter
 @ToString
 public class MInsertEtcSVMain {
@@ -30,6 +32,7 @@ public class MInsertEtcSVMain {
      * </server>
      */
 
+    private Long etcMainId;
     private Long etcSVId;
     private String etcSVCd;
     /**
@@ -66,5 +69,6 @@ public class MInsertEtcSVMain {
      * <load_num>0</load_num>
      * → etcSVLoadNum
      */
+    private LocalDateTime etcSVDateTime;
 
 }
