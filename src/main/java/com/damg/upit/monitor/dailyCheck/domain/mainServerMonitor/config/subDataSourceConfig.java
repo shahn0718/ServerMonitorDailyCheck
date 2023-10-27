@@ -37,10 +37,8 @@ public class subDataSourceConfig {
         Resource[] res = new PathMatchingResourcePatternResolver().getResources("classpath:mapper/**/*.xml");
         bean.setMapperLocations(res);
 
-
         return bean.getObject();
     }
-
     @Bean
     public DataSourceTransactionManager subTransactionManager(@Qualifier(SUB_DATASOURCE) DataSource subDataSource) throws Exception{
         return new DataSourceTransactionManager(subDataSource);
