@@ -4,24 +4,29 @@
 <mapper namespace="com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.mapper.smsSVMapper">
 
     <insert id="insertSmsData" parameterType="com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.param.PInsertSmsElement">
-        insert into pysms.sc_tran(
-              tr_senddate
-            , tr_sendstat
-            , tr_rsltstat
-            , tr_msgtype
-            , tr_phone
-            , tr_callback
-            , tr_msg
-            , tr_etc3
-        )values (
+        INSERT INTO PYSMS.SC_TRAN(
+
+             tr_senddate
+             TR_SENDDATE
+            ,TR_SENDSTAT
+            ,TR_RSLTSTAT
+            ,TR_MSGTYPE
+            ,TR_PHONE
+            ,TR_CALLBACK
+            ,TR_MSG
+            ,TR_ETC3
+
+        ) VALUES (
+
             #{trSendDate}
-            , '0'
-            , '00'
-            , '0'
-            , #{trPhone}
-            , #{trCallBack}
-            , #{trMsg}
-            , #{trEtc3}
-        );
+            ,'0'
+            ,'00'
+            ,'0'
+            ,#{trPhone}
+            ,#{trCallBack}
+            ,#{trMsg}
+            ,#{trEtc3}
+
+        )
     </insert>
 </mapper>

@@ -5,8 +5,6 @@ import com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.param.PInsertSm
 import com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.repository.smsSVRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 public class smsSVRepositoryImpl implements smsSVRepository {
 
