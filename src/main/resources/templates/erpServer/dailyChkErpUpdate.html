@@ -101,8 +101,10 @@
         <p>웹</p>
         <p>DB</p>
         <p>백업</p>
+        <p>기간계 연동</p>
       </td>
       <td>
+        <p>-</p>
         <p>-</p>
         <p>-</p>
         <p>-</p>
@@ -111,6 +113,7 @@
         <p>-</p>
         <p>-</p>
         <p>백업스케쥴</p>
+        <p>연동스케쥴</p>
       </td>
       <td>
         <p><!--추후 수정 필요 현재는 백업 서비스만 체크 진행-->
@@ -137,6 +140,14 @@
                  th:checked="${erpService.erpBackUpServiceChk eq 'N'}" th:onclick="getChgChk(this)" >
           무
         </p>
+        <p>
+          <input class="form-check-input" type="radio" value="Y" name="erpBackBoneServiceChk" id="erpBackBoneServiceChkY"
+                 th:checked="${erpService.erpBackBoneServiceChk eq 'Y'}" th:onclick="getChgChk(this)" >
+          유
+          <input class="form-check-input" type="radio" value="N" name="erpBackBoneServiceChk" id="erpBackBoneServiceChkN"
+                 th:checked="${erpService.erpBackBoneServiceChk eq 'N'}" th:onclick="getChgChk(this)" >
+          무
+        </p>
       </td>
       <td>
         <input type="text" class="form-control" name="erpMailServiceBigo" id="erpMailServiceBigoInput" placeholder="이상유무 유 체크시 내역기재"
@@ -145,6 +156,8 @@
                th:value="${erpService.erpApproveServiceBigo}" th:onclick="getChgChk(this)" >
         <input type="text" class="form-control" name="erpBackUpServiceBigo" id="erpBackUpServiceBigoInput"
                th:value="${erpService.erpBackUpServiceBigo}" th:onclick="getChgChk(this)" >
+        <input type="text" class="form-control" name="erpBackBoneServiceBigo" id="erpBackBoneServiceBigoInput"
+               th:value="${erpService.erpBackBoneServiceBigo}" th:onclick="getChgChk(this)" >
       </td>
     </tr>
     <tr align="center" th:each="erpServer:${erpServer}">

@@ -6,6 +6,7 @@ import com.damg.upit.monitor.dailyCheck.domain.gwServerMonitor.model.MInsertGwSV
 import com.damg.upit.monitor.dailyCheck.domain.gwServerMonitor.model.MInsertGwSVMain;
 import com.damg.upit.monitor.dailyCheck.domain.gwServerMonitor.model.MInsertGwSVProcChk;
 import com.damg.upit.monitor.dailyCheck.domain.gwServerMonitor.repository.gwSVRepository;
+import com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.model.MCompareSVElement;
 import com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.service.xmlBasicService;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.slf4j.Slf4j;

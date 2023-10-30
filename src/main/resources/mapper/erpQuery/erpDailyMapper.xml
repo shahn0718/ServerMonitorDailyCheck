@@ -17,6 +17,8 @@
                ,ERP_APPROVE_BIGO
                ,ERP_BACKUP_CHK
                ,ERP_BACKUP_BIGO
+               ,ERP_BACKBONE_CHK
+               ,ERP_BACKBONE_BIGO
         ) VALUES (
 
                 #{erpServiceId}
@@ -27,6 +29,8 @@
                ,#{erpApproveServiceBigo}
                ,#{erpBackUpServiceChk}
                ,#{erpBackUpServiceBigo}
+               ,#{erpBackBoneServiceChk}
+               ,#{erpBackBoneServiceBigo}
         )
     </insert>
 
@@ -588,6 +592,8 @@
                 ,ERP_APPROVE_BIGO       AS erpApproveServiceBigo
                 ,ERP_BACKUP_CHK         AS erpBackUpServiceChk
                 ,ERP_BACKUP_BIGO        AS erpBackUpServiceBigo
+                ,ERP_BACKBONE_CHK       AS erpBackBoneServiceChk
+                ,ERP_BACKBONE_BIGO      AS erpBackBoneServiceBigo
         FROM
                 ERP_DAILY_SERVICE
 
@@ -897,6 +903,8 @@
                 ,ERP_APPROVE_BIGO   = #{erpApproveServiceBigo}
                 ,ERP_BACKUP_CHK     = #{erpBackUpServiceChk}
                 ,ERP_BACKUP_BIGO    = #{erpBackUpServiceBigo}
+                ,ERP_BACKBONE_CHK   = #{erpBackBoneServiceChk}
+                ,ERP_BACKBONE_BIGO  = #{erpBackBoneServiceBigo}
         WHERE
                 ERP_MAIN_ID     = #{erpMainId}
     </update>
