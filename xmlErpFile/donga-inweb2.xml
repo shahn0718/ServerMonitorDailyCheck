@@ -1,17 +1,17 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <server>
 <info>
-<hostname>donga-devweb</hostname>
+<hostname>donga-inweb2</hostname>
 <date>2023-10-31</date>
-<time>16:30:02</time>
+<time>16:20:01</time>
 <osver>CentOS Stream release 8</osver>
-<ipaddr>10.75.1.63</ipaddr>
+<ipaddr>10.75.1.60</ipaddr>
 <cpu_usage>7</cpu_usage>
-<mem_usage>7</mem_usage>
+<mem_usage>4</mem_usage>
 <swap_usage>0</swap_usage>
 <load_num>0</load_num>
-<disk_usage>/,12</disk_usage>
-<disk_usage>/home,3</disk_usage>
+<disk_usage>/,16</disk_usage>
+<disk_usage>/home,2</disk_usage>
 <disk_usage>/boot,79</disk_usage>
 <disk_usage>/boot/efi,2</disk_usage>
 <proc_chk>webtob,3</proc_chk>

@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<server>
+<info>
+<hostname>gw-node1</hostname>
+<date>2023-10-31</date>
+<time>16:30:01</time>
+<osver>CentOS Linux release 7.6.1810 (Core)</osver>
+<ipaddr>10.14.21.11</ipaddr>
+<cpu_usage>5</cpu_usage>
+<mem_usage>36</mem_usage>
+<load_num>1</load_num>
+<disk_usage>/,53</disk_usage>
+<disk_usage>/boot,9</disk_usage>
+<disk_usage>/boot/efi,6</disk_usage>
+<disk_usage>/home,46</disk_usage>
+<disk_usage>/data,2</disk_usage>
+<disk_usage>/var,9</disk_usage>
+<disk_usage>/var/tmp,1</disk_usage>
+<disk_usage>/var/log,20</disk_usage>
+<disk_usage>/var/log/audit,2</disk_usage>
+<disk_usage>/var/lib/docker,40</disk_usage>
+<disk_usage>/gw_nas,50</disk_usage>
+<disk_usage>/var/lib/kubelet/pods/8335c515-b33a-40eb-9bac-47d9c62e061a/volumes/kubernetes.io~csi/pvc-12fc0b35-185a-4980-81b3-d7478f380222/mount,1</disk_usage>
+<disk_usage>/var/lib/kubelet/pods/acf8e9d1-1a43-4e04-8297-b707e2d768fb/volumes/kubernetes.io~csi/pvc-1f3dbddc-9aa4-40ab-b836-a6b222add9c0/mount,2</disk_usage>
+<disk_usage>/var/lib/kubelet/pods/620b1957-64f7-452b-8ad4-396fe691d427/volumes/kubernetes.io~csi/pvc-220b4076-233c-426d-be7a-be833297c8b2/mount,36</disk_usage>
+<disk_usage>/var/lib/kubelet/pods/6e315c05-cb3c-4348-893c-c44737efb1d8/volumes/kubernetes.io~csi/pvc-07c73bd4-fe58-4bdd-b1a1-ea05211dd02c/mount,10</disk_usage>
+<disk_usage>/var/lib/kubelet/pods/a9b891c6-d68d-4cc3-b36c-3b82d3caab6e/volumes/kubernetes.io~csi/pvc-a4043e82-bc80-40b9-ae79-27e6c19dfc68/mount,21</disk_usage>
+<proc_chk>java,27</proc_chk>
+<proc_chk>mysql,4</proc_chk>
+</info>
+</server>
