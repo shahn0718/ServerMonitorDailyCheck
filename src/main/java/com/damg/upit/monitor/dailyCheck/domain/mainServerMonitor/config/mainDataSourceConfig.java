@@ -19,6 +19,7 @@ import javax.sql.DataSource;
 @MapperScan(value={
         "com.damg.upit.monitor.dailyCheck.domain.mainDaily.mapper",
         "com.damg.upit.monitor.dailyCheck.domain.infraDaily.mapper",
+        "com.damg.upit.monitor.dailyCheck.domain.infraServerMonitor.mapper",
         "com.damg.upit.monitor.dailyCheck.domain.gwServerMonitor.mapper",
         "com.damg.upit.monitor.dailyCheck.domain.gwDaily.mapper",
         "com.damg.upit.monitor.dailyCheck.domain.etcServerMonitor.mapper",

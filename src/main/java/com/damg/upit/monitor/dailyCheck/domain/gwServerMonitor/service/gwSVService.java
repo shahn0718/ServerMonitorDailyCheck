@@ -74,6 +74,8 @@ public class gwSVService {
             gwRepository.insertGwSVProcData(mInsertGwSVProcChk);
         }
     }
+
+    @Transactional(rollbackFor = Exception.class)
     public void InsertGwSVDiskData(JsonNode jsonFromGwSVXmlData) throws Exception {
 
         Optional<JsonNode> gwSVDiskData = Optional.ofNullable(jsonFromGwSVXmlData.findValue("diskUsage"));

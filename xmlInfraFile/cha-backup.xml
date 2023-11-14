@@ -1,0 +1,14 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<server>
+    <info>
+        <hostname>cha-backup</hostname>
+        <date>2023-11-14</date>
+        <time>17:20:00</time>
+        <osver>Microsoft Windows Server 2008 R2 Standard </osver>
+        <ipaddr>10.210.1.140</ipaddr>
+        <cpu_usage>0</cpu_usage>
+        <mem_usage>42</mem_usage>
+        <disk_usage>C,32</disk_usage>
+<disk_usage>D,71</disk_usage>
+    </info>
+</server>

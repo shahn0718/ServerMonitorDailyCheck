@@ -63,8 +63,6 @@ public class erpSVService {
     @Transactional(rollbackFor = Exception.class)
     public void InsertErpSVProcData(JsonNode jsonFromErpSVXmlData) throws Exception {
 
-
-
         Optional<JsonNode> erpSVProcData = Optional.ofNullable(jsonFromErpSVXmlData.findValue("processChk"));
         log.info("method=InsertErpSVProcData, getErpSVProcData = {}", erpSVProcData);
 
@@ -83,8 +81,6 @@ public class erpSVService {
 
     @Transactional(rollbackFor = Exception.class)
     public void InsertErpSVDiskData(JsonNode jsonFromErpSVXmlData) throws Exception{
-
-
 
         JsonNode erpSVDiskData = jsonFromErpSVXmlData.findValue("diskUsage");
         log.info("method=InsertErpSVDiskData, getErpSVDiskData = {}" ,erpSVDiskData);

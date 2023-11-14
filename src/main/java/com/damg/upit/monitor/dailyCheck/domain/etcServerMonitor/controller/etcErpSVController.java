@@ -29,7 +29,7 @@ public class etcErpSVController {
     @Transactional(rollbackFor = Exception.class)
     public String getEtcErpSVXmlList() throws Exception{
 
-        List<File> fileListFromDir = basicService.getFileFromDir(MXmlFilePath.etcErpSVFilePath);
+        List<File> fileListFromDir = basicService.getFileFromDir(MXmlFilePath.chaErpSVFilePath);
         log.info("fileListFromDir= {}", fileListFromDir);
 
         for(File fileName : fileListFromDir){
