@@ -290,14 +290,6 @@
                                 ,FW2_CLUST_BIGO
                                 ,FW2_EVENT_CHK
                                 ,FW2_EVENT_BIGO
-                                ,SPAM1_CLUST_CHK
-                                ,SPAM1_CLUST_BIGO
-                                ,SPAM1_EVENT_CHK
-                                ,SPAM1_EVENT_BIGO
-                                ,SPAM2_CLUST_CHK
-                                ,SPAM2_CLUST_BIGO
-                                ,SPAM2_EVENT_CHK
-                                ,SPAM2_EVENT_BIGO
                                 ,GMONITOR_CLUST_CHK
                                 ,GMONITOR_CLUST_BIGO
                                 ,GMONITOR_EVENT_CHK
@@ -344,14 +336,6 @@
                                 ,#{fw2ClustBigo}
                                 ,#{fw2EventChk}
                                 ,#{fw2EventBigo}
-                                ,#{spam1ClustChk}
-                                ,#{spam1ClustBigo}
-                                ,#{spam1EventChk}
-                                ,#{spam1EventBigo}
-                                ,#{spam2ClustChk}
-                                ,#{spam2ClustBigo}
-                                ,#{spam2EventChk}
-                                ,#{spam2EventBigo}
                                 ,#{gMonitorClustChk}
                                 ,#{gMonitorClustBigo}
                                 ,#{gMonitorEventChk}
@@ -548,14 +532,6 @@
                                 ,FW2_CLUST_BIGO         AS fw2ClustBigo
                                 ,FW2_EVENT_CHK          AS fw2EventChk
                                 ,FW2_EVENT_BIGO         AS fw2EventBigo
-                                ,SPAM1_CLUST_CHK        AS spam1ClustChk
-                                ,SPAM1_CLUST_BIGO       AS spam1ClustBigo
-                                ,SPAM1_EVENT_CHK        AS spam1EventChk
-                                ,SPAM1_EVENT_BIGO       AS spam1EventBigo
-                                ,SPAM2_CLUST_CHK        AS spam2ClustChk
-                                ,SPAM2_CLUST_BIGO       AS spam2ClustBigo
-                                ,SPAM2_EVENT_CHK        AS spam2EventChk
-                                ,SPAM2_EVENT_BIGO       AS spam2EventBigo
                                 ,GMONITOR_CLUST_CHK     AS gMonitorClustChk
                                 ,GMONITOR_CLUST_BIGO    AS gMonitorClustBigo
                                 ,GMONITOR_EVENT_CHK     AS gMonitorEventChk
@@ -762,14 +738,6 @@
                         ,FW2_CLUST_BIGO         = #{fw2ClustBigo}
                         ,FW2_EVENT_CHK          = #{fw2EventChk}
                         ,FW2_EVENT_BIGO         = #{fw2EventBigo}
-                        ,SPAM1_CLUST_CHK        = #{spam1ClustChk}
-                        ,SPAM1_CLUST_BIGO       = #{spam1ClustBigo}
-                        ,SPAM1_EVENT_CHK        = #{spam1EventChk}
-                        ,SPAM1_EVENT_BIGO       = #{spam1EventBigo}
-                        ,SPAM2_CLUST_CHK        = #{spam2ClustChk}
-                        ,SPAM2_CLUST_BIGO       = #{spam2ClustBigo}
-                        ,SPAM2_EVENT_CHK        = #{spam2EventChk}
-                        ,SPAM2_EVENT_BIGO       = #{spam2EventBigo}
                         ,GMONITOR_CLUST_CHK     = #{gMonitorClustChk}
                         ,GMONITOR_CLUST_BIGO    = #{gMonitorClustBigo}
                         ,GMONITOR_EVENT_CHK     = #{gMonitorEventChk}

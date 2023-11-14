@@ -42,4 +42,8 @@ public class MInsertErpDailyServiceMain {
     //BackupService 백업서비스
     private String erpBackUpServiceChk;
     private String erpBackUpServiceBigo;
+
+    //기간계연동 서비스
+    private String erpBackBoneServiceChk;
+    private String erpBackBoneServiceBigo;
 }

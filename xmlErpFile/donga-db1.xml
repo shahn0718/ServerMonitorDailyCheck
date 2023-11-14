@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<server>
+<info>
+<hostname>donga-db1</hostname>
+<date>2023-10-31</date>
+<time>16:30:01</time>
+<osver>CentOS Stream release 8</osver>
+<ipaddr>10.75.1.54</ipaddr>
+<cpu_usage>0</cpu_usage>
+<mem_usage>10</mem_usage>
+<swap_usage>69</swap_usage>
+<load_num>1</load_num>
+<disk_usage>/,13</disk_usage>
+<disk_usage>/home,2</disk_usage>
+<disk_usage>/boot,35</disk_usage>
+<disk_usage>/boot/efi,2</disk_usage>
+<disk_usage>/data02,22</disk_usage>
+<disk_usage>/data03,75</disk_usage>
+<disk_usage>/oracle19c,36</disk_usage>
+<disk_usage>/data01,43</disk_usage>
+<disk_usage>/backup,1</disk_usage>
+<disk_usage>/oralog,7</disk_usage>
+<disk_usage>/oradata,94</disk_usage>
+<disk_usage>/archivelog,1</disk_usage>
+<disk_usage>/data04,34</disk_usage>
+<disk_usage>/export,38</disk_usage>
+<disk_usage>/data05,65</disk_usage>
+<proc_chk>ora,319</proc_chk>
+<proc_chk>tns,2</proc_chk>
+</info>
+</server>

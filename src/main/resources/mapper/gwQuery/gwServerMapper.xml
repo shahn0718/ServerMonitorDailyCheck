@@ -21,6 +21,7 @@
             ,GW_SV_CPU_USAGE
             ,GW_SV_MEM_USAGE
             ,GW_SV_SWAP_USAGE
+            ,GW_SV_LOAD_NUM
             ,GW_SV_CLUST_USAGE
             ,GW_SV_DATETIME
 
@@ -34,6 +35,7 @@
             ,#{gwSVCpuUsage}
             ,#{gwSVMemUsage}
             ,#{gwSVSwapUsage}
+            ,#{gwSVLoadNum}
             ,#{gwSVClustUsage}
             ,#{gwSVDateTime}
         )

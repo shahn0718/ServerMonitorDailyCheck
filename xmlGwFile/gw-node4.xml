@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<server>
+<info>
+<hostname>gw-node4</hostname>
+<date>2023-10-31</date>
+<time>16:30:01</time>
+<osver>CentOS Linux release 7.6.1810 (Core)</osver>
+<ipaddr>10.14.21.14</ipaddr>
+<cpu_usage>17</cpu_usage>
+<mem_usage>31</mem_usage>
+<load_num>2</load_num>
+<disk_usage>/,41</disk_usage>
+<disk_usage>/boot,9</disk_usage>
+<disk_usage>/boot/efi,6</disk_usage>
+<disk_usage>/data,1</disk_usage>
+<disk_usage>/var,1</disk_usage>
+<disk_usage>/home,28</disk_usage>
+<disk_usage>/var/tmp,1</disk_usage>
+<disk_usage>/var/lib/docker,35</disk_usage>
+<disk_usage>/var/log,17</disk_usage>
+<disk_usage>/var/log/audit,2</disk_usage>
+<disk_usage>/gw_nas,50</disk_usage>
+<disk_usage>/var/lib/kubelet/pods/513ecd6c-0fb3-40ab-aa44-b4ab8a6366fd/volumes/kubernetes.io~csi/pvc-79c688aa-da21-481d-9bcd-97b1a990d0f9/mount,21</disk_usage>
+<disk_usage>/var/lib/kubelet/pods/2715029b-772d-4d75-a96f-25e3d4dba189/volumes/kubernetes.io~csi/pvc-437d42e2-48d8-4b18-bfe0-b12d6dfece06/mount,51</disk_usage>
+<disk_usage>/var/lib/kubelet/pods/5834a1f0-da46-46cb-9e29-8e4eef58d1fb/volumes/kubernetes.io~csi/pvc-f963479a-a562-4a41-b433-03703033dbdd/mount,1</disk_usage>
+<disk_usage>/var/lib/kubelet/pods/9d181acd-555d-4b12-b4e1-168bbc47e2ac/volume-subpaths/pvc-a5cec669-a2b4-4869-9718-0e0d79293160/prometheus/2,3</disk_usage>
+<disk_usage>/var/lib/kubelet/pods/c38b935b-b0bf-4150-8809-c836d7c0db95/volumes/kubernetes.io~csi/pvc-7c0bb06c-51a1-4a33-9435-7458e18e1156/mount,10</disk_usage>
+<disk_usage>/var/lib/kubelet/pods/70b0940c-90ce-4655-a6db-cb2e2319569f/volumes/kubernetes.io~csi/pvc-3c8ecfdc-d5e1-434f-bb31-519f4ebbb6ca/mount,4</disk_usage>
+<disk_usage>/var/lib/kubelet/pods/70b0940c-90ce-4655-a6db-cb2e2319569f/volumes/kubernetes.io~csi/pvc-2dd2dca0-17e2-4253-b1f6-4949ca75119b/mount,1</disk_usage>
+<disk_usage>/var/lib/kubelet/pods/f55480ea-ccbd-4f7e-adaa-99c0796f6058/volumes/kubernetes.io~csi/pvc-e03b491c-ddd5-4b0f-becb-09230ecaa8eb/mount,10</disk_usage>
+<proc_chk>java,21</proc_chk>
+<proc_chk>mysql,13</proc_chk>
+</info>
+</server>

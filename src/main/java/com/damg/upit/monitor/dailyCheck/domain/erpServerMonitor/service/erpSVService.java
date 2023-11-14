@@ -14,10 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -42,7 +39,15 @@ public class erpSVService {
         mInsertErpSVMain.setErpSVIp(jsonFromErpSVXmlData.findValue("ipAddress").asText());
         mInsertErpSVMain.setErpSVCpuUsage(jsonFromErpSVXmlData.findValue("cpuUsage").asText());
         mInsertErpSVMain.setErpSVMemUsage(jsonFromErpSVXmlData.findValue("memUsage").asText());
-        mInsertErpSVMain.setErpSVSwapUsage(jsonFromErpSVXmlData.findValue("swapUsage").asText());
+
+
+        if(!(Optional.ofNullable(jsonFromErpSVXmlData.findValue("loadNum")).isEmpty())) {
+            mInsertErpSVMain.setErpSVLoadNum(jsonFromErpSVXmlData.findValue("loadNum").asText());
+        }
+
+        if(!(Optional.ofNullable(jsonFromErpSVXmlData.findValue("swapUsage")).isEmpty())) {
+            mInsertErpSVMain.setErpSVSwapUsage(jsonFromErpSVXmlData.findValue("swapUsage").asText());
+        }
 
         LocalDateTime getDataResult = basicService.getFormateDateTime(jsonFromErpSVXmlData.findValue("datetime").asText(),
                 jsonFromErpSVXmlData.findValue("timeDate").asText());
@@ -58,17 +63,19 @@ public class erpSVService {
     @Transactional(rollbackFor = Exception.class)
     public void InsertErpSVProcData(JsonNode jsonFromErpSVXmlData) throws Exception {
 
-        JsonNode erpSVProcData = jsonFromErpSVXmlData.findValue("processChk");
+        Optional<JsonNode> erpSVProcData = Optional.ofNullable(jsonFromErpSVXmlData.findValue("processChk"));
         log.info("method=InsertErpSVProcData, getErpSVProcData = {}", erpSVProcData);
 
         List<String> procDataToList = new ArrayList<>();
-        for(JsonNode nodeData : erpSVProcData){
-            procDataToList.add(nodeData.asText());
-        }
+        if(!erpSVProcData.isEmpty()){
 
-        List<MInsertErpSVProcChk> insertErpSVProcDataList = getInsertErpSVProcData(procDataToList);
-        for(MInsertErpSVProcChk mInsertErpSVProcChk : insertErpSVProcDataList){
-            erpRepository.insertErpSVProcData(mInsertErpSVProcChk);
+            erpSVProcData.get().forEach(nodeData-> procDataToList.add(nodeData.asText()));
+
+            List<MInsertErpSVProcChk> insertErpSVProcDataList = getInsertErpSVProcData(procDataToList);
+            for(MInsertErpSVProcChk mInsertErpSVProcChk : insertErpSVProcDataList){
+                erpRepository.insertErpSVProcData(mInsertErpSVProcChk);
+            }
+
         }
     }
 

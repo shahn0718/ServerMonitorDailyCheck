@@ -1,6 +1,7 @@
 package com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.controller;
 
 
+import com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.model.MCompareSVElement;
 import com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.model.MXmlFilePath;
 import com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.model.testFilePath;
 import com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.param.PInsertSmsElement;
@@ -40,6 +41,36 @@ public class smsSVController {
 //        pInsertSmsElement.setTrMsg("개발 테스트 메세지입니다.");
 //        pInsertSmsElement.setTrEtc3("TEST");
 //        smsService.insertSmsData(pInsertSmsElement);
+
+    }
+    @GetMapping("/compareData")
+    public void getCompareData() throws Exception {
+
+
+        String mainCpuUsage = "10";
+        String compareCpuUsage = MCompareSVElement.GW_SERVER_STD.getCpuUsageStd();
+
+        Integer mainCpuUsageInt = Integer.valueOf(mainCpuUsage);
+        Integer compareCpuUsageInt = Integer.valueOf(compareCpuUsage);
+
+        if(mainCpuUsageInt >= compareCpuUsageInt){
+            System.out.println("compareCpuUsageInt = " + compareCpuUsageInt);
+
+            PInsertSmsElement pInsertSmsElement = new PInsertSmsElement();
+            pInsertSmsElement.setTrSendDate("20231030");
+            pInsertSmsElement.setTrPhone("01031984329");
+            pInsertSmsElement.setTrCallBack("01031984329");
+            pInsertSmsElement.setTrMsg("개발 테스트 메세지입니다.");
+            pInsertSmsElement.setTrEtc3("TEST");
+            smsService.insertSmsData(pInsertSmsElement);
+
+
+        }
+
+
+        MCompareSVElement.GW_SERVER_STD.getMemUsageStd();
+        MCompareSVElement.GW_SERVER_STD.getLoadNumStd();
+
 
     }
 

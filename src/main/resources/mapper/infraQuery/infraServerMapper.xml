@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.damg.upit.monitor.dailyCheck.domain.infraServerMonitor.mapper.infraSVMapper">
+
+    <insert id="insertInfraSVMainData" parameterType="com.damg.upit.monitor.dailyCheck.domain.infraServerMonitor.model.MInsertInfraSVMain"
+            useGeneratedKeys="true" keyProperty="infraMainId">
+
+        <selectKey keyProperty="infraSVId" resultType="long" order="BEFORE">
+            SELECT IFNULL(MAX(INFRA_SV_ID)+1,302) FROM INFRA_SV_MAIN AS INFRA_SV_ID
+        </selectKey>
+
+        /*insertInfraSVMainData*/
+
+        INSERT INTO INFRA_SV_MAIN (
+
+         INFRA_MAIN_ID
+        ,INFRA_SV_ID
+        ,INFRA_SV_CD
+        ,INFRA_SV_OS
+        ,INFRA_SV_IP
+        ,INFRA_SV_CPU_USAGE
+        ,INFRA_SV_MEM_USAGE
+        ,INFRA_SV_SWAP_USAGE
+        ,INFRA_SV_LOAD_NUM
+        ,INFRA_SV_CLUST_USAGE
+        ,INFRA_SV_DATETIME
+
+        ) VALUES (
+
+         #{infraMainId}
+        ,#{infraSVId}
+        ,#{infraSVCd}
+        ,#{infraSVOs}
+        ,#{infraSVIp}
+        ,#{infraSVCpuUsage}
+        ,#{infraSVMemUsage}
+        ,#{infraSVSwapUsage}
+        ,#{infraSVLoadNum}
+        ,#{infraSVClustUsage}
+        ,#{infraSVDateTime}
+        )
+    </insert>
+
+
+     <insert id="insertInfraSVProcData" parameterType="com.damg.upit.monitor.dailyCheck.domain.infraServerMonitor.model.MInsertInfraSVProcChk"
+             useGeneratedKeys="true" keyProperty="infraSVProcId">
+
+         /* insertInfraSVProcData : */
+
+         INSERT INTO Infra_SV_PROCESS (
+
+          INFRA_SV_PROC_ID
+         ,INFRA_SV_ID
+         ,INFRA_SV_PROC_CD
+         ,INFRA_SV_PROC_CHK
+
+         ) VALUES (
+
+          #{infraSVProcId}
+         ,#{infraSVId}
+         ,#{infraSVProcCd}
+         ,#{infraSVProcData}
+
+         )
+     </insert>
+
+    <insert id="insertInfraSVDiskData" parameterType="com.damg.upit.monitor.dailyCheck.domain.infraServerMonitor.model.MInsertInfraSVDiskUsage"
+            useGeneratedKeys="true" keyProperty="infraSVDiskId">
+
+        /* insertInfraSVDiskData : */
+
+        INSERT INTO INFRA_SV_DISK (
+
+         INFRA_SV_DISK_ID
+        ,INFRA_SV_ID
+        ,INFRA_SV_DISK_CD
+        ,INFRA_SV_DISK_USAGE
+
+        ) VALUES (
+
+         #{infraSVDiskId}
+        ,#{infraSVId}
+        ,#{infraSVDiskCd}
+        ,#{infraSVDiskData}
+        )
+    </insert>
+</mapper>

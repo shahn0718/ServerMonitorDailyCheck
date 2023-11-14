@@ -22,6 +22,7 @@
                 ,ERP_SV_CPU_USAGE
                 ,ERP_SV_MEM_USAGE
                 ,ERP_SV_SWAP_USAGE
+                ,ERP_SV_LOAD_NUM
                 ,ERP_SV_DATETIME
 
         ) VALUES (
@@ -34,6 +35,7 @@
                 ,#{erpSVCpuUsage}
                 ,#{erpSVMemUsage}
                 ,#{erpSVSwapUsage}
+                ,#{erpSVLoadNum}
                 ,#{erpSVDateTime}
         )
     </insert>

@@ -1,0 +1,14 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<server>
+    <info>
+        <hostname>newfile</hostname>
+        <date>2023-11-14</date>
+        <time>17:20:02</time>
+        <osver>Microsoft Windows Server 2016 Standard</osver>
+        <ipaddr>10.13.7.130</ipaddr>
+        <cpu_usage>2</cpu_usage>
+        <mem_usage>27</mem_usage>
+        <disk_usage>C,7</disk_usage>
+<disk_usage>D,3</disk_usage>
+    </info>
+</server>

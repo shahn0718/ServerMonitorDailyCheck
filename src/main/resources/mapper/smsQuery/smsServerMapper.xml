@@ -6,7 +6,6 @@
     <insert id="insertSmsData" parameterType="com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.param.PInsertSmsElement">
         INSERT INTO PYSMS.SC_TRAN(
 
-             tr_senddate
              TR_SENDDATE
             ,TR_SENDSTAT
             ,TR_RSLTSTAT

@@ -6,6 +6,7 @@ import com.damg.upit.monitor.dailyCheck.domain.gwServerMonitor.model.MInsertGwSV
 import com.damg.upit.monitor.dailyCheck.domain.gwServerMonitor.model.MInsertGwSVMain;
 import com.damg.upit.monitor.dailyCheck.domain.gwServerMonitor.model.MInsertGwSVProcChk;
 import com.damg.upit.monitor.dailyCheck.domain.gwServerMonitor.repository.gwSVRepository;
+import com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.model.MCompareSVElement;
 import com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.service.xmlBasicService;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +41,11 @@ public class gwSVService {
         mInsertGwSVMain.setGwSVCpuUsage(jsonFromGwSVXmlData.findValue("cpuUsage").asText());
         mInsertGwSVMain.setGwSVMemUsage(jsonFromGwSVXmlData.findValue("memUsage").asText());
 
-//      //SwapUsage는 모든 서버점검에서 사용하지 않으므로, Optional.ofNullable
+        if(!(Optional.ofNullable(jsonFromGwSVXmlData.findValue("loadNum")).isEmpty())){
+            mInsertGwSVMain.setGwSVLoadNum(jsonFromGwSVXmlData.findValue("loadNum").asText());
+        }
+
+//      SwapUsage는 모든 서버점검에서 사용하지 않으므로, Optional.ofNullable
         if(!(Optional.ofNullable(jsonFromGwSVXmlData.findValue("swapUsage")).isEmpty())){
             mInsertGwSVMain.setGwSVSwapUsage(jsonFromGwSVXmlData.findValue("swapUsage").asText());
         }
@@ -69,6 +74,8 @@ public class gwSVService {
             gwRepository.insertGwSVProcData(mInsertGwSVProcChk);
         }
     }
+
+    @Transactional(rollbackFor = Exception.class)
     public void InsertGwSVDiskData(JsonNode jsonFromGwSVXmlData) throws Exception {
 
         Optional<JsonNode> gwSVDiskData = Optional.ofNullable(jsonFromGwSVXmlData.findValue("diskUsage"));

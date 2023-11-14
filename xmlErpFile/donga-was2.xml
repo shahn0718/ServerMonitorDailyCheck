@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<server>
+<info>
+<hostname>donga-was2</hostname>
+<date>2023-11-13</date>
+<time>15:30:01</time>
+<osver>CentOS Stream release 8</osver>
+<ipaddr>10.75.1.62</ipaddr>
+<cpu_usage>54</cpu_usage>
+<mem_usage>52</mem_usage>
+<swap_usage>19</swap_usage>
+<load_num>1</load_num>
+<disk_usage>/,29</disk_usage>
+<disk_usage>/home,30</disk_usage>
+<disk_usage>/boot,79</disk_usage>
+<disk_usage>/boot/efi,2</disk_usage>
+<disk_usage>/home/wasadmin/erp10/dews-web/repository/works,2</disk_usage>
+<proc_chk>redis,4</proc_chk>
+<proc_chk>java,7</proc_chk>
+</info>
+</server>

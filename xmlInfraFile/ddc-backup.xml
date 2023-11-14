@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<server>
+    <info>
+        <hostname>ddc-backup</hostname>
+        <date>2023-11-14</date>
+        <time>17:20:00</time>
+        <osver>Microsoft Windows Server 2012 R2 Standard</osver>
+        <ipaddr>10.12.7.250</ipaddr>
+        <cpu_usage>31</cpu_usage>
+        <mem_usage>33</mem_usage>
+        <disk_usage>C,23</disk_usage>
+<disk_usage>D,15</disk_usage>
+<disk_usage>E,24</disk_usage>
+    </info>
+</server>
