@@ -14,6 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="server")
 @Getter
 @ToString
+
 public class MXmlRootMain {
     @XmlElement(name="info")
     private MXmlRootElement[] xmlServerData;

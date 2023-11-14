@@ -2,12 +2,12 @@
 <server>
 <info>
 <hostname>donga-jenius</hostname>
-<date>2023-10-31</date>
-<time>16:30:01</time>
+<date>2023-11-13</date>
+<time>15:30:01</time>
 <osver>CentOS Stream release 8</osver>
 <ipaddr>10.75.1.67</ipaddr>
-<cpu_usage>15</cpu_usage>
-<mem_usage>9</mem_usage>
+<cpu_usage>22</cpu_usage>
+<mem_usage>10</mem_usage>
 <swap_usage>12</swap_usage>
 <load_num>0</load_num>
 <disk_usage>/,9</disk_usage>

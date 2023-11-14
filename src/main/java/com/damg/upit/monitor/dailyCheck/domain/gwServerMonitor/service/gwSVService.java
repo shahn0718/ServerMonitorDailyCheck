@@ -41,6 +41,10 @@ public class gwSVService {
         mInsertGwSVMain.setGwSVCpuUsage(jsonFromGwSVXmlData.findValue("cpuUsage").asText());
         mInsertGwSVMain.setGwSVMemUsage(jsonFromGwSVXmlData.findValue("memUsage").asText());
 
+        if(!(Optional.ofNullable(jsonFromGwSVXmlData.findValue("loadNum")).isEmpty())){
+            mInsertGwSVMain.setGwSVLoadNum(jsonFromGwSVXmlData.findValue("loadNum").asText());
+        }
+
 //      SwapUsage는 모든 서버점검에서 사용하지 않으므로, Optional.ofNullable
         if(!(Optional.ofNullable(jsonFromGwSVXmlData.findValue("swapUsage")).isEmpty())){
             mInsertGwSVMain.setGwSVSwapUsage(jsonFromGwSVXmlData.findValue("swapUsage").asText());

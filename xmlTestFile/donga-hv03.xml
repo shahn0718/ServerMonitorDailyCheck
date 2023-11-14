@@ -1,0 +1,13 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<server>
+    <info>
+        <hostname>donga-hv03</hostname>
+        <date>2023-11-14</date>
+        <time>09:50:01</time>
+        <osver>Microsoft Windows Server 2019 Standard</osver>
+        <ipaddr>10.75.1.53</ipaddr>
+        <cpu_usage>0</cpu_usage>
+        <mem_usage>48</mem_usage>
+        <disk_usage>C,14</disk_usage>
+    </info>
+</server>

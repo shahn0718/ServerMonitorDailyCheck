@@ -32,6 +32,8 @@ public class MXmlRootElement {
     private Long memUsage;
     @XmlElement(name="swap_usage")
     private Long swapUsage;
+    @XmlElement(name="load_num")
+    private Long loadNum;
     @XmlElement(name = "disk_usage")
     private List<String> diskUsage;
     @XmlElement(name = "proc_chk")
