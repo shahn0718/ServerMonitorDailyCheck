@@ -14,7 +14,10 @@ public class MInsertEtcSVProcChk {
      */
 
     private Long etcSVProcId;
-    private Long etcSVId;
+
+    private Long etcErpSVId;
+    private Long etcEhrSVId;
+
     private String etcSVProcCd;
     private String etcSVProcData;
 }

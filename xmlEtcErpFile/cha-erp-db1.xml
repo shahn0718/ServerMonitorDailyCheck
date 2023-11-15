@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<server>
+    <info>
+        <hostname>cha-erp-db1</hostname>
+        <date>2023-11-15</date>
+        <time>13:10:00</time>
+        <osver>Microsoft Windows Server 2008 R2 Enterprise </osver>
+        <ipaddr>169.254.183.218</ipaddr>
+        <cpu_usage>0</cpu_usage>
+        <mem_usage>30</mem_usage>
+        <disk_usage>C,92</disk_usage>
+<disk_usage>D,12</disk_usage>
+<disk_usage>E,39</disk_usage>
+    </info>
+</server>

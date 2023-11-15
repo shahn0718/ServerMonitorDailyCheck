@@ -1,0 +1,16 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<server>
+    <info>
+        <hostname>ddc-erp-db</hostname>
+        <date>2023-11-15</date>
+        <time>13:00:01</time>
+        <osver>Microsoft Windows Server 2012 Standard</osver>
+        <ipaddr>10.12.7.239</ipaddr>
+        <cpu_usage>1</cpu_usage>
+        <mem_usage>22</mem_usage>
+        <disk_usage>C,46</disk_usage>
+<disk_usage>D,25</disk_usage>
+<disk_usage>E,17</disk_usage>
+<disk_usage>F,15</disk_usage>
+    </info>
+</server>

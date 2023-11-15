@@ -33,7 +33,10 @@ public class MInsertEtcSVMain {
      */
 
     private Long etcMainId;
-    private Long etcSVId;
+
+    private Long etcErpSVId;
+    private Long etcEhrSVId;
+
     private String etcSVCd;
     /**
      * <hostname>donga-inweb2</hostname>

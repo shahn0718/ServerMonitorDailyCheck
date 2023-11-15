@@ -1,0 +1,14 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<server>
+    <info>
+        <hostname>ddc-ehr-web</hostname>
+        <date>2023-11-15</date>
+        <time>13:30:00</time>
+        <osver>Microsoft Windows Server 2008 R2 Standard </osver>
+        <ipaddr>10.13.7.155</ipaddr>
+        <cpu_usage>0</cpu_usage>
+        <mem_usage>51</mem_usage>
+        <disk_usage>C,53</disk_usage>
+<disk_usage>D,40</disk_usage>
+    </info>
+</server>

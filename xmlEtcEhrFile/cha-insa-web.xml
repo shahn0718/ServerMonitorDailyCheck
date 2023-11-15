@@ -1,0 +1,14 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<server>
+    <info>
+        <hostname>cha-insa-web</hostname>
+        <date>2023-11-15</date>
+        <time>13:30:02</time>
+        <osver>Microsoft Windows Server 2008 R2 Enterprise </osver>
+        <ipaddr>10.210.1.152</ipaddr>
+        <cpu_usage>2</cpu_usage>
+        <mem_usage>74</mem_usage>
+        <disk_usage>C,40</disk_usage>
+<disk_usage>D,8</disk_usage>
+    </info>
+</server>
