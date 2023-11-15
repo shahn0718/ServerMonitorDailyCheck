@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<server>
+    <info>
+        <hostname>dkf-opr</hostname>
+        <date>2023-11-15</date>
+        <time>13:10:00</time>
+        <osver>Microsoft Windows Server 2008 R2 Standard </osver>
+        <ipaddr>192.168.7.161</ipaddr>
+        <cpu_usage>1</cpu_usage>
+        <mem_usage>85</mem_usage>
+        <disk_usage>C,53</disk_usage>
+<disk_usage>D,11</disk_usage>
+<disk_usage>E,2</disk_usage>
+    </info>
+</server>

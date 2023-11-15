@@ -6,7 +6,7 @@ public class MXmlFilePath {
     public static final String gwSVFilePath =  "C:\\ServerMonitorDailyCheck\\xmlGwFile";
     public static final String infraSVFilePath =  "C:\\ServerMonitorDailyCheck\\xmlInfraFile";
     public static final String chaErpSVFilePath = "C:\\ServerMonitorDailyCheck\\xmlEtcErpFile";
-    public static final String chaEhrSVFilePath = "C:\\ServerMonitorDailyCheck\\xmlEtcHrFile";
+    public static final String chaEhrSVFilePath = "C:\\ServerMonitorDailyCheck\\xmlEtcEhrFile";
 
 
 
