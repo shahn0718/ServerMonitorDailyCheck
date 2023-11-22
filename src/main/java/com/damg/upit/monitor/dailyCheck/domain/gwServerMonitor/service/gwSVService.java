@@ -206,4 +206,33 @@ public class gwSVService {
         }
         return insertDbClustList;
     }
+
+    @Transactional(rollbackFor = Exception.class)
+    public MInsertGwSVMain getGwSVMainData(JsonNode jsonFromGwSVXmlData) throws Exception {
+
+        MInsertGwSVMain mInsertGwSVMain = new MInsertGwSVMain();
+
+        mInsertGwSVMain.setGwSVCd(jsonFromGwSVXmlData.findValue("hostname").asText());
+        mInsertGwSVMain.setGwSVOs(jsonFromGwSVXmlData.findValue("osVersion").asText());
+        mInsertGwSVMain.setGwSVIp(jsonFromGwSVXmlData.findValue("ipAddress").asText());
+        mInsertGwSVMain.setGwSVCpuUsage(jsonFromGwSVXmlData.findValue("cpuUsage").asText());
+        mInsertGwSVMain.setGwSVMemUsage(jsonFromGwSVXmlData.findValue("memUsage").asText());
+
+        if(!(Optional.ofNullable(jsonFromGwSVXmlData.findValue("loadNum")).isEmpty())){
+            mInsertGwSVMain.setGwSVLoadNum(jsonFromGwSVXmlData.findValue("loadNum").asText());
+        }
+
+        LocalDateTime getDataResult = basicService.getFormateDateTime(jsonFromGwSVXmlData.findValue("datetime").asText(),
+                jsonFromGwSVXmlData.findValue("timeDate").asText());
+
+        mInsertGwSVMain.setGwSVDateTime(getDataResult);
+        log.info("method=getGwSVMainData, mInsertGwSVMain={}", mInsertGwSVMain);
+
+        return mInsertGwSVMain;
+    }
+
+
+
+
+
 }

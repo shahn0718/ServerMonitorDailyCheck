@@ -6,6 +6,7 @@ import com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.model.MXmlFileP
 import com.damg.upit.monitor.dailyCheck.domain.mainServerMonitor.service.xmlBasicService;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +31,7 @@ public class etcSVController {
      * @return
      * @throws Exception
      */
+    @Scheduled(fixedRate = 930000)
     @GetMapping("/makeEtcErpSVXmlList")
     @Transactional(rollbackFor = Exception.class)
     public String getEtcErpSVXmlList() throws Exception{
@@ -53,6 +55,7 @@ public class etcSVController {
      * @return
      * @throws Exception
      */
+    @Scheduled(fixedRate = 940000)
     @GetMapping("/makeEtcEhrSVXmlList")
     @Transactional(rollbackFor = Exception.class)
     public String getEtcEhrSVXmlList() throws Exception{
