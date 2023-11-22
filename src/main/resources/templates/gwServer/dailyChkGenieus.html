@@ -93,7 +93,7 @@
     </thead>
     <tbody>
     <form th:action="main.html" method="post">
-      <tr align="center">
+       <tr th:each="gwService:${gwnode3}" align="center">
         <td>서비스</td>
         <td>  
           <p>메일</p>
@@ -112,41 +112,37 @@
         </td>
         <td> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="gwMailServiceChk" id="gwMailServiceMailChkY"
-                   th:value="${gwService.mailChk}">
+            <input class="form-check-input" type="radio" value="Y" name="gwMailServiceChk" id="gwMailServiceMailChkY">
             유
-            <input class="form-check-input" type="radio" value="N" name="gwMailServiceChk" id="gwMailServiceMailChkN"
-                   th:value="${gwService.mailChk}" checked>
+            <input class="form-check-input" type="radio" value="N" name="gwMailServiceChk" id="gwMailServiceMailChkN" checked>
             무
           </p> 
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="gwApproveServiceChk" id="gwServiceApproveChkY"
-                   th:value="${gwService.approveChk}">
+            <input class="form-check-input" type="radio" value="Y" name="gwApproveServiceChk" id="gwServiceApproveChkY">
             유
-            <input class="form-check-input" type="radio" value="N" name="gwApproveServiceChk" id="gwServiceApproveChkN"
-                   th:value="${gwService.approveChks}"checked>
+            <input class="form-check-input" type="radio" value="N" name="gwApproveServiceChk" id="gwServiceApproveChkN" checked>
             무  
           </p>
           <p>
-            <input class="form-check-input" type="radio" value="Y" name="gwBackUpServiceChk" id="gwBackUpServiceChkY"
-                   th:value="${gwService.backupChk}">
+            <input class="form-check-input" type="radio" value="Y" name="gwBackUpServiceChk" id="gwBackUpServiceChkY">
             유
             <input class="form-check-input" type="radio" value="N" name="gwBackUpServiceChk" id="gwSBackUpServiceChkN"
-                   th:value="${gwService.backupChk}"checked>
+                  checked>
             무  
           </p>
         </td>
         <td>
           <input type="text" class="form-control" name="gwMailServiceBigo" id="gwMailServiceBigoInput"
-                 placeholder="이상유무 유 체크시 내역기재" th:value="${gwService.mailBigo}">
+                 placeholder="이상유무 유 체크시 내역기재">
           <input type="text" class="form-control" name="gwApproveServiceBigo" id="gwApproveServiceBigoInput"
-                 th:value="${gwService.approveBigo}">
+              >
           <input type="text" class="form-control" name="gwBackupServiceBigo" id="backupServiceBigoInput"
-                 th:value="${gwService.backupBigo}">
+             >
+          <span th:text="${gwService}"></span>
         </td>
       </tr>
     </form>
-      <tr align="center">
+      <tr align="center" th:each="gwServicenode1:${gwnode1}">
         <td rowspan="7">서버</td>
         <td>node1(운영1)</td>
         <td>리눅스</td>
@@ -161,50 +157,50 @@
         <td> 
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node1CpuUsageChk" id="node1CpuUsageChkY"
-                   th:value="${gwServer.node1CpuChk}">
+                 >
             유
             <input class="form-check-input" type="radio" value="N" name="node1CpuUsageChk" id="node1CpuUsageChkN"
-                   th:value="${gwServer.node1CpuChk}" checked>
+                    checked>
             무
           </p> 
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node1MemUsageChk" id="node1MemUsageChkY"
-                   th:value="${gwServer.node1MemChk}">
+                   >
             유
             <input class="form-check-input" type="radio" value="N" name="node1MemUsageChk" id="node1MemUsageChkN"
-                   th:value="${gwServer.node1MemChk}" checked>
+                 checked>
             무  
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node1OverLoadChk" id="node1OverLoadChkY"
-                   th:value="${gwServer.node1OverChk}">
+                 >
             유
             <input class="form-check-input" type="radio" value="N" name="node1OverLoadChk" id="node1OverLoadChkN"
-                   th:value="${gwServer.node1OverChk}" checked>
+                   checked>
             무  
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node1DiskUsageChk" id="node1DiskUsageChkY"
-                   th:value="${gwServer.node1DiskChk}">
+                >
             유
             <input class="form-check-input" type="radio" value="N" name="node1DiskUsageChk" id="node1DiskUsageChkN"
-                   th:value="${gwServer.node1DiskChk}" checked>
+                  checked>
             무
           </p> 
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node1ProcessChk" id="node1ProcessChkY"
-                   th:value="${gwServer.node1ProcessChk}">
+               >
             유
             <input class="form-check-input" type="radio" value="N" name="node1ProcessChk" id="node1ProcessChkN"
-                   th:value="${gwServer.node1ProcessChk}" checked>
+                 checked>
             무  
           </p>
           <p>
             <input class="form-check-input" type="radio" value="Y" name="node1KubChk" id="node1KubChkY"
-                   th:value="${gwServer.node1KubChk}">
+                 >
             유
             <input class="form-check-input" type="radio" value="N" name="node1KubChk" id="node1KubChkN"
-                   th:value="${gwServer.node1KubChk}" checked>
+                   checked>
             무  
           </p>
         </td>
@@ -215,6 +211,7 @@
           <input type="text" class="form-control" name="node1DiskUsageBigo" id="node1DiskUsageBigoInput">
           <input type="text" class="form-control" name="node1ProcessBigo" id="node1ProcessBigoInput">
           <input type="text" class="form-control" name="node1KubBigo" id="node1KubBigoInput" placeholder="cluster_chk 항목 보이면 유 체크 후 항목명 기재">
+          <span th:text="${gwServicenode1}"></span>
         </td>
       </tr>
       <tr align="center">
