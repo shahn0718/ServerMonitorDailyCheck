@@ -93,7 +93,7 @@
     </thead>
     <tbody>
     <form th:action="main.html" method="post">
-       <tr th:each="gwService:${gwnode3}" align="center">
+       <tr th:each="gwService:${gwnode_3}" align="center">
         <td>서비스</td>
         <td>  
           <p>메일</p>
@@ -133,7 +133,7 @@
         </td>
         <td>
           <input type="text" class="form-control" name="gwMailServiceBigo" id="gwMailServiceBigoInput"
-                 placeholder="이상유무 유 체크시 내역기재">
+                 placeholder="이상유무 유 체크시 내역기재" >
           <input type="text" class="form-control" name="gwApproveServiceBigo" id="gwApproveServiceBigoInput"
               >
           <input type="text" class="form-control" name="gwBackupServiceBigo" id="backupServiceBigoInput"
