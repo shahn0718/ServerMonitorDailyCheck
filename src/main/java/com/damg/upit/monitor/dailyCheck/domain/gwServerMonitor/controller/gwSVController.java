@@ -66,9 +66,9 @@ public class gwSVController {
                 System.out.println("values[i] = " + values[i]);
             }
 
-            MXmlServerInfo.ServerXmlInfo.valueOf(jsonFromGwSVXmlData.findValue("hostname").asText());
+//            MXmlServerInfo.ServerXmlInfo.valueOf(jsonFromGwSVXmlData.findValue("hostname").asText());
+//            System.out.println("jsonFromGwSVXmlData = " + jsonFromGwSVXmlData.findValue("hostname").asText());
 
-            System.out.println("jsonFromGwSVXmlData = " + jsonFromGwSVXmlData.findValue("hostname").asText());
             if( jsonFromGwSVXmlData.findValue("hostname").asText().equals(MXmlServerInfo.ServerXmlInfo.GWNODE_3.getXmlServerName())){
                 System.out.println("HELLO");
                 request.setAttribute(MXmlServerInfo.ServerXmlInfo.GWNODE_3.getXmlViewName(),gwService.getGwSVMainData(jsonFromGwSVXmlData));
@@ -78,7 +78,6 @@ public class gwSVController {
             }
 
         }
-
         return "gwServer/dailyChkGenieus";
     }
 }
